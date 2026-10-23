@@ -17,7 +17,7 @@ public repository contents; PI made the single authority).
 - **Synthetic data only.** No real EHR data or PHI until IRB approval **and** HIPAA + CITI training are complete.
 - If real data is ever used (later phase): never put PHI in filenames, logs, chat, or outputs; refer to records by ID only.
 - Version control is **local only** (no remote, no push) unless the PI has approved a repository.
-- **Approval on record (2026-10-23):** remote repository `github.com/sanjana-garimella/seizure_ai`.
+- **Approval on record (2026-10-23):** remote repository `github.com/sanjana-garimella/anti-seizure_ai`.
   The PI (Dr. Barbour) approved by email public
   release of the git-tracked contents, including her source materials in `kristen/`, under
   the Apache 2.0 license. Git-ignored files (`aim2_engine/clinic_data/`,
