@@ -1,0 +1,166 @@
+*{box-sizing:border-box}body{margin:0;background:#eceef0;color:#16191c;
+font:16px/1.6 'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:26px 20px 96px}
+/* --- masthead: spectrum strip + dark Scripps bar + pill-tab nav --- */
+.topbar{position:sticky;top:0;z-index:50;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.spectrum{height:6px;background:linear-gradient(90deg,#FFC951 0%,#EF634F 28%,#600A38 50%,#193D66 72%,#5BC2D2 100%)}
+header{background:#0e1113;color:#fff;padding:13px 22px;margin:0;
+display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.brand{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.brand .org{font-weight:700;letter-spacing:.14em;font-size:13px}
+.brand .vsep{width:1px;height:18px;background:#3a3f44}
+.brand .sub{font-size:13px;color:#aeb6bd}
+nav.tabs{display:flex;gap:4px;background:#1a1e21;border-radius:8px;padding:4px;flex-wrap:wrap}
+nav.tabs a{color:#aeb6bd;font-size:14px;text-decoration:none;padding:8px 13px;border-radius:6px;font-weight:600}
+nav.tabs a:hover{background:#2a2f33;color:#fff}
+nav.tabs a.active{background:#2a2f33;color:#fff}
+nav.tabs a.util{color:#6b7178}
+.toolsbar{font-size:13px;color:#8694a6;text-align:center;margin:6px 0 0}
+.toolsbar a{color:#647084;margin:0 8px}
+.qsum{display:flex;gap:10px;align-items:center;margin:0 0 14px;flex-wrap:wrap}
+tr.urg td{background:#fdf1f1}tr.done td{opacity:.55}
+.empty{padding:26px;text-align:center;color:#647084}
+/* --- smoothness: transitions + subtle motion --- */
+a,button,.btn,.pill,.card,.qcard,nav.tabs a,input,select,textarea,details.trace summary{transition:background .15s ease,color .15s ease,border-color .15s ease,box-shadow .15s ease,transform .12s ease}
+.btn:active{transform:translateY(1px)}
+details.trace>*{animation:fade .18s ease-out}@keyframes fade{from{opacity:0;transform:translateY(-2px)}to{opacity:1;transform:none}}
+/* --- queue inbox cards (design parity) --- */
+.qchips{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.qchips a{font-size:13px;font-weight:600;text-decoration:none;color:#5b6770;background:#eef1f3;border-radius:999px;padding:7px 14px}
+.qchips a:hover{background:#e1e5e8}.qchips a.on{background:#0e1113;color:#fff}
+.qcard{background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:16px 18px;margin-bottom:12px;border-left:4px solid #d7dce1}
+.qcard:hover{box-shadow:0 2px 10px rgba(20,40,70,.08);transform:translateY(-1px)}
+.qcard.lvl-urgent{border-left-color:#ED4036}.qcard.lvl-review{border-left-color:#FFC951}.qcard.lvl-routine{border-left-color:#1b7a52}
+.qcard.done{opacity:.6}
+.qtop{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.qtop .who{font-weight:700;font-size:17px;color:#16191c}
+.qtop .right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.qstatus{display:inline-block;padding:3px 11px;border-radius:6px;font-size:12px;font-weight:700}
+.qstatus.pending{background:#0e1113;color:#fff}.qstatus.approved{background:#eef1f3;color:#5b6770}
+.qcat{font-size:16px;font-weight:700;color:#16191c;margin:8px 0 2px}
+/* Classification chips on a queue card: tier, safety, and anything else needing a
+   second look. Slightly tighter than the header pill so the row reads as metadata. */
+.qchipset{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 6px}
+.qchipset .pill{font-size:12px;padding:3px 10px}
+/* The engine's one-line why, directly under the recommendation. */
+.qwhy{font-size:14px;color:#3a4654;margin:3px 0 2px;line-height:1.45}
+/* Reported dose + where it sits in this child's band. */
+.qdose{font-size:14px;color:#16191c;margin-top:6px;font-variant-numeric:tabular-nums}
+.qdose .pill{font-size:12px;padding:2px 10px;margin-left:6px;font-variant-numeric:normal}
+.card{background:#fff;border:1px solid #e1e5e8;border-radius:10px;padding:24px 26px;margin-bottom:18px}
+.card h2{margin:0 0 16px;font-size:20px;font-weight:700;letter-spacing:-.01em;color:#16191c;line-height:1.3}
+.card h2::before{content:'';display:inline-block;width:22px;height:3px;background:#FFC951;border-radius:2px;vertical-align:middle;margin-right:11px}
+.lead{font-size:17px;color:#3a4654;margin:0 0 6px}
+label{display:block;font-weight:700;font-size:16px;margin:20px 0 8px}
+.card>label:first-of-type{margin-top:6px}
+input,select,textarea{width:100%;padding:13px;border:1.5px solid #d7dce1;border-radius:8px;
+font-size:16px;background:#fff;color:#16191c}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#5BC2D2;box-shadow:0 0 0 3px rgba(91,194,210,.18)}
+.row{display:flex;gap:14px;flex-wrap:wrap}.row>div{flex:1 1 180px}
+/* Only DIRECT option rows get the bordered-card look; nested labels/inputs in a
+   reveal (.subq) keep normal question/field styling. */
+.radios>label,.checks>label{display:flex;align-items:center;gap:12px;font-weight:400;font-size:16px;
+margin:0;padding:13px 14px;border:1.5px solid #e1e5e8;border-radius:8px;margin-top:10px;cursor:pointer}
+.radios>label:hover,.checks>label:hover{border-color:#5BC2D2;background:#f7fbfc}
+.radios>label input,.checks>label input{width:20px;height:20px;flex:0 0 auto;accent-color:#0e1113}
+.checks>.subq label{font-weight:700;font-size:15px;margin:6px 0 7px}
+fieldset{border:0;border-top:1px solid #e1e5e8;border-radius:0;margin-top:18px;padding:10px 0 0}
+legend{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#647084;font-weight:700;padding:0}
+.btn{background:#0e1113;color:#fff;border:0;border-radius:10px;padding:15px 26px;font-size:16px;
+font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:hover{background:#2a2f33}.btn.big{display:block;width:100%;text-align:center}
+.btn.sm{padding:10px 16px;font-size:14px}
+.btn.ghost{background:#fff;color:#16191c;border:1.5px solid #d7dce1}.btn.ghost:hover{background:#f7f9fa;border-color:#5BC2D2}
+.btn.cta{background:#FFC951;color:#0e1113}.btn.cta:hover{background:#f0b832}
+.muted{color:#647084;font-size:15px}
+.dosecalc{margin:14px 0;padding:14px 16px;background:#0e1113;border:0;border-radius:8px;color:#fff;font-size:15px}
+.dosecalc strong{color:#fff;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #e8ebed}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#647084}
+.pill{display:inline-block;padding:4px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.urgent{background:#fbe9e9;color:#ED4036}.review{background:#fff6e0;color:#7a4f00}.routine{background:#e9f4ee;color:#1b7a52}
+.banner{border-radius:8px;padding:15px 18px;margin-bottom:18px;font-weight:600;font-size:16px}
+.banner.routine{background:#e9f4ee;color:#1b7a52}.banner.urgent{background:#fbe9e9;color:#ED4036}
+pre{white-space:pre-wrap;background:#f7f9fa;border:1px solid #e1e5e8;border-radius:8px;padding:15px;
+font:14px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#16191c}
+.foot{font-size:13px;color:#8694a6;text-align:center;margin-top:30px}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' fill='none' stroke='%23647084' stroke-width='2'/></svg>");background-repeat:no-repeat;background-position:right 15px center;padding-right:40px}
+textarea{min-height:84px;resize:vertical}
+input[type=number]{ -moz-appearance:textfield}
+.callout{display:flex;gap:12px;align-items:flex-start;background:#fbe9e9;border:1px solid #f3c2bd;color:#b3271c;border-radius:8px;padding:14px 16px;margin-bottom:18px;font-size:15px;line-height:1.45}
+.callout .ico{font-size:20px;line-height:1.2}
+.req{color:#ED4036;font-weight:700;margin-left:3px}
+.tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:#8694a6;margin-left:8px}
+.subq{border-left:3px solid #eceef0;padding-left:16px;margin-top:8px}
+.intro-meta{display:flex;gap:10px;flex-wrap:wrap;color:#3a4654;font-size:13px;margin-top:16px}
+.intro-meta span{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #e1e5e8;border-radius:999px;padding:7px 13px;font-weight:600}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:#5BC2D2;z-index:60;transition:width .12s ease-out}
+.badge{display:inline-block;padding:4px 11px;border-radius:999px;font-size:12px;font-weight:700;
+text-transform:uppercase;letter-spacing:.03em;background:#eef0f2;color:#3a4654;border:1px solid #e1e5e8;margin-right:6px}
+.badge.ai{background:#eaf7fa;color:#127a8c;border-color:#bfe6ee}
+.reccat{font-size:24px;font-weight:700;color:#16191c;margin:14px 0 2px;line-height:1.2;letter-spacing:-.01em}
+.reason{font-size:16px;color:#3a4654;margin:8px 0 0}
+details.trace{margin-top:14px;border-top:1px solid #e8ebed;padding-top:12px}
+details.trace summary{cursor:pointer;font-weight:700;color:#127a8c;font-size:14px}
+.rule{margin:10px 0;padding:10px 12px;background:#f7f9fa;border:1px solid #e1e5e8;border-radius:8px;font-size:14px}
+.rule b{color:#16191c;font-family:ui-monospace,Menlo,Consolas,monospace}
+.notetag{font-size:13px;color:#9a6700;background:#fff6e0;border:1px solid #f0d68a;border-radius:8px;
+padding:9px 12px;margin-top:12px;display:block}
+/* --- Clinical note: the stored plain-text note, laid out for reading ---------
+   Sections in the fixed order the engine writes them; each fact on its own row
+   with the label in a fixed left column so the eye can run down the values.
+   Numbers use tabular figures so doses line up between rows. */
+.note-who{font-size:15px;color:#3a4654;margin:-6px 0 18px;padding-bottom:14px;border-bottom:1px solid #e8ebed}
+.note-sec{margin:0 0 20px}
+.note-sec:last-of-type{margin-bottom:6px}
+.note-sec>h3{margin:0 0 9px;font-size:11px;font-weight:700;text-transform:uppercase;
+letter-spacing:.09em;color:#647084;display:flex;align-items:center;gap:9px}
+.note-sec>h3::after{content:'';flex:1;height:1px;background:#eceef0}
+.note-sec.danger>h3{color:#b3271c}
+.note-row{display:flex;gap:14px;align-items:baseline;padding:5px 0;border-bottom:1px solid #f3f5f6}
+.note-row:last-child{border-bottom:0}
+.note-row .k{flex:0 0 168px;font-size:14px;color:#647084}
+.note-row .v{flex:1 1 auto;font-size:15px;color:#16191c;font-weight:600;
+font-variant-numeric:tabular-nums}
+.note-stmt{margin:5px 0;font-size:15px;color:#16191c;font-weight:600}
+.note-stmt.danger{color:#b3271c;padding-left:15px;position:relative}
+.note-stmt.danger::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;
+border-radius:50%;background:#ED4036}
+.note-lbl{margin:9px 0 2px;font-size:14px;color:#647084}
+/* Continuation detail: a fixed shallow indent with a hairline, so it reads as
+   belonging to the line above whether that was a field row or a sub-heading. */
+.note-det,.note-sub{margin:3px 0 3px 14px;padding-left:12px;font-size:14px;
+color:#5b6770;font-weight:400;border-left:2px solid #eceef0}
+.note-alert{display:flex;gap:10px;margin:8px 0;padding:11px 13px;font-size:14px;line-height:1.5;
+background:#fbe9e9;border:1px solid #f3c2bd;border-left:3px solid #ED4036;border-radius:8px;color:#b3271c}
+.note-alert::before{content:'\26A0';flex:0 0 auto;font-weight:700}
+.note-foot{margin:14px 0 0;padding-top:12px;border-top:1px solid #e8ebed;
+font-size:13px;color:#8694a6}
+.note details.trace{margin-top:12px}
+@media(max-width:620px){
+  .note-row{display:block;padding:8px 0}
+  .note-row .k{display:block;flex:none;margin-bottom:1px}
+  .note-det,.note-sub{margin-left:0}
+}
+
+@media(max-width:520px){.wrap{padding:18px 14px 90px}.card{padding:20px 17px}.row{gap:12px}
+header{padding:11px 16px}.brand .sub{display:none}}/* --- accessibility --- */
+a.skip{position:absolute;left:-9999px;top:0;background:#0e1113;color:#fff;padding:10px 14px;border-radius:0 0 8px 0;z-index:100;text-decoration:none}
+a.skip:focus{left:0}
+*:focus-visible{outline:3px solid #5BC2D2;outline-offset:2px}
+nav.tabs a:focus-visible{outline-offset:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.dc-eyebrow{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5BC2D2;margin-bottom:4px}
+/* --- Clinical reference: sub-tabs --- */
+.reftabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 16px}
+.reftab{font-size:14px;font-weight:600;color:#16191c;background:#fff;border:1.5px solid #e1e5e8;border-radius:8px;padding:9px 14px;cursor:pointer}
+.reftab:hover{border-color:#0e1113}
+.reftab.on{background:#0e1113;color:#fff;border-color:#0e1113}
+.refsection{display:none}
+.refsection.on{display:block}
+.refcard{background:#fff;border:1px solid #e1e5e8;border-radius:10px;border-left:5px solid #5BC2D2;padding:18px 20px;margin-bottom:14px}
+.refcard.draft{border-left-color:#FFC951}
+.refgrid{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.refgrid>div{flex:0 1 110px}
+.refgrid label{display:block;font-size:12px;font-weight:600;color:#8694a6;margin:0 0 4px}
+.refgrid .v{font-size:15px;font-weight:600;color:#16191c}

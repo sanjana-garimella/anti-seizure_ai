@@ -1,0 +1,1392 @@
+[
+  {
+    "drug": "Levetiracetam (Keppra)",
+    "band": "Children/adolescents 2-17y, weight-based",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 20,
+    "source": "FDA Keppra (levetiracetam) Prescribing Information (accessdata.fda.gov 021035s115/021505s053, 2024); plan-doc draft.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Oral solution recommended if <=20 kg. Renally cleared (study excludes renal impairment). Watch behavioral/mood effects."
+  },
+  {
+    "drug": "Levetiracetam (Keppra)",
+    "band": "Children/adolescents 2-17y, weight-based",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 40,
+    "source": "FDA Keppra (levetiracetam) Prescribing Information (accessdata.fda.gov 021035s115/021505s053, 2024); plan-doc draft.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Oral solution recommended if <=20 kg. Renally cleared (study excludes renal impairment). Watch behavioral/mood effects."
+  },
+  {
+    "drug": "Levetiracetam (Keppra)",
+    "band": "Children/adolescents 2-17y, weight-based",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 60,
+    "source": "FDA Keppra (levetiracetam) Prescribing Information (accessdata.fda.gov 021035s115/021505s053, 2024); plan-doc draft.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Oral solution recommended if <=20 kg. Renally cleared (study excludes renal impairment). Watch behavioral/mood effects."
+  },
+  {
+    "drug": "Levetiracetam (Keppra)",
+    "band": "Children/adolescents 2-17y, weight-based",
+    "field": "max_mg_per_kg_per_day",
+    "draft_value": 60,
+    "source": "FDA Keppra (levetiracetam) Prescribing Information (accessdata.fda.gov 021035s115/021505s053, 2024); plan-doc draft.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Oral solution recommended if <=20 kg. Renally cleared (study excludes renal impairment). Watch behavioral/mood effects."
+  },
+  {
+    "drug": "Levetiracetam (Keppra)",
+    "band": "Children/adolescents 2-17y, weight-based",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 20,
+    "source": "FDA Keppra (levetiracetam) Prescribing Information (accessdata.fda.gov 021035s115/021505s053, 2024); plan-doc draft.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Oral solution recommended if <=20 kg. Renally cleared (study excludes renal impairment). Watch behavioral/mood effects."
+  },
+  {
+    "drug": "Levetiracetam (Keppra)",
+    "band": "Children/adolescents 2-17y, weight-based",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 2,
+    "source": "FDA Keppra (levetiracetam) Prescribing Information (accessdata.fda.gov 021035s115/021505s053, 2024); plan-doc draft.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Oral solution recommended if <=20 kg. Renally cleared (study excludes renal impairment). Watch behavioral/mood effects."
+  },
+  {
+    "drug": "Levetiracetam (Keppra)",
+    "band": "Children/adolescents 2-17y, weight-based",
+    "field": "absolute_max_mg_per_day",
+    "draft_value": 3000,
+    "source": "FDA Keppra (levetiracetam) Prescribing Information (accessdata.fda.gov 021035s115/021505s053, 2024); plan-doc draft.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Oral solution recommended if <=20 kg. Renally cleared (study excludes renal impairment). Watch behavioral/mood effects."
+  },
+  {
+    "drug": "Levetiracetam (Keppra)",
+    "band": "Children/adolescents 2-17y, weight-based",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Keppra (levetiracetam) Prescribing Information (accessdata.fda.gov 021035s115/021505s053, 2024); plan-doc draft.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Oral solution recommended if <=20 kg. Renally cleared (study excludes renal impairment). Watch behavioral/mood effects."
+  },
+  {
+    "drug": "Levetiracetam (Keppra)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "Behavioral/psychiatric effects (irritability, mood). Renal clearance -> reduce in renal impairment (excluded from study).",
+    "source": "FDA Keppra (levetiracetam) Prescribing Information (accessdata.fda.gov 021035s115/021505s053, 2024); plan-doc draft.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITHOUT valproate and WITHOUT enzyme inducer",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 0.3,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.3 mg/kg/day; wk3-4: 0.6 mg/kg/day; then +0.6 mg/kg/day q1-2wk. Target 4.5-7.5 mg/kg/day (cap ~300 mg/day adjunctive)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITHOUT valproate and WITHOUT enzyme inducer",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 4.5,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.3 mg/kg/day; wk3-4: 0.6 mg/kg/day; then +0.6 mg/kg/day q1-2wk. Target 4.5-7.5 mg/kg/day (cap ~300 mg/day adjunctive)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITHOUT valproate and WITHOUT enzyme inducer",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 7.5,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.3 mg/kg/day; wk3-4: 0.6 mg/kg/day; then +0.6 mg/kg/day q1-2wk. Target 4.5-7.5 mg/kg/day (cap ~300 mg/day adjunctive)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITHOUT valproate and WITHOUT enzyme inducer",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 0.6,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.3 mg/kg/day; wk3-4: 0.6 mg/kg/day; then +0.6 mg/kg/day q1-2wk. Target 4.5-7.5 mg/kg/day (cap ~300 mg/day adjunctive)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITHOUT valproate and WITHOUT enzyme inducer",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 2,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.3 mg/kg/day; wk3-4: 0.6 mg/kg/day; then +0.6 mg/kg/day q1-2wk. Target 4.5-7.5 mg/kg/day (cap ~300 mg/day adjunctive)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITHOUT valproate and WITHOUT enzyme inducer",
+    "field": "absolute_max_mg_per_day",
+    "draft_value": 300,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.3 mg/kg/day; wk3-4: 0.6 mg/kg/day; then +0.6 mg/kg/day q1-2wk. Target 4.5-7.5 mg/kg/day (cap ~300 mg/day adjunctive)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITHOUT valproate and WITHOUT enzyme inducer",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.3 mg/kg/day; wk3-4: 0.6 mg/kg/day; then +0.6 mg/kg/day q1-2wk. Target 4.5-7.5 mg/kg/day (cap ~300 mg/day adjunctive)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH valproate (much lower & slower)",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 0.15,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "VALPROATE INTERACTION: ~50% reduction at each step. Wk1-2: 0.15 mg/kg/day; wk3-4: 0.3 mg/kg/day; then +0.3 mg/kg/day q1-2wk. Target 1-5 mg/kg/day (<=2.5 mg/kg/day or 200 mg/day). HIGHEST rash risk."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH valproate (much lower & slower)",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 1.0,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "VALPROATE INTERACTION: ~50% reduction at each step. Wk1-2: 0.15 mg/kg/day; wk3-4: 0.3 mg/kg/day; then +0.3 mg/kg/day q1-2wk. Target 1-5 mg/kg/day (<=2.5 mg/kg/day or 200 mg/day). HIGHEST rash risk."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH valproate (much lower & slower)",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 5.0,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "VALPROATE INTERACTION: ~50% reduction at each step. Wk1-2: 0.15 mg/kg/day; wk3-4: 0.3 mg/kg/day; then +0.3 mg/kg/day q1-2wk. Target 1-5 mg/kg/day (<=2.5 mg/kg/day or 200 mg/day). HIGHEST rash risk."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH valproate (much lower & slower)",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 0.3,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "VALPROATE INTERACTION: ~50% reduction at each step. Wk1-2: 0.15 mg/kg/day; wk3-4: 0.3 mg/kg/day; then +0.3 mg/kg/day q1-2wk. Target 1-5 mg/kg/day (<=2.5 mg/kg/day or 200 mg/day). HIGHEST rash risk."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH valproate (much lower & slower)",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 2,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "VALPROATE INTERACTION: ~50% reduction at each step. Wk1-2: 0.15 mg/kg/day; wk3-4: 0.3 mg/kg/day; then +0.3 mg/kg/day q1-2wk. Target 1-5 mg/kg/day (<=2.5 mg/kg/day or 200 mg/day). HIGHEST rash risk."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH valproate (much lower & slower)",
+    "field": "absolute_max_mg_per_day",
+    "draft_value": 200,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "VALPROATE INTERACTION: ~50% reduction at each step. Wk1-2: 0.15 mg/kg/day; wk3-4: 0.3 mg/kg/day; then +0.3 mg/kg/day q1-2wk. Target 1-5 mg/kg/day (<=2.5 mg/kg/day or 200 mg/day). HIGHEST rash risk."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH valproate (much lower & slower)",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "VALPROATE INTERACTION: ~50% reduction at each step. Wk1-2: 0.15 mg/kg/day; wk3-4: 0.3 mg/kg/day; then +0.3 mg/kg/day q1-2wk. Target 1-5 mg/kg/day (<=2.5 mg/kg/day or 200 mg/day). HIGHEST rash risk."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 0.6,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.6 mg/kg/day; wk3-4: 1.2 mg/kg/day; then +1.2 mg/kg/day q1-2wk. Target 5-15 mg/kg/day (cap ~400 mg/day)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 5.0,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.6 mg/kg/day; wk3-4: 1.2 mg/kg/day; then +1.2 mg/kg/day q1-2wk. Target 5-15 mg/kg/day (cap ~400 mg/day)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 15.0,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.6 mg/kg/day; wk3-4: 1.2 mg/kg/day; then +1.2 mg/kg/day q1-2wk. Target 5-15 mg/kg/day (cap ~400 mg/day)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 1.2,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.6 mg/kg/day; wk3-4: 1.2 mg/kg/day; then +1.2 mg/kg/day q1-2wk. Target 5-15 mg/kg/day (cap ~400 mg/day)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 2,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.6 mg/kg/day; wk3-4: 1.2 mg/kg/day; then +1.2 mg/kg/day q1-2wk. Target 5-15 mg/kg/day (cap ~400 mg/day)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate",
+    "field": "absolute_max_mg_per_day",
+    "draft_value": 400,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.6 mg/kg/day; wk3-4: 1.2 mg/kg/day; then +1.2 mg/kg/day q1-2wk. Target 5-15 mg/kg/day (cap ~400 mg/day)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Wk1-2: 0.6 mg/kg/day; wk3-4: 1.2 mg/kg/day; then +1.2 mg/kg/day q1-2wk. Target 5-15 mg/kg/day (cap ~400 mg/day)."
+  },
+  {
+    "drug": "Lamotrigine (Lamictal)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "BOXED WARNING: serious rash (SJS/TEN). Risk increased by concomitant valproate, by exceeding the initial dose, and by escalating faster than recommended. Slow titration is essential. Titration is CONCOMITANT-MED DEPENDENT (see 3 regimens).",
+    "source": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  },
+  {
+    "drug": "Topiramate (Topamax)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 1,
+    "source": "FDA Topamax (topiramate) Prescribing Information (accessdata.fda.gov 020844s041, 2012); DailyMed.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~1-3 mg/kg/day (=25 mg) nightly wk1; increase 1-3 mg/kg/day q1-2wk. Target 5-9 mg/kg/day. step shown = mid of 1-3 mg/kg/day range - confirm."
+  },
+  {
+    "drug": "Topiramate (Topamax)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 5,
+    "source": "FDA Topamax (topiramate) Prescribing Information (accessdata.fda.gov 020844s041, 2012); DailyMed.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~1-3 mg/kg/day (=25 mg) nightly wk1; increase 1-3 mg/kg/day q1-2wk. Target 5-9 mg/kg/day. step shown = mid of 1-3 mg/kg/day range - confirm."
+  },
+  {
+    "drug": "Topiramate (Topamax)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 9,
+    "source": "FDA Topamax (topiramate) Prescribing Information (accessdata.fda.gov 020844s041, 2012); DailyMed.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~1-3 mg/kg/day (=25 mg) nightly wk1; increase 1-3 mg/kg/day q1-2wk. Target 5-9 mg/kg/day. step shown = mid of 1-3 mg/kg/day range - confirm."
+  },
+  {
+    "drug": "Topiramate (Topamax)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "max_mg_per_kg_per_day",
+    "draft_value": 9,
+    "source": "FDA Topamax (topiramate) Prescribing Information (accessdata.fda.gov 020844s041, 2012); DailyMed.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~1-3 mg/kg/day (=25 mg) nightly wk1; increase 1-3 mg/kg/day q1-2wk. Target 5-9 mg/kg/day. step shown = mid of 1-3 mg/kg/day range - confirm."
+  },
+  {
+    "drug": "Topiramate (Topamax)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 2,
+    "source": "FDA Topamax (topiramate) Prescribing Information (accessdata.fda.gov 020844s041, 2012); DailyMed.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~1-3 mg/kg/day (=25 mg) nightly wk1; increase 1-3 mg/kg/day q1-2wk. Target 5-9 mg/kg/day. step shown = mid of 1-3 mg/kg/day range - confirm."
+  },
+  {
+    "drug": "Topiramate (Topamax)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 1,
+    "source": "FDA Topamax (topiramate) Prescribing Information (accessdata.fda.gov 020844s041, 2012); DailyMed.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~1-3 mg/kg/day (=25 mg) nightly wk1; increase 1-3 mg/kg/day q1-2wk. Target 5-9 mg/kg/day. step shown = mid of 1-3 mg/kg/day range - confirm."
+  },
+  {
+    "drug": "Topiramate (Topamax)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "absolute_max_mg_per_day",
+    "draft_value": 400,
+    "source": "FDA Topamax (topiramate) Prescribing Information (accessdata.fda.gov 020844s041, 2012); DailyMed.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~1-3 mg/kg/day (=25 mg) nightly wk1; increase 1-3 mg/kg/day q1-2wk. Target 5-9 mg/kg/day. step shown = mid of 1-3 mg/kg/day range - confirm."
+  },
+  {
+    "drug": "Topiramate (Topamax)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Topamax (topiramate) Prescribing Information (accessdata.fda.gov 020844s041, 2012); DailyMed.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~1-3 mg/kg/day (=25 mg) nightly wk1; increase 1-3 mg/kg/day q1-2wk. Target 5-9 mg/kg/day. step shown = mid of 1-3 mg/kg/day range - confirm."
+  },
+  {
+    "drug": "Topiramate (Topamax)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "Metabolic acidosis; oligohidrosis/hyperthermia (esp children, hot weather); cognitive/word-finding; weight loss; nephrolithiasis.",
+    "source": "FDA Topamax (topiramate) Prescribing Information (accessdata.fda.gov 020844s041, 2012); DailyMed.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  },
+  {
+    "drug": "Oxcarbazepine (Trileptal)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 9,
+    "source": "FDA Trileptal (oxcarbazepine) Prescribing Information (accessdata.fda.gov 021014s036, 2017).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 8-10 mg/kg/day (<=600 mg/day); reach maintenance over 2-4 wks; target 30-46 mg/kg/day by weight tier; max 60 mg/kg/day. Label also gives weight-tiered absolute targets (e.g. 20-29kg ~900 mg/day; 29.1-39kg ~1200; >39kg ~1800)."
+  },
+  {
+    "drug": "Oxcarbazepine (Trileptal)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 30,
+    "source": "FDA Trileptal (oxcarbazepine) Prescribing Information (accessdata.fda.gov 021014s036, 2017).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 8-10 mg/kg/day (<=600 mg/day); reach maintenance over 2-4 wks; target 30-46 mg/kg/day by weight tier; max 60 mg/kg/day. Label also gives weight-tiered absolute targets (e.g. 20-29kg ~900 mg/day; 29.1-39kg ~1200; >39kg ~1800)."
+  },
+  {
+    "drug": "Oxcarbazepine (Trileptal)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 46,
+    "source": "FDA Trileptal (oxcarbazepine) Prescribing Information (accessdata.fda.gov 021014s036, 2017).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 8-10 mg/kg/day (<=600 mg/day); reach maintenance over 2-4 wks; target 30-46 mg/kg/day by weight tier; max 60 mg/kg/day. Label also gives weight-tiered absolute targets (e.g. 20-29kg ~900 mg/day; 29.1-39kg ~1200; >39kg ~1800)."
+  },
+  {
+    "drug": "Oxcarbazepine (Trileptal)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "max_mg_per_kg_per_day",
+    "draft_value": 60,
+    "source": "FDA Trileptal (oxcarbazepine) Prescribing Information (accessdata.fda.gov 021014s036, 2017).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 8-10 mg/kg/day (<=600 mg/day); reach maintenance over 2-4 wks; target 30-46 mg/kg/day by weight tier; max 60 mg/kg/day. Label also gives weight-tiered absolute targets (e.g. 20-29kg ~900 mg/day; 29.1-39kg ~1200; >39kg ~1800)."
+  },
+  {
+    "drug": "Oxcarbazepine (Trileptal)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 10,
+    "source": "FDA Trileptal (oxcarbazepine) Prescribing Information (accessdata.fda.gov 021014s036, 2017).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 8-10 mg/kg/day (<=600 mg/day); reach maintenance over 2-4 wks; target 30-46 mg/kg/day by weight tier; max 60 mg/kg/day. Label also gives weight-tiered absolute targets (e.g. 20-29kg ~900 mg/day; 29.1-39kg ~1200; >39kg ~1800)."
+  },
+  {
+    "drug": "Oxcarbazepine (Trileptal)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 1,
+    "source": "FDA Trileptal (oxcarbazepine) Prescribing Information (accessdata.fda.gov 021014s036, 2017).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 8-10 mg/kg/day (<=600 mg/day); reach maintenance over 2-4 wks; target 30-46 mg/kg/day by weight tier; max 60 mg/kg/day. Label also gives weight-tiered absolute targets (e.g. 20-29kg ~900 mg/day; 29.1-39kg ~1200; >39kg ~1800)."
+  },
+  {
+    "drug": "Oxcarbazepine (Trileptal)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "absolute_max_mg_per_day",
+    "draft_value": 2400,
+    "source": "FDA Trileptal (oxcarbazepine) Prescribing Information (accessdata.fda.gov 021014s036, 2017).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 8-10 mg/kg/day (<=600 mg/day); reach maintenance over 2-4 wks; target 30-46 mg/kg/day by weight tier; max 60 mg/kg/day. Label also gives weight-tiered absolute targets (e.g. 20-29kg ~900 mg/day; 29.1-39kg ~1200; >39kg ~1800)."
+  },
+  {
+    "drug": "Oxcarbazepine (Trileptal)",
+    "band": "2-17y, weight-based (adjunctive)",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Trileptal (oxcarbazepine) Prescribing Information (accessdata.fda.gov 021014s036, 2017).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 8-10 mg/kg/day (<=600 mg/day); reach maintenance over 2-4 wks; target 30-46 mg/kg/day by weight tier; max 60 mg/kg/day. Label also gives weight-tiered absolute targets (e.g. 20-29kg ~900 mg/day; 29.1-39kg ~1200; >39kg ~1800)."
+  },
+  {
+    "drug": "Oxcarbazepine (Trileptal)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "Hyponatremia (check sodium); HLA-B*1502 -> SJS risk (screen patients of Asian ancestry).",
+    "source": "FDA Trileptal (oxcarbazepine) Prescribing Information (accessdata.fda.gov 021014s036, 2017).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "2 to <6y, weight-based",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 10,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-20 mg/kg/day divided BID-TID (QID for suspension); increase weekly; maintenance generally <35 mg/kg/day."
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "2 to <6y, weight-based",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 10,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-20 mg/kg/day divided BID-TID (QID for suspension); increase weekly; maintenance generally <35 mg/kg/day."
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "2 to <6y, weight-based",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 20,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-20 mg/kg/day divided BID-TID (QID for suspension); increase weekly; maintenance generally <35 mg/kg/day."
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "2 to <6y, weight-based",
+    "field": "max_mg_per_kg_per_day",
+    "draft_value": 35,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-20 mg/kg/day divided BID-TID (QID for suspension); increase weekly; maintenance generally <35 mg/kg/day."
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "2 to <6y, weight-based",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 5,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-20 mg/kg/day divided BID-TID (QID for suspension); increase weekly; maintenance generally <35 mg/kg/day."
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "2 to <6y, weight-based",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 1,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-20 mg/kg/day divided BID-TID (QID for suspension); increase weekly; maintenance generally <35 mg/kg/day."
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "2 to <6y, weight-based",
+    "field": "frequency_per_day",
+    "draft_value": 3,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-20 mg/kg/day divided BID-TID (QID for suspension); increase weekly; maintenance generally <35 mg/kg/day."
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "6 to 12y, fixed-mg titration",
+    "field": "fixed_titration_schedule",
+    "draft_value": "[{\"day\": 1, \"total_mg_per_day\": 200}, {\"day\": 8, \"total_mg_per_day\": 300}, {\"day\": 15, \"total_mg_per_day\": 400}]",
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 100 mg BID; add up to 100 mg/day weekly; target 400-800 mg/day; max 1000 mg/day (6-12y)."
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "6 to 12y, fixed-mg titration",
+    "field": "max_mg_per_day",
+    "draft_value": 1000,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "6 to 12y, fixed-mg titration",
+    "field": "uptitration_interval_days",
+    "draft_value": 7,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "6 to 12y, fixed-mg titration",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": ">12 to 17y, fixed-mg titration",
+    "field": "fixed_titration_schedule",
+    "draft_value": "[{\"day\": 1, \"total_mg_per_day\": 400}, {\"day\": 8, \"total_mg_per_day\": 600}, {\"day\": 15, \"total_mg_per_day\": 800}]",
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 200 mg BID; add up to 200 mg/day weekly; target 800-1200 mg/day; max 1000 mg/day (12-15y), 1200 mg/day (15-17y)."
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": ">12 to 17y, fixed-mg titration",
+    "field": "max_mg_per_day",
+    "draft_value": 1200,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": ">12 to 17y, fixed-mg titration",
+    "field": "uptitration_interval_days",
+    "draft_value": 7,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": ">12 to 17y, fixed-mg titration",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Carbamazepine (Tegretol)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "HLA-B*1502 (SJS/TEN; screen Asian ancestry); AUTOINDUCTION (levels fall ~wk3-5, may need re-titration); hyponatremia; rare aplastic anemia/agranulocytosis.",
+    "source": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  },
+  {
+    "drug": "Valproic acid (Depakene; cf. divalproex/Depakote)",
+    "band": "2-17y, weight-based",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 12.5,
+    "source": "FDA Depakene (valproic acid) Prescribing Information (accessdata.fda.gov 018081s065, 2016).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-15 mg/kg/day; increase 5-10 mg/kg/week; max 60 mg/kg/day. step/start shown = midpoints - confirm. Divalproex (Depakote) is ~1:1 valproic acid equivalent."
+  },
+  {
+    "drug": "Valproic acid (Depakene; cf. divalproex/Depakote)",
+    "band": "2-17y, weight-based",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 15,
+    "source": "FDA Depakene (valproic acid) Prescribing Information (accessdata.fda.gov 018081s065, 2016).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-15 mg/kg/day; increase 5-10 mg/kg/week; max 60 mg/kg/day. step/start shown = midpoints - confirm. Divalproex (Depakote) is ~1:1 valproic acid equivalent."
+  },
+  {
+    "drug": "Valproic acid (Depakene; cf. divalproex/Depakote)",
+    "band": "2-17y, weight-based",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 60,
+    "source": "FDA Depakene (valproic acid) Prescribing Information (accessdata.fda.gov 018081s065, 2016).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-15 mg/kg/day; increase 5-10 mg/kg/week; max 60 mg/kg/day. step/start shown = midpoints - confirm. Divalproex (Depakote) is ~1:1 valproic acid equivalent."
+  },
+  {
+    "drug": "Valproic acid (Depakene; cf. divalproex/Depakote)",
+    "band": "2-17y, weight-based",
+    "field": "max_mg_per_kg_per_day",
+    "draft_value": 60,
+    "source": "FDA Depakene (valproic acid) Prescribing Information (accessdata.fda.gov 018081s065, 2016).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-15 mg/kg/day; increase 5-10 mg/kg/week; max 60 mg/kg/day. step/start shown = midpoints - confirm. Divalproex (Depakote) is ~1:1 valproic acid equivalent."
+  },
+  {
+    "drug": "Valproic acid (Depakene; cf. divalproex/Depakote)",
+    "band": "2-17y, weight-based",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 7.5,
+    "source": "FDA Depakene (valproic acid) Prescribing Information (accessdata.fda.gov 018081s065, 2016).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-15 mg/kg/day; increase 5-10 mg/kg/week; max 60 mg/kg/day. step/start shown = midpoints - confirm. Divalproex (Depakote) is ~1:1 valproic acid equivalent."
+  },
+  {
+    "drug": "Valproic acid (Depakene; cf. divalproex/Depakote)",
+    "band": "2-17y, weight-based",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 1,
+    "source": "FDA Depakene (valproic acid) Prescribing Information (accessdata.fda.gov 018081s065, 2016).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-15 mg/kg/day; increase 5-10 mg/kg/week; max 60 mg/kg/day. step/start shown = midpoints - confirm. Divalproex (Depakote) is ~1:1 valproic acid equivalent."
+  },
+  {
+    "drug": "Valproic acid (Depakene; cf. divalproex/Depakote)",
+    "band": "2-17y, weight-based",
+    "field": "absolute_max_mg_per_day",
+    "draft_value": 3000,
+    "source": "FDA Depakene (valproic acid) Prescribing Information (accessdata.fda.gov 018081s065, 2016).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-15 mg/kg/day; increase 5-10 mg/kg/week; max 60 mg/kg/day. step/start shown = midpoints - confirm. Divalproex (Depakote) is ~1:1 valproic acid equivalent."
+  },
+  {
+    "drug": "Valproic acid (Depakene; cf. divalproex/Depakote)",
+    "band": "2-17y, weight-based",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Depakene (valproic acid) Prescribing Information (accessdata.fda.gov 018081s065, 2016).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start 10-15 mg/kg/day; increase 5-10 mg/kg/week; max 60 mg/kg/day. step/start shown = midpoints - confirm. Divalproex (Depakote) is ~1:1 valproic acid equivalent."
+  },
+  {
+    "drug": "Valproic acid (Depakene; cf. divalproex/Depakote)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "BOXED: hepatotoxicity (highest <2y & polytherapy; <2y excluded by study age >=2), pancreatitis, teratogenicity (counsel patients of childbearing potential). Also thrombocytopenia, hyperammonemia.",
+    "source": "FDA Depakene (valproic acid) Prescribing Information (accessdata.fda.gov 018081s065, 2016).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  },
+  {
+    "drug": "Clobazam (Onfi/Sympazan)",
+    "band": "<=30 kg body weight",
+    "field": "fixed_titration_schedule",
+    "draft_value": "[{\"day\": 1, \"total_mg_per_day\": 5}, {\"day\": 8, \"total_mg_per_day\": 10}, {\"day\": 15, \"total_mg_per_day\": 20}]",
+    "source": "FDA Onfi (clobazam) Prescribing Information (accessdata.fda.gov 203993s005, 2016) - weight-band (<=30 vs >30 kg).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "<=30kg: 5 mg/day -> day8 10 mg/day -> day15 20 mg/day (max 20). Doses >5 mg/day are divided BID."
+  },
+  {
+    "drug": "Clobazam (Onfi/Sympazan)",
+    "band": "<=30 kg body weight",
+    "field": "max_mg_per_day",
+    "draft_value": 20,
+    "source": "FDA Onfi (clobazam) Prescribing Information (accessdata.fda.gov 203993s005, 2016) - weight-band (<=30 vs >30 kg).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Clobazam (Onfi/Sympazan)",
+    "band": "<=30 kg body weight",
+    "field": "uptitration_interval_days",
+    "draft_value": 7,
+    "source": "FDA Onfi (clobazam) Prescribing Information (accessdata.fda.gov 203993s005, 2016) - weight-band (<=30 vs >30 kg).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Clobazam (Onfi/Sympazan)",
+    "band": "<=30 kg body weight",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Onfi (clobazam) Prescribing Information (accessdata.fda.gov 203993s005, 2016) - weight-band (<=30 vs >30 kg).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Clobazam (Onfi/Sympazan)",
+    "band": ">30 kg body weight",
+    "field": "fixed_titration_schedule",
+    "draft_value": "[{\"day\": 1, \"total_mg_per_day\": 10}, {\"day\": 8, \"total_mg_per_day\": 20}, {\"day\": 15, \"total_mg_per_day\": 40}]",
+    "source": "FDA Onfi (clobazam) Prescribing Information (accessdata.fda.gov 203993s005, 2016) - weight-band (<=30 vs >30 kg).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ">30kg: 10 mg/day -> day8 20 mg/day -> day15 40 mg/day (max 40)."
+  },
+  {
+    "drug": "Clobazam (Onfi/Sympazan)",
+    "band": ">30 kg body weight",
+    "field": "max_mg_per_day",
+    "draft_value": 40,
+    "source": "FDA Onfi (clobazam) Prescribing Information (accessdata.fda.gov 203993s005, 2016) - weight-band (<=30 vs >30 kg).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Clobazam (Onfi/Sympazan)",
+    "band": ">30 kg body weight",
+    "field": "uptitration_interval_days",
+    "draft_value": 7,
+    "source": "FDA Onfi (clobazam) Prescribing Information (accessdata.fda.gov 203993s005, 2016) - weight-band (<=30 vs >30 kg).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Clobazam (Onfi/Sympazan)",
+    "band": ">30 kg body weight",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Onfi (clobazam) Prescribing Information (accessdata.fda.gov 203993s005, 2016) - weight-band (<=30 vs >30 kg).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Clobazam (Onfi/Sympazan)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "Benzodiazepine: somnolence/sedation, physical dependence & withdrawal (TAPER, do not stop abruptly). CYP2C19 poor metabolizers -> lower dose. SJS/TEN reported (esp first 8 weeks).",
+    "source": "FDA Onfi (clobazam) Prescribing Information (accessdata.fda.gov 203993s005, 2016) - weight-band (<=30 vs >30 kg).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "11 to <30 kg, weight-based",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 2,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; titrate <= once/week; maintenance 6-12 mg/kg/day (<30kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "11 to <30 kg, weight-based",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 6,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; titrate <= once/week; maintenance 6-12 mg/kg/day (<30kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "11 to <30 kg, weight-based",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 12,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; titrate <= once/week; maintenance 6-12 mg/kg/day (<30kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "11 to <30 kg, weight-based",
+    "field": "max_mg_per_kg_per_day",
+    "draft_value": 12,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; titrate <= once/week; maintenance 6-12 mg/kg/day (<30kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "11 to <30 kg, weight-based",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 2,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; titrate <= once/week; maintenance 6-12 mg/kg/day (<30kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "11 to <30 kg, weight-based",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 1,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; titrate <= once/week; maintenance 6-12 mg/kg/day (<30kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "11 to <30 kg, weight-based",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; titrate <= once/week; maintenance 6-12 mg/kg/day (<30kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "30 to <50 kg, weight-based",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 2,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; maintenance 4-8 mg/kg/day (30-<50kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "30 to <50 kg, weight-based",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 4,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; maintenance 4-8 mg/kg/day (30-<50kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "30 to <50 kg, weight-based",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 8,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; maintenance 4-8 mg/kg/day (30-<50kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "30 to <50 kg, weight-based",
+    "field": "max_mg_per_kg_per_day",
+    "draft_value": 8,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; maintenance 4-8 mg/kg/day (30-<50kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "30 to <50 kg, weight-based",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 2,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; maintenance 4-8 mg/kg/day (30-<50kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "30 to <50 kg, weight-based",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 1,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; maintenance 4-8 mg/kg/day (30-<50kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "30 to <50 kg, weight-based",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Start ~2 mg/kg/day; maintenance 4-8 mg/kg/day (30-<50kg)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": ">=50 kg, fixed-mg",
+    "field": "fixed_titration_schedule",
+    "draft_value": "[{\"day\": 1, \"total_mg_per_day\": 100}, {\"day\": 8, \"total_mg_per_day\": 200}]",
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ">=50kg: start 50 mg BID (100 mg/day); maintenance 200-400 mg/day. Confirm max (label notes 300 mg/day recommended in some peds contexts vs 400 adult)."
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": ">=50 kg, fixed-mg",
+    "field": "max_mg_per_day",
+    "draft_value": 400,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": ">=50 kg, fixed-mg",
+    "field": "uptitration_interval_days",
+    "draft_value": 7,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": ">=50 kg, fixed-mg",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Lacosamide (Vimpat)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "PR-interval prolongation (caution with cardiac conduction problems/concomitant PR-prolonging drugs); dizziness/ataxia. Schedule V.",
+    "source": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "11 to <20 kg, weight-based",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 1.5,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Weight-based BID. 11-<20kg: 0.5-2.5 mg/kg BID (1-5 mg/kg/day); typical start ~1.25 mg/kg BID. Can start at target (no forced titration)."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "11 to <20 kg, weight-based",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 2.5,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Weight-based BID. 11-<20kg: 0.5-2.5 mg/kg BID (1-5 mg/kg/day); typical start ~1.25 mg/kg BID. Can start at target (no forced titration)."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "11 to <20 kg, weight-based",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 5.0,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Weight-based BID. 11-<20kg: 0.5-2.5 mg/kg BID (1-5 mg/kg/day); typical start ~1.25 mg/kg BID. Can start at target (no forced titration)."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "11 to <20 kg, weight-based",
+    "field": "max_mg_per_kg_per_day",
+    "draft_value": 5.0,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Weight-based BID. 11-<20kg: 0.5-2.5 mg/kg BID (1-5 mg/kg/day); typical start ~1.25 mg/kg BID. Can start at target (no forced titration)."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "11 to <20 kg, weight-based",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Weight-based BID. 11-<20kg: 0.5-2.5 mg/kg BID (1-5 mg/kg/day); typical start ~1.25 mg/kg BID. Can start at target (no forced titration)."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "20 to <50 kg, weight-based",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 1.0,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "20-<50kg: 0.5-2 mg/kg BID (1-4 mg/kg/day); typical start 1 mg/kg BID."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "20 to <50 kg, weight-based",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 2.0,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "20-<50kg: 0.5-2 mg/kg BID (1-4 mg/kg/day); typical start 1 mg/kg BID."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "20 to <50 kg, weight-based",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 4.0,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "20-<50kg: 0.5-2 mg/kg BID (1-4 mg/kg/day); typical start 1 mg/kg BID."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "20 to <50 kg, weight-based",
+    "field": "max_mg_per_kg_per_day",
+    "draft_value": 4.0,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "20-<50kg: 0.5-2 mg/kg BID (1-4 mg/kg/day); typical start 1 mg/kg BID."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "20 to <50 kg, weight-based",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "20-<50kg: 0.5-2 mg/kg BID (1-4 mg/kg/day); typical start 1 mg/kg BID."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": ">=50 kg, fixed-mg",
+    "field": "fixed_titration_schedule",
+    "draft_value": "[{\"day\": 1, \"total_mg_per_day\": 100}]",
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ">=50kg: start 50 mg BID (100 mg/day); range 25-100 mg BID (50-200 mg/day). No titration required."
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": ">=50 kg, fixed-mg",
+    "field": "max_mg_per_day",
+    "draft_value": 200,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": ">=50 kg, fixed-mg",
+    "field": "uptitration_interval_days",
+    "draft_value": 0,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": ">=50 kg, fixed-mg",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Brivaracetam (Briviact)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "Behavioral/psychiatric reactions (irritability, anxiety). Schedule V. Reduce in hepatic impairment (excluded from study).",
+    "source": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "2 to <16y, weight-based (OFF-LABEL)",
+    "field": "start_mg_per_kg_per_day",
+    "draft_value": 1.5,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "OFF-LABEL <16y. Start 1-2 mg/kg/day; increase 1-2 mg/kg/day q1-2wk; target 4-8 mg/kg/day; max ~12 mg/kg/day or 600 mg/day. Long half-life (QD-BID)."
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "2 to <16y, weight-based (OFF-LABEL)",
+    "field": "target_mg_per_kg_per_day_min",
+    "draft_value": 4,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "OFF-LABEL <16y. Start 1-2 mg/kg/day; increase 1-2 mg/kg/day q1-2wk; target 4-8 mg/kg/day; max ~12 mg/kg/day or 600 mg/day. Long half-life (QD-BID)."
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "2 to <16y, weight-based (OFF-LABEL)",
+    "field": "target_mg_per_kg_per_day_max",
+    "draft_value": 8,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "OFF-LABEL <16y. Start 1-2 mg/kg/day; increase 1-2 mg/kg/day q1-2wk; target 4-8 mg/kg/day; max ~12 mg/kg/day or 600 mg/day. Long half-life (QD-BID)."
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "2 to <16y, weight-based (OFF-LABEL)",
+    "field": "max_mg_per_kg_per_day",
+    "draft_value": 12,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "OFF-LABEL <16y. Start 1-2 mg/kg/day; increase 1-2 mg/kg/day q1-2wk; target 4-8 mg/kg/day; max ~12 mg/kg/day or 600 mg/day. Long half-life (QD-BID)."
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "2 to <16y, weight-based (OFF-LABEL)",
+    "field": "uptitration_step_mg_per_kg_per_day",
+    "draft_value": 1.5,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "OFF-LABEL <16y. Start 1-2 mg/kg/day; increase 1-2 mg/kg/day q1-2wk; target 4-8 mg/kg/day; max ~12 mg/kg/day or 600 mg/day. Long half-life (QD-BID)."
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "2 to <16y, weight-based (OFF-LABEL)",
+    "field": "uptitration_interval_weeks",
+    "draft_value": 2,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "OFF-LABEL <16y. Start 1-2 mg/kg/day; increase 1-2 mg/kg/day q1-2wk; target 4-8 mg/kg/day; max ~12 mg/kg/day or 600 mg/day. Long half-life (QD-BID)."
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "2 to <16y, weight-based (OFF-LABEL)",
+    "field": "absolute_max_mg_per_day",
+    "draft_value": 600,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "OFF-LABEL <16y. Start 1-2 mg/kg/day; increase 1-2 mg/kg/day q1-2wk; target 4-8 mg/kg/day; max ~12 mg/kg/day or 600 mg/day. Long half-life (QD-BID)."
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "2 to <16y, weight-based (OFF-LABEL)",
+    "field": "frequency_per_day",
+    "draft_value": 1,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "OFF-LABEL <16y. Start 1-2 mg/kg/day; increase 1-2 mg/kg/day q1-2wk; target 4-8 mg/kg/day; max ~12 mg/kg/day or 600 mg/day. Long half-life (QD-BID)."
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "16-17y (FDA-approved range)",
+    "field": "fixed_titration_schedule",
+    "draft_value": "[{\"day\": 1, \"total_mg_per_day\": 100}, {\"day\": 15, \"total_mg_per_day\": 200}, {\"day\": 29, \"total_mg_per_day\": 300}]",
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "16y+: 100 mg/day start; increase by 100 mg/day q>=2wk; max 600 mg/day."
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "16-17y (FDA-approved range)",
+    "field": "max_mg_per_day",
+    "draft_value": 600,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "16-17y (FDA-approved range)",
+    "field": "uptitration_interval_days",
+    "draft_value": 14,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "16-17y (FDA-approved range)",
+    "field": "frequency_per_day",
+    "draft_value": 1,
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Zonisamide (Zonegran; Zonisade susp)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "OFF-LABEL in children. Sulfonamide (avoid if sulfa allergy). Oligohidrosis/hyperthermia in children (IMPORTANT - heat illness). Metabolic acidosis; renal stones; long half-life.",
+    "source": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature).",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  },
+  {
+    "drug": "Ethosuximide (Zarontin)",
+    "band": "3 to 6y, fixed-mg start",
+    "field": "fixed_titration_schedule",
+    "draft_value": "[{\"day\": 1, \"total_mg_per_day\": 250}]",
+    "source": "FDA Zarontin (ethosuximide) Prescribing Information (accessdata.fda.gov 012380s031, 2009) - absence only, >=3y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "3-6y: start 250 mg/day; increase 250 mg every 4-7 days; optimal ~20 mg/kg/day; max 1500 mg/day."
+  },
+  {
+    "drug": "Ethosuximide (Zarontin)",
+    "band": "3 to 6y, fixed-mg start",
+    "field": "max_mg_per_day",
+    "draft_value": 1500,
+    "source": "FDA Zarontin (ethosuximide) Prescribing Information (accessdata.fda.gov 012380s031, 2009) - absence only, >=3y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Ethosuximide (Zarontin)",
+    "band": "3 to 6y, fixed-mg start",
+    "field": "uptitration_interval_days",
+    "draft_value": 5,
+    "source": "FDA Zarontin (ethosuximide) Prescribing Information (accessdata.fda.gov 012380s031, 2009) - absence only, >=3y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Ethosuximide (Zarontin)",
+    "band": "3 to 6y, fixed-mg start",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Zarontin (ethosuximide) Prescribing Information (accessdata.fda.gov 012380s031, 2009) - absence only, >=3y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Ethosuximide (Zarontin)",
+    "band": ">6 to 17y, fixed-mg start",
+    "field": "fixed_titration_schedule",
+    "draft_value": "[{\"day\": 1, \"total_mg_per_day\": 500}]",
+    "source": "FDA Zarontin (ethosuximide) Prescribing Information (accessdata.fda.gov 012380s031, 2009) - absence only, >=3y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ">6y: start 500 mg/day; increase 250 mg every 4-7 days; optimal ~20 mg/kg/day; max 1500 mg/day."
+  },
+  {
+    "drug": "Ethosuximide (Zarontin)",
+    "band": ">6 to 17y, fixed-mg start",
+    "field": "max_mg_per_day",
+    "draft_value": 1500,
+    "source": "FDA Zarontin (ethosuximide) Prescribing Information (accessdata.fda.gov 012380s031, 2009) - absence only, >=3y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Ethosuximide (Zarontin)",
+    "band": ">6 to 17y, fixed-mg start",
+    "field": "uptitration_interval_days",
+    "draft_value": 5,
+    "source": "FDA Zarontin (ethosuximide) Prescribing Information (accessdata.fda.gov 012380s031, 2009) - absence only, >=3y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Ethosuximide (Zarontin)",
+    "band": ">6 to 17y, fixed-mg start",
+    "field": "frequency_per_day",
+    "draft_value": 2,
+    "source": "FDA Zarontin (ethosuximide) Prescribing Information (accessdata.fda.gov 012380s031, 2009) - absence only, >=3y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": ""
+  },
+  {
+    "drug": "Ethosuximide (Zarontin)",
+    "band": "(drug-level)",
+    "field": "key_safety",
+    "draft_value": "ABSENCE ONLY - does not protect against GTC/focal (if mixed epilepsy, a broad-spectrum agent is needed). Rare blood dyscrasias; SJS reported; GI upset.",
+    "source": "FDA Zarontin (ethosuximide) Prescribing Information (accessdata.fda.gov 012380s031, 2009) - absence only, >=3y.",
+    "verified_correct_Y_N": "",
+    "corrected_value": "",
+    "clinician_notes": "Confirm safety framing; this drives the safety-check layer."
+  }
+]

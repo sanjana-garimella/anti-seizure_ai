@@ -1,0 +1,346 @@
+{
+  "pulled": "2026-06-17",
+  "source": "RxNorm SCD concepts, RxNav REST API (rxnav.nlm.nih.gov/REST/rxcui/<id>/related?tty=SCD), US NLM. Pulled 2026-06-17.",
+  "data": {
+    "levetiracetam": {
+      "rxcui": "114477",
+      "oral_forms": [
+        {
+          "form": "tablet (IR)",
+          "strengths_mg": [
+            250,
+            500,
+            750,
+            1000
+          ]
+        },
+        {
+          "form": "oral solution",
+          "mg_per_ml": 100
+        },
+        {
+          "form": "tablet for oral suspension",
+          "strengths_mg": [
+            250,
+            500,
+            750,
+            1000
+          ]
+        },
+        {
+          "form": "extended-release tablet",
+          "strengths_mg": [
+            500,
+            750,
+            1000,
+            1500
+          ]
+        }
+      ]
+    },
+    "lamotrigine": {
+      "rxcui": "28439",
+      "oral_forms": [
+        {
+          "form": "tablet (IR)",
+          "strengths_mg": [
+            25,
+            50,
+            100,
+            150,
+            200,
+            250
+          ]
+        },
+        {
+          "form": "chewable/dispersible tablet (tab for oral susp)",
+          "strengths_mg": [
+            2,
+            5,
+            25
+          ]
+        },
+        {
+          "form": "orally disintegrating tablet (ODT)",
+          "strengths_mg": [
+            25,
+            50,
+            100,
+            200
+          ]
+        },
+        {
+          "form": "oral suspension",
+          "mg_per_ml": 10
+        },
+        {
+          "form": "extended-release tablet (>=13y)",
+          "strengths_mg": [
+            25,
+            50,
+            100,
+            200,
+            250,
+            300
+          ]
+        }
+      ]
+    },
+    "topiramate": {
+      "rxcui": "38404",
+      "oral_forms": [
+        {
+          "form": "tablet (IR)",
+          "strengths_mg": [
+            25,
+            50,
+            100,
+            200
+          ]
+        },
+        {
+          "form": "sprinkle capsule",
+          "strengths_mg": [
+            15,
+            25
+          ]
+        },
+        {
+          "form": "capsule",
+          "strengths_mg": [
+            50
+          ]
+        },
+        {
+          "form": "oral solution",
+          "mg_per_ml": 25
+        },
+        {
+          "form": "extended-release capsule (Trokendi/Qudexy)",
+          "strengths_mg": [
+            25,
+            50,
+            100,
+            150,
+            200
+          ]
+        }
+      ]
+    },
+    "brivaracetam": {
+      "rxcui": "1739745",
+      "oral_forms": [
+        {
+          "form": "tablet",
+          "strengths_mg": [
+            10,
+            25,
+            50,
+            75,
+            100
+          ]
+        },
+        {
+          "form": "oral solution",
+          "mg_per_ml": 10
+        }
+      ]
+    },
+    "clobazam": {
+      "rxcui": "21241",
+      "oral_forms": [
+        {
+          "form": "tablet",
+          "strengths_mg": [
+            5,
+            10,
+            20
+          ]
+        },
+        {
+          "form": "oral suspension",
+          "mg_per_ml": 2.5
+        },
+        {
+          "form": "oral film",
+          "strengths_mg": [
+            5,
+            10,
+            20
+          ]
+        }
+      ]
+    },
+    "valproic_acid": {
+      "rxcui": "11118",
+      "oral_forms": [
+        {
+          "form": "capsule",
+          "strengths_mg": [
+            250
+          ]
+        },
+        {
+          "form": "delayed-release capsule",
+          "strengths_mg": [
+            125,
+            150,
+            250,
+            500
+          ]
+        },
+        {
+          "form": "delayed-release tablet",
+          "strengths_mg": [
+            200
+          ]
+        },
+        {
+          "form": "tablet",
+          "strengths_mg": [
+            100
+          ]
+        },
+        {
+          "form": "oral solution (syrup)",
+          "mg_per_ml": 50
+        },
+        {
+          "form": "oral solution",
+          "mg_per_ml": 40
+        }
+      ]
+    },
+    "lacosamide": {
+      "rxcui": "623400",
+      "oral_forms": [
+        {
+          "form": "tablet",
+          "strengths_mg": [
+            50,
+            100,
+            150,
+            200
+          ]
+        },
+        {
+          "form": "oral solution",
+          "mg_per_ml": 10
+        },
+        {
+          "form": "extended-release capsule",
+          "strengths_mg": [
+            100,
+            150,
+            200
+          ]
+        }
+      ]
+    },
+    "oxcarbazepine": {
+      "rxcui": "32624",
+      "oral_forms": [
+        {
+          "form": "tablet",
+          "strengths_mg": [
+            150,
+            300,
+            600
+          ]
+        },
+        {
+          "form": "oral suspension",
+          "mg_per_ml": 60
+        },
+        {
+          "form": "extended-release tablet (Oxtellar XR, >=6y)",
+          "strengths_mg": [
+            150,
+            300,
+            600
+          ]
+        }
+      ]
+    },
+    "carbamazepine": {
+      "rxcui": "2002",
+      "oral_forms": [
+        {
+          "form": "chewable tablet",
+          "strengths_mg": [
+            100,
+            200
+          ]
+        },
+        {
+          "form": "tablet",
+          "strengths_mg": [
+            200,
+            400
+          ]
+        },
+        {
+          "form": "oral suspension",
+          "mg_per_ml": 20
+        },
+        {
+          "form": "extended-release tablet",
+          "strengths_mg": [
+            100,
+            150,
+            200,
+            300,
+            400,
+            600
+          ]
+        },
+        {
+          "form": "extended-release capsule",
+          "strengths_mg": [
+            100,
+            200,
+            300
+          ]
+        }
+      ]
+    },
+    "zonisamide": {
+      "rxcui": "39998",
+      "oral_forms": [
+        {
+          "form": "capsule",
+          "strengths_mg": [
+            25,
+            50,
+            100
+          ]
+        },
+        {
+          "form": "tablet",
+          "strengths_mg": [
+            100
+          ]
+        },
+        {
+          "form": "oral suspension (Zonisade)",
+          "mg_per_ml": 20
+        }
+      ]
+    },
+    "ethosuximide": {
+      "rxcui": "4135",
+      "oral_forms": [
+        {
+          "form": "capsule",
+          "strengths_mg": [
+            250
+          ]
+        },
+        {
+          "form": "oral solution",
+          "mg_per_ml": 50
+        }
+      ]
+    }
+  }
+}

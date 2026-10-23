@@ -1,0 +1,41 @@
+{
+  "_README": "Titration thresholds transcribed from Dr. Barbour's review notes (themes T1/T4/T5/T8/T11 + the 2026-06 update). DRAFT - unverified: faithful to her written words but she must confirm exact numbers and that they apply across all drugs (NEEDS_PI_SIGNOFF.md). Duration uses the 2026-06 re-cut DURATION_RANK (under_1min=1, 1_3min=2, over_3min=3). Frequency RANGE buckets: daily/weekly/monthly/less_than_monthly (see FREQUENCY_BUCKET_PER_WEEK in snapshot.py).",
+  "verified": false,
+  "source": "clinician (Barbour 2026-06)",
+  "whole_body_danger": {
+    "_doc": "Her words (2026-06): 'Whole body > 3 min danger'. A whole-body (generalized tonic-clonic) seizure at/over the danger duration raises an URGENT safety flag (handled like a seizure emergency). PI to confirm the 3-minute line and whether unresponsiveness alone qualifies.",
+    "seizure_class": "generalized_tonic_clonic",
+    "min_duration_rank": 3
+  },
+  "escalate_faster": {
+    "_doc": "Re-cut to the 2026-06 buckets: frequent breakthrough seizures lasting 1-3 min+ -> increase faster. (<1 min while titrating is 'fine' - see continue_ok; >3 min whole-body is danger - see whole_body_danger.) PI to confirm the exact per-week cutoffs in the new buckets.",
+    "rule_a_freq_per_week_gt": 3,
+    "rule_a_min_duration_rank": 2,
+    "rule_b_freq_per_week_gt": 1,
+    "rule_b_min_duration_rank": 2
+  },
+  "continue_ok": {
+    "_doc": "Her words (2026-06): '< 1 min going up to goal dose fine'. Seizures under a minute are fine (especially while still titrating toward goal).",
+    "all_short_max_duration_rank": 1,
+    "still_titrating_max_duration_rank_lt": 2
+  },
+  "switch_when_not_helpful": {
+    "_doc": "Her words: not helpful & unchanged >=4 weeks -> consider switch; not helpful & worse >=2 weeks -> consider switch.",
+    "unchanged_min_weeks": 4,
+    "worse_min_weeks": 2
+  },
+  "followup": {
+    "while_titrating_weeks": 4,
+    "tolerable_side_effect_reassess_weeks": 1
+  },
+  "faster_cadence_interval_days": 3,
+  "lamotrigine_small_rash_workup": {
+    "switch_if_southeast_asian_ancestry": true,
+    "switch_if_other_significant_meds_gt": 1,
+    "switch_if_missed_doses_2plus_days": true,
+    "switch_if_months_on_med_lt": 6,
+    "switch_if_over_6_months_and_no_viral_illness": true,
+    "switch_if_on_known_sjs_risk_comed": true,
+    "_switch_if_on_known_sjs_risk_comed_doc": "On another medication independently linked to SJS/TEN at the same time: antibiotics (esp. sulfonamides, penicillins, cephalosporins), NSAIDs (e.g. ibuprofen), or allopurinol. DRAFT default true - PI to confirm."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "_README": "EDITABLE SOURCE for the decision-flow canvas. Edit here, then run `python3 build_canvas.py` to regenerate decision_flow.canvas. These tables come from Kristen's 06/25/26 feedback (the .xlsx files) and are NOT yet in the engine JSON. Engine numeric thresholds are NOT duplicated here — the canvas reads those straight from ../aim2_engine/data/titration_thresholds.json so they can't drift from the engine.",
+  "_provenance": "clinician (Barbour 2026-06-25) — DRAFT, unverified, pending PI sign-off",
+
+  "side_effect_levels": [
+    "L0\nNo side effects",
+    "L1\nSmall impact",
+    "L2\nMedium, tolerable",
+    "L3\nMedium, a lot",
+    "L4\nBig impact",
+    "L5\nNot a fit"
+  ],
+
+  "no_seizures_table": {
+    "Still Titrating (A6)": [
+      "Continue on schedule",
+      "Continue on schedule",
+      "Slow dose increases",
+      "Pause titration & stay at dose • switch dosing (uneven/wait)* •\nf/u 4 wks • order labs†",
+      "Lower dose •\nf/u 4 wks • order labs†",
+      "Switch medication • f/u 4 wks"
+    ],
+    "Adjustment — Holding (B6)": [
+      "Stay at current dose",
+      "Stay at current dose",
+      "Stay at current dose",
+      "Stay at dose • switch dosing (uneven/wait)* •\nf/u 4 wks • order labs†",
+      "Lower dose •\nf/u 4 wks • order labs†",
+      "Switch medication • f/u 4 wks"
+    ],
+    "Steady State (C6)": [
+      "Stay at current dose",
+      "Stay at current dose",
+      "Stay at current dose",
+      "Stay at dose • switch dosing (uneven/TID/wait)* •\nf/u 4 wks • order labs†",
+      "Lower dose •\nf/u 4 wks • order labs†",
+      "Switch medication • f/u 4 wks"
+    ]
+  },
+
+  "no_seizures_footnotes": "* Uneven dosing OK for: clobazam, valproic acid, carbamazepine, oxcarbazepine — within 30/70 to 40/60, easiest dose form.\n\n† Labs by drug: VPA→CBC/CMP/LFTs/ammonia/level • CBZ→CBC/CMP/LFTs/level • OXC→CBC/CMP/LFTs/level • TPM→CBC/CMP/level • ZNS→CBC/CMP/level • ESM→level",
+
+  "urgency_table": [
+    ["A. Staring spells (absence)", "<90s  &  <10/day", "≥90s  OR  ≥10/day"],
+    ["B. Jerks (myoclonic)", "<20s  &  <10/day", "≥20s  OR  ≥10/day"],
+    ["C. Whole-body stiffen/shake (tonic-clonic)", "<30s  &  <1 per 4 wks", "≥30s  OR  ≥1 per 4 wks"],
+    ["D. One part stiffen/shake (focal motor)", "<3 min  &  <1/week", "≥3 min  OR  ≥1/week"],
+    ["E. Acting off / not responding (focal impaired)", "<3 min  &  <1/week", "≥3 min  OR  ≥1/week"],
+    ["F. Other", "<3 min  &  <1/week", "≥3 min  OR  ≥1/week"]
+  ],
+
+  "phases": [
+    "Still Titrating\n(moving toward goal dose)",
+    "Adjustment Period — Holding\n(paused, observing)",
+    "Steady State\n(at goal dose, stable)"
+  ],
+
+  "family_choice": {
+    "question": "Still having seizures AND already some side effects.\n“You know your child best.”\nOpen to increasing dose (side effects may worsen)?",
+    "yes": "YES — side effects manageable\n→ Option: INCREASE current dose\n(may improve control; watch side effects)",
+    "no": "NO — feels like max dose\n→ Option: ADD a second medication\n(complementary mechanisms; lower each dose)",
+    "shared": "Either path is valid — physician reviews the DRAFT.\nRecommendation never reaches family without sign-off."
+  }
+}

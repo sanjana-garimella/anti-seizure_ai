@@ -1,0 +1,2161 @@
+{
+  "_README": "63 synthetic cases Dr. Barbour reviewed (A1-J10), encoded for the validation harness. gold_standard_category = HER pick (PROJECT_LOG.md gold table). 'inferred' cases had a written note but unchecked box. Built by _build_gold_cases.py - do not hand-edit.",
+  "source": "clinician (Barbour 2026-06 review), transcribed in PROJECT_LOG.md",
+  "n_cases": 63,
+  "cases": [
+    {
+      "case_id": "A1",
+      "label": "A1 levetiracetam - bt ~2/wk, short, titrating",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "A1",
+        "age_years": 8,
+        "weight_kg": 30,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "sudden_jerks"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "sudden_jerks"
+            ],
+            "duration": "under_1min",
+            "frequency": 2,
+            "frequency_unit": "per_week"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "A2",
+      "label": "A2 oxcarbazepine - bt ~1/wk focal, titrating",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "A2",
+        "age_years": 11,
+        "weight_kg": 38,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_1min",
+            "frequency": 1,
+            "frequency_unit": "per_week"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "A3",
+      "label": "A3 lamotrigine - bt ~2/wk GTC, titrating",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "A3",
+        "age_years": 14,
+        "weight_kg": 55,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q6": "more",
+        "seizure_episodes": [
+          {
+            "look": [
+              "whole_body"
+            ],
+            "duration": "under_1min",
+            "frequency": 2,
+            "frequency_unit": "per_week"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "A4",
+      "label": "A4 levetiracetam - bt, freq given, no duration -> assume urgent (F1 policy 2026-07-16)",
+      "gold_standard_category": "escalate",
+      "inferred": true,
+      "patient": {
+        "external_id": "A4",
+        "age_years": 14,
+        "weight_kg": 55,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week"
+      }
+    },
+    {
+      "case_id": "A5",
+      "label": "A5 topiramate - bt, freq given, no duration -> assume urgent; at max -> add (F1 policy 2026-07-16)",
+      "gold_standard_category": "add_medication",
+      "inferred": true,
+      "patient": {
+        "external_id": "A5",
+        "age_years": 12,
+        "weight_kg": 44,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week"
+      }
+    },
+    {
+      "case_id": "A6",
+      "label": "A6 valproic_acid - bt, freq given, no duration -> assume urgent (F1 policy 2026-07-16)",
+      "gold_standard_category": "escalate",
+      "inferred": true,
+      "patient": {
+        "external_id": "A6",
+        "age_years": 6,
+        "weight_kg": 21,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week"
+      }
+    },
+    {
+      "case_id": "A7",
+      "label": "A7 lacosamide - bt ~3/wk, no duration -> assume urgent; at max -> no change (F1 policy 2026-07-16)",
+      "gold_standard_category": "no_change",
+      "inferred": true,
+      "patient": {
+        "external_id": "A7",
+        "age_years": 15,
+        "weight_kg": 60,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lacosamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q6": "more",
+        "Q5": 3,
+        "Q5_unit": "per_week"
+      }
+    },
+    {
+      "case_id": "A8",
+      "label": "A8 clobazam - bt ~2/wk, no duration -> assume urgent; at max -> no change (F1 policy 2026-07-16)",
+      "gold_standard_category": "no_change",
+      "inferred": true,
+      "patient": {
+        "external_id": "A8",
+        "age_years": 6,
+        "weight_kg": 19,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week"
+      }
+    },
+    {
+      "case_id": "B1",
+      "label": "B1 oxcarbazepine - bt + manageable, no duration",
+      "gold_standard_category": "insufficient_data",
+      "inferred": false,
+      "patient": {
+        "external_id": "B1",
+        "age_years": 11,
+        "weight_kg": 38,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "B2",
+      "label": "B2 valproic_acid - bt ~4/wk + manageable, no duration",
+      "gold_standard_category": "insufficient_data",
+      "inferred": false,
+      "patient": {
+        "external_id": "B2",
+        "age_years": 11,
+        "weight_kg": 40,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 4,
+        "Q5_unit": "per_week",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "B3",
+      "label": "B3 carbamazepine - bt + intolerable behavior",
+      "gold_standard_category": "switch_medication",
+      "inferred": false,
+      "patient": {
+        "external_id": "B3",
+        "age_years": 13,
+        "weight_kg": 50,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 3,
+        "Q5_unit": "per_week",
+        "Q9": [
+          "behavior_change"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "B4",
+      "label": "B4 topiramate - bt + difficult-but-tolerable, no duration",
+      "gold_standard_category": "insufficient_data",
+      "inferred": false,
+      "patient": {
+        "external_id": "B4",
+        "age_years": 13,
+        "weight_kg": 47,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q9": [
+          "word_finding"
+        ],
+        "Q10b_impact": "medium_big"
+      }
+    },
+    {
+      "case_id": "B5",
+      "label": "B5 levetiracetam - bt + manageable irritability, no duration",
+      "gold_standard_category": "insufficient_data",
+      "inferred": true,
+      "patient": {
+        "external_id": "B5",
+        "age_years": 9,
+        "weight_kg": 31,
+        "seizure_types": [],
+        "behavioral_comorbidities": [
+          "irritability"
+        ],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10b_impact": "medium_big"
+      }
+    },
+    {
+      "case_id": "B6",
+      "label": "B6 lamotrigine - bt + manageable dizziness, no duration",
+      "gold_standard_category": "insufficient_data",
+      "inferred": true,
+      "patient": {
+        "external_id": "B6",
+        "age_years": 13,
+        "weight_kg": 48,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "B7",
+      "label": "B7 brivaracetam - bt + intolerable irritability",
+      "gold_standard_category": "switch_medication",
+      "inferred": true,
+      "patient": {
+        "external_id": "B7",
+        "age_years": 12,
+        "weight_kg": 43,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "brivaracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "C1",
+      "label": "C1 levetiracetam - adherence-driven bt (missed doses)",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "C1",
+        "age_years": 9,
+        "weight_kg": 31,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "sometimes",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "no",
+        "Q2a": [
+          "missed_medication"
+        ]
+      }
+    },
+    {
+      "case_id": "C2",
+      "label": "C2 oxcarbazepine - stopped (side effects)",
+      "gold_standard_category": "switch_medication",
+      "inferred": false,
+      "patient": {
+        "external_id": "C2",
+        "age_years": 9,
+        "weight_kg": 30,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "stopped",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "stopped_reason": "side_effects"
+      }
+    },
+    {
+      "case_id": "C3",
+      "label": "C3 carbamazepine - stopped (cost)",
+      "gold_standard_category": "switch_medication",
+      "inferred": false,
+      "patient": {
+        "external_id": "C3",
+        "age_years": 9,
+        "weight_kg": 31,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "stopped",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "stopped_reason": "cost"
+      }
+    },
+    {
+      "case_id": "C4",
+      "label": "C4 valproic_acid - bt, freq given, no duration -> assume urgent (F1 policy 2026-07-16)",
+      "gold_standard_category": "escalate",
+      "inferred": true,
+      "patient": {
+        "external_id": "C4",
+        "age_years": 9,
+        "weight_kg": 30,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "sometimes",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q2a": [
+          "illness"
+        ]
+      }
+    },
+    {
+      "case_id": "C5",
+      "label": "C5 lacosamide - adherence-driven bt, at goal",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "C5",
+        "age_years": 14,
+        "weight_kg": 54,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lacosamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "sometimes",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "no",
+        "Q2a": [
+          "missed_medication"
+        ]
+      }
+    },
+    {
+      "case_id": "C6",
+      "label": "C6 clobazam - bt ~1/wk sleep trigger, short, titrating",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "C6",
+        "age_years": 6,
+        "weight_kg": 19,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "whole_body"
+            ],
+            "duration": "under_1min",
+            "frequency": 1,
+            "frequency_unit": "per_week"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "C7",
+      "label": "C7 lamotrigine - catamenial ~2/mo, short, at goal",
+      "gold_standard_category": "no_change",
+      "inferred": true,
+      "patient": {
+        "external_id": "C7",
+        "age_years": 16,
+        "weight_kg": 62,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q4": [
+          "whole_body"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "whole_body"
+            ],
+            "duration": "under_1min",
+            "frequency": 2,
+            "frequency_unit": "per_month"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "D1",
+      "label": "D1 levetiracetam - seizure-free titrating, better",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "D1",
+        "age_years": 10,
+        "weight_kg": 35,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "D2",
+      "label": "D2 lamotrigine - seizure-free titrating",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "D2",
+        "age_years": 11,
+        "weight_kg": 40,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing"
+      }
+    },
+    {
+      "case_id": "D3",
+      "label": "D3 ethosuximide - absence, seizure-free titrating, better",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "D3",
+        "age_years": 8,
+        "weight_kg": 28,
+        "seizure_types": [
+          "brief_staring"
+        ],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "ethosuximide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "D4",
+      "label": "D4 brivaracetam - seizure-free titrating",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "D4",
+        "age_years": 12,
+        "weight_kg": 43,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "brivaracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing"
+      }
+    },
+    {
+      "case_id": "D5",
+      "label": "D5 zonisamide - seizure-free titrating, better",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "D5",
+        "age_years": 13,
+        "weight_kg": 48,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "E1",
+      "label": "E1 levetiracetam - seizure-free, sleepy+mood manageable, titrating",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "E1",
+        "age_years": 10,
+        "weight_kg": 34,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "sleepiness",
+          "mood"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "E2",
+      "label": "E2 zonisamide - seizure-free, nausea manageable",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "E2",
+        "age_years": 10,
+        "weight_kg": 33,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "E3",
+      "label": "E3 valproic_acid - seizure-free, mood manageable",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "E3",
+        "age_years": 8,
+        "weight_kg": 27,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "mood"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "E4",
+      "label": "E4 oxcarbazepine - seizure-free, sleepy not-noticeable",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "E4",
+        "age_years": 7,
+        "weight_kg": 25,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "no_impact"
+      }
+    },
+    {
+      "case_id": "E5",
+      "label": "E5 topiramate - seizure-free, word-finding manageable",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "E5",
+        "age_years": 10,
+        "weight_kg": 33,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "word_finding"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "F1",
+      "label": "F1 lamotrigine - intolerable dizziness, at goal",
+      "gold_standard_category": "switch_medication",
+      "inferred": false,
+      "patient": {
+        "external_id": "F1",
+        "age_years": 12,
+        "weight_kg": 45,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "F2",
+      "label": "F2 carbamazepine - difficult-but-tolerable dizziness, titrating",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "F2",
+        "age_years": 14,
+        "weight_kg": 52,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "medium_big"
+      }
+    },
+    {
+      "case_id": "F3",
+      "label": "F3 topiramate - difficult-but-tolerable behavior, at goal",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "F3",
+        "age_years": 10,
+        "weight_kg": 33,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "behavior_change"
+        ],
+        "Q10b_impact": "medium_big"
+      }
+    },
+    {
+      "case_id": "F4",
+      "label": "F4 zonisamide - intolerable dizziness, at goal",
+      "gold_standard_category": "switch_medication",
+      "inferred": false,
+      "patient": {
+        "external_id": "F4",
+        "age_years": 12,
+        "weight_kg": 46,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "F5",
+      "label": "F5 brivaracetam - intolerable irritability, titrating",
+      "gold_standard_category": "switch_medication",
+      "inferred": false,
+      "patient": {
+        "external_id": "F5",
+        "age_years": 16,
+        "weight_kg": 64,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "brivaracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "G1",
+      "label": "G1 lacosamide - seizure-free no SE at goal",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "G1",
+        "age_years": 15,
+        "weight_kg": 60,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lacosamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal"
+      }
+    },
+    {
+      "case_id": "G2",
+      "label": "G2 lamotrigine - seizure-free no SE at goal",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "G2",
+        "age_years": 16,
+        "weight_kg": 62,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal"
+      }
+    },
+    {
+      "case_id": "G3",
+      "label": "G3 oxcarbazepine - sleepy not-noticeable at goal",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "G3",
+        "age_years": 7,
+        "weight_kg": 25,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "no_impact"
+      }
+    },
+    {
+      "case_id": "G4",
+      "label": "G4 valproic_acid - mood manageable at goal",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "G4",
+        "age_years": 8,
+        "weight_kg": 27,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "mood"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "G5",
+      "label": "G5 ethosuximide - seizure-free no SE at goal",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "G5",
+        "age_years": 9,
+        "weight_kg": 29,
+        "seizure_types": [
+          "brief_staring"
+        ],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "ethosuximide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal"
+      }
+    },
+    {
+      "case_id": "H1",
+      "label": "H1 lamotrigine - spreading/blistering rash -> stop+switch",
+      "gold_standard_category": "switch_medication",
+      "inferred": false,
+      "patient": {
+        "external_id": "H1",
+        "age_years": 7,
+        "weight_kg": 24,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters"
+      }
+    },
+    {
+      "case_id": "H2",
+      "label": "H2 carbamazepine - spreading/blistering rash -> stop+switch",
+      "gold_standard_category": "switch_medication",
+      "inferred": false,
+      "patient": {
+        "external_id": "H2",
+        "age_years": 9,
+        "weight_kg": 31,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters"
+      }
+    },
+    {
+      "case_id": "H3",
+      "label": "H3 levetiracetam - seizure >5 min, med helping -> faster",
+      "gold_standard_category": "escalate",
+      "inferred": false,
+      "patient": {
+        "external_id": "H3",
+        "age_years": 10,
+        "weight_kg": 34,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q11": "better",
+        "urgent_safety": [
+          "seizure_over_5_min"
+        ]
+      }
+    },
+    {
+      "case_id": "H4",
+      "label": "H4 valproic_acid - repeated seizures, helping -> faster",
+      "gold_standard_category": "escalate",
+      "inferred": true,
+      "patient": {
+        "external_id": "H4",
+        "age_years": 6,
+        "weight_kg": 21,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q11": "better",
+        "urgent_safety": [
+          "repeated_seizures"
+        ]
+      }
+    },
+    {
+      "case_id": "H5",
+      "label": "H5 oxcarbazepine - ER + widespread rash/mouth sores -> stop+switch",
+      "gold_standard_category": "switch_medication",
+      "inferred": false,
+      "patient": {
+        "external_id": "H5",
+        "age_years": 11,
+        "weight_kg": 40,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "large",
+        "urgent_safety": [
+          "er_visit"
+        ]
+      }
+    },
+    {
+      "case_id": "H6",
+      "label": "H6 lamotrigine - small rash on LTG+VPA -> switch",
+      "gold_standard_category": "switch_medication",
+      "inferred": true,
+      "patient": {
+        "external_id": "H6",
+        "age_years": 11,
+        "weight_kg": 40,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [
+          "valproic_acid"
+        ],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "small"
+      }
+    },
+    {
+      "case_id": "I1",
+      "label": "I1 clobazam - seizure-free, dose goal unknown",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "I1",
+        "age_years": 5,
+        "weight_kg": 18,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "not_sure"
+      }
+    },
+    {
+      "case_id": "I2",
+      "label": "I2 lamotrigine - seizure-free, goal unknown, overall not sure",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "I2",
+        "age_years": 11,
+        "weight_kg": 41,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "not_sure",
+        "Q11": "not_sure"
+      }
+    },
+    {
+      "case_id": "I3",
+      "label": "I3 zonisamide - seizure-free, goal unknown",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "I3",
+        "age_years": 11,
+        "weight_kg": 42,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "not_sure"
+      }
+    },
+    {
+      "case_id": "I4",
+      "label": "I4 levetiracetam - dose changed + ongoing seizures",
+      "gold_standard_category": "insufficient_data",
+      "inferred": false,
+      "patient": {
+        "external_id": "I4",
+        "age_years": 8,
+        "weight_kg": 30,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks",
+        "dose_changed_or_stopped": true
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "not_sure",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week"
+      }
+    },
+    {
+      "case_id": "I5",
+      "label": "I5 topiramate - bt type/freq unspecified, titrating",
+      "gold_standard_category": "insufficient_data",
+      "inferred": true,
+      "patient": {
+        "external_id": "I5",
+        "age_years": 12,
+        "weight_kg": 44,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing"
+      }
+    },
+    {
+      "case_id": "J1",
+      "label": "J1 lamotrigine - seizure-free titrating, on VPA (slow-titration note)",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "J1",
+        "age_years": 9,
+        "weight_kg": 30,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [
+          "valproic_acid"
+        ],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing"
+      }
+    },
+    {
+      "case_id": "J2",
+      "label": "J2 levetiracetam - LEV behavioral intolerable at goal (Kristen: offer switch options)",
+      "gold_standard_category": "insufficient_data",
+      "inferred": false,
+      "patient": {
+        "external_id": "J2",
+        "age_years": 7,
+        "weight_kg": 24,
+        "seizure_types": [],
+        "behavioral_comorbidities": [
+          "aggression"
+        ],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "behavior_change",
+          "irritability"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "J3",
+      "label": "J3 zonisamide - bt ~2/wk, no duration -> assume urgent; at max -> no change (F1 policy 2026-07-16)",
+      "gold_standard_category": "no_change",
+      "inferred": true,
+      "patient": {
+        "external_id": "J3",
+        "age_years": 6,
+        "weight_kg": 22,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week"
+      }
+    },
+    {
+      "case_id": "J4",
+      "label": "J4 ethosuximide - focal seizures on absence-only drug -> switch",
+      "gold_standard_category": "switch_medication",
+      "inferred": false,
+      "patient": {
+        "external_id": "J4",
+        "age_years": 7,
+        "weight_kg": 25,
+        "seizure_types": [
+          "brief_staring"
+        ],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "ethosuximide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week"
+      }
+    },
+    {
+      "case_id": "J5",
+      "label": "J5 valproic_acid - seizure-free no SE at goal, better",
+      "gold_standard_category": "no_change",
+      "inferred": false,
+      "patient": {
+        "external_id": "J5",
+        "age_years": 15,
+        "weight_kg": 52,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "J6",
+      "label": "J6 oxcarbazepine - seizure-free, nausea manageable, titrating",
+      "gold_standard_category": "no_change",
+      "inferred": true,
+      "patient": {
+        "external_id": "J6",
+        "age_years": 12,
+        "weight_kg": 44,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "J7",
+      "label": "J7 carbamazepine - seizure-free at goal, family wants different med",
+      "gold_standard_category": "insufficient_data",
+      "inferred": false,
+      "patient": {
+        "external_id": "J7",
+        "age_years": 13,
+        "weight_kg": 50,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q12": "different_medicine"
+      }
+    },
+    {
+      "case_id": "J8",
+      "label": "J8 topiramate - tolerable cognitive SE, family wants different med",
+      "gold_standard_category": "insufficient_data",
+      "inferred": true,
+      "patient": {
+        "external_id": "J8",
+        "age_years": 13,
+        "weight_kg": 47,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "word_finding"
+        ],
+        "Q10b_impact": "medium_big",
+        "Q12": "different_medicine"
+      }
+    },
+    {
+      "case_id": "J9",
+      "label": "J9 levetiracetam - seizure-free titrating, family prefers slower",
+      "gold_standard_category": "slower_uptitration",
+      "inferred": true,
+      "patient": {
+        "external_id": "J9",
+        "age_years": 10,
+        "weight_kg": 34,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q12": "change_dose"
+      }
+    },
+    {
+      "case_id": "J10",
+      "label": "J10 clobazam - bt titrating, family prefers slower",
+      "gold_standard_category": "slower_uptitration",
+      "inferred": true,
+      "patient": {
+        "external_id": "J10",
+        "age_years": 6,
+        "weight_kg": 20,
+        "seizure_types": [],
+        "behavioral_comorbidities": [],
+        "concomitant_asms": [],
+        "prior_asms_tried": [],
+        "southeast_asian_ancestry": null
+      },
+      "medication": {
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "time_on_medication": "4_12_weeks"
+      },
+      "contingency": {},
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q12": "change_dose"
+      }
+    }
+  ]
+}

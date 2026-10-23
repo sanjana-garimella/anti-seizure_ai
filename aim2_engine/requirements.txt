@@ -1,0 +1,30 @@
+# Aim 2 Medication Assistant — Python dependencies
+#
+# REQUIRED: none.
+# The engine, the optional NLP layer (lexicon/regex baselines), the validation
+# harness, demo.py, and the tests all use ONLY the Python standard library.
+# Install Python 3.10+ and run — there is nothing to `pip install`.
+#
+#   Verify:  python3 demo.py
+#            python3 -m unittest discover -s tests
+#
+# ---------------------------------------------------------------------------
+# OPTIONAL — only if/when these post-IRB upgrades are pursued (README "Upgrade
+# hooks"). NOT needed to run anything today, and none may touch the decision path.
+#
+# Points A/B — transformer NER (nlp/transformer_structurer.py):
+#   transformers>=4.40
+#   torch>=2.2
+#   # Models (downloaded once to local cache; no cloud at inference time):
+#   #   alvaroalon2/biobert_diseases_ner     (BioBERT, BC5CDR disease NER)
+#   #   samrawal/bert-base-uncased_clinical-ner  (ClinicalBERT, i2b2-2010)
+#
+# Audit trail (audit/mongo_audit.py) — MongoDB optional, JSONL fallback built-in:
+#   pymongo>=4.6
+#
+# Point D (drafting via a generative model injected into GuardedGenerator):
+#   # your chosen clinical/generative model + its client library
+#
+# Open-world drug lookup behind DrugClassifier (instead of the offline table):
+#   requests>=2.31     # to call the RxNav / RxClass REST API
+# ---------------------------------------------------------------------------

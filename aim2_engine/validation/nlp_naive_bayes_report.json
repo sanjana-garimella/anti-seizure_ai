@@ -1,0 +1,197 @@
+{
+  "meta": {
+    "seed": 20260708,
+    "n_train": 840,
+    "n_test": 360,
+    "note": "NB trained on 70% split, held out 30% test. Lexicon re-evaluated on the SAME test split for a fair apples-to-apples comparison (its headline number elsewhere uses all 1200 since it needs no training)."
+  },
+  "naive_bayes": {
+    "n_notes": 360,
+    "micro_precision": 0.9928,
+    "micro_recall": 0.8936,
+    "micro_f1": 0.9406,
+    "macro_f1": 0.9352,
+    "exact_match_accuracy": 0.8389,
+    "safety_recall": {
+      "side_effect:rash": 0.9519,
+      "seizure_mention": 0.9563
+    },
+    "rash_recall_stratified": {
+      "ordinary_phrasing": 0.9318,
+      "sjs_phrasing": 0.9608,
+      "ordinary_n": 44,
+      "sjs_n": 51
+    },
+    "missed_sjs_rash_examples": [
+      "She has been irritable and cranky. She has been irritable and cranky. She keeps losing her balance. A few staring spells during class. The rash spread to his whole body overnight. No side effects that we have noticed.",
+      "The rash is spreading all over her face. She has been irritable and cranky. Still on keppra. Everything has been going well, no concerns at all. She had blood work done to check her liver levels."
+    ],
+    "per_label": {
+      "drug_mention": {
+        "precision": 0.9753,
+        "recall": 0.8404,
+        "f1": 0.9029,
+        "tp": 79,
+        "fp": 2,
+        "fn": 15
+      },
+      "seizure_mention": {
+        "precision": 1.0,
+        "recall": 0.9563,
+        "f1": 0.9776,
+        "tp": 153,
+        "fp": 0,
+        "fn": 7
+      },
+      "side_effect:behavior": {
+        "precision": 1.0,
+        "recall": 0.9032,
+        "f1": 0.9492,
+        "tp": 28,
+        "fp": 0,
+        "fn": 3
+      },
+      "side_effect:dizziness": {
+        "precision": 1.0,
+        "recall": 0.7625,
+        "f1": 0.8652,
+        "tp": 61,
+        "fp": 0,
+        "fn": 19
+      },
+      "side_effect:irritability": {
+        "precision": 1.0,
+        "recall": 0.8529,
+        "f1": 0.9206,
+        "tp": 58,
+        "fp": 0,
+        "fn": 10
+      },
+      "side_effect:nausea": {
+        "precision": 0.9538,
+        "recall": 0.8158,
+        "f1": 0.8794,
+        "tp": 62,
+        "fp": 3,
+        "fn": 14
+      },
+      "side_effect:rash": {
+        "precision": 1.0,
+        "recall": 0.9519,
+        "f1": 0.9754,
+        "tp": 99,
+        "fp": 0,
+        "fn": 5
+      },
+      "side_effect:sleepiness": {
+        "precision": 1.0,
+        "recall": 0.9121,
+        "f1": 0.954,
+        "tp": 83,
+        "fp": 0,
+        "fn": 8
+      },
+      "test_mention": {
+        "precision": 1.0,
+        "recall": 0.9851,
+        "f1": 0.9925,
+        "tp": 66,
+        "fp": 0,
+        "fn": 1
+      }
+    }
+  },
+  "lexicon_same_split": {
+    "n_notes": 360,
+    "micro_precision": 1.0,
+    "micro_recall": 0.9377,
+    "micro_f1": 0.9679,
+    "macro_f1": 0.967,
+    "exact_match_accuracy": 0.8722,
+    "safety_recall": {
+      "side_effect:rash": 0.9712,
+      "seizure_mention": 0.9625
+    },
+    "rash_recall_stratified": {
+      "ordinary_phrasing": 0.9545,
+      "sjs_phrasing": 1.0,
+      "ordinary_n": 44,
+      "sjs_n": 51
+    },
+    "missed_sjs_rash_examples": [],
+    "per_label": {
+      "drug_mention": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 94,
+        "fp": 0,
+        "fn": 0
+      },
+      "seizure_mention": {
+        "precision": 1.0,
+        "recall": 0.9625,
+        "f1": 0.9809,
+        "tp": 154,
+        "fp": 0,
+        "fn": 6
+      },
+      "side_effect:behavior": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 31,
+        "fp": 0,
+        "fn": 0
+      },
+      "side_effect:dizziness": {
+        "precision": 1.0,
+        "recall": 0.9625,
+        "f1": 0.9809,
+        "tp": 77,
+        "fp": 0,
+        "fn": 3
+      },
+      "side_effect:irritability": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 68,
+        "fp": 0,
+        "fn": 0
+      },
+      "side_effect:nausea": {
+        "precision": 1.0,
+        "recall": 0.7632,
+        "f1": 0.8657,
+        "tp": 58,
+        "fp": 0,
+        "fn": 18
+      },
+      "side_effect:rash": {
+        "precision": 1.0,
+        "recall": 0.9712,
+        "f1": 0.9854,
+        "tp": 101,
+        "fp": 0,
+        "fn": 3
+      },
+      "side_effect:sleepiness": {
+        "precision": 1.0,
+        "recall": 0.8022,
+        "f1": 0.8902,
+        "tp": 73,
+        "fp": 0,
+        "fn": 18
+      },
+      "test_mention": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 67,
+        "fp": 0,
+        "fn": 0
+      }
+    }
+  }
+}

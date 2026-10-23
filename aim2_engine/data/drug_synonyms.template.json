@@ -1,0 +1,16 @@
+{
+  "_README": "Drug-name normalizer table for the 11 study ASMs. Maps a canonical generic name to its brand names and common abbreviations/misspellings. Brand names are factual identifiers, not invented clinical values. PI to CONFIRM and EXPAND synonyms/misspellings (NEEDS_PI_SIGNOFF.md). Loaded by engine_core.drug_identity.",
+  "synonyms": {
+    "levetiracetam": ["keppra", "lev", "keppra xr", "spritam"],
+    "brivaracetam": ["briviact", "brv"],
+    "clobazam": ["onfi", "sympazan", "clb"],
+    "valproic_acid": ["depakote", "depakene", "valproate", "divalproex", "valproate sodium", "vpa"],
+    "lacosamide": ["vimpat", "lcm"],
+    "oxcarbazepine": ["trileptal", "oxtellar", "oxtellar xr", "oxc", "oxcarb"],
+    "carbamazepine": ["tegretol", "carbatrol", "equetro", "tegretol xr", "cbz"],
+    "zonisamide": ["zonegran", "zns"],
+    "lamotrigine": ["lamictal", "lamictal xr", "ltg"],
+    "ethosuximide": ["zarontin", "esm", "esx"],
+    "topiramate": ["topamax", "qudexy", "qudexy xr", "trokendi", "trokendi xr", "tpm"]
+  }
+}

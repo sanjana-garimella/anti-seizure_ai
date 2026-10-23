@@ -1,0 +1,1838 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+<key id="label" for="node" attr.name="label" attr.type="string"/>
+<key id="type" for="node" attr.name="type" attr.type="string"/>
+<key id="layer" for="node" attr.name="layer" attr.type="long"/>
+<key id="detail" for="node" attr.name="detail" attr.type="string"/>
+<key id="branch" for="node" attr.name="branch" attr.type="string"/>
+<key id="provenance" for="node" attr.name="provenance" attr.type="string"/>
+<key id="rel" for="edge" attr.name="rel" attr.type="string"/>
+<key id="minor" for="edge" attr.name="minor" attr.type="boolean"/>
+<graph edgedefault="directed">
+<node id="cat_no_change">
+<data key="label">Keep current dose</data>
+<data key="type">recommendation</data>
+<data key="layer">5</data>
+<data key="detail">Engine recommendation: Keep current dose.</data>
+</node>
+<node id="cat_escalate">
+<data key="label">Increase the dose</data>
+<data key="type">recommendation</data>
+<data key="layer">5</data>
+<data key="detail">Engine recommendation: Increase the dose.</data>
+</node>
+<node id="cat_slower_uptitration">
+<data key="label">Increase more slowly</data>
+<data key="type">recommendation</data>
+<data key="layer">5</data>
+<data key="detail">Engine recommendation: Increase more slowly.</data>
+</node>
+<node id="cat_hold">
+<data key="label">Hold at current dose</data>
+<data key="type">recommendation</data>
+<data key="layer">5</data>
+<data key="detail">Engine recommendation: Hold at current dose.</data>
+</node>
+<node id="cat_lower_dose">
+<data key="label">Lower the dose</data>
+<data key="type">recommendation</data>
+<data key="layer">5</data>
+<data key="detail">Engine recommendation: Lower the dose.</data>
+</node>
+<node id="cat_add_medication">
+<data key="label">Add another medicine</data>
+<data key="type">recommendation</data>
+<data key="layer">5</data>
+<data key="detail">Engine recommendation: Add another medicine.</data>
+</node>
+<node id="cat_switch_medication">
+<data key="label">Switch medicine</data>
+<data key="type">recommendation</data>
+<data key="layer">5</data>
+<data key="detail">Engine recommendation: Switch medicine.</data>
+</node>
+<node id="cat_insufficient_data">
+<data key="label">Need more info / defer</data>
+<data key="type">recommendation</data>
+<data key="layer">5</data>
+<data key="detail">Engine recommendation: Need more info / defer.</data>
+</node>
+<node id="survey">
+<data key="label">Between-visit survey</data>
+<data key="type">input</data>
+<data key="layer">0</data>
+<data key="detail">Interval check-in: seizures since last visit? side effects (level)? phase? adherence? duration/frequency? rash? dose goal? (kristen/BetweenVisit_SurveyDraft)</data>
+</node>
+<node id="branch_bt">
+<data key="label">BREAKTHROUGH seizures</data>
+<data key="type">branch</data>
+<data key="layer">2</data>
+<data key="detail">One or more breakthrough seizures this interval.</data>
+</node>
+<node id="branch_sf">
+<data key="label">SEIZURE-FREE</data>
+<data key="type">branch</data>
+<data key="layer">2</data>
+<data key="detail">No seizures this interval.</data>
+</node>
+<node id="rule_R0">
+<data key="label">R0 · Spreading/blistering rash</data>
+<data key="type">rule</data>
+<data key="layer">1</data>
+<data key="detail">Serious skin-reaction concern -&gt; stop + switch; urgent review; family message withheld.
+
+Provenance: Barbour T11/T12 (SJS/TEN)</data>
+<data key="branch">safety</data>
+<data key="provenance">Barbour T11/T12 (SJS/TEN)</data>
+</node>
+<node id="rule_R0b">
+<data key="label">R0b · Seizure emergency</data>
+<data key="type">rule</data>
+<data key="layer">1</data>
+<data key="detail">Prolonged/repeated seizures -&gt; urgent review; if helping, increase faster; if not helping after min trial -&gt; switch.
+
+Provenance: Barbour T13</data>
+<data key="branch">safety</data>
+<data key="provenance">Barbour T13</data>
+</node>
+<node id="rule_R0c">
+<data key="label">R0c · Other urgent safety</data>
+<data key="type">rule</data>
+<data key="layer">1</data>
+<data key="detail">Breathing/ER signal -&gt; withhold automated rec; immediate physician review.
+
+Provenance: safety</data>
+<data key="branch">safety</data>
+<data key="provenance">safety</data>
+</node>
+<node id="rule_R1">
+<data key="label">R1 · Dose changed + seizures</data>
+<data key="type">rule</data>
+<data key="layer">1</data>
+<data key="detail">Regimen recently changed and seizures continue -&gt; confirm regimen, contact clinic (not enough info).
+
+Provenance: Barbour I4</data>
+<data key="branch">safety</data>
+<data key="provenance">Barbour I4</data>
+</node>
+<node id="rule_R2">
+<data key="label">R2 · Stopped (side effects/cost)</data>
+<data key="type">rule</data>
+<data key="layer">1</data>
+<data key="detail">Family stopped for a switch-worthy reason -&gt; switch to a better-tolerated/feasible option.
+
+Provenance: Barbour T10</data>
+<data key="branch">safety</data>
+<data key="provenance">Barbour T10</data>
+</node>
+<node id="rule_R3">
+<data key="label">R3 · Drug not indicated</data>
+<data key="type">rule</data>
+<data key="layer">1</data>
+<data key="detail">Drug does not cover the reported seizure type (e.g. ethosuximide = absence only) -&gt; switch.
+
+Provenance: Barbour T14</data>
+<data key="branch">safety</data>
+<data key="provenance">Barbour T14</data>
+</node>
+<node id="rule_R4">
+<data key="label">R4 · Small rash + SJS workup</data>
+<data key="type">rule</data>
+<data key="layer">1</data>
+<data key="detail">Small rash on an SJS-risk drug + a workup criterion (ancestry/meds/missed doses/time/no viral illness) -&gt; switch.
+
+Provenance: Barbour T11</data>
+<data key="branch">safety</data>
+<data key="provenance">Barbour T11</data>
+</node>
+<node id="rule_R4b">
+<data key="label">R4b · Can't reach min dose (SE)</data>
+<data key="type">rule</data>
+<data key="layer">1</data>
+<data key="detail">Side effects prevent even a minimum effective dose -&gt; switch.
+
+Provenance: Barbour 2026-06</data>
+<data key="branch">safety</data>
+<data key="provenance">Barbour 2026-06</data>
+</node>
+<node id="rule_R5">
+<data key="label">R5 · Adherence-driven breakthrough</data>
+<data key="type">rule</data>
+<data key="layer">1</data>
+<data key="detail">Seizures coincide with missed doses -&gt; support adherence before any dose change.
+
+Provenance: adherence</data>
+<data key="branch">safety</data>
+<data key="provenance">adherence</data>
+</node>
+<node id="rule_R-defer-se">
+<data key="label">R-defer · Unknown SE impact</data>
+<data key="type">rule</data>
+<data key="layer">1</data>
+<data key="detail">Side-effect impact answer not recognized -&gt; physician review (no confident rec).
+
+Provenance: E3 defer-on-ambiguity</data>
+<data key="branch">safety</data>
+<data key="provenance">E3 defer-on-ambiguity</data>
+</node>
+<node id="rule_BT">
+<data key="label">BT · Breakthrough table</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Action by urgency tier x phase x side-effect level. Levels 1-5 route here (L1 only when duration captured).
+
+Provenance: Barbour 2026-06-25; gate fixed 2026-07-08 (Kristen B1/B2/B3)</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">Barbour 2026-06-25; gate fixed 2026-07-08 (Kristen B1/B2/B3)</data>
+</node>
+<node id="rule_R5b">
+<data key="label">R5b · Helping but dose-limited</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Medicine helps but side effects block further increases while seizures continue -&gt; ADD a second medicine.
+
+Provenance: Barbour 2026-06</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">Barbour 2026-06</data>
+</node>
+<node id="rule_R6">
+<data key="label">R6 · Intolerable SE</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Breakthrough + intolerable side effects -&gt; switch.
+
+Provenance: T7 boundary</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">T7 boundary</data>
+</node>
+<node id="rule_R7">
+<data key="label">R7 · Family prefers slower</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Breakthrough but family prefers a slower/changed dose -&gt; slower uptitration.
+
+Provenance: family preference</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">family preference</data>
+</node>
+<node id="rule_R8">
+<data key="label">R8 · No SE, no duration</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Breakthrough, no side effects, but duration not captured -&gt; need duration to decide continue vs faster.
+
+Provenance: Barbour T1/T4</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">Barbour T1/T4</data>
+</node>
+<node id="rule_R9">
+<data key="label">R9 · Frequent/long -&gt; faster</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Frequent and/or long breakthrough -&gt; increase FASTER toward goal (per duration/frequency thresholds).
+
+Provenance: Barbour T1/T4</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">Barbour T1/T4</data>
+</node>
+<node id="rule_R10">
+<data key="label">R10 · Short/infrequent titrating</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Short/infrequent breakthrough while titrating -&gt; continue the plan (keep increasing on schedule).
+
+Provenance: Barbour T1/T4</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">Barbour T1/T4</data>
+</node>
+<node id="rule_R11">
+<data key="label">R11 · Below faster thresholds</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Breakthrough below the increase-faster thresholds -&gt; continue the current titration plan.
+
+Provenance: Barbour T1/T4</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">Barbour T1/T4</data>
+</node>
+<node id="rule_R12g">
+<data key="label">R12g · At goal + medium SE</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">At goal, medium-impact SE, ongoing seizures -&gt; ask family: tolerate &amp; increase, or add a second med.
+
+Provenance: Barbour 2026-06</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">Barbour 2026-06</data>
+</node>
+<node id="rule_R12">
+<data key="label">R12 · Manageable, no duration</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Breakthrough + manageable SE but no duration -&gt; need duration to weigh increasing vs holding.
+
+Provenance: Barbour</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">Barbour</data>
+</node>
+<node id="rule_R13">
+<data key="label">R13 · Titrating + medium SE</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Titrating + medium-impact SE -&gt; slow uptitration; reassess after a 1-week adjustment.
+
+Provenance: Barbour 2026-06</data>
+<data key="branch">breakthrough</data>
+<data key="provenance">Barbour 2026-06</data>
+</node>
+<node id="rule_NS">
+<data key="label">NS · No-Seizures table</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Action by phase x side-effect level when seizure-free. 'Continue' cells schedule no follow-up (Kristen D4).
+
+Provenance: Barbour 2026-06-25; follow-up fixed 2026-07-08 (Kristen D4)</data>
+<data key="branch">seizure_free</data>
+<data key="provenance">Barbour 2026-06-25; follow-up fixed 2026-07-08 (Kristen D4)</data>
+</node>
+<node id="rule_R14">
+<data key="label">R14 · Free + intolerable SE</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Seizure-free but intolerable side effects -&gt; switch.
+
+Provenance: legacy</data>
+<data key="branch">seizure_free</data>
+<data key="provenance">legacy</data>
+</node>
+<node id="rule_R15">
+<data key="label">R15 · Family wants different med</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Family would like a different medicine (no clinical trigger) -&gt; offer switch options for physician.
+
+Provenance: family preference</data>
+<data key="branch">seizure_free</data>
+<data key="provenance">family preference</data>
+</node>
+<node id="rule_R16">
+<data key="label">R16 · Free titrating, family slower</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Seizure-free, titrating, family prefers slower -&gt; slower uptitration.
+
+Provenance: family preference</data>
+<data key="branch">seizure_free</data>
+<data key="provenance">family preference</data>
+</node>
+<node id="rule_R17">
+<data key="label">R17 · Free + manageable SE</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Seizure-free + manageable side effects -&gt; no change; reassess as body adjusts.
+
+Provenance: legacy</data>
+<data key="branch">seizure_free</data>
+<data key="provenance">legacy</data>
+</node>
+<node id="rule_R18">
+<data key="label">R18 · Free + no SE</data>
+<data key="type">rule</data>
+<data key="layer">3</data>
+<data key="detail">Seizure-free, no side effects -&gt; no change; recheck on schedule if still titrating.
+
+Provenance: legacy</data>
+<data key="branch">seizure_free</data>
+<data key="provenance">legacy</data>
+</node>
+<node id="lvl0">
+<data key="label">L0 none</data>
+<data key="type">level</data>
+<data key="layer">4</data>
+<data key="detail">Side-effect impact level 0.</data>
+</node>
+<node id="lvl1">
+<data key="label">L1 small</data>
+<data key="type">level</data>
+<data key="layer">4</data>
+<data key="detail">Side-effect impact level 1.</data>
+</node>
+<node id="lvl2">
+<data key="label">L2 med-tol</data>
+<data key="type">level</data>
+<data key="layer">4</data>
+<data key="detail">Side-effect impact level 2.</data>
+</node>
+<node id="lvl3">
+<data key="label">L3 med-alot</data>
+<data key="type">level</data>
+<data key="layer">4</data>
+<data key="detail">Side-effect impact level 3.</data>
+</node>
+<node id="lvl4">
+<data key="label">L4 big</data>
+<data key="type">level</data>
+<data key="layer">4</data>
+<data key="detail">Side-effect impact level 4.</data>
+</node>
+<node id="lvl5">
+<data key="label">L5 not-fit</data>
+<data key="type">level</data>
+<data key="layer">4</data>
+<data key="detail">Side-effect impact level 5.</data>
+</node>
+<node id="phase_titrating">
+<data key="label">titrating</data>
+<data key="type">phase</data>
+<data key="layer">4</data>
+<data key="detail">Titration phase: titrating.</data>
+</node>
+<node id="phase_holding">
+<data key="label">holding</data>
+<data key="type">phase</data>
+<data key="layer">4</data>
+<data key="detail">Titration phase: holding.</data>
+</node>
+<node id="phase_steady">
+<data key="label">steady</data>
+<data key="type">phase</data>
+<data key="layer">4</data>
+<data key="detail">Titration phase: steady.</data>
+</node>
+<node id="tbl_no_seizures">
+<data key="label">No-Seizures table</data>
+<data key="type">table</data>
+<data key="layer">4</data>
+<data key="detail">Action by phase x level when seizure-free. verified=False</data>
+</node>
+<node id="tbl_bt_non_urgent">
+<data key="label">Breakthrough · non-urgent</data>
+<data key="type">table</data>
+<data key="layer">4</data>
+<data key="detail">titrating: stay | stay | stay | hold | add med | switch
+holding: stay | increase | increase | hold | add med | switch
+steady: increase | increase | increase | increase | add med | switch
+verified=False</data>
+</node>
+<node id="tbl_bt_urgent">
+<data key="label">Breakthrough · urgent</data>
+<data key="type">table</data>
+<data key="layer">4</data>
+<data key="detail">titrating: increase | increase | increase | increase | add med | switch
+holding: increase | increase | increase | increase | add med | switch
+steady: increase | increase | increase | increase | add med | switch
+verified=False</data>
+</node>
+<node id="tbl_bt_emergent">
+<data key="label">Breakthrough · emergent</data>
+<data key="type">table</data>
+<data key="layer">4</data>
+<data key="detail">titrating: increase | increase | increase | increase | add med | switch
+holding: increase | increase | increase | increase | add med | switch
+steady: increase | increase | increase | increase | add med | switch
+verified=False</data>
+</node>
+<node id="tbl_urgency">
+<data key="label">Urgency thresholds</data>
+<data key="type">table</data>
+<data key="layer">4</data>
+<data key="detail">Per seizure-type duration/frequency cutoffs -&gt; breakthrough tier. verified=False</data>
+</node>
+<node id="ladder_hub">
+<data key="label">Dose ladder</data>
+<data key="type">table</data>
+<data key="layer">4</data>
+<data key="detail">Per drug x band explicit rungs (min-maint -&gt; eff-max -&gt; max; high range -&gt; † labs). Barbour final_doses v6, DRAFT.</data>
+</node>
+<node id="drug_levetiracetam">
+<data key="label">Levetiracetam</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Levetiracetam (Keppra)
+SJS risk: False
+Behavioral/psychiatric effects (irritability, mood, aggression). Avoid in significant behavioral comorbidity (Barbour). Renally cleared.</data>
+</node>
+<node id="band_levetiracetam_0">
+<data key="label">Levetiracetam · Children ≥2 years and Adults</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Children ≥2 years and Adults
+initial 10 mg/kg/day
+min-maint 30 mg/kg/day -&gt; eff-max 60 -&gt; max 3000.0 mg/d
+up 6 · higher(†) 0</data>
+</node>
+<node id="drug_lamotrigine">
+<data key="label">Lamotrigine</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Lamotrigine (Lamictal)
+SJS risk: True
+BOXED WARNING: serious rash (SJS/TEN). Risk increased by concomitant valproate, by exceeding the initial dose, and by escalating faster than recommended. Slow titration is essential. Titration is CONC</data>
+</node>
+<node id="band_lamotrigine_0">
+<data key="label">Lamotrigine · Children 2–12 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Children 2–12 years
+initial 0.3 mg/kg/day
+min-maint 4.5 mg/kg/day -&gt; eff-max 6.3 -&gt; max 300.0 mg/d
+up 3 · higher(†) 3</data>
+</node>
+<node id="band_lamotrigine_1">
+<data key="label">Lamotrigine · Adolescents 12–16 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Adolescents 12–16 years
+initial 25 mg/day
+min-maint 150 mg/day -&gt; eff-max 280 -&gt; max 400.0 mg/d
+up 3 · higher(†) 3</data>
+</node>
+<node id="band_lamotrigine_2">
+<data key="label">Lamotrigine · &gt;16 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">&gt;16 years
+initial 25 mg/day
+min-maint 200 mg/day -&gt; eff-max 360 -&gt; max 500.0 mg/d
+up 3 · higher(†) 3</data>
+</node>
+<node id="drug_topiramate">
+<data key="label">Topiramate</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Topiramate (Topamax)
+SJS risk: False
+Cognitive/word-finding; metabolic acidosis; oligohidrosis; nephrolithiasis.</data>
+</node>
+<node id="band_topiramate_0">
+<data key="label">Topiramate · ≤11 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">≤11 kg
+initial 25 mg/day
+min-maint 150 mg/day -&gt; eff-max 220 -&gt; max 250.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="band_topiramate_1">
+<data key="label">Topiramate · 12–22 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">12–22 kg
+initial 25 mg/day
+min-maint 200 mg/day -&gt; eff-max 270 -&gt; max 300.0 mg/d
+up 3 · higher(†) 2</data>
+</node>
+<node id="band_topiramate_2">
+<data key="label">Topiramate · 23–38 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">23–38 kg
+initial 25 mg/day
+min-maint 200 mg/day -&gt; eff-max 305 -&gt; max 350.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="band_topiramate_3">
+<data key="label">Topiramate · &gt;38 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">&gt;38 kg
+initial 50 mg/day
+min-maint 250 mg/day -&gt; eff-max 355 -&gt; max 400.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="labs_topiramate">
+<data key="label">† labs Topiramate</data>
+<data key="type">labs</data>
+<data key="layer">4</data>
+<data key="detail">High-dose labs:
+- CBC
+- CMP
+- TSH
+- vitamin D
+- topiramate level</data>
+</node>
+<node id="drug_oxcarbazepine">
+<data key="label">Oxcarbazepine</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Oxcarbazepine (Trileptal)
+SJS risk: True
+Hyponatremia; rash with HLA-B*1502 cross-reactivity. Spreading/blistering rash -&gt; stop + switch.</data>
+</node>
+<node id="band_oxcarbazepine_0">
+<data key="label">Oxcarbazepine · &lt;20 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">&lt;20 kg
+initial 7.5 mg/kg/day
+min-maint 7.5 mg/kg/day -&gt; eff-max 44.25 -&gt; max 900.0 mg/d
+up 7 · higher(†) 3</data>
+</node>
+<node id="band_oxcarbazepine_1">
+<data key="label">Oxcarbazepine · 20 to &lt;25 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">20 to &lt;25 kg
+initial 300 mg/day
+min-maint 600 mg/day -&gt; eff-max 810 -&gt; max 900.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="band_oxcarbazepine_2">
+<data key="label">Oxcarbazepine · 25 to &lt;35 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">25 to &lt;35 kg
+initial 300 mg/day
+min-maint 900 mg/day -&gt; eff-max 1110 -&gt; max 1200.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="band_oxcarbazepine_3">
+<data key="label">Oxcarbazepine · 35 to &lt;45 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">35 to &lt;45 kg
+initial 300 mg/day
+min-maint 900 mg/day -&gt; eff-max 1320 -&gt; max 1500.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="band_oxcarbazepine_4">
+<data key="label">Oxcarbazepine · 45 to &lt;50 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">45 to &lt;50 kg
+initial 300 mg/day
+min-maint 1200 mg/day -&gt; eff-max 1410 -&gt; max 1500.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="band_oxcarbazepine_5">
+<data key="label">Oxcarbazepine · 50 to &lt;60 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">50 to &lt;60 kg
+initial 300 mg/day
+min-maint 1200 mg/day -&gt; eff-max 1620 -&gt; max 1800.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="band_oxcarbazepine_6">
+<data key="label">Oxcarbazepine · 60 to &lt;70 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">60 to &lt;70 kg
+initial 300 mg/day
+min-maint 1200 mg/day -&gt; eff-max 1830 -&gt; max 2100.0 mg/d
+up 6 · higher(†) 3</data>
+</node>
+<node id="band_oxcarbazepine_7">
+<data key="label">Oxcarbazepine · ≥70 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">≥70 kg
+initial 300 mg/day
+min-maint 1500 mg/day -&gt; eff-max 2100 -&gt; max 2100.0 mg/d
+up 6 · higher(†) 0</data>
+</node>
+<node id="labs_oxcarbazepine">
+<data key="label">† labs Oxcarbazepine</data>
+<data key="type">labs</data>
+<data key="layer">4</data>
+<data key="detail">High-dose labs:
+- CBC
+- CMP
+- LFTs
+- TSH
+- vitamin D
+- oxcarbazepine level</data>
+</node>
+<node id="drug_carbamazepine">
+<data key="label">Carbamazepine</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Carbamazepine (Tegretol)
+SJS risk: True
+Serious rash (SJS/TEN), esp. with HLA-B*1502 (Southeast/East Asian ancestry). Hyponatremia; blood dyscrasias; enzyme inducer.</data>
+</node>
+<node id="band_carbamazepine_0">
+<data key="label">Carbamazepine · Children 2 to &lt;6 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Children 2 to &lt;6 years
+initial 10 mg/kg/day
+min-maint 10 mg/kg/day -&gt; eff-max 25 -&gt; max 800.0 mg/d
+up 3 · higher(†) 2</data>
+</node>
+<node id="band_carbamazepine_1">
+<data key="label">Carbamazepine · Children ≥6 to 12 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Children ≥6 to 12 years
+initial 200 mg/day
+min-maint 400 mg/day -&gt; eff-max 640 -&gt; max 800.0 mg/d
+up 2 · higher(†) 2</data>
+</node>
+<node id="band_carbamazepine_2">
+<data key="label">Carbamazepine · Adolescents 13–18 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Adolescents 13–18 years
+initial 400 mg/day
+min-maint 800 mg/day -&gt; eff-max 1040 -&gt; max 1200.0 mg/d
+up 3 · higher(†) 2</data>
+</node>
+<node id="band_carbamazepine_3">
+<data key="label">Carbamazepine · Adults &gt;18 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Adults &gt;18 years
+initial 400 mg/day
+min-maint 800 mg/day -&gt; eff-max 1760 -&gt; max 2000.0 mg/d
+up 9 · higher(†) 3</data>
+</node>
+<node id="labs_carbamazepine">
+<data key="label">† labs Carbamazepine</data>
+<data key="type">labs</data>
+<data key="layer">4</data>
+<data key="detail">High-dose labs:
+- CBC
+- CMP
+- LFTs
+- TSH
+- vitamin D
+- carbamazepine level</data>
+</node>
+<node id="drug_valproic_acid">
+<data key="label">Valproic acid</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Valproic acid (Depakene; cf. divalproex/Depakote)
+SJS risk: False
+Hepatotoxicity; pancreatitis; thrombocytopenia; teratogenic. Raises lamotrigine levels (rash risk).</data>
+</node>
+<node id="band_valproic_acid_0">
+<data key="label">Valproic acid · Children ≥2 years and Adults</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Children ≥2 years and Adults
+initial 10 mg/kg/day
+min-maint 30 mg/kg/day -&gt; eff-max 48 -&gt; max 3000.0 mg/d
+up 3 · higher(†) 3</data>
+</node>
+<node id="labs_valproic_acid">
+<data key="label">† labs Valproic acid</data>
+<data key="type">labs</data>
+<data key="layer">4</data>
+<data key="detail">High-dose labs:
+- CBC
+- CMP
+- LFTs
+- ammonia
+- amylase
+- lipase
+- TSH
+- vitamin D
+- valproic acid level</data>
+</node>
+<node id="drug_clobazam">
+<data key="label">Clobazam</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Clobazam (Onfi/Sympazan)
+SJS risk: False
+Sedation; benzodiazepine - avoid stacking sedating meds.</data>
+</node>
+<node id="band_clobazam_0">
+<data key="label">Clobazam · Children &lt;5 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Children &lt;5 years
+initial 2.5 mg/day
+min-maint 5 mg/day -&gt; eff-max 22.5 -&gt; max 30.0 mg/d
+up 7 · higher(†) 3</data>
+</node>
+<node id="band_clobazam_1">
+<data key="label">Clobazam · Children ≥5 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Children ≥5 years
+initial 5 mg/day
+min-maint 10 mg/day -&gt; eff-max 31 -&gt; max 40.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="drug_lacosamide">
+<data key="label">Lacosamide</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Lacosamide (Vimpat)
+SJS risk: False
+PR prolongation; dizziness.</data>
+</node>
+<node id="band_lacosamide_0">
+<data key="label">Lacosamide · 6 to &lt;30 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">6 to &lt;30 kg
+initial 2 mg/kg/day
+min-maint 6 mg/kg/day -&gt; eff-max 10.8 -&gt; max 400.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="band_lacosamide_1">
+<data key="label">Lacosamide · 30 to &lt;50 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">30 to &lt;50 kg
+initial 2 mg/kg/day
+min-maint 4 mg/kg/day -&gt; eff-max 7.2 -&gt; max 400.0 mg/d
+up 3 · higher(†) 1</data>
+</node>
+<node id="band_lacosamide_2">
+<data key="label">Lacosamide · ≥50 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">≥50 kg
+initial 100 mg/day
+min-maint 200 mg/day -&gt; eff-max 360 -&gt; max 400.0 mg/d
+up 3 · higher(†) 1</data>
+</node>
+<node id="labs_lacosamide">
+<data key="label">† labs Lacosamide</data>
+<data key="type">labs</data>
+<data key="layer">4</data>
+<data key="detail">High-dose labs:
+- EKG</data>
+</node>
+<node id="drug_brivaracetam">
+<data key="label">Brivaracetam</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Brivaracetam (Briviact)
+SJS risk: False
+Same SV2A family as levetiracetam; behavioral effects possible.</data>
+</node>
+<node id="band_brivaracetam_0">
+<data key="label">Brivaracetam · &lt;11 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">&lt;11 kg
+initial 3 mg/kg/day
+min-maint 3 mg/kg/day -&gt; eff-max 6 -&gt; max 200.0 mg/d
+up 2 · higher(†) 0</data>
+</node>
+<node id="band_brivaracetam_1">
+<data key="label">Brivaracetam · 11 to &lt;20 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">11 to &lt;20 kg
+initial 2.33 mg/kg/day
+min-maint 2.33 mg/kg/day -&gt; eff-max 5 -&gt; max 200.0 mg/d
+up 2 · higher(†) 0</data>
+</node>
+<node id="band_brivaracetam_2">
+<data key="label">Brivaracetam · 20 to &lt;50 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">20 to &lt;50 kg
+initial 2 mg/kg/day
+min-maint 2 mg/kg/day -&gt; eff-max 4 -&gt; max 200.0 mg/d
+up 2 · higher(†) 0</data>
+</node>
+<node id="band_brivaracetam_3">
+<data key="label">Brivaracetam · ≥50 kg</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">≥50 kg
+initial 100 mg/day
+min-maint 50 mg/day -&gt; eff-max 200 -&gt; max 200.0 mg/d
+up 3 · higher(†) 0</data>
+</node>
+<node id="drug_zonisamide">
+<data key="label">Zonisamide</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Zonisamide (Zonegran; Zonisade susp)
+SJS risk: False
+Sulfonamide; off-label &lt;16y in this study; oligohidrosis/metabolic acidosis.</data>
+</node>
+<node id="band_zonisamide_0">
+<data key="label">Zonisamide · Children 2 to &lt;5 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Children 2 to &lt;5 years
+initial 1 mg/kg/day
+min-maint 5 mg/kg/day -&gt; eff-max 7.1 -&gt; max 500.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="band_zonisamide_1">
+<data key="label">Zonisamide · Children ≥5 to &lt;16 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Children ≥5 to &lt;16 years
+initial 0.5 mg/kg/day
+min-maint 5 mg/kg/day -&gt; eff-max 7.1 -&gt; max 500.0 mg/d
+up 4 · higher(†) 2</data>
+</node>
+<node id="band_zonisamide_2">
+<data key="label">Zonisamide · &gt;16 years</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">&gt;16 years
+initial 100 mg/day
+min-maint 400 mg/day -&gt; eff-max 540 -&gt; max 600.0 mg/d
+up 2 · higher(†) 2</data>
+</node>
+<node id="labs_zonisamide">
+<data key="label">† labs Zonisamide</data>
+<data key="type">labs</data>
+<data key="layer">4</data>
+<data key="detail">High-dose labs:
+- CBC
+- CMP
+- TSH
+- vitamin D
+- zonisamide level</data>
+</node>
+<node id="drug_ethosuximide">
+<data key="label">Ethosuximide</data>
+<data key="type">drug</data>
+<data key="layer">4</data>
+<data key="detail">Ethosuximide (Zarontin)
+SJS risk: False
+Absence (staring-spell) seizures ONLY. Any other seizure type -&gt; switch.</data>
+</node>
+<node id="band_ethosuximide_0">
+<data key="label">Ethosuximide · Children ≥2 years and Adults</data>
+<data key="type">band</data>
+<data key="layer">4</data>
+<data key="detail">Children ≥2 years and Adults
+initial 10 mg/kg/day
+min-maint 20 mg/kg/day -&gt; eff-max 29 -&gt; max 2000.0 mg/d
+up 2 · higher(†) 1</data>
+</node>
+<node id="labs_ethosuximide">
+<data key="label">† labs Ethosuximide</data>
+<data key="type">labs</data>
+<data key="layer">4</data>
+<data key="detail">High-dose labs:
+- ethosuximide level</data>
+</node>
+<node id="gold">
+<data key="label">Gold cases (n=63)</data>
+<data key="type">validation</data>
+<data key="layer">6</data>
+<data key="detail">Frozen expected outputs:
+- no_change: 30
+- insufficient_data: 17
+- switch_medication: 12
+- escalate: 2
+- slower_uptitration: 2</data>
+</node>
+<node id="pi_review">
+<data key="label">PI validation review</data>
+<data key="type">validation</data>
+<data key="layer">6</data>
+<data key="detail">Reviewed by Dr. Kristen Barbour (PI)
+total=132 agreement={'Yes': 5, 'No': 4, 'Unsure': 0, 'blank': 123}</data>
+</node>
+<node id="case_B1">
+<data key="label">Flagged B1</data>
+<data key="type">case</data>
+<data key="layer">6</data>
+<data key="detail">breakthrough + manageable sleepiness
+engine: Increase the dose more slowly
+comment: This is the nonurgent_decision_tables file : Level 1 side effects &amp; the first row (1. Continue titration on schedule
+2. Follow up in 4 weeks)
+
+RESOLUTION: Fixed: BT-table gate now routes non-urgent, titrating, level-1 breakthrough to 'continue on schedule' (no_change) instead of the legacy 'slower'. (decision.py gate; test_engine.test_breakthrough_level1_titrating_continues)</data>
+</node>
+<node id="case_B2">
+<data key="label">Flagged B2</data>
+<data key="type">case</data>
+<data key="layer">6</data>
+<data key="detail">breakthrough + manageable mood
+engine: Increase the dose more slowly
+comment: This is the nonurgent_decision_tables file : Level 1 side effects &amp; the first row (1. Continue titration on schedule
+2. Follow up in 4 weeks)
+
+RESOLUTION: Fixed: same non-urgent level-1 routing change as B1.</data>
+</node>
+<node id="case_B3">
+<data key="label">Flagged B3</data>
+<data key="type">case</data>
+<data key="layer">6</data>
+<data key="detail">breakthrough + manageable dizziness
+engine: Increase the dose more slowly
+comment: This is the nonurgent_decision_tables file : Level 1 side effects &amp; the first row (1. Continue titration on schedule
+2. Follow up in 4 weeks)
+
+RESOLUTION: Fixed: same non-urgent level-1 routing change as B1.</data>
+</node>
+<node id="case_D4">
+<data key="label">Flagged D4</data>
+<data key="type">case</data>
+<data key="layer">6</data>
+<data key="detail">seizure-free, titrating, no SE
+engine: Keep the current dose (no change)
+comment: Only need follow up scheduled if it is listed on the decision_tables file. Otherwise, you can leave this part out. 
+
+RESOLUTION: Fixed: No-Seizures 'continue' path no longer auto-schedules a follow-up; follow-up is emitted only when the decision table lists one. (decision.py NS branch; test_dose_ladder.TestKristenValidationFixes)</data>
+</node>
+<edge id="e0" source="survey" target="branch_bt">
+<data key="rel">seizure(s)</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e1" source="survey" target="branch_sf">
+<data key="rel">none</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e2" source="survey" target="rule_R0">
+<data key="rel">gate</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e3" source="rule_R0" target="cat_switch_medication">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e4" source="survey" target="rule_R0b">
+<data key="rel">gate</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e5" source="rule_R0b" target="cat_escalate">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e6" source="survey" target="rule_R0c">
+<data key="rel">gate</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e7" source="rule_R0c" target="cat_insufficient_data">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e8" source="survey" target="rule_R1">
+<data key="rel">gate</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e9" source="rule_R1" target="cat_insufficient_data">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e10" source="survey" target="rule_R2">
+<data key="rel">gate</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e11" source="rule_R2" target="cat_switch_medication">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e12" source="survey" target="rule_R3">
+<data key="rel">gate</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e13" source="rule_R3" target="cat_switch_medication">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e14" source="survey" target="rule_R4">
+<data key="rel">gate</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e15" source="rule_R4" target="cat_switch_medication">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e16" source="survey" target="rule_R4b">
+<data key="rel">gate</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e17" source="rule_R4b" target="cat_switch_medication">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e18" source="survey" target="rule_R5">
+<data key="rel">gate</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e19" source="rule_R5" target="cat_no_change">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e20" source="survey" target="rule_R-defer-se">
+<data key="rel">gate</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e21" source="rule_R-defer-se" target="cat_insufficient_data">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e22" source="branch_bt" target="rule_BT">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e23" source="branch_bt" target="rule_R5b">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e24" source="rule_R5b" target="cat_add_medication">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e25" source="branch_bt" target="rule_R6">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e26" source="rule_R6" target="cat_switch_medication">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e27" source="branch_bt" target="rule_R7">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e28" source="rule_R7" target="cat_slower_uptitration">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e29" source="branch_bt" target="rule_R8">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e30" source="rule_R8" target="cat_insufficient_data">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e31" source="branch_bt" target="rule_R9">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e32" source="rule_R9" target="cat_escalate">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e33" source="branch_bt" target="rule_R10">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e34" source="rule_R10" target="cat_no_change">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e35" source="branch_bt" target="rule_R11">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e36" source="rule_R11" target="cat_no_change">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e37" source="branch_bt" target="rule_R12g">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e38" source="rule_R12g" target="cat_insufficient_data">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e39" source="branch_bt" target="rule_R12">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e40" source="rule_R12" target="cat_insufficient_data">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e41" source="branch_bt" target="rule_R13">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e42" source="rule_R13" target="cat_slower_uptitration">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e43" source="branch_sf" target="rule_NS">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e44" source="branch_sf" target="rule_R14">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e45" source="rule_R14" target="cat_switch_medication">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e46" source="branch_sf" target="rule_R15">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e47" source="rule_R15" target="cat_insufficient_data">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e48" source="branch_sf" target="rule_R16">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e49" source="rule_R16" target="cat_slower_uptitration">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e50" source="branch_sf" target="rule_R17">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e51" source="rule_R17" target="cat_no_change">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e52" source="branch_sf" target="rule_R18">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e53" source="rule_R18" target="cat_no_change">
+<data key="rel">-&gt; </data>
+<data key="minor">false</data>
+</edge>
+<edge id="e54" source="rule_NS" target="tbl_no_seizures">
+<data key="rel">uses</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e55" source="tbl_no_seizures" target="phase_titrating">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e56" source="tbl_no_seizures" target="phase_holding">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e57" source="tbl_no_seizures" target="phase_steady">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e58" source="tbl_no_seizures" target="lvl0">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e59" source="tbl_no_seizures" target="lvl1">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e60" source="tbl_no_seizures" target="lvl2">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e61" source="tbl_no_seizures" target="lvl3">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e62" source="tbl_no_seizures" target="lvl4">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e63" source="tbl_no_seizures" target="lvl5">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e64" source="tbl_no_seizures" target="cat_no_change">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e65" source="tbl_no_seizures" target="cat_no_change">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e66" source="tbl_no_seizures" target="cat_slower_uptitration">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e67" source="tbl_no_seizures" target="cat_hold">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e68" source="tbl_no_seizures" target="cat_lower_dose">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e69" source="tbl_no_seizures" target="cat_switch_medication">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e70" source="tbl_no_seizures" target="cat_no_change">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e71" source="tbl_no_seizures" target="cat_no_change">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e72" source="tbl_no_seizures" target="cat_no_change">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e73" source="tbl_no_seizures" target="cat_hold">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e74" source="tbl_no_seizures" target="cat_lower_dose">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e75" source="tbl_no_seizures" target="cat_switch_medication">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e76" source="tbl_no_seizures" target="cat_no_change">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e77" source="tbl_no_seizures" target="cat_no_change">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e78" source="tbl_no_seizures" target="cat_no_change">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e79" source="tbl_no_seizures" target="cat_hold">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e80" source="tbl_no_seizures" target="cat_lower_dose">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e81" source="tbl_no_seizures" target="cat_switch_medication">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e82" source="rule_BT" target="tbl_bt_non_urgent">
+<data key="rel">uses</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e83" source="tbl_bt_non_urgent" target="phase_titrating">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e84" source="tbl_bt_non_urgent" target="phase_holding">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e85" source="tbl_bt_non_urgent" target="phase_steady">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e86" source="tbl_bt_non_urgent" target="lvl0">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e87" source="tbl_bt_non_urgent" target="lvl1">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e88" source="tbl_bt_non_urgent" target="lvl2">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e89" source="tbl_bt_non_urgent" target="lvl3">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e90" source="tbl_bt_non_urgent" target="lvl4">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e91" source="tbl_bt_non_urgent" target="lvl5">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e92" source="tbl_bt_non_urgent" target="cat_no_change">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e93" source="tbl_bt_non_urgent" target="cat_switch_medication">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e94" source="tbl_bt_non_urgent" target="cat_hold">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e95" source="tbl_bt_non_urgent" target="cat_add_medication">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e96" source="tbl_bt_non_urgent" target="cat_escalate">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e97" source="rule_BT" target="tbl_bt_urgent">
+<data key="rel">uses</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e98" source="tbl_bt_urgent" target="phase_titrating">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e99" source="tbl_bt_urgent" target="phase_holding">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e100" source="tbl_bt_urgent" target="phase_steady">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e101" source="tbl_bt_urgent" target="lvl0">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e102" source="tbl_bt_urgent" target="lvl1">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e103" source="tbl_bt_urgent" target="lvl2">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e104" source="tbl_bt_urgent" target="lvl3">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e105" source="tbl_bt_urgent" target="lvl4">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e106" source="tbl_bt_urgent" target="lvl5">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e107" source="tbl_bt_urgent" target="cat_switch_medication">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e108" source="tbl_bt_urgent" target="cat_add_medication">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e109" source="tbl_bt_urgent" target="cat_no_change">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e110" source="tbl_bt_urgent" target="cat_escalate">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e111" source="rule_BT" target="tbl_bt_emergent">
+<data key="rel">uses</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e112" source="tbl_bt_emergent" target="phase_titrating">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e113" source="tbl_bt_emergent" target="phase_holding">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e114" source="tbl_bt_emergent" target="phase_steady">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e115" source="tbl_bt_emergent" target="lvl0">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e116" source="tbl_bt_emergent" target="lvl1">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e117" source="tbl_bt_emergent" target="lvl2">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e118" source="tbl_bt_emergent" target="lvl3">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e119" source="tbl_bt_emergent" target="lvl4">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e120" source="tbl_bt_emergent" target="lvl5">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e121" source="tbl_bt_emergent" target="cat_switch_medication">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e122" source="tbl_bt_emergent" target="cat_add_medication">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e123" source="tbl_bt_emergent" target="cat_escalate">
+<data key="rel">yields</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e124" source="rule_BT" target="tbl_urgency">
+<data key="rel">tier from</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e125" source="cat_escalate" target="ladder_hub">
+<data key="rel">next dose from</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e126" source="cat_lower_dose" target="ladder_hub">
+<data key="rel">next dose from</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e127" source="drug_levetiracetam" target="band_levetiracetam_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e128" source="band_levetiracetam_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e129" source="drug_lamotrigine" target="band_lamotrigine_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e130" source="band_lamotrigine_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e131" source="drug_lamotrigine" target="band_lamotrigine_1">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e132" source="band_lamotrigine_1" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e133" source="drug_lamotrigine" target="band_lamotrigine_2">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e134" source="band_lamotrigine_2" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e135" source="drug_topiramate" target="band_topiramate_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e136" source="band_topiramate_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e137" source="drug_topiramate" target="band_topiramate_1">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e138" source="band_topiramate_1" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e139" source="drug_topiramate" target="band_topiramate_2">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e140" source="band_topiramate_2" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e141" source="drug_topiramate" target="band_topiramate_3">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e142" source="band_topiramate_3" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e143" source="drug_topiramate" target="labs_topiramate">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e144" source="drug_oxcarbazepine" target="band_oxcarbazepine_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e145" source="band_oxcarbazepine_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e146" source="drug_oxcarbazepine" target="band_oxcarbazepine_1">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e147" source="band_oxcarbazepine_1" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e148" source="drug_oxcarbazepine" target="band_oxcarbazepine_2">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e149" source="band_oxcarbazepine_2" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e150" source="drug_oxcarbazepine" target="band_oxcarbazepine_3">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e151" source="band_oxcarbazepine_3" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e152" source="drug_oxcarbazepine" target="band_oxcarbazepine_4">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e153" source="band_oxcarbazepine_4" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e154" source="drug_oxcarbazepine" target="band_oxcarbazepine_5">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e155" source="band_oxcarbazepine_5" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e156" source="drug_oxcarbazepine" target="band_oxcarbazepine_6">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e157" source="band_oxcarbazepine_6" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e158" source="drug_oxcarbazepine" target="band_oxcarbazepine_7">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e159" source="band_oxcarbazepine_7" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e160" source="drug_oxcarbazepine" target="labs_oxcarbazepine">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e161" source="drug_carbamazepine" target="band_carbamazepine_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e162" source="band_carbamazepine_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e163" source="drug_carbamazepine" target="band_carbamazepine_1">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e164" source="band_carbamazepine_1" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e165" source="drug_carbamazepine" target="band_carbamazepine_2">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e166" source="band_carbamazepine_2" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e167" source="drug_carbamazepine" target="band_carbamazepine_3">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e168" source="band_carbamazepine_3" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e169" source="drug_carbamazepine" target="labs_carbamazepine">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e170" source="drug_valproic_acid" target="band_valproic_acid_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e171" source="band_valproic_acid_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e172" source="drug_valproic_acid" target="labs_valproic_acid">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e173" source="drug_clobazam" target="band_clobazam_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e174" source="band_clobazam_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e175" source="drug_clobazam" target="band_clobazam_1">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e176" source="band_clobazam_1" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e177" source="drug_lacosamide" target="band_lacosamide_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e178" source="band_lacosamide_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e179" source="drug_lacosamide" target="band_lacosamide_1">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e180" source="band_lacosamide_1" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e181" source="drug_lacosamide" target="band_lacosamide_2">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e182" source="band_lacosamide_2" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e183" source="drug_lacosamide" target="labs_lacosamide">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e184" source="drug_brivaracetam" target="band_brivaracetam_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e185" source="band_brivaracetam_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e186" source="drug_brivaracetam" target="band_brivaracetam_1">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e187" source="band_brivaracetam_1" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e188" source="drug_brivaracetam" target="band_brivaracetam_2">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e189" source="band_brivaracetam_2" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e190" source="drug_brivaracetam" target="band_brivaracetam_3">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e191" source="band_brivaracetam_3" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e192" source="drug_zonisamide" target="band_zonisamide_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e193" source="band_zonisamide_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e194" source="drug_zonisamide" target="band_zonisamide_1">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e195" source="band_zonisamide_1" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e196" source="drug_zonisamide" target="band_zonisamide_2">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e197" source="band_zonisamide_2" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e198" source="drug_zonisamide" target="labs_zonisamide">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e199" source="drug_ethosuximide" target="band_ethosuximide_0">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e200" source="band_ethosuximide_0" target="ladder_hub">
+<data key="rel"></data>
+<data key="minor">true</data>
+</edge>
+<edge id="e201" source="drug_ethosuximide" target="labs_ethosuximide">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e202" source="gold" target="cat_no_change">
+<data key="rel">expects</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e203" source="gold" target="cat_insufficient_data">
+<data key="rel">expects</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e204" source="gold" target="cat_switch_medication">
+<data key="rel">expects</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e205" source="gold" target="cat_escalate">
+<data key="rel">expects</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e206" source="gold" target="cat_slower_uptitration">
+<data key="rel">expects</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e207" source="pi_review" target="case_B1">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e208" source="case_B1" target="rule_BT">
+<data key="rel">fixed in</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e209" source="pi_review" target="case_B2">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e210" source="case_B2" target="rule_BT">
+<data key="rel">fixed in</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e211" source="pi_review" target="case_B3">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e212" source="case_B3" target="rule_BT">
+<data key="rel">fixed in</data>
+<data key="minor">false</data>
+</edge>
+<edge id="e213" source="pi_review" target="case_D4">
+<data key="rel"></data>
+<data key="minor">false</data>
+</edge>
+<edge id="e214" source="case_D4" target="rule_NS">
+<data key="rel">fixed in</data>
+<data key="minor">false</data>
+</edge>
+</graph>
+</graphml>

@@ -1,0 +1,22 @@
+{
+  "_README": "CLINICIAN-SUPPLIED ASM dosing rules (spec §5 ASMRule, §9, §11.1). SHIPS EMPTY: every drug has an empty dose_bands list, so the engine returns a recommendation CATEGORY but NEVER fabricates dose numbers. The study neurologist must populate dose bands, rates, and ceilings (cross-checking package inserts / a pediatric reference) and confirm in NEEDS_PI_SIGNOFF.md before clinical use. Drug NAMES are identifiers, not invented clinical values. Loaded by engine_core.asm_rules.load_asm_rules().",
+  "_band_schema": {
+    "label": "e.g. '6-11 years'",
+    "min_age_years": null, "max_age_years": null,
+    "min_weight_kg": null, "max_weight_kg": null,
+    "dose_range_min_mg_per_day": null, "dose_range_max_mg_per_day": null,
+    "max_daily_mg": null,
+    "standard_uptitration_step_mg": null, "standard_uptitration_interval_weeks": null
+  },
+  "levetiracetam": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"},
+  "brivaracetam": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"},
+  "clobazam": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"},
+  "valproic_acid": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"},
+  "lacosamide": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"},
+  "oxcarbazepine": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"},
+  "carbamazepine": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"},
+  "zonisamide": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"},
+  "lamotrigine": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"},
+  "ethosuximide": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"},
+  "topiramate": {"in_study": true, "dose_bands": [], "formulations": [], "requires_lab_monitoring": false, "labs": [], "indications": [], "interaction_exceptions": [], "source_note": "PI to supply"}
+}

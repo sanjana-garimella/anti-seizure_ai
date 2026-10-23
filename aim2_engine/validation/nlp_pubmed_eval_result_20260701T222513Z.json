@@ -1,0 +1,23 @@
+{
+  "eval": "nlp_pubmed_eval (real ASM PubMed corpus, no gold spans)",
+  "framing": "recall proxies / finding rates only; gaps significance-tested; no precision",
+  "args": {
+    "n": 30,
+    "seed": 0,
+    "no_transformers": true
+  },
+  "results": {
+    "lexicon": {
+      "drug_recall_proxy": 1.0,
+      "drug_recall_proxy_ci": [
+        1.0,
+        1.0
+      ],
+      "side_effect_rate": 0.36666666666666664,
+      "seizure_rate": 0.7666666666666667,
+      "n": 30
+    }
+  },
+  "significance": [],
+  "generated_utc": "20260701T222513Z"
+}

@@ -1,0 +1,1011 @@
+{
+  "_meta": {
+    "title": "DRAFT ASM titration rules - Aim 2 (pediatric epilepsy medication assistant)",
+    "status": "UNVERIFIED DRAFT. Every clinical value requires verification and correction by Dr. Barbour (PI) before any clinical use. Provided only to make the rule-setting session efficient - 'something to edit rather than a blank page.'",
+    "generated": "2026-06-17",
+    "scope": "Ages 2-17, core titration only (dose bands, ceilings, uptitration step/interval, formulations). Interactions/monitoring summarized briefly only where they drive titration (e.g. lamotrigine+valproate).",
+    "provenance": "Formulations from RxNorm (pulled 2026-06-17). Dose bands compiled from FDA prescribing information / standard pediatric references (per-drug 'source' keys map to _sources).",
+    "schema_note": "EXTENDED vs engine_core/asm_rules.py DoseBand. Weight-based bands use *_mg_per_kg_per_day fields (most pediatric ASM dosing is weight-based and the current absolute-mg DoseBand cannot represent it). Fixed/weight-band bands ALSO include the engine's existing absolute fields (dose_range_max_mg_per_day, max_daily_mg, standard_uptitration_step_mg, standard_uptitration_interval_weeks) so they load and run in the UNMODIFIED engine. See PROPOSED_engine_patch.md to make weight-based bands produce schedules.",
+    "openfda_currency_note": "openFDA label dataset updates were reported suspended in 2025; values were cross-checked against current FDA PI pages where possible but still require clinician verification.",
+    "hard_rules": [
+      "Clinical decisions remain RULE-BASED and clinician-defined; this file is data, not logic.",
+      "No value here is authoritative until the PI verifies it (verified=false on every band).",
+      "Confidential: keep in the study folder only."
+    ],
+    "_sources": {
+      "rxnorm": "RxNorm SCD concepts, RxNav REST API (rxnav.nlm.nih.gov/REST/rxcui/<id>/related?tty=SCD), US NLM. Pulled 2026-06-17.",
+      "keppra": "FDA Keppra (levetiracetam) Prescribing Information (accessdata.fda.gov 021035s115/021505s053, 2024); plan-doc draft.",
+      "lamictal": "FDA Lamictal (lamotrigine) Prescribing Information; Drugs.com lamotrigine dosage (pediatric mg/kg titration, valproate 50% reduction).",
+      "briviact": "FDA Briviact (brivaracetam) Prescribing Information (accessdata.fda.gov 205836s017, 2025) - weight-based peds 4-<16y.",
+      "vimpat": "FDA Vimpat (lacosamide) Prescribing Information (accessdata.fda.gov 022253s049, 2021; UCB PI) - weight-based peds.",
+      "trileptal": "FDA Trileptal (oxcarbazepine) Prescribing Information (accessdata.fda.gov 021014s036, 2017).",
+      "onfi": "FDA Onfi (clobazam) Prescribing Information (accessdata.fda.gov 203993s005, 2016) - weight-band (<=30 vs >30 kg).",
+      "topamax": "FDA Topamax (topiramate) Prescribing Information (accessdata.fda.gov 020844s041, 2012); DailyMed.",
+      "tegretol": "FDA Tegretol (carbamazepine) Prescribing Information (accessdata.fda.gov 016608s101, 2009).",
+      "depakene": "FDA Depakene (valproic acid) Prescribing Information (accessdata.fda.gov 018081s065, 2016).",
+      "zarontin": "FDA Zarontin (ethosuximide) Prescribing Information (accessdata.fda.gov 012380s031, 2009) - absence only, >=3y.",
+      "zonegran": "FDA Zonegran (zonisamide) PI (>=16y, adjunctive focal); Zonisade oral susp PI (accessdata 214273, 2022); pediatric use is OFF-LABEL (Epilepsy Foundation; pediatric literature)."
+    }
+  },
+  "levetiracetam": {
+    "display_name": "Levetiracetam (Keppra)",
+    "in_study": true,
+    "indications": [
+      "focal (partial-onset)",
+      "myoclonic (JME, >=12y)",
+      "primary generalized tonic-clonic (>=6y)"
+    ],
+    "fda_pediatric_age": "focal from 1 month; myoclonic (JME) from 12y; PGTC from 6y",
+    "off_label_in_study_ages": false,
+    "dose_bands": [
+      {
+        "label": "Children/adolescents 2-17y, weight-based",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "start_mg_per_kg_per_day": 20,
+        "target_mg_per_kg_per_day_min": 40,
+        "target_mg_per_kg_per_day_max": 60,
+        "max_mg_per_kg_per_day": 60,
+        "uptitration_step_mg_per_kg_per_day": 20,
+        "uptitration_interval_weeks": 2,
+        "absolute_max_mg_per_day": 3000,
+        "frequency_per_day": 2,
+        "source": "keppra",
+        "verified": false,
+        "clinician_note": "Oral solution recommended if <=20 kg. Renally cleared (study excludes renal impairment). Watch behavioral/mood effects."
+      }
+    ],
+    "key_safety": "Behavioral/psychiatric effects (irritability, mood). Renal clearance -> reduce in renal impairment (excluded from study).",
+    "key_interactions": "Few clinically significant PK interactions.",
+    "formulations_rxnorm": [
+      {
+        "form": "tablet (IR)",
+        "strengths_mg": [
+          250,
+          500,
+          750,
+          1000
+        ]
+      },
+      {
+        "form": "oral solution",
+        "mg_per_ml": 100
+      },
+      {
+        "form": "tablet for oral suspension",
+        "strengths_mg": [
+          250,
+          500,
+          750,
+          1000
+        ]
+      },
+      {
+        "form": "extended-release tablet",
+        "strengths_mg": [
+          500,
+          750,
+          1000,
+          1500
+        ]
+      }
+    ],
+    "rxcui": "114477"
+  },
+  "lamotrigine": {
+    "display_name": "Lamotrigine (Lamictal)",
+    "in_study": true,
+    "indications": [
+      "adjunctive focal",
+      "adjunctive PGTC",
+      "adjunctive LGS (>=2y)"
+    ],
+    "fda_pediatric_age": "adjunctive, ages 2 and older",
+    "off_label_in_study_ages": false,
+    "SAFETY_PRIORITY": "BOXED WARNING: serious rash (SJS/TEN). Risk increased by concomitant valproate, by exceeding the initial dose, and by escalating faster than recommended. Slow titration is essential. Titration is CONCOMITANT-MED DEPENDENT (see 3 regimens).",
+    "dose_bands": [
+      {
+        "label": "2-17y, WITHOUT valproate and WITHOUT enzyme inducer",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "start_mg_per_kg_per_day": 0.3,
+        "target_mg_per_kg_per_day_min": 4.5,
+        "target_mg_per_kg_per_day_max": 7.5,
+        "max_mg_per_kg_per_day": null,
+        "uptitration_step_mg_per_kg_per_day": 0.6,
+        "uptitration_interval_weeks": 2,
+        "absolute_max_mg_per_day": 300,
+        "frequency_per_day": 2,
+        "source": "lamictal",
+        "verified": false,
+        "clinician_note": "Wk1-2: 0.3 mg/kg/day; wk3-4: 0.6 mg/kg/day; then +0.6 mg/kg/day q1-2wk. Target 4.5-7.5 mg/kg/day (cap ~300 mg/day adjunctive)."
+      },
+      {
+        "label": "2-17y, WITH valproate (much lower & slower)",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "start_mg_per_kg_per_day": 0.15,
+        "target_mg_per_kg_per_day_min": 1.0,
+        "target_mg_per_kg_per_day_max": 5.0,
+        "max_mg_per_kg_per_day": null,
+        "uptitration_step_mg_per_kg_per_day": 0.3,
+        "uptitration_interval_weeks": 2,
+        "absolute_max_mg_per_day": 200,
+        "frequency_per_day": 2,
+        "source": "lamictal",
+        "verified": false,
+        "clinician_note": "VALPROATE INTERACTION: ~50% reduction at each step. Wk1-2: 0.15 mg/kg/day; wk3-4: 0.3 mg/kg/day; then +0.3 mg/kg/day q1-2wk. Target 1-5 mg/kg/day (<=2.5 mg/kg/day or 200 mg/day). HIGHEST rash risk."
+      },
+      {
+        "label": "2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "start_mg_per_kg_per_day": 0.6,
+        "target_mg_per_kg_per_day_min": 5.0,
+        "target_mg_per_kg_per_day_max": 15.0,
+        "max_mg_per_kg_per_day": null,
+        "uptitration_step_mg_per_kg_per_day": 1.2,
+        "uptitration_interval_weeks": 2,
+        "absolute_max_mg_per_day": 400,
+        "frequency_per_day": 2,
+        "source": "lamictal",
+        "verified": false,
+        "clinician_note": "Wk1-2: 0.6 mg/kg/day; wk3-4: 1.2 mg/kg/day; then +1.2 mg/kg/day q1-2wk. Target 5-15 mg/kg/day (cap ~400 mg/day)."
+      }
+    ],
+    "key_safety": "SJS/TEN boxed warning (esp first 8 weeks). Do NOT exceed initial dose or recommended escalation rate.",
+    "key_interactions": "Valproate raises lamotrigine levels & rash risk (MAJOR -> lower/slower). Enzyme inducers lower levels (higher/faster). Engine must select the correct regimen from concomitant meds.",
+    "formulations_rxnorm": [
+      {
+        "form": "tablet (IR)",
+        "strengths_mg": [
+          25,
+          50,
+          100,
+          150,
+          200,
+          250
+        ]
+      },
+      {
+        "form": "chewable/dispersible tablet (tab for oral susp)",
+        "strengths_mg": [
+          2,
+          5,
+          25
+        ]
+      },
+      {
+        "form": "orally disintegrating tablet (ODT)",
+        "strengths_mg": [
+          25,
+          50,
+          100,
+          200
+        ]
+      },
+      {
+        "form": "oral suspension",
+        "mg_per_ml": 10
+      },
+      {
+        "form": "extended-release tablet (>=13y)",
+        "strengths_mg": [
+          25,
+          50,
+          100,
+          200,
+          250,
+          300
+        ]
+      }
+    ],
+    "rxcui": "28439"
+  },
+  "topiramate": {
+    "display_name": "Topiramate (Topamax)",
+    "in_study": true,
+    "indications": [
+      "adjunctive focal",
+      "adjunctive PGTC",
+      "adjunctive LGS",
+      "monotherapy (>=2y)"
+    ],
+    "fda_pediatric_age": "adjunctive and monotherapy from 2y",
+    "off_label_in_study_ages": false,
+    "dose_bands": [
+      {
+        "label": "2-17y, weight-based (adjunctive)",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "start_mg_per_kg_per_day": 1,
+        "target_mg_per_kg_per_day_min": 5,
+        "target_mg_per_kg_per_day_max": 9,
+        "max_mg_per_kg_per_day": 9,
+        "uptitration_step_mg_per_kg_per_day": 2,
+        "uptitration_interval_weeks": 1,
+        "absolute_max_mg_per_day": 400,
+        "frequency_per_day": 2,
+        "source": "topamax",
+        "verified": false,
+        "clinician_note": "Start ~1-3 mg/kg/day (=25 mg) nightly wk1; increase 1-3 mg/kg/day q1-2wk. Target 5-9 mg/kg/day. step shown = mid of 1-3 mg/kg/day range - confirm."
+      }
+    ],
+    "key_safety": "Metabolic acidosis; oligohidrosis/hyperthermia (esp children, hot weather); cognitive/word-finding; weight loss; nephrolithiasis.",
+    "key_interactions": "Levels lowered by enzyme inducers (carbamazepine, phenytoin).",
+    "formulations_rxnorm": [
+      {
+        "form": "tablet (IR)",
+        "strengths_mg": [
+          25,
+          50,
+          100,
+          200
+        ]
+      },
+      {
+        "form": "sprinkle capsule",
+        "strengths_mg": [
+          15,
+          25
+        ]
+      },
+      {
+        "form": "capsule",
+        "strengths_mg": [
+          50
+        ]
+      },
+      {
+        "form": "oral solution",
+        "mg_per_ml": 25
+      },
+      {
+        "form": "extended-release capsule (Trokendi/Qudexy)",
+        "strengths_mg": [
+          25,
+          50,
+          100,
+          150,
+          200
+        ]
+      }
+    ],
+    "rxcui": "38404"
+  },
+  "oxcarbazepine": {
+    "display_name": "Oxcarbazepine (Trileptal)",
+    "in_study": true,
+    "indications": [
+      "focal - monotherapy (>=4y)",
+      "focal - adjunctive (>=2y)"
+    ],
+    "fda_pediatric_age": "adjunctive from 2y; monotherapy from 4y",
+    "off_label_in_study_ages": false,
+    "dose_bands": [
+      {
+        "label": "2-17y, weight-based (adjunctive)",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "start_mg_per_kg_per_day": 9,
+        "target_mg_per_kg_per_day_min": 30,
+        "target_mg_per_kg_per_day_max": 46,
+        "max_mg_per_kg_per_day": 60,
+        "uptitration_step_mg_per_kg_per_day": 10,
+        "uptitration_interval_weeks": 1,
+        "absolute_max_mg_per_day": 2400,
+        "frequency_per_day": 2,
+        "source": "trileptal",
+        "verified": false,
+        "clinician_note": "Start 8-10 mg/kg/day (<=600 mg/day); reach maintenance over 2-4 wks; target 30-46 mg/kg/day by weight tier; max 60 mg/kg/day. Label also gives weight-tiered absolute targets (e.g. 20-29kg ~900 mg/day; 29.1-39kg ~1200; >39kg ~1800)."
+      }
+    ],
+    "key_safety": "Hyponatremia (check sodium); HLA-B*1502 -> SJS risk (screen patients of Asian ancestry).",
+    "key_interactions": "Dose-dependent enzyme induction; lowers hormonal contraceptives; interacts with lamotrigine/phenytoin.",
+    "formulations_rxnorm": [
+      {
+        "form": "tablet",
+        "strengths_mg": [
+          150,
+          300,
+          600
+        ]
+      },
+      {
+        "form": "oral suspension",
+        "mg_per_ml": 60
+      },
+      {
+        "form": "extended-release tablet (Oxtellar XR, >=6y)",
+        "strengths_mg": [
+          150,
+          300,
+          600
+        ]
+      }
+    ],
+    "rxcui": "32624"
+  },
+  "carbamazepine": {
+    "display_name": "Carbamazepine (Tegretol)",
+    "in_study": true,
+    "indications": [
+      "focal",
+      "generalized tonic-clonic",
+      "mixed seizure patterns"
+    ],
+    "fda_pediatric_age": "all ages (epilepsy)",
+    "off_label_in_study_ages": false,
+    "dose_bands": [
+      {
+        "label": "2 to <6y, weight-based",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 5.99,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "start_mg_per_kg_per_day": 10,
+        "target_mg_per_kg_per_day_min": 10,
+        "target_mg_per_kg_per_day_max": 20,
+        "max_mg_per_kg_per_day": 35,
+        "uptitration_step_mg_per_kg_per_day": 5,
+        "uptitration_interval_weeks": 1,
+        "absolute_max_mg_per_day": null,
+        "frequency_per_day": 3,
+        "source": "tegretol",
+        "verified": false,
+        "clinician_note": "Start 10-20 mg/kg/day divided BID-TID (QID for suspension); increase weekly; maintenance generally <35 mg/kg/day."
+      },
+      {
+        "label": "6 to 12y, fixed-mg titration",
+        "dose_basis": "weight_band_fixed_mg_per_day",
+        "min_age_years": 6,
+        "max_age_years": 12,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "fixed_titration_schedule": [
+          {
+            "day": 1,
+            "total_mg_per_day": 200
+          },
+          {
+            "day": 8,
+            "total_mg_per_day": 300
+          },
+          {
+            "day": 15,
+            "total_mg_per_day": 400
+          }
+        ],
+        "max_mg_per_day": 1000,
+        "uptitration_interval_days": 7,
+        "frequency_per_day": 2,
+        "source": "tegretol",
+        "verified": false,
+        "clinician_note": "Start 100 mg BID; add up to 100 mg/day weekly; target 400-800 mg/day; max 1000 mg/day (6-12y).",
+        "dose_range_max_mg_per_day": 800,
+        "max_daily_mg": 1000,
+        "standard_uptitration_step_mg": 100,
+        "standard_uptitration_interval_weeks": 1
+      },
+      {
+        "label": ">12 to 17y, fixed-mg titration",
+        "dose_basis": "weight_band_fixed_mg_per_day",
+        "min_age_years": 12.01,
+        "max_age_years": 17,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "fixed_titration_schedule": [
+          {
+            "day": 1,
+            "total_mg_per_day": 400
+          },
+          {
+            "day": 8,
+            "total_mg_per_day": 600
+          },
+          {
+            "day": 15,
+            "total_mg_per_day": 800
+          }
+        ],
+        "max_mg_per_day": 1200,
+        "uptitration_interval_days": 7,
+        "frequency_per_day": 2,
+        "source": "tegretol",
+        "verified": false,
+        "clinician_note": "Start 200 mg BID; add up to 200 mg/day weekly; target 800-1200 mg/day; max 1000 mg/day (12-15y), 1200 mg/day (15-17y).",
+        "dose_range_max_mg_per_day": 1000,
+        "max_daily_mg": 1200,
+        "standard_uptitration_step_mg": 200,
+        "standard_uptitration_interval_weeks": 1
+      }
+    ],
+    "key_safety": "HLA-B*1502 (SJS/TEN; screen Asian ancestry); AUTOINDUCTION (levels fall ~wk3-5, may need re-titration); hyponatremia; rare aplastic anemia/agranulocytosis.",
+    "key_interactions": "Strong enzyme inducer (lowers lamotrigine, oral contraceptives, many drugs); levels raised by CYP3A4 inhibitors.",
+    "formulations_rxnorm": [
+      {
+        "form": "chewable tablet",
+        "strengths_mg": [
+          100,
+          200
+        ]
+      },
+      {
+        "form": "tablet",
+        "strengths_mg": [
+          200,
+          400
+        ]
+      },
+      {
+        "form": "oral suspension",
+        "mg_per_ml": 20
+      },
+      {
+        "form": "extended-release tablet",
+        "strengths_mg": [
+          100,
+          150,
+          200,
+          300,
+          400,
+          600
+        ]
+      },
+      {
+        "form": "extended-release capsule",
+        "strengths_mg": [
+          100,
+          200,
+          300
+        ]
+      }
+    ],
+    "rxcui": "2002"
+  },
+  "valproic_acid": {
+    "display_name": "Valproic acid (Depakene; cf. divalproex/Depakote)",
+    "in_study": true,
+    "indications": [
+      "complex partial",
+      "absence (simple & complex)",
+      "multiple seizure types"
+    ],
+    "fda_pediatric_age": "complex partial >=10y; absence broad",
+    "off_label_in_study_ages": false,
+    "dose_bands": [
+      {
+        "label": "2-17y, weight-based",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "start_mg_per_kg_per_day": 12.5,
+        "target_mg_per_kg_per_day_min": 15,
+        "target_mg_per_kg_per_day_max": 60,
+        "max_mg_per_kg_per_day": 60,
+        "uptitration_step_mg_per_kg_per_day": 7.5,
+        "uptitration_interval_weeks": 1,
+        "absolute_max_mg_per_day": 3000,
+        "frequency_per_day": 2,
+        "source": "depakene",
+        "verified": false,
+        "clinician_note": "Start 10-15 mg/kg/day; increase 5-10 mg/kg/week; max 60 mg/kg/day. step/start shown = midpoints - confirm. Divalproex (Depakote) is ~1:1 valproic acid equivalent."
+      }
+    ],
+    "key_safety": "BOXED: hepatotoxicity (highest <2y & polytherapy; <2y excluded by study age >=2), pancreatitis, teratogenicity (counsel patients of childbearing potential). Also thrombocytopenia, hyperammonemia.",
+    "key_interactions": "Raises lamotrigine levels & rash risk (MAJOR). Levels affected by enzyme inducers/carbapenems.",
+    "formulations_rxnorm": [
+      {
+        "form": "capsule",
+        "strengths_mg": [
+          250
+        ]
+      },
+      {
+        "form": "delayed-release capsule",
+        "strengths_mg": [
+          125,
+          150,
+          250,
+          500
+        ]
+      },
+      {
+        "form": "delayed-release tablet",
+        "strengths_mg": [
+          200
+        ]
+      },
+      {
+        "form": "tablet",
+        "strengths_mg": [
+          100
+        ]
+      },
+      {
+        "form": "oral solution (syrup)",
+        "mg_per_ml": 50
+      },
+      {
+        "form": "oral solution",
+        "mg_per_ml": 40
+      }
+    ],
+    "rxcui": "11118"
+  },
+  "clobazam": {
+    "display_name": "Clobazam (Onfi/Sympazan)",
+    "in_study": true,
+    "indications": [
+      "adjunctive Lennox-Gastaut syndrome (>=2y)"
+    ],
+    "fda_pediatric_age": "from 2y (LGS adjunctive)",
+    "off_label_in_study_ages": false,
+    "dose_bands": [
+      {
+        "label": "<=30 kg body weight",
+        "dose_basis": "weight_band_fixed_mg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": 0,
+        "max_weight_kg": 30,
+        "fixed_titration_schedule": [
+          {
+            "day": 1,
+            "total_mg_per_day": 5
+          },
+          {
+            "day": 8,
+            "total_mg_per_day": 10
+          },
+          {
+            "day": 15,
+            "total_mg_per_day": 20
+          }
+        ],
+        "max_mg_per_day": 20,
+        "uptitration_interval_days": 7,
+        "frequency_per_day": 2,
+        "source": "onfi",
+        "verified": false,
+        "clinician_note": "<=30kg: 5 mg/day -> day8 10 mg/day -> day15 20 mg/day (max 20). Doses >5 mg/day are divided BID.",
+        "dose_range_max_mg_per_day": 20,
+        "max_daily_mg": 20,
+        "standard_uptitration_step_mg": 5,
+        "standard_uptitration_interval_weeks": 1
+      },
+      {
+        "label": ">30 kg body weight",
+        "dose_basis": "weight_band_fixed_mg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": 30.01,
+        "max_weight_kg": null,
+        "fixed_titration_schedule": [
+          {
+            "day": 1,
+            "total_mg_per_day": 10
+          },
+          {
+            "day": 8,
+            "total_mg_per_day": 20
+          },
+          {
+            "day": 15,
+            "total_mg_per_day": 40
+          }
+        ],
+        "max_mg_per_day": 40,
+        "uptitration_interval_days": 7,
+        "frequency_per_day": 2,
+        "source": "onfi",
+        "verified": false,
+        "clinician_note": ">30kg: 10 mg/day -> day8 20 mg/day -> day15 40 mg/day (max 40).",
+        "dose_range_max_mg_per_day": 40,
+        "max_daily_mg": 40,
+        "standard_uptitration_step_mg": 10,
+        "standard_uptitration_interval_weeks": 1
+      }
+    ],
+    "key_safety": "Benzodiazepine: somnolence/sedation, physical dependence & withdrawal (TAPER, do not stop abruptly). CYP2C19 poor metabolizers -> lower dose. SJS/TEN reported (esp first 8 weeks).",
+    "key_interactions": "CNS depressants (additive sedation); CYP2C19 substrate.",
+    "formulations_rxnorm": [
+      {
+        "form": "tablet",
+        "strengths_mg": [
+          5,
+          10,
+          20
+        ]
+      },
+      {
+        "form": "oral suspension",
+        "mg_per_ml": 2.5
+      },
+      {
+        "form": "oral film",
+        "strengths_mg": [
+          5,
+          10,
+          20
+        ]
+      }
+    ],
+    "rxcui": "21241"
+  },
+  "lacosamide": {
+    "display_name": "Lacosamide (Vimpat)",
+    "in_study": true,
+    "indications": [
+      "focal (partial-onset) - monotherapy & adjunctive"
+    ],
+    "fda_pediatric_age": "from 1 month",
+    "off_label_in_study_ages": false,
+    "dose_bands": [
+      {
+        "label": "11 to <30 kg, weight-based",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": 11,
+        "max_weight_kg": 29.99,
+        "start_mg_per_kg_per_day": 2,
+        "target_mg_per_kg_per_day_min": 6,
+        "target_mg_per_kg_per_day_max": 12,
+        "max_mg_per_kg_per_day": 12,
+        "uptitration_step_mg_per_kg_per_day": 2,
+        "uptitration_interval_weeks": 1,
+        "absolute_max_mg_per_day": null,
+        "frequency_per_day": 2,
+        "source": "vimpat",
+        "verified": false,
+        "clinician_note": "Start ~2 mg/kg/day; titrate <= once/week; maintenance 6-12 mg/kg/day (<30kg)."
+      },
+      {
+        "label": "30 to <50 kg, weight-based",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": 30,
+        "max_weight_kg": 49.99,
+        "start_mg_per_kg_per_day": 2,
+        "target_mg_per_kg_per_day_min": 4,
+        "target_mg_per_kg_per_day_max": 8,
+        "max_mg_per_kg_per_day": 8,
+        "uptitration_step_mg_per_kg_per_day": 2,
+        "uptitration_interval_weeks": 1,
+        "absolute_max_mg_per_day": null,
+        "frequency_per_day": 2,
+        "source": "vimpat",
+        "verified": false,
+        "clinician_note": "Start ~2 mg/kg/day; maintenance 4-8 mg/kg/day (30-<50kg)."
+      },
+      {
+        "label": ">=50 kg, fixed-mg",
+        "dose_basis": "weight_band_fixed_mg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": 50,
+        "max_weight_kg": null,
+        "fixed_titration_schedule": [
+          {
+            "day": 1,
+            "total_mg_per_day": 100
+          },
+          {
+            "day": 8,
+            "total_mg_per_day": 200
+          }
+        ],
+        "max_mg_per_day": 400,
+        "uptitration_interval_days": 7,
+        "frequency_per_day": 2,
+        "source": "vimpat",
+        "verified": false,
+        "clinician_note": ">=50kg: start 50 mg BID (100 mg/day); maintenance 200-400 mg/day. Confirm max (label notes 300 mg/day recommended in some peds contexts vs 400 adult).",
+        "dose_range_max_mg_per_day": 400,
+        "max_daily_mg": 400,
+        "standard_uptitration_step_mg": 100,
+        "standard_uptitration_interval_weeks": 1
+      }
+    ],
+    "key_safety": "PR-interval prolongation (caution with cardiac conduction problems/concomitant PR-prolonging drugs); dizziness/ataxia. Schedule V.",
+    "key_interactions": "Additive PR prolongation; modest with strong CYP inducers.",
+    "formulations_rxnorm": [
+      {
+        "form": "tablet",
+        "strengths_mg": [
+          50,
+          100,
+          150,
+          200
+        ]
+      },
+      {
+        "form": "oral solution",
+        "mg_per_ml": 10
+      },
+      {
+        "form": "extended-release capsule",
+        "strengths_mg": [
+          100,
+          150,
+          200
+        ]
+      }
+    ],
+    "rxcui": "623400"
+  },
+  "brivaracetam": {
+    "display_name": "Brivaracetam (Briviact)",
+    "in_study": true,
+    "indications": [
+      "focal (partial-onset)"
+    ],
+    "fda_pediatric_age": "from 1 month",
+    "off_label_in_study_ages": false,
+    "dose_bands": [
+      {
+        "label": "11 to <20 kg, weight-based",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": 11,
+        "max_weight_kg": 19.99,
+        "start_mg_per_kg_per_day": 1.5,
+        "target_mg_per_kg_per_day_min": 2.5,
+        "target_mg_per_kg_per_day_max": 5.0,
+        "max_mg_per_kg_per_day": 5.0,
+        "uptitration_step_mg_per_kg_per_day": null,
+        "uptitration_interval_weeks": null,
+        "absolute_max_mg_per_day": null,
+        "frequency_per_day": 2,
+        "source": "briviact",
+        "verified": false,
+        "clinician_note": "Weight-based BID. 11-<20kg: 0.5-2.5 mg/kg BID (1-5 mg/kg/day); typical start ~1.25 mg/kg BID. Can start at target (no forced titration)."
+      },
+      {
+        "label": "20 to <50 kg, weight-based",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": 20,
+        "max_weight_kg": 49.99,
+        "start_mg_per_kg_per_day": 1.0,
+        "target_mg_per_kg_per_day_min": 2.0,
+        "target_mg_per_kg_per_day_max": 4.0,
+        "max_mg_per_kg_per_day": 4.0,
+        "uptitration_step_mg_per_kg_per_day": null,
+        "uptitration_interval_weeks": null,
+        "absolute_max_mg_per_day": null,
+        "frequency_per_day": 2,
+        "source": "briviact",
+        "verified": false,
+        "clinician_note": "20-<50kg: 0.5-2 mg/kg BID (1-4 mg/kg/day); typical start 1 mg/kg BID."
+      },
+      {
+        "label": ">=50 kg, fixed-mg",
+        "dose_basis": "weight_band_fixed_mg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 17,
+        "min_weight_kg": 50,
+        "max_weight_kg": null,
+        "fixed_titration_schedule": [
+          {
+            "day": 1,
+            "total_mg_per_day": 100
+          }
+        ],
+        "max_mg_per_day": 200,
+        "uptitration_interval_days": 0,
+        "frequency_per_day": 2,
+        "source": "briviact",
+        "verified": false,
+        "clinician_note": ">=50kg: start 50 mg BID (100 mg/day); range 25-100 mg BID (50-200 mg/day). No titration required.",
+        "dose_range_max_mg_per_day": 200,
+        "max_daily_mg": 200,
+        "standard_uptitration_step_mg": 50,
+        "standard_uptitration_interval_weeks": 1
+      }
+    ],
+    "key_safety": "Behavioral/psychiatric reactions (irritability, anxiety). Schedule V. Reduce in hepatic impairment (excluded from study).",
+    "key_interactions": "Levels lowered by strong enzyme inducers (carbamazepine, phenytoin); rifampin lowers levels.",
+    "formulations_rxnorm": [
+      {
+        "form": "tablet",
+        "strengths_mg": [
+          10,
+          25,
+          50,
+          75,
+          100
+        ]
+      },
+      {
+        "form": "oral solution",
+        "mg_per_ml": 10
+      }
+    ],
+    "rxcui": "1739745"
+  },
+  "zonisamide": {
+    "display_name": "Zonisamide (Zonegran; Zonisade susp)",
+    "in_study": true,
+    "indications": [
+      "adjunctive focal (FDA >=16y); pediatric use is OFF-LABEL"
+    ],
+    "fda_pediatric_age": ">=16y (Zonegran). Pediatric <16y is OFF-LABEL (Zonisade oral suspension has a partial-seizure indication - confirm pediatric age).",
+    "off_label_in_study_ages": true,
+    "dose_bands": [
+      {
+        "label": "2 to <16y, weight-based (OFF-LABEL)",
+        "dose_basis": "weight_based_mg_per_kg_per_day",
+        "min_age_years": 2,
+        "max_age_years": 15.99,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "start_mg_per_kg_per_day": 1.5,
+        "target_mg_per_kg_per_day_min": 4,
+        "target_mg_per_kg_per_day_max": 8,
+        "max_mg_per_kg_per_day": 12,
+        "uptitration_step_mg_per_kg_per_day": 1.5,
+        "uptitration_interval_weeks": 2,
+        "absolute_max_mg_per_day": 600,
+        "frequency_per_day": 1,
+        "source": "zonegran",
+        "verified": false,
+        "clinician_note": "OFF-LABEL <16y. Start 1-2 mg/kg/day; increase 1-2 mg/kg/day q1-2wk; target 4-8 mg/kg/day; max ~12 mg/kg/day or 600 mg/day. Long half-life (QD-BID)."
+      },
+      {
+        "label": "16-17y (FDA-approved range)",
+        "dose_basis": "weight_band_fixed_mg_per_day",
+        "min_age_years": 16,
+        "max_age_years": 17,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "fixed_titration_schedule": [
+          {
+            "day": 1,
+            "total_mg_per_day": 100
+          },
+          {
+            "day": 15,
+            "total_mg_per_day": 200
+          },
+          {
+            "day": 29,
+            "total_mg_per_day": 300
+          }
+        ],
+        "max_mg_per_day": 600,
+        "uptitration_interval_days": 14,
+        "frequency_per_day": 1,
+        "source": "zonegran",
+        "verified": false,
+        "clinician_note": "16y+: 100 mg/day start; increase by 100 mg/day q>=2wk; max 600 mg/day.",
+        "dose_range_max_mg_per_day": 400,
+        "max_daily_mg": 600,
+        "standard_uptitration_step_mg": 100,
+        "standard_uptitration_interval_weeks": 2
+      }
+    ],
+    "key_safety": "OFF-LABEL in children. Sulfonamide (avoid if sulfa allergy). Oligohidrosis/hyperthermia in children (IMPORTANT - heat illness). Metabolic acidosis; renal stones; long half-life.",
+    "key_interactions": "Levels lowered by enzyme inducers.",
+    "formulations_rxnorm": [
+      {
+        "form": "capsule",
+        "strengths_mg": [
+          25,
+          50,
+          100
+        ]
+      },
+      {
+        "form": "tablet",
+        "strengths_mg": [
+          100
+        ]
+      },
+      {
+        "form": "oral suspension (Zonisade)",
+        "mg_per_ml": 20
+      }
+    ],
+    "rxcui": "39998"
+  },
+  "ethosuximide": {
+    "display_name": "Ethosuximide (Zarontin)",
+    "in_study": true,
+    "indications": [
+      "absence (petit mal) ONLY - no efficacy for focal/GTC"
+    ],
+    "fda_pediatric_age": "from 3y",
+    "off_label_in_study_ages": false,
+    "dose_bands": [
+      {
+        "label": "3 to 6y, fixed-mg start",
+        "dose_basis": "weight_band_fixed_mg_per_day",
+        "min_age_years": 3,
+        "max_age_years": 6,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "fixed_titration_schedule": [
+          {
+            "day": 1,
+            "total_mg_per_day": 250
+          }
+        ],
+        "max_mg_per_day": 1500,
+        "uptitration_interval_days": 5,
+        "frequency_per_day": 2,
+        "source": "zarontin",
+        "verified": false,
+        "clinician_note": "3-6y: start 250 mg/day; increase 250 mg every 4-7 days; optimal ~20 mg/kg/day; max 1500 mg/day.",
+        "dose_range_max_mg_per_day": 1000,
+        "max_daily_mg": 1500,
+        "standard_uptitration_step_mg": 250,
+        "standard_uptitration_interval_weeks": 1
+      },
+      {
+        "label": ">6 to 17y, fixed-mg start",
+        "dose_basis": "weight_band_fixed_mg_per_day",
+        "min_age_years": 6.01,
+        "max_age_years": 17,
+        "min_weight_kg": null,
+        "max_weight_kg": null,
+        "fixed_titration_schedule": [
+          {
+            "day": 1,
+            "total_mg_per_day": 500
+          }
+        ],
+        "max_mg_per_day": 1500,
+        "uptitration_interval_days": 5,
+        "frequency_per_day": 2,
+        "source": "zarontin",
+        "verified": false,
+        "clinician_note": ">6y: start 500 mg/day; increase 250 mg every 4-7 days; optimal ~20 mg/kg/day; max 1500 mg/day.",
+        "dose_range_max_mg_per_day": 1000,
+        "max_daily_mg": 1500,
+        "standard_uptitration_step_mg": 250,
+        "standard_uptitration_interval_weeks": 1
+      }
+    ],
+    "key_safety": "ABSENCE ONLY - does not protect against GTC/focal (if mixed epilepsy, a broad-spectrum agent is needed). Rare blood dyscrasias; SJS reported; GI upset.",
+    "key_interactions": "Valproate may raise ethosuximide levels.",
+    "formulations_rxnorm": [
+      {
+        "form": "capsule",
+        "strengths_mg": [
+          250
+        ]
+      },
+      {
+        "form": "oral solution",
+        "mg_per_ml": 50
+      }
+    ],
+    "rxcui": "4135"
+  }
+}

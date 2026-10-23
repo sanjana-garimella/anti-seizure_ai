@@ -1,0 +1,37 @@
+{
+  "_README": "CLINICIAN-SUPPLIED titration thresholds (Kristen review themes T1/T4/T5/T8). SHIPS as a documented SHAPE here; the active values live in titration_thresholds.json (preferred when present). These are clinical thresholds and must be confirmed by the PI (NEEDS_PI_SIGNOFF.md). Duration is expressed as DURATION_RANK from engine_core.snapshot (under_31s=1, 31s_2min=2, 2_5min=3, over_5min=4). Loaded by engine_core.titration_config.load_thresholds().",
+  "verified": false,
+  "source": "PI to supply",
+  "escalate_faster": {
+    "_doc": "Breakthrough seizures that warrant a FASTER increase (rather than continuing the standard plan).",
+    "rule_a_freq_per_week_gt": null,
+    "rule_a_min_duration_rank": null,
+    "rule_b_freq_per_week_gt": null,
+    "rule_b_min_duration_rank": null
+  },
+  "continue_ok": {
+    "_doc": "Breakthrough that is acceptable to keep titrating through (no faster increase needed).",
+    "all_short_max_duration_rank": null,
+    "still_titrating_max_duration_rank_lt": null
+  },
+  "switch_when_not_helpful": {
+    "_doc": "When the current med is not helping, minimum time on it before considering a switch.",
+    "unchanged_min_weeks": null,
+    "worse_min_weeks": null
+  },
+  "followup": {
+    "while_titrating_weeks": null,
+    "tolerable_side_effect_reassess_weeks": null
+  },
+  "faster_cadence_interval_days": null,
+  "lamotrigine_small_rash_workup": {
+    "_doc": "Any TRUE -> switch a small/non-spreading rash on an SJS-risk drug (theme T11).",
+    "switch_if_southeast_asian_ancestry": null,
+    "switch_if_other_significant_meds_gt": null,
+    "switch_if_missed_doses_2plus_days": null,
+    "switch_if_months_on_med_lt": null,
+    "switch_if_over_6_months_and_no_viral_illness": null,
+    "switch_if_on_known_sjs_risk_comed": null,
+    "_switch_if_on_known_sjs_risk_comed_doc": "On another medication independently linked to SJS/TEN: antibiotics (esp. sulfonamides, penicillins, cephalosporins), NSAIDs, or allopurinol."
+  }
+}

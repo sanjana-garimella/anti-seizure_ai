@@ -1,0 +1,165 @@
+{
+  "artifact": "ladder_thresholds_verification_proof",
+  "status": "DRAFT - unverified (advisory; requires PI review)",
+  "counts": {
+    "FAIL": 0,
+    "WARN": 0,
+    "INFO": 17
+  },
+  "hard_properties_proved": true,
+  "findings": [
+    {
+      "property": "M",
+      "severity": "INFO",
+      "drug": "brivaracetam",
+      "message": "'\u226550 kg' initial 100.0 > min_maintenance 50.0 (starts at/above goal)",
+      "witness": {
+        "band": 3
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "carbamazepine",
+      "message": "'Adolescents 13\u201318 years' ladder max_absolute 1200.0 != asm_rules absolute_max 800.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "carbamazepine",
+      "message": "'Adults >18 years' ladder max_absolute 2000.0 != asm_rules absolute_max 800.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 3
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "clobazam",
+      "message": "'30 to <50 kg' ladder max_absolute 40.0 != asm_rules absolute_max 20.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "clobazam",
+      "message": "'\u226550 kg' ladder max_absolute 40.0 != asm_rules absolute_max 20.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 3
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "lamotrigine",
+      "message": "'Children 2\u201312 years' ladder max_absolute 300.0 != asm_rules absolute_max 200 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 0
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "lamotrigine",
+      "message": "'Adolescents 12\u201316 years' ladder max_absolute 400.0 != asm_rules absolute_max 200 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 1
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "lamotrigine",
+      "message": "'>16 years' ladder max_absolute 500.0 != asm_rules absolute_max 200 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "'25 to <35 kg' ladder max_absolute 1200.0 != asm_rules absolute_max 900.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "'35 to <45 kg' ladder max_absolute 1500.0 != asm_rules absolute_max 900.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 3
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "'45 to <50 kg' ladder max_absolute 1500.0 != asm_rules absolute_max 900.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 4
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "'50 to <60 kg' ladder max_absolute 1800.0 != asm_rules absolute_max 900.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 5
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "'\u226560 kg' ladder max_absolute 2100.0 != asm_rules absolute_max 900.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 6
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "topiramate",
+      "message": "'12\u201322 kg' ladder max_absolute 300.0 != asm_rules absolute_max 250.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 1
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "topiramate",
+      "message": "'23\u201338 kg' ladder max_absolute 350.0 != asm_rules absolute_max 250.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "topiramate",
+      "message": "'>38 kg' ladder max_absolute 400.0 != asm_rules absolute_max 250.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 3
+      }
+    },
+    {
+      "property": "X",
+      "severity": "INFO",
+      "drug": "zonisamide",
+      "message": "'>16 years' ladder max_absolute 600.0 != asm_rules absolute_max 500.0 (clinician tables disagree - transcription check)",
+      "witness": {
+        "band": 2
+      }
+    }
+  ]
+}

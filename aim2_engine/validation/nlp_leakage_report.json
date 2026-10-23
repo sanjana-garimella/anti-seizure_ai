@@ -1,0 +1,47 @@
+{
+  "naive_kfold": {
+    "mean": 0.8333,
+    "stdev": 0.0329,
+    "min": 0.7917,
+    "max": 0.875,
+    "folds": [
+      0.8333,
+      0.8125,
+      0.8542,
+      0.7917,
+      0.875
+    ]
+  },
+  "group_kfold": {
+    "mean": 0.0,
+    "stdev": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "folds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "group_kfold_purged": {
+    "mean": 0.0,
+    "stdev": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "folds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "gap_naive_minus_grouped_purged": 0.8333,
+  "interpretation": "~83.3 F1 points of the naive-split score come from leakage (template/near-duplicate overlap), not generalization.",
+  "n_items": 240,
+  "n_groups": 6,
+  "n_splits": 5,
+  "_note": "ENGINEERING / eval-QA artifact. Advisory NLP layer only; never touches engine_core. Not for clinical review or the clinician UI. Simulated data only."
+}

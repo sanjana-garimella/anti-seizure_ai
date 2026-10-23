@@ -1,0 +1,2401 @@
+{
+  "nodes": [
+    {
+      "id": "cat_no_change",
+      "label": "Keep current dose",
+      "type": "recommendation",
+      "layer": 5,
+      "detail": "Engine recommendation: Keep current dose.",
+      "x": 2400,
+      "y": -184.0
+    },
+    {
+      "id": "cat_escalate",
+      "label": "Increase the dose",
+      "type": "recommendation",
+      "layer": 5,
+      "detail": "Engine recommendation: Increase the dose.",
+      "x": 2400,
+      "y": -138.0
+    },
+    {
+      "id": "cat_slower_uptitration",
+      "label": "Increase more slowly",
+      "type": "recommendation",
+      "layer": 5,
+      "detail": "Engine recommendation: Increase more slowly.",
+      "x": 2400,
+      "y": -92.0
+    },
+    {
+      "id": "cat_hold",
+      "label": "Hold at current dose",
+      "type": "recommendation",
+      "layer": 5,
+      "detail": "Engine recommendation: Hold at current dose.",
+      "x": 2400,
+      "y": -46.0
+    },
+    {
+      "id": "cat_lower_dose",
+      "label": "Lower the dose",
+      "type": "recommendation",
+      "layer": 5,
+      "detail": "Engine recommendation: Lower the dose.",
+      "x": 2400,
+      "y": 0.0
+    },
+    {
+      "id": "cat_add_medication",
+      "label": "Add another medicine",
+      "type": "recommendation",
+      "layer": 5,
+      "detail": "Engine recommendation: Add another medicine.",
+      "x": 2400,
+      "y": 46.0
+    },
+    {
+      "id": "cat_switch_medication",
+      "label": "Switch medicine",
+      "type": "recommendation",
+      "layer": 5,
+      "detail": "Engine recommendation: Switch medicine.",
+      "x": 2400,
+      "y": 92.0
+    },
+    {
+      "id": "cat_insufficient_data",
+      "label": "Need more info / defer",
+      "type": "recommendation",
+      "layer": 5,
+      "detail": "Engine recommendation: Need more info / defer.",
+      "x": 2400,
+      "y": 138.0
+    },
+    {
+      "id": "survey",
+      "label": "Between-visit survey",
+      "type": "input",
+      "layer": 0,
+      "detail": "Interval check-in: seizures since last visit? side effects (level)? phase? adherence? duration/frequency? rash? dose goal? (kristen/BetweenVisit_SurveyDraft)",
+      "x": 0,
+      "y": -23.0
+    },
+    {
+      "id": "branch_bt",
+      "label": "BREAKTHROUGH seizures",
+      "type": "branch",
+      "layer": 2,
+      "detail": "One or more breakthrough seizures this interval.",
+      "x": 600,
+      "y": -46.0
+    },
+    {
+      "id": "branch_sf",
+      "label": "SEIZURE-FREE",
+      "type": "branch",
+      "layer": 2,
+      "detail": "No seizures this interval.",
+      "x": 600,
+      "y": 0.0
+    },
+    {
+      "id": "rule_R0",
+      "label": "R0 · Spreading/blistering rash",
+      "type": "rule",
+      "layer": 1,
+      "detail": "Serious skin-reaction concern -> stop + switch; urgent review; family message withheld.\n\nProvenance: Barbour T11/T12 (SJS/TEN)",
+      "branch": "safety",
+      "provenance": "Barbour T11/T12 (SJS/TEN)",
+      "x": 300,
+      "y": -230.0
+    },
+    {
+      "id": "rule_R0b",
+      "label": "R0b · Seizure emergency",
+      "type": "rule",
+      "layer": 1,
+      "detail": "Prolonged/repeated seizures -> urgent review; if helping, increase faster; if not helping after min trial -> switch.\n\nProvenance: Barbour T13",
+      "branch": "safety",
+      "provenance": "Barbour T13",
+      "x": 300,
+      "y": -184.0
+    },
+    {
+      "id": "rule_R0c",
+      "label": "R0c · Other urgent safety",
+      "type": "rule",
+      "layer": 1,
+      "detail": "Breathing/ER signal -> withhold automated rec; immediate physician review.\n\nProvenance: safety",
+      "branch": "safety",
+      "provenance": "safety",
+      "x": 300,
+      "y": -138.0
+    },
+    {
+      "id": "rule_R1",
+      "label": "R1 · Dose changed + seizures",
+      "type": "rule",
+      "layer": 1,
+      "detail": "Regimen recently changed and seizures continue -> confirm regimen, contact clinic (not enough info).\n\nProvenance: Barbour I4",
+      "branch": "safety",
+      "provenance": "Barbour I4",
+      "x": 300,
+      "y": -92.0
+    },
+    {
+      "id": "rule_R2",
+      "label": "R2 · Stopped (side effects/cost)",
+      "type": "rule",
+      "layer": 1,
+      "detail": "Family stopped for a switch-worthy reason -> switch to a better-tolerated/feasible option.\n\nProvenance: Barbour T10",
+      "branch": "safety",
+      "provenance": "Barbour T10",
+      "x": 300,
+      "y": -46.0
+    },
+    {
+      "id": "rule_R3",
+      "label": "R3 · Drug not indicated",
+      "type": "rule",
+      "layer": 1,
+      "detail": "Drug does not cover the reported seizure type (e.g. ethosuximide = absence only) -> switch.\n\nProvenance: Barbour T14",
+      "branch": "safety",
+      "provenance": "Barbour T14",
+      "x": 300,
+      "y": 0.0
+    },
+    {
+      "id": "rule_R4",
+      "label": "R4 · Small rash + SJS workup",
+      "type": "rule",
+      "layer": 1,
+      "detail": "Small rash on an SJS-risk drug + a workup criterion (ancestry/meds/missed doses/time/no viral illness) -> switch.\n\nProvenance: Barbour T11",
+      "branch": "safety",
+      "provenance": "Barbour T11",
+      "x": 300,
+      "y": 46.0
+    },
+    {
+      "id": "rule_R4b",
+      "label": "R4b · Can't reach min dose (SE)",
+      "type": "rule",
+      "layer": 1,
+      "detail": "Side effects prevent even a minimum effective dose -> switch.\n\nProvenance: Barbour 2026-06",
+      "branch": "safety",
+      "provenance": "Barbour 2026-06",
+      "x": 300,
+      "y": 92.0
+    },
+    {
+      "id": "rule_R5",
+      "label": "R5 · Adherence-driven breakthrough",
+      "type": "rule",
+      "layer": 1,
+      "detail": "Seizures coincide with missed doses -> support adherence before any dose change.\n\nProvenance: adherence",
+      "branch": "safety",
+      "provenance": "adherence",
+      "x": 300,
+      "y": 138.0
+    },
+    {
+      "id": "rule_R-defer-se",
+      "label": "R-defer · Unknown SE impact",
+      "type": "rule",
+      "layer": 1,
+      "detail": "Side-effect impact answer not recognized -> physician review (no confident rec).\n\nProvenance: E3 defer-on-ambiguity",
+      "branch": "safety",
+      "provenance": "E3 defer-on-ambiguity",
+      "x": 300,
+      "y": 184.0
+    },
+    {
+      "id": "rule_BT",
+      "label": "BT · Breakthrough table",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Action by urgency tier x phase x side-effect level. Levels 1-5 route here (L1 only when duration captured).\n\nProvenance: Barbour 2026-06-25; gate fixed 2026-07-08 (Kristen B1/B2/B3)",
+      "branch": "breakthrough",
+      "provenance": "Barbour 2026-06-25; gate fixed 2026-07-08 (Kristen B1/B2/B3)",
+      "x": 900,
+      "y": -391.0
+    },
+    {
+      "id": "rule_R5b",
+      "label": "R5b · Helping but dose-limited",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Medicine helps but side effects block further increases while seizures continue -> ADD a second medicine.\n\nProvenance: Barbour 2026-06",
+      "branch": "breakthrough",
+      "provenance": "Barbour 2026-06",
+      "x": 900,
+      "y": -345.0
+    },
+    {
+      "id": "rule_R6",
+      "label": "R6 · Intolerable SE",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Breakthrough + intolerable side effects -> switch.\n\nProvenance: T7 boundary",
+      "branch": "breakthrough",
+      "provenance": "T7 boundary",
+      "x": 900,
+      "y": -299.0
+    },
+    {
+      "id": "rule_R7",
+      "label": "R7 · Family prefers slower",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Breakthrough but family prefers a slower/changed dose -> slower uptitration.\n\nProvenance: family preference",
+      "branch": "breakthrough",
+      "provenance": "family preference",
+      "x": 900,
+      "y": -253.0
+    },
+    {
+      "id": "rule_R8",
+      "label": "R8 · No SE, no duration",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Breakthrough, no side effects, but duration not captured -> need duration to decide continue vs faster.\n\nProvenance: Barbour T1/T4",
+      "branch": "breakthrough",
+      "provenance": "Barbour T1/T4",
+      "x": 900,
+      "y": -207.0
+    },
+    {
+      "id": "rule_R9",
+      "label": "R9 · Frequent/long -> faster",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Frequent and/or long breakthrough -> increase FASTER toward goal (per duration/frequency thresholds).\n\nProvenance: Barbour T1/T4",
+      "branch": "breakthrough",
+      "provenance": "Barbour T1/T4",
+      "x": 900,
+      "y": -161.0
+    },
+    {
+      "id": "rule_R10",
+      "label": "R10 · Short/infrequent titrating",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Short/infrequent breakthrough while titrating -> continue the plan (keep increasing on schedule).\n\nProvenance: Barbour T1/T4",
+      "branch": "breakthrough",
+      "provenance": "Barbour T1/T4",
+      "x": 900,
+      "y": -115.0
+    },
+    {
+      "id": "rule_R11",
+      "label": "R11 · Below faster thresholds",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Breakthrough below the increase-faster thresholds -> continue the current titration plan.\n\nProvenance: Barbour T1/T4",
+      "branch": "breakthrough",
+      "provenance": "Barbour T1/T4",
+      "x": 900,
+      "y": -69.0
+    },
+    {
+      "id": "rule_R12g",
+      "label": "R12g · At goal + medium SE",
+      "type": "rule",
+      "layer": 3,
+      "detail": "At goal, medium-impact SE, ongoing seizures -> ask family: tolerate & increase, or add a second med.\n\nProvenance: Barbour 2026-06",
+      "branch": "breakthrough",
+      "provenance": "Barbour 2026-06",
+      "x": 900,
+      "y": -23.0
+    },
+    {
+      "id": "rule_R12",
+      "label": "R12 · Manageable, no duration",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Breakthrough + manageable SE but no duration -> need duration to weigh increasing vs holding.\n\nProvenance: Barbour",
+      "branch": "breakthrough",
+      "provenance": "Barbour",
+      "x": 900,
+      "y": 23.0
+    },
+    {
+      "id": "rule_R13",
+      "label": "R13 · Titrating + medium SE",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Titrating + medium-impact SE -> slow uptitration; reassess after a 1-week adjustment.\n\nProvenance: Barbour 2026-06",
+      "branch": "breakthrough",
+      "provenance": "Barbour 2026-06",
+      "x": 900,
+      "y": 69.0
+    },
+    {
+      "id": "rule_NS",
+      "label": "NS · No-Seizures table",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Action by phase x side-effect level when seizure-free. 'Continue' cells schedule no follow-up (Kristen D4).\n\nProvenance: Barbour 2026-06-25; follow-up fixed 2026-07-08 (Kristen D4)",
+      "branch": "seizure_free",
+      "provenance": "Barbour 2026-06-25; follow-up fixed 2026-07-08 (Kristen D4)",
+      "x": 900,
+      "y": 115.0
+    },
+    {
+      "id": "rule_R14",
+      "label": "R14 · Free + intolerable SE",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Seizure-free but intolerable side effects -> switch.\n\nProvenance: legacy",
+      "branch": "seizure_free",
+      "provenance": "legacy",
+      "x": 900,
+      "y": 161.0
+    },
+    {
+      "id": "rule_R15",
+      "label": "R15 · Family wants different med",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Family would like a different medicine (no clinical trigger) -> offer switch options for physician.\n\nProvenance: family preference",
+      "branch": "seizure_free",
+      "provenance": "family preference",
+      "x": 900,
+      "y": 207.0
+    },
+    {
+      "id": "rule_R16",
+      "label": "R16 · Free titrating, family slower",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Seizure-free, titrating, family prefers slower -> slower uptitration.\n\nProvenance: family preference",
+      "branch": "seizure_free",
+      "provenance": "family preference",
+      "x": 900,
+      "y": 253.0
+    },
+    {
+      "id": "rule_R17",
+      "label": "R17 · Free + manageable SE",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Seizure-free + manageable side effects -> no change; reassess as body adjusts.\n\nProvenance: legacy",
+      "branch": "seizure_free",
+      "provenance": "legacy",
+      "x": 900,
+      "y": 299.0
+    },
+    {
+      "id": "rule_R18",
+      "label": "R18 · Free + no SE",
+      "type": "rule",
+      "layer": 3,
+      "detail": "Seizure-free, no side effects -> no change; recheck on schedule if still titrating.\n\nProvenance: legacy",
+      "branch": "seizure_free",
+      "provenance": "legacy",
+      "x": 900,
+      "y": 345.0
+    },
+    {
+      "id": "lvl0",
+      "label": "L0 none",
+      "type": "level",
+      "layer": 4,
+      "detail": "Side-effect impact level 0.",
+      "x": 1200,
+      "y": -207.0
+    },
+    {
+      "id": "lvl1",
+      "label": "L1 small",
+      "type": "level",
+      "layer": 4,
+      "detail": "Side-effect impact level 1.",
+      "x": 1200,
+      "y": -161.0
+    },
+    {
+      "id": "lvl2",
+      "label": "L2 med-tol",
+      "type": "level",
+      "layer": 4,
+      "detail": "Side-effect impact level 2.",
+      "x": 1200,
+      "y": -115.0
+    },
+    {
+      "id": "lvl3",
+      "label": "L3 med-alot",
+      "type": "level",
+      "layer": 4,
+      "detail": "Side-effect impact level 3.",
+      "x": 1200,
+      "y": -69.0
+    },
+    {
+      "id": "lvl4",
+      "label": "L4 big",
+      "type": "level",
+      "layer": 4,
+      "detail": "Side-effect impact level 4.",
+      "x": 1200,
+      "y": -23.0
+    },
+    {
+      "id": "lvl5",
+      "label": "L5 not-fit",
+      "type": "level",
+      "layer": 4,
+      "detail": "Side-effect impact level 5.",
+      "x": 1200,
+      "y": 23.0
+    },
+    {
+      "id": "phase_titrating",
+      "label": "titrating",
+      "type": "phase",
+      "layer": 4,
+      "detail": "Titration phase: titrating.",
+      "x": 1200,
+      "y": 69.0
+    },
+    {
+      "id": "phase_holding",
+      "label": "holding",
+      "type": "phase",
+      "layer": 4,
+      "detail": "Titration phase: holding.",
+      "x": 1200,
+      "y": 115.0
+    },
+    {
+      "id": "phase_steady",
+      "label": "steady",
+      "type": "phase",
+      "layer": 4,
+      "detail": "Titration phase: steady.",
+      "x": 1200,
+      "y": 161.0
+    },
+    {
+      "id": "tbl_no_seizures",
+      "label": "No-Seizures table",
+      "type": "table",
+      "layer": 4,
+      "detail": "Action by phase x level when seizure-free. verified=False",
+      "x": 1500,
+      "y": -138.0
+    },
+    {
+      "id": "tbl_bt_non_urgent",
+      "label": "Breakthrough · non-urgent",
+      "type": "table",
+      "layer": 4,
+      "detail": "titrating: stay | stay | stay | hold | add med | switch\nholding: stay | increase | increase | hold | add med | switch\nsteady: increase | increase | increase | increase | add med | switch\nverified=False",
+      "x": 1500,
+      "y": -92.0
+    },
+    {
+      "id": "tbl_bt_urgent",
+      "label": "Breakthrough · urgent",
+      "type": "table",
+      "layer": 4,
+      "detail": "titrating: increase | increase | increase | increase | add med | switch\nholding: increase | increase | increase | increase | add med | switch\nsteady: increase | increase | increase | increase | add med | switch\nverified=False",
+      "x": 1500,
+      "y": -46.0
+    },
+    {
+      "id": "tbl_bt_emergent",
+      "label": "Breakthrough · emergent",
+      "type": "table",
+      "layer": 4,
+      "detail": "titrating: increase | increase | increase | increase | add med | switch\nholding: increase | increase | increase | increase | add med | switch\nsteady: increase | increase | increase | increase | add med | switch\nverified=False",
+      "x": 1500,
+      "y": 0.0
+    },
+    {
+      "id": "tbl_urgency",
+      "label": "Urgency thresholds",
+      "type": "table",
+      "layer": 4,
+      "detail": "Per seizure-type duration/frequency cutoffs -> breakthrough tier. verified=False",
+      "x": 1500,
+      "y": 46.0
+    },
+    {
+      "id": "ladder_hub",
+      "label": "Dose ladder",
+      "type": "table",
+      "layer": 4,
+      "detail": "Per drug x band explicit rungs (min-maint -> eff-max -> max; high range -> † labs). Barbour final_doses v6, DRAFT.",
+      "x": 1500,
+      "y": 92.0
+    },
+    {
+      "id": "drug_levetiracetam",
+      "label": "Levetiracetam",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Levetiracetam (Keppra)\nSJS risk: False\nBehavioral/psychiatric effects (irritability, mood, aggression). Avoid in significant behavioral comorbidity (Barbour). Renally cleared.",
+      "x": 1800,
+      "y": -253.0
+    },
+    {
+      "id": "band_levetiracetam_0",
+      "label": "Levetiracetam · Children ≥2 years and Adults",
+      "type": "band",
+      "layer": 4,
+      "detail": "Children ≥2 years and Adults\ninitial 10 mg/kg/day\nmin-maint 30 mg/kg/day -> eff-max 60 -> max 3000.0 mg/d\nup 6 · higher(†) 0",
+      "x": 2100,
+      "y": -966.0
+    },
+    {
+      "id": "drug_lamotrigine",
+      "label": "Lamotrigine",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Lamotrigine (Lamictal)\nSJS risk: True\nBOXED WARNING: serious rash (SJS/TEN). Risk increased by concomitant valproate, by exceeding the initial dose, and by escalating faster than recommended. Slow titration is essential. Titration is CONC",
+      "x": 1800,
+      "y": -207.0
+    },
+    {
+      "id": "band_lamotrigine_0",
+      "label": "Lamotrigine · Children 2–12 years",
+      "type": "band",
+      "layer": 4,
+      "detail": "Children 2–12 years\ninitial 0.3 mg/kg/day\nmin-maint 4.5 mg/kg/day -> eff-max 6 -> max 300.0 mg/d\nup 3 · higher(†) 3",
+      "x": 2100,
+      "y": -920.0
+    },
+    {
+      "id": "band_lamotrigine_1",
+      "label": "Lamotrigine · Adolescents 12–16 years",
+      "type": "band",
+      "layer": 4,
+      "detail": "Adolescents 12–16 years\ninitial 25 mg/day\nmin-maint 225 mg/day -> eff-max 300 -> max 400.0 mg/d\nup 1 · higher(†) 2",
+      "x": 2100,
+      "y": -874.0
+    },
+    {
+      "id": "band_lamotrigine_2",
+      "label": "Lamotrigine · >16 years",
+      "type": "band",
+      "layer": 4,
+      "detail": ">16 years\ninitial 25 mg/day\nmin-maint 225 mg/day -> eff-max 300 -> max 500.0 mg/d\nup 1 · higher(†) 2",
+      "x": 2100,
+      "y": -828.0
+    },
+    {
+      "id": "drug_topiramate",
+      "label": "Topiramate",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Topiramate (Topamax)\nSJS risk: False\nCognitive/word-finding; metabolic acidosis; oligohidrosis; nephrolithiasis.",
+      "x": 1800,
+      "y": -161.0
+    },
+    {
+      "id": "band_topiramate_0",
+      "label": "Topiramate · ≤11 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "≤11 kg\ninitial 25 mg/day\nmin-maint 150 mg/day -> eff-max 200 -> max 250.0 mg/d\nup 3 · higher(†) 3",
+      "x": 2100,
+      "y": -782.0
+    },
+    {
+      "id": "band_topiramate_1",
+      "label": "Topiramate · 12–22 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "12–22 kg\ninitial 25 mg/day\nmin-maint 200 mg/day -> eff-max 240 -> max 300.0 mg/d\nup 1 · higher(†) 3",
+      "x": 2100,
+      "y": -736.0
+    },
+    {
+      "id": "band_topiramate_2",
+      "label": "Topiramate · 23–38 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "23–38 kg\ninitial 25 mg/day\nmin-maint 200 mg/day -> eff-max 280 -> max 350.0 mg/d\nup 3 · higher(†) 3",
+      "x": 2100,
+      "y": -690.0
+    },
+    {
+      "id": "band_topiramate_3",
+      "label": "Topiramate · >38 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": ">38 kg\ninitial 50 mg/day\nmin-maint 250 mg/day -> eff-max 320 -> max 400.0 mg/d\nup 2 · higher(†) 4",
+      "x": 2100,
+      "y": -644.0
+    },
+    {
+      "id": "labs_topiramate",
+      "label": "† labs Topiramate",
+      "type": "labs",
+      "layer": 4,
+      "detail": "High-dose labs:\n- CBC\n- CMP\n- TSH\n- vitamin D\n- topiramate level",
+      "x": 2100,
+      "y": -598.0
+    },
+    {
+      "id": "drug_oxcarbazepine",
+      "label": "Oxcarbazepine",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Oxcarbazepine (Trileptal)\nSJS risk: True\nHyponatremia; rash with HLA-B*1502 cross-reactivity. Spreading/blistering rash -> stop + switch.",
+      "x": 1800,
+      "y": -115.0
+    },
+    {
+      "id": "band_oxcarbazepine_0",
+      "label": "Oxcarbazepine · <20 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "<20 kg\ninitial 7.5 mg/kg/day\nmin-maint 23.25 mg/kg/day -> eff-max 42 -> max 900.0 mg/d\nup 3 · higher(†) 4",
+      "x": 2100,
+      "y": -552.0
+    },
+    {
+      "id": "band_oxcarbazepine_1",
+      "label": "Oxcarbazepine · 20 to <25 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "20 to <25 kg\ninitial 200 mg/day\nmin-maint 600 mg/day -> eff-max 720 -> max 900.0 mg/d\nup 1 · higher(†) 3",
+      "x": 2100,
+      "y": -506.0
+    },
+    {
+      "id": "band_oxcarbazepine_2",
+      "label": "Oxcarbazepine · 25 to <35 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "25 to <35 kg\ninitial 300 mg/day\nmin-maint 900 mg/day -> eff-max 1020 -> max 1200.0 mg/d\nup 1 · higher(†) 3",
+      "x": 2100,
+      "y": -460.0
+    },
+    {
+      "id": "band_oxcarbazepine_3",
+      "label": "Oxcarbazepine · 35 to <45 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "35 to <45 kg\ninitial 300 mg/day\nmin-maint 900 mg/day -> eff-max 1200 -> max 1500.0 mg/d\nup 2 · higher(†) 2",
+      "x": 2100,
+      "y": -414.0
+    },
+    {
+      "id": "band_oxcarbazepine_4",
+      "label": "Oxcarbazepine · 45 to <50 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "45 to <50 kg\ninitial 300 mg/day\nmin-maint 1200 mg/day -> eff-max 1275 -> max 1500.0 mg/d\nup 1 · higher(†) 3",
+      "x": 2100,
+      "y": -368.0
+    },
+    {
+      "id": "band_oxcarbazepine_5",
+      "label": "Oxcarbazepine · 50 to <60 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "50 to <60 kg\ninitial 300 mg/day\nmin-maint 1200 mg/day -> eff-max 1350 -> max 1800.0 mg/d\nup 1 · higher(†) 3",
+      "x": 2100,
+      "y": -322.0
+    },
+    {
+      "id": "band_oxcarbazepine_6",
+      "label": "Oxcarbazepine · ≥60 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "≥60 kg\ninitial 300 mg/day\nmin-maint 1200 mg/day -> eff-max 1575 -> max 2100.0 mg/d\nup 2 · higher(†) 4",
+      "x": 2100,
+      "y": -276.0
+    },
+    {
+      "id": "labs_oxcarbazepine",
+      "label": "† labs Oxcarbazepine",
+      "type": "labs",
+      "layer": 4,
+      "detail": "High-dose labs:\n- CBC\n- CMP\n- LFTs\n- TSH\n- vitamin D\n- oxcarbazepine level",
+      "x": 2100,
+      "y": -230.0
+    },
+    {
+      "id": "drug_carbamazepine",
+      "label": "Carbamazepine",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Carbamazepine (Tegretol)\nSJS risk: True\nSerious rash (SJS/TEN), esp. with HLA-B*1502 (Southeast/East Asian ancestry). Hyponatremia; blood dyscrasias; enzyme inducer.",
+      "x": 1800,
+      "y": -69.0
+    },
+    {
+      "id": "band_carbamazepine_0",
+      "label": "Carbamazepine · Children 2 to <6 years",
+      "type": "band",
+      "layer": 4,
+      "detail": "Children 2 to <6 years\ninitial 10 mg/kg/day\nmin-maint 10 mg/kg/day -> eff-max 26.25 -> max 800.0 mg/d\nup 3 · higher(†) 2",
+      "x": 2100,
+      "y": -184.0
+    },
+    {
+      "id": "band_carbamazepine_1",
+      "label": "Carbamazepine · Children ≥6 to 12 years",
+      "type": "band",
+      "layer": 4,
+      "detail": "Children ≥6 to 12 years\ninitial 200 mg/day\nmin-maint 400 mg/day -> eff-max 600 -> max 800.0 mg/d\nup 2 · higher(†) 2",
+      "x": 2100,
+      "y": -138.0
+    },
+    {
+      "id": "band_carbamazepine_2",
+      "label": "Carbamazepine · Adolescents 13–18 years",
+      "type": "band",
+      "layer": 4,
+      "detail": "Adolescents 13–18 years\ninitial 400 mg/day\nmin-maint 800 mg/day -> eff-max 900 -> max 1200.0 mg/d\nup 1 · higher(†) 3",
+      "x": 2100,
+      "y": -92.0
+    },
+    {
+      "id": "band_carbamazepine_3",
+      "label": "Carbamazepine · Adults >18 years",
+      "type": "band",
+      "layer": 4,
+      "detail": "Adults >18 years\ninitial 400 mg/day\nmin-maint 800 mg/day -> eff-max 1500 -> max 2000.0 mg/d\nup 7 · higher(†) 5",
+      "x": 2100,
+      "y": -46.0
+    },
+    {
+      "id": "labs_carbamazepine",
+      "label": "† labs Carbamazepine",
+      "type": "labs",
+      "layer": 4,
+      "detail": "High-dose labs:\n- CBC\n- CMP\n- LFTs\n- TSH\n- vitamin D\n- carbamazepine level",
+      "x": 2100,
+      "y": 0.0
+    },
+    {
+      "id": "drug_valproic_acid",
+      "label": "Valproic acid",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Valproic acid (Depakene; cf. divalproex/Depakote)\nSJS risk: False\nHepatotoxicity; pancreatitis; thrombocytopenia; teratogenic. Raises lamotrigine levels (rash risk).",
+      "x": 1800,
+      "y": -23.0
+    },
+    {
+      "id": "band_valproic_acid_0",
+      "label": "Valproic acid · Children ≥2 years and Adults",
+      "type": "band",
+      "layer": 4,
+      "detail": "Children ≥2 years and Adults\ninitial 10 mg/kg/day\nmin-maint 30 mg/kg/day -> eff-max 45 -> max 3000.0 mg/d\nup 3 · higher(†) 3",
+      "x": 2100,
+      "y": 46.0
+    },
+    {
+      "id": "labs_valproic_acid",
+      "label": "† labs Valproic acid",
+      "type": "labs",
+      "layer": 4,
+      "detail": "High-dose labs:\n- CBC\n- CMP\n- LFTs\n- ammonia\n- amylase\n- lipase\n- TSH\n- vitamin D\n- valproic acid level",
+      "x": 2100,
+      "y": 92.0
+    },
+    {
+      "id": "drug_clobazam",
+      "label": "Clobazam",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Clobazam (Onfi/Sympazan)\nSJS risk: False\nSedation; benzodiazepine - avoid stacking sedating meds.",
+      "x": 1800,
+      "y": 23.0
+    },
+    {
+      "id": "band_clobazam_0",
+      "label": "Clobazam · <20 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "<20 kg\ninitial 2.5 mg/day\nmin-maint 5 mg/day -> eff-max 15 -> max 20.0 mg/d\nup 4 · higher(†) 2",
+      "x": 2100,
+      "y": 138.0
+    },
+    {
+      "id": "band_clobazam_1",
+      "label": "Clobazam · 20 to <30 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "20 to <30 kg\ninitial 5 mg/day\nmin-maint 10 mg/day -> eff-max 15 -> max 20.0 mg/d\nup 1 · higher(†) 1",
+      "x": 2100,
+      "y": 184.0
+    },
+    {
+      "id": "band_clobazam_2",
+      "label": "Clobazam · 30 to <50 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "30 to <50 kg\ninitial 5 mg/day\nmin-maint 10 mg/day -> eff-max 30 -> max 40.0 mg/d\nup 4 · higher(†) 2",
+      "x": 2100,
+      "y": 230.0
+    },
+    {
+      "id": "band_clobazam_3",
+      "label": "Clobazam · ≥50 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "≥50 kg\ninitial 5 mg/day\nmin-maint 10 mg/day -> eff-max 30 -> max 40.0 mg/d\nup 4 · higher(†) 2",
+      "x": 2100,
+      "y": 276.0
+    },
+    {
+      "id": "drug_lacosamide",
+      "label": "Lacosamide",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Lacosamide (Vimpat)\nSJS risk: False\nPR prolongation; dizziness.",
+      "x": 1800,
+      "y": 69.0
+    },
+    {
+      "id": "band_lacosamide_0",
+      "label": "Lacosamide · 6 to <30 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "6 to <30 kg\ninitial 1.5 mg/kg/day\nmin-maint 6 mg/kg/day -> eff-max 10.2 -> max 400.0 mg/d\nup 4 · higher(†) 2",
+      "x": 2100,
+      "y": 322.0
+    },
+    {
+      "id": "band_lacosamide_1",
+      "label": "Lacosamide · 30 to <50 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "30 to <50 kg\ninitial 1 mg/kg/day\nmin-maint 4 mg/kg/day -> eff-max 6.8 -> max 400.0 mg/d\nup 2 · higher(†) 2",
+      "x": 2100,
+      "y": 368.0
+    },
+    {
+      "id": "band_lacosamide_2",
+      "label": "Lacosamide · ≥50 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "≥50 kg\ninitial 100 mg/day\nmin-maint 200 mg/day -> eff-max 340 -> max 400.0 mg/d\nup 2 · higher(†) 2",
+      "x": 2100,
+      "y": 414.0
+    },
+    {
+      "id": "labs_lacosamide",
+      "label": "† labs Lacosamide",
+      "type": "labs",
+      "layer": 4,
+      "detail": "High-dose labs:\n- EKG",
+      "x": 2100,
+      "y": 460.0
+    },
+    {
+      "id": "drug_brivaracetam",
+      "label": "Brivaracetam",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Brivaracetam (Briviact)\nSJS risk: False\nSame SV2A family as levetiracetam; behavioral effects possible.",
+      "x": 1800,
+      "y": 115.0
+    },
+    {
+      "id": "band_brivaracetam_0",
+      "label": "Brivaracetam · <11 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "<11 kg\ninitial 3 mg/kg/day\nmin-maint 3 mg/kg/day -> eff-max 6 -> max 200.0 mg/d\nup 2 · higher(†) 0",
+      "x": 2100,
+      "y": 506.0
+    },
+    {
+      "id": "band_brivaracetam_1",
+      "label": "Brivaracetam · 11 to <20 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "11 to <20 kg\ninitial 2.5 mg/kg/day\nmin-maint 2.5 mg/kg/day -> eff-max 5 -> max 200.0 mg/d\nup 2 · higher(†) 0",
+      "x": 2100,
+      "y": 552.0
+    },
+    {
+      "id": "band_brivaracetam_2",
+      "label": "Brivaracetam · 20 to <50 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "20 to <50 kg\ninitial 2 mg/kg/day\nmin-maint 2 mg/kg/day -> eff-max 4 -> max 200.0 mg/d\nup 2 · higher(†) 0",
+      "x": 2100,
+      "y": 598.0
+    },
+    {
+      "id": "band_brivaracetam_3",
+      "label": "Brivaracetam · ≥50 kg",
+      "type": "band",
+      "layer": 4,
+      "detail": "≥50 kg\ninitial 100 mg/day\nmin-maint 50 mg/day -> eff-max 200 -> max 200.0 mg/d\nup 3 · higher(†) 0",
+      "x": 2100,
+      "y": 644.0
+    },
+    {
+      "id": "drug_zonisamide",
+      "label": "Zonisamide",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Zonisamide (Zonegran; Zonisade susp)\nSJS risk: False\nSulfonamide; off-label <16y in this study; oligohidrosis/metabolic acidosis.",
+      "x": 1800,
+      "y": 161.0
+    },
+    {
+      "id": "band_zonisamide_0",
+      "label": "Zonisamide · Children 2 to <5 years",
+      "type": "band",
+      "layer": 4,
+      "detail": "Children 2 to <5 years\ninitial 1 mg/kg/day\nmin-maint 5 mg/kg/day -> eff-max 6.8 -> max 500.0 mg/d\nup 3 · higher(†) 3",
+      "x": 2100,
+      "y": 690.0
+    },
+    {
+      "id": "band_zonisamide_1",
+      "label": "Zonisamide · Children ≥5 to <16 years",
+      "type": "band",
+      "layer": 4,
+      "detail": "Children ≥5 to <16 years\ninitial 0.5 mg/kg/day\nmin-maint 5 mg/kg/day -> eff-max 6.8 -> max 500.0 mg/d\nup 3 · higher(†) 3",
+      "x": 2100,
+      "y": 736.0
+    },
+    {
+      "id": "band_zonisamide_2",
+      "label": "Zonisamide · >16 years",
+      "type": "band",
+      "layer": 4,
+      "detail": ">16 years\ninitial 100 mg/day\nmin-maint 400 mg/day -> eff-max 510 -> max 600.0 mg/d\nup 2 · higher(†) 2",
+      "x": 2100,
+      "y": 782.0
+    },
+    {
+      "id": "labs_zonisamide",
+      "label": "† labs Zonisamide",
+      "type": "labs",
+      "layer": 4,
+      "detail": "High-dose labs:\n- CBC\n- CMP\n- TSH\n- vitamin D\n- zonisamide level",
+      "x": 2100,
+      "y": 828.0
+    },
+    {
+      "id": "drug_ethosuximide",
+      "label": "Ethosuximide",
+      "type": "drug",
+      "layer": 4,
+      "detail": "Ethosuximide (Zarontin)\nSJS risk: False\nAbsence (staring-spell) seizures ONLY. Any other seizure type -> switch.",
+      "x": 1800,
+      "y": 207.0
+    },
+    {
+      "id": "band_ethosuximide_0",
+      "label": "Ethosuximide · Children ≥2 years and Adults",
+      "type": "band",
+      "layer": 4,
+      "detail": "Children ≥2 years and Adults\ninitial 10 mg/kg/day\nmin-maint 20 mg/kg/day -> eff-max 27 -> max 2000.0 mg/d\nup 2 · higher(†) 1",
+      "x": 2100,
+      "y": 874.0
+    },
+    {
+      "id": "labs_ethosuximide",
+      "label": "† labs Ethosuximide",
+      "type": "labs",
+      "layer": 4,
+      "detail": "High-dose labs:\n- ethosuximide level",
+      "x": 2100,
+      "y": 920.0
+    },
+    {
+      "id": "gold",
+      "label": "Gold cases (n=63)",
+      "type": "validation",
+      "layer": 6,
+      "detail": "Frozen expected outputs:\n- no_change: 33\n- escalate: 5\n- add_medication: 1\n- insufficient_data: 10\n- switch_medication: 12\n- slower_uptitration: 2",
+      "x": 2700,
+      "y": -138.0
+    },
+    {
+      "id": "pi_review",
+      "label": "PI validation review",
+      "type": "validation",
+      "layer": 6,
+      "detail": "Reviewed by Dr. Kristen Barbour (PI)\ntotal=132 agreement={'Yes': 5, 'No': 4, 'Unsure': 0, 'blank': 123}",
+      "x": 2700,
+      "y": -92.0
+    },
+    {
+      "id": "case_B1",
+      "label": "Flagged B1",
+      "type": "case",
+      "layer": 6,
+      "detail": "breakthrough + manageable sleepiness\nengine: Increase the dose more slowly\ncomment: This is the nonurgent_decision_tables file : Level 1 side effects & the first row (1. Continue titration on schedule\n2. Follow up in 4 weeks)\n\nRESOLUTION: Fixed: BT-table gate now routes non-urgent, titrating, level-1 breakthrough to 'continue on schedule' (no_change) instead of the legacy 'slower'. (decision.py gate; test_engine.test_breakthrough_level1_titrating_continues)",
+      "x": 2700,
+      "y": -46.0
+    },
+    {
+      "id": "case_B2",
+      "label": "Flagged B2",
+      "type": "case",
+      "layer": 6,
+      "detail": "breakthrough + manageable mood\nengine: Increase the dose more slowly\ncomment: This is the nonurgent_decision_tables file : Level 1 side effects & the first row (1. Continue titration on schedule\n2. Follow up in 4 weeks)\n\nRESOLUTION: Fixed: same non-urgent level-1 routing change as B1.",
+      "x": 2700,
+      "y": 0.0
+    },
+    {
+      "id": "case_B3",
+      "label": "Flagged B3",
+      "type": "case",
+      "layer": 6,
+      "detail": "breakthrough + manageable dizziness\nengine: Increase the dose more slowly\ncomment: This is the nonurgent_decision_tables file : Level 1 side effects & the first row (1. Continue titration on schedule\n2. Follow up in 4 weeks)\n\nRESOLUTION: Fixed: same non-urgent level-1 routing change as B1.",
+      "x": 2700,
+      "y": 46.0
+    },
+    {
+      "id": "case_D4",
+      "label": "Flagged D4",
+      "type": "case",
+      "layer": 6,
+      "detail": "seizure-free, titrating, no SE\nengine: Keep the current dose (no change)\ncomment: Only need follow up scheduled if it is listed on the decision_tables file. Otherwise, you can leave this part out. \n\nRESOLUTION: Fixed: No-Seizures 'continue' path no longer auto-schedules a follow-up; follow-up is emitted only when the decision table lists one. (decision.py NS branch; test_dose_ladder.TestKristenValidationFixes)",
+      "x": 2700,
+      "y": 92.0
+    }
+  ],
+  "edges": [
+    {
+      "source": "survey",
+      "target": "branch_bt",
+      "rel": "seizure(s)",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "branch_sf",
+      "rel": "none",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "rule_R0",
+      "rel": "gate",
+      "minor": false
+    },
+    {
+      "source": "rule_R0",
+      "target": "cat_switch_medication",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "rule_R0b",
+      "rel": "gate",
+      "minor": false
+    },
+    {
+      "source": "rule_R0b",
+      "target": "cat_escalate",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "rule_R0c",
+      "rel": "gate",
+      "minor": false
+    },
+    {
+      "source": "rule_R0c",
+      "target": "cat_insufficient_data",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "rule_R1",
+      "rel": "gate",
+      "minor": false
+    },
+    {
+      "source": "rule_R1",
+      "target": "cat_insufficient_data",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "rule_R2",
+      "rel": "gate",
+      "minor": false
+    },
+    {
+      "source": "rule_R2",
+      "target": "cat_switch_medication",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "rule_R3",
+      "rel": "gate",
+      "minor": false
+    },
+    {
+      "source": "rule_R3",
+      "target": "cat_switch_medication",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "rule_R4",
+      "rel": "gate",
+      "minor": false
+    },
+    {
+      "source": "rule_R4",
+      "target": "cat_switch_medication",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "rule_R4b",
+      "rel": "gate",
+      "minor": false
+    },
+    {
+      "source": "rule_R4b",
+      "target": "cat_switch_medication",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "rule_R5",
+      "rel": "gate",
+      "minor": false
+    },
+    {
+      "source": "rule_R5",
+      "target": "cat_no_change",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "survey",
+      "target": "rule_R-defer-se",
+      "rel": "gate",
+      "minor": false
+    },
+    {
+      "source": "rule_R-defer-se",
+      "target": "cat_insufficient_data",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_BT",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_R5b",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R5b",
+      "target": "cat_add_medication",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_R6",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R6",
+      "target": "cat_switch_medication",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_R7",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R7",
+      "target": "cat_slower_uptitration",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_R8",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R8",
+      "target": "cat_insufficient_data",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_R9",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R9",
+      "target": "cat_escalate",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_R10",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R10",
+      "target": "cat_no_change",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_R11",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R11",
+      "target": "cat_no_change",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_R12g",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R12g",
+      "target": "cat_insufficient_data",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_R12",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R12",
+      "target": "cat_insufficient_data",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_bt",
+      "target": "rule_R13",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R13",
+      "target": "cat_slower_uptitration",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_sf",
+      "target": "rule_NS",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "branch_sf",
+      "target": "rule_R14",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R14",
+      "target": "cat_switch_medication",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_sf",
+      "target": "rule_R15",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R15",
+      "target": "cat_insufficient_data",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_sf",
+      "target": "rule_R16",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R16",
+      "target": "cat_slower_uptitration",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_sf",
+      "target": "rule_R17",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R17",
+      "target": "cat_no_change",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "branch_sf",
+      "target": "rule_R18",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "rule_R18",
+      "target": "cat_no_change",
+      "rel": "-> ",
+      "minor": false
+    },
+    {
+      "source": "rule_NS",
+      "target": "tbl_no_seizures",
+      "rel": "uses",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "phase_titrating",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "phase_holding",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "phase_steady",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "lvl0",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "lvl1",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "lvl2",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "lvl3",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "lvl4",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "lvl5",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_slower_uptitration",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_hold",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_lower_dose",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_switch_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_hold",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_lower_dose",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_switch_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_hold",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_lower_dose",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_no_seizures",
+      "target": "cat_switch_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "rule_BT",
+      "target": "tbl_bt_non_urgent",
+      "rel": "uses",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "phase_titrating",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "phase_holding",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "phase_steady",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "lvl0",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "lvl1",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "lvl2",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "lvl3",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "lvl4",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "lvl5",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "cat_add_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "cat_switch_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "cat_hold",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "cat_escalate",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "rule_BT",
+      "target": "tbl_bt_urgent",
+      "rel": "uses",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "phase_titrating",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "phase_holding",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "phase_steady",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "lvl0",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "lvl1",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "lvl2",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "lvl3",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "lvl4",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "lvl5",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "cat_switch_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "cat_add_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_urgent",
+      "target": "cat_escalate",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "rule_BT",
+      "target": "tbl_bt_emergent",
+      "rel": "uses",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "phase_titrating",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "phase_holding",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "phase_steady",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "lvl0",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "lvl1",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "lvl2",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "lvl3",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "lvl4",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "lvl5",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "cat_switch_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "cat_add_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "cat_escalate",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "rule_BT",
+      "target": "tbl_urgency",
+      "rel": "tier from",
+      "minor": false
+    },
+    {
+      "source": "cat_escalate",
+      "target": "ladder_hub",
+      "rel": "next dose from",
+      "minor": false
+    },
+    {
+      "source": "cat_lower_dose",
+      "target": "ladder_hub",
+      "rel": "next dose from",
+      "minor": false
+    },
+    {
+      "source": "drug_levetiracetam",
+      "target": "band_levetiracetam_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_levetiracetam_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_lamotrigine",
+      "target": "band_lamotrigine_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_lamotrigine_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_lamotrigine",
+      "target": "band_lamotrigine_1",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_lamotrigine_1",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_lamotrigine",
+      "target": "band_lamotrigine_2",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_lamotrigine_2",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_topiramate",
+      "target": "band_topiramate_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_topiramate_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_topiramate",
+      "target": "band_topiramate_1",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_topiramate_1",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_topiramate",
+      "target": "band_topiramate_2",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_topiramate_2",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_topiramate",
+      "target": "band_topiramate_3",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_topiramate_3",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_topiramate",
+      "target": "labs_topiramate",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "drug_oxcarbazepine",
+      "target": "band_oxcarbazepine_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_oxcarbazepine_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_oxcarbazepine",
+      "target": "band_oxcarbazepine_1",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_oxcarbazepine_1",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_oxcarbazepine",
+      "target": "band_oxcarbazepine_2",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_oxcarbazepine_2",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_oxcarbazepine",
+      "target": "band_oxcarbazepine_3",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_oxcarbazepine_3",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_oxcarbazepine",
+      "target": "band_oxcarbazepine_4",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_oxcarbazepine_4",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_oxcarbazepine",
+      "target": "band_oxcarbazepine_5",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_oxcarbazepine_5",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_oxcarbazepine",
+      "target": "band_oxcarbazepine_6",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_oxcarbazepine_6",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_oxcarbazepine",
+      "target": "labs_oxcarbazepine",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "drug_carbamazepine",
+      "target": "band_carbamazepine_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_carbamazepine_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_carbamazepine",
+      "target": "band_carbamazepine_1",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_carbamazepine_1",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_carbamazepine",
+      "target": "band_carbamazepine_2",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_carbamazepine_2",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_carbamazepine",
+      "target": "band_carbamazepine_3",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_carbamazepine_3",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_carbamazepine",
+      "target": "labs_carbamazepine",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "drug_valproic_acid",
+      "target": "band_valproic_acid_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_valproic_acid_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_valproic_acid",
+      "target": "labs_valproic_acid",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "drug_clobazam",
+      "target": "band_clobazam_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_clobazam_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_clobazam",
+      "target": "band_clobazam_1",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_clobazam_1",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_clobazam",
+      "target": "band_clobazam_2",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_clobazam_2",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_clobazam",
+      "target": "band_clobazam_3",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_clobazam_3",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_lacosamide",
+      "target": "band_lacosamide_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_lacosamide_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_lacosamide",
+      "target": "band_lacosamide_1",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_lacosamide_1",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_lacosamide",
+      "target": "band_lacosamide_2",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_lacosamide_2",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_lacosamide",
+      "target": "labs_lacosamide",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "drug_brivaracetam",
+      "target": "band_brivaracetam_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_brivaracetam_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_brivaracetam",
+      "target": "band_brivaracetam_1",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_brivaracetam_1",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_brivaracetam",
+      "target": "band_brivaracetam_2",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_brivaracetam_2",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_brivaracetam",
+      "target": "band_brivaracetam_3",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_brivaracetam_3",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_zonisamide",
+      "target": "band_zonisamide_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_zonisamide_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_zonisamide",
+      "target": "band_zonisamide_1",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_zonisamide_1",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_zonisamide",
+      "target": "band_zonisamide_2",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_zonisamide_2",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_zonisamide",
+      "target": "labs_zonisamide",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "drug_ethosuximide",
+      "target": "band_ethosuximide_0",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "band_ethosuximide_0",
+      "target": "ladder_hub",
+      "rel": "",
+      "minor": true
+    },
+    {
+      "source": "drug_ethosuximide",
+      "target": "labs_ethosuximide",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "gold",
+      "target": "cat_no_change",
+      "rel": "expects",
+      "minor": false
+    },
+    {
+      "source": "gold",
+      "target": "cat_escalate",
+      "rel": "expects",
+      "minor": false
+    },
+    {
+      "source": "gold",
+      "target": "cat_add_medication",
+      "rel": "expects",
+      "minor": false
+    },
+    {
+      "source": "gold",
+      "target": "cat_insufficient_data",
+      "rel": "expects",
+      "minor": false
+    },
+    {
+      "source": "gold",
+      "target": "cat_switch_medication",
+      "rel": "expects",
+      "minor": false
+    },
+    {
+      "source": "gold",
+      "target": "cat_slower_uptitration",
+      "rel": "expects",
+      "minor": false
+    },
+    {
+      "source": "pi_review",
+      "target": "case_B1",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "case_B1",
+      "target": "rule_BT",
+      "rel": "fixed in",
+      "minor": false
+    },
+    {
+      "source": "pi_review",
+      "target": "case_B2",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "case_B2",
+      "target": "rule_BT",
+      "rel": "fixed in",
+      "minor": false
+    },
+    {
+      "source": "pi_review",
+      "target": "case_B3",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "case_B3",
+      "target": "rule_BT",
+      "rel": "fixed in",
+      "minor": false
+    },
+    {
+      "source": "pi_review",
+      "target": "case_D4",
+      "rel": "",
+      "minor": false
+    },
+    {
+      "source": "case_D4",
+      "target": "rule_NS",
+      "rel": "fixed in",
+      "minor": false
+    }
+  ],
+  "layers": [
+    "Inputs",
+    "Safety gates",
+    "Branch",
+    "Decision rules",
+    "Tables & dose ladder",
+    "Recommendations",
+    "Validation"
+  ],
+  "columns": [
+    "inputs",
+    "safety",
+    "branch",
+    "rules",
+    "axes",
+    "tables",
+    "drugs",
+    "bands",
+    "recs",
+    "valid"
+  ],
+  "meta": {
+    "generated_from": "engine JSON + decision.py rules (source of truth)",
+    "note": "DRAFT / 100% simulated. Confidential - in-folder only."
+  }
+}

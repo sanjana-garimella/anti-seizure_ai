@@ -1,0 +1,16 @@
+{
+  "_README": "Drug classification table for the same-family checker. STARTER values from public standards (WHO ATC index; standard antiseizure-medication pharmacology) — these are factual taxonomy, NOT invented dose/rate/interaction thresholds. The PI must still CONFIRM them and the chosen 'family' definition before clinical use (NEEDS_PI_SIGNOFF.md). atc = WHO ATC code(s); mechanism = mechanism-of-action group; chemical = chemical class. Loaded by engine_core.drug_identity.",
+  "classes": {
+    "levetiracetam":  {"atc": ["N03AX14"], "mechanism": "sv2a_ligand", "chemical": "pyrrolidine"},
+    "brivaracetam":   {"atc": ["N03AX23"], "mechanism": "sv2a_ligand", "chemical": "pyrrolidine"},
+    "clobazam":       {"atc": ["N03AE01"], "mechanism": "gaba_a_positive_modulator", "chemical": "benzodiazepine"},
+    "valproic_acid":  {"atc": ["N03AG01"], "mechanism": "broad_spectrum_multiple", "chemical": "fatty_acid_derivative"},
+    "lacosamide":     {"atc": ["N03AX18"], "mechanism": "sodium_channel_slow_inactivation", "chemical": "functionalized_amino_acid"},
+    "oxcarbazepine":  {"atc": ["N03AF02"], "mechanism": "sodium_channel_blocker", "chemical": "carboxamide_dibenzazepine"},
+    "carbamazepine":  {"atc": ["N03AF01"], "mechanism": "sodium_channel_blocker", "chemical": "carboxamide_dibenzazepine"},
+    "zonisamide":     {"atc": ["N03AX15"], "mechanism": "sodium_and_t_type_calcium", "chemical": "sulfonamide"},
+    "lamotrigine":    {"atc": ["N03AX09"], "mechanism": "sodium_channel_blocker", "chemical": "phenyltriazine"},
+    "ethosuximide":   {"atc": ["N03AD01"], "mechanism": "t_type_calcium_channel", "chemical": "succinimide"},
+    "topiramate":     {"atc": ["N03AX11"], "mechanism": "broad_spectrum_multiple", "chemical": "monosaccharide_sulfamate"}
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "_README": "mg/day -> tablets / liquid display rules (clinician summary only; never changes the decision). Encodes Dr. Barbour's answers in kristen/dose_to_tablet_conversion_scenarios.xlsx, sheet 'Flags & clarifications', column G (flags #1-#10). Tablet/liquid strengths come from data/asm_rules.json formulations_rxnorm. DRAFT - verified:false.",
+  "verified": false,
+  "source": "kristen/dose_to_tablet_conversion_scenarios.xlsx :: 'Flags & clarifications' (Barbour answers, col G)",
+  "window": {
+    "_doc": "Flag #1: acceptable dose = target -10% .. +30%, applied to the TOTAL daily dose ('Try with total dose, and then lets look at increment').",
+    "basis": "total_daily_dose",
+    "low_pct": -10,
+    "high_pct": 30
+  },
+  "rounding": {
+    "_doc": "Flag #2 'Bias up'. Her worked example (flags #3/#4: 30 kg, levetiracetam 250 mg tablets, 1000 -> 1300 mg/day gives 500 mg morning + 750 mg night = 1250, -3.8%, not 1500) picks the CLOSEST dose, so: closest total first, ties go up. Then whole tablets over halves, even over uneven, fewest tablets. Flag #4 '+25% is acceptable' at the goal. Flag #5 lamotrigine 'Round up' (no lamotrigine exception). Flag #6: OK to round above the usual effective max; the absolute max is never crossed (NON_NEGOTIABLE_RULES #2, flag #10).",
+    "direction": "closest_ties_up",
+    "drug_exceptions": {},
+    "may_exceed_effective_max": true,
+    "never_exceed_absolute_max": true
+  },
+  "age_form_rule": {
+    "_doc": "PI instruction (2026-10-06): children OLDER than 10 years get tablets; age 10 and under get liquid ('10 liquid for now', study team; Dr. Barbour to confirm). Overrides form_continuity when age is known. If the preferred form has no usable product (no liquid listed, or no tablet fits), the other form is shown with a note. Age unknown -> form_continuity applies.",
+    "enabled": true,
+    "tablet_if_age_greater_than": 10,
+    "overrides_current_form": true
+  },
+  "single_strength_per_plan": {
+    "_doc": "PI instruction (2026-10-06): one tablet strength per plan (e.g. only 500 mg or only 250 mg tablets), never mixed. The child's current strength is tried first; otherwise the closest-fitting single strength wins.",
+    "enabled": true
+  },
+  "standard_tablet_strength": {
+    "_doc": "Study team (2026-10-15): one tablet strength per medicine everywhere, instead of a per-child best fit (which picked 250, 500 or 750 mg levetiracetam depending on weight/dose). The family's CURRENT strength is kept when it fits every step as well as the standard does; otherwise the plan switches to this standard strength (never to another best-fit strength). If the standard does not fit a step either, the liquid fallback is shown as before. Drugs not listed keep the best-fit rule. Strength in mg, per drug key. DRAFT - FLAG FOR DR. BARBOUR (NEEDS_PI_SIGNOFF #66).",
+    "levetiracetam": 500
+  },
+  "form_continuity": {
+    "_doc": "Flag #3: 'If they are on tablets, continue tablets. If they are on liquid, continue liquid.' Prefer the tablet strength the child already has (her example: 'Use 250 mg tablets').",
+    "keep_current_form": true,
+    "prefer_current_strength": true
+  },
+  "uneven_dosing": {
+    "_doc": "Flag #7: 'Allow uneven dosing for all the medications'. Flag #3 example: 1 tablet morning, 2 tablets night. Split kept within the 30/70 .. 40/60 range from the decision-table footnote; the larger dose goes at night (her examples).",
+    "all_medications": true,
+    "min_share_of_total_for_bid": 0.30,
+    "larger_dose_at_night": true
+  },
+  "half_tablets": {
+    "_doc": "Flag #3: '1/2 tablets if needed as a first step (ending on an even dose though)'. Halves only on a non-final climb step, only for plain (scored-type) tablets, never ER/DR (flag #9).",
+    "allowed_on_climb_steps_only": true
+  },
+  "half_tablet_overrides": {
+    "_doc": "Dr. Barbour's comments on tablet_dosing_logic_refinement.xlsx (2026-10-06): valproic acid 500 mg and zonisamide 50 mg may be halved on a non-final climb step (e.g. 2 tablets morning + 2.5 tablets night for week 1, then 2 + 3). The product-type check (_halvable) would otherwise refuse these (valproate 500 mg is a delayed-release product; zonisamide 50 mg is a capsule, which are normally labelled swallow-whole). FLAG FOR DR. BARBOUR: confirm these exact products are splittable before sign-off. Strengths in mg, per drug key.",
+    "valproic_acid": [500],
+    "zonisamide": [50]
+  },
+  "combine_steps": {
+    "_doc": "Flag #3: 'You can also try doing both dose step increases at once, instead of breaking it up into two steps.' Offered when a climb step has no tablet option in the window.",
+    "offer_when_step_has_no_tablet_fit": true
+  },
+  "extended_release": {
+    "_doc": "Flag #9: 'ER/DR cannot be split in half. If needed, you can switch to IR and having them go back to twice a day dosing.' ER (once-daily) products are not used for the step grid.",
+    "never_split": true,
+    "fallback": "switch to immediate-release, twice a day"
+  },
+  "liquid_default_mg_per_ml": {
+    "_doc": "Flag #8: valproate liquid default 50 mg/mL ('I agree with your default').",
+    "valproic_acid": 50
+  },
+  "max_units_per_dose": {
+    "_doc": "Search bound for listing options (usability, not a clinical value): combinations of more tablets than this per dose are not listed.",
+    "value": 4
+  }
+}

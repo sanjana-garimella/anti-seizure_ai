@@ -1,0 +1,9 @@
+Pediatric Epilepsy AI Medication Assistant (Aim 2)
+Copyright 2026 Sanjana Garimella and Kristen Barbour, MD
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Research prototype. All patient data in this repository is synthetic. This
+software is not a medical device, has not been cleared or approved by any
+regulator, and must not be used to make clinical decisions. Every dose and
+clinical value is a draft (verified:false) pending physician sign-off.

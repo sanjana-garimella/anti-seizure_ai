@@ -1,0 +1,5389 @@
+{
+  "_README": "Week-by-week STARTING schedules for a new medicine (add or switch), copied VERBATIM from Dr. Barbour's '<Drug> Initiation' tabs. Cells are text exactly as she wrote them; '—' means no tablet schedule fits (use the liquid). The engine only DISPLAYS these to the clinician; it never computes or changes a dose from them. DRAFT - verified:false, pending PI sign-off.",
+  "verified": false,
+  "source": "clinician (Barbour final_doses_titration_v9.xlsx, '<Drug> Initiation' tabs; built by data/_build_initiation_schedules.py)",
+  "by_drug": {
+    "levetiracetam": {
+      "sheet": "Levetiracetam Initiation",
+      "notes": [
+        "Levetiracetam — Initiation titration by weight",
+        "Dosed twice daily. Steps go 10, 20, then 30 mg/kg/day and stop. If needed, keep titrating toward the maintenance range in the last column.",
+        "Week 1 is at or below 10 mg/kg/day. Each weekly increase stays within 10 mg/kg/day (plus 10%). Every band’s final step is checked against the 10%-below / 30%-above window around 30 mg/kg/day.",
+        "Solution 100 mg/mL, split evenly AM/PM, measured to 0.1 mL under 5 mL and whole mL from 5 mL. Tablets 250 / 500 / 750 / 1000 mg, one strength per band, whole or half. Schedules end on whole tablets.",
+        "A dash means no tablet schedule fits that band, so use the solution."
+      ],
+      "tables": [
+        {
+          "form_title": "Oral solution (100 mg/mL)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Week 6",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.6 mL AM & PM",
+                "1.1 mL AM & PM",
+                "1.6 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.7 mL AM & PM",
+                "1.3 mL AM & PM",
+                "1.9 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.8 mL AM & PM",
+                "1.6 mL AM & PM",
+                "2.4 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 mL AM & PM",
+                "1.9 mL AM & PM",
+                "2.8 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.1 mL AM & PM",
+                "2.1 mL AM & PM",
+                "3.2 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.2 mL AM & PM",
+                "2.4 mL AM & PM",
+                "3.6 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.3 mL AM & PM",
+                "2.6 mL AM & PM",
+                "3.9 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.4 mL AM & PM",
+                "2.9 mL AM & PM",
+                "4.3 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "30–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.6 mL AM & PM",
+                "3.2 mL AM & PM",
+                "4.8 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "35–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.9 mL AM & PM",
+                "3.5 mL AM & PM",
+                "5 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "40–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.1 mL AM & PM",
+                "4.2 mL AM & PM",
+                "6 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "45–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.4 mL AM & PM",
+                "4.7 mL AM & PM",
+                "7 mL AM & PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "≥50 kg (adult)",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "2.5 mL AM & PM",
+                "5 mL AM & PM",
+                "7.5 mL AM & PM",
+                null,
+                null,
+                null,
+                "1,500–3,000 mg/day"
+              ]
+            }
+          ],
+          "kind": "liquid"
+        },
+        {
+          "form_title": "Tablets (250 / 500 / 750 / 1000 mg)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Week 6",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 250 mg once daily",
+                "½ × 250 mg AM & PM",
+                "½ × 250 mg AM, 1 × 250 mg PM",
+                "1 × 250 mg AM & PM",
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 250 mg once daily",
+                "½ × 250 mg AM & PM",
+                "½ × 250 mg AM, 1 × 250 mg PM",
+                "1 × 250 mg AM & PM",
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 250 mg once daily",
+                "½ × 250 mg AM & PM",
+                "½ × 250 mg AM, 1 × 250 mg PM",
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 1½ × 250 mg PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg once daily",
+                "½ × 250 mg AM, 1 × 250 mg PM",
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 1½ × 250 mg PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg once daily",
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                null,
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 500 mg once daily",
+                "½ × 500 mg AM & PM",
+                "½ × 500 mg AM, 1 × 500 mg PM",
+                "1 × 500 mg AM & PM",
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "30–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 500 mg once daily",
+                "½ × 500 mg AM & PM",
+                "½ × 500 mg AM, 1 × 500 mg PM",
+                "1 × 500 mg AM & PM",
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "35–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 500 mg once daily",
+                "½ × 500 mg AM & PM",
+                "½ × 500 mg AM, 1 × 500 mg PM",
+                "1 × 500 mg AM & PM",
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "40–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 750 mg once daily",
+                "½ × 750 mg AM & PM",
+                "½ × 750 mg AM, 1 × 750 mg PM",
+                "1 × 750 mg AM & PM",
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "45–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 750 mg once daily",
+                "½ × 750 mg AM & PM",
+                "½ × 750 mg AM, 1 × 750 mg PM",
+                "1 × 750 mg AM & PM",
+                null,
+                null,
+                "30–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "≥50 kg (adult)",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "½ × 750 mg once daily",
+                "½ × 750 mg AM & PM",
+                "½ × 750 mg AM, 1 × 750 mg PM",
+                "1 × 750 mg AM & PM",
+                null,
+                null,
+                "1,500–3,000 mg/day"
+              ]
+            }
+          ],
+          "kind": "solid"
+        }
+      ]
+    },
+    "clobazam": {
+      "sheet": "Clobazam Initiation",
+      "notes": [
+        "Clobazam — Initiation titration by weight group",
+        "Clobazam is dosed by weight group with fixed doses (not mg/kg). The ≥ 50 kg row keeps going to 10 mg twice daily, so it ends on whole tablets.",
+        "Week 1 is a single dose at night. From week 2 the dose is split twice daily. Each weekly increase is 5 mg/day or less (Lexicomp: no more often than every 5 days). Titrate further toward the maintenance range as tolerated.",
+        "Oral solution 2.5 mg/mL; tablets 10 / 20 mg (scored, halve to 5 mg).",
+        "Doses under 20 kg (2.5–5 mg) are too small to divide from a 10 mg tablet, so the oral solution is used."
+      ],
+      "tables": [
+        {
+          "form_title": "Oral solution (2.5 mg/mL)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "< 20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": null,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 mL once daily, at night (2.5 mg/d)",
+                "1 mL AM & PM (5 mg/d)",
+                null,
+                null,
+                "5–20 mg/day"
+              ]
+            },
+            {
+              "band_label": "20–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2 mL once daily, at night (5 mg/d)",
+                "2 mL once daily, at night (5 mg/d)",
+                "2 mL AM & PM (10 mg/d)",
+                null,
+                "10–20 mg/day"
+              ]
+            },
+            {
+              "band_label": "30–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2 mL once daily, at night (5 mg/d)",
+                "2 mL AM & PM (10 mg/d)",
+                null,
+                null,
+                "10–40 mg/day"
+              ]
+            },
+            {
+              "band_label": "≥ 50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "2 mL once daily, at night (5 mg/d)",
+                "2 mL AM & PM (10 mg/d)",
+                "3 mL AM & PM (15 mg/d)",
+                "4 mL AM & PM (20 mg/d)",
+                "10–40 mg/day"
+              ]
+            }
+          ],
+          "kind": "liquid"
+        },
+        {
+          "form_title": "Tablets (10 / 20 mg)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "< 20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": null,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                null,
+                null,
+                "5–20 mg/day"
+              ]
+            },
+            {
+              "band_label": "20–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 10 mg once daily, at night (5 mg/d)",
+                "½ × 10 mg once daily, at night (5 mg/d)",
+                "½ × 10 mg AM & PM (10 mg/d)",
+                null,
+                "10–20 mg/day"
+              ]
+            },
+            {
+              "band_label": "30–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 10 mg once daily, at night (5 mg/d)",
+                "½ × 10 mg AM & PM (10 mg/d)",
+                null,
+                null,
+                "10–40 mg/day"
+              ]
+            },
+            {
+              "band_label": "≥ 50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "½ × 10 mg once daily, at night (5 mg/d)",
+                "½ × 10 mg AM & PM (10 mg/d)",
+                "½ × 10 mg AM, 1 × 10 mg PM (15 mg/d)",
+                "1 × 10 mg AM & PM (20 mg/d)",
+                "10–40 mg/day"
+              ]
+            }
+          ],
+          "kind": "solid"
+        }
+      ]
+    },
+    "brivaracetam": {
+      "sheet": "Brivaracetam Initiation",
+      "notes": [
+        "Brivaracetam — Initiation (started directly, no gradual titration)",
+        "Brivaracetam needs no gradual titration — start at the dose shown, twice daily, then adjust within the maintenance range.",
+        "Dose is the top of the Lexicomp starting range at the band midpoint, rounded down: up to 3 mg/kg/day under 11 kg, 2.5 from 11–20 kg, 2 from 20–50 kg, and 100 mg/day from 50 kg.",
+        "Oral solution 10 mg/mL, split evenly AM/PM and measured to 0.1 mL. Tablets 10 / 25 / 50 / 75 / 100 mg (not scored), one strength per band, whole tablets only, one tablet per dose where Lexicomp’s starting range allows. A dash means no tablet dose fits, so use the solution.",
+        "Lexicomp maximum daily doses: 6 mg/kg/day under 11 kg, 5 from 11–20 kg, 4 from 20–50 kg, 200 mg/day from 50 kg."
+      ],
+      "tables": [
+        {
+          "form_title": "",
+          "columns": [
+            "Oral solution (10 mg/mL)",
+            "Tablets (10–100 mg)",
+            "mg/kg across band",
+            "Adjust within"
+          ],
+          "bands": [
+            {
+              "band_label": "5–7.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 5.0,
+                "max": 7.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.9 mL AM & PM (18 mg/d)",
+                "—",
+                "2.4 – 3.6",
+                "up to 6 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "7.5–10 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 7.5,
+                "max": 10.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.3 mL AM & PM (26 mg/d)",
+                "1 × 10 mg AM & PM (20 mg/d)",
+                "2.6 – 3.5 (tab 2.0 – 2.7)",
+                "up to 6 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "10–11 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 11.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.5 mL AM & PM (30 mg/d)",
+                "1 × 10 mg AM & PM (20 mg/d)",
+                "2.7 – 3.0 (tab 1.8 – 2.0)",
+                "up to 6 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "11–13.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 11.0,
+                "max": 13.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.5 mL AM & PM (30 mg/d)",
+                "1 × 10 mg AM & PM (20 mg/d)",
+                "2.2 – 2.7 (tab 1.5 – 1.8)",
+                "up to 5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "13.5–16 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 13.5,
+                "max": 16.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.8 mL AM & PM (36 mg/d)",
+                "1 × 10 mg AM & PM (20 mg/d)",
+                "2.2 – 2.7 (tab 1.2 – 1.5)",
+                "up to 5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "16–18.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 16.0,
+                "max": 18.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.1 mL AM & PM (42 mg/d)",
+                "1 × 10 mg AM & PM (20 mg/d)",
+                "2.3 – 2.6 (tab 1.1 – 1.2)",
+                "up to 5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "18.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 18.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.4 mL AM & PM (48 mg/d)",
+                "1 × 10 mg AM & PM (20 mg/d)",
+                "2.4 – 2.6 (tab 1.0 – 1.1)",
+                "up to 5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.1 mL AM & PM (42 mg/d)",
+                "2 × 10 mg AM & PM (40 mg/d)",
+                "1.9 – 2.1 (tab 1.8 – 2.0)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.3 mL AM & PM (46 mg/d)",
+                "2 × 10 mg AM & PM (40 mg/d)",
+                "1.8 – 2.0 (tab 1.6 – 1.8)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.6 mL AM & PM (52 mg/d)",
+                "1 × 25 mg AM & PM (50 mg/d)",
+                "1.9 – 2.1 (tab 1.8 – 2.0)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.8 mL AM & PM (56 mg/d)",
+                "1 × 25 mg AM & PM (50 mg/d)",
+                "1.9 – 2.0 (tab 1.7 – 1.8)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "3.1 mL AM & PM (62 mg/d)",
+                "1 × 25 mg AM & PM (50 mg/d)",
+                "1.9 – 2.1 (tab 1.5 – 1.7)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "3.3 mL AM & PM (66 mg/d)",
+                "1 × 25 mg AM & PM (50 mg/d)",
+                "1.9 – 2.0 (tab 1.4 – 1.5)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "3.6 mL AM & PM (72 mg/d)",
+                "1 × 25 mg AM & PM (50 mg/d)",
+                "1.9 – 2.1 (tab 1.3 – 1.4)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "3.8 mL AM & PM (76 mg/d)",
+                "1 × 25 mg AM & PM (50 mg/d)",
+                "1.9 – 2.0 (tab 1.2 – 1.3)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4.1 mL AM & PM (82 mg/d)",
+                "1 × 25 mg AM & PM (50 mg/d)",
+                "1.9 – 2.0 (tab 1.2 – 1.2)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4.3 mL AM & PM (86 mg/d)",
+                "1 × 25 mg AM & PM (50 mg/d)",
+                "1.9 – 2.0 (tab 1.1 – 1.2)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "45–47.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 47.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4.6 mL AM & PM (92 mg/d)",
+                "1 × 25 mg AM & PM (50 mg/d)",
+                "1.9 – 2.0 (tab 1.1 – 1.1)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "47.5–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 47.5,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4.8 mL AM & PM (96 mg/d)",
+                "1 × 25 mg AM & PM (50 mg/d)",
+                "1.9 – 2.0 (tab 1.0 – 1.1)",
+                "up to 4 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "≥50 kg (adult)",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "5 mL AM & PM (100 mg/d)",
+                "1 × 50 mg AM & PM (100 mg/d)",
+                "≤ 2.0",
+                "50–200 mg/day"
+              ]
+            }
+          ],
+          "kind": "combined"
+        }
+      ]
+    },
+    "ethosuximide": {
+      "sheet": "Ethosuximide Initiation",
+      "notes": [
+        "Ethosuximide — Initiation titration by weight",
+        "Twice-daily. Titrate weekly: 10 → 15 → 20 mg/kg/day; 20 mg/kg (Week 3) is the maintenance floor and the dose target.",
+        "Optimal window is 10% below to 30% above each week's target mg/kg; amber marks a band/step outside it.",
+        "Oral solution 50 mg/mL, split evenly AM/PM (half mL under 5 mL). Capsules are 250 mg and not splittable, so smaller doses that aren't a whole-capsule twice-daily amount use the solution.",
+        "Weight-dosed to 50 kg; from 50 kg the dose holds at the 50 kg amount (500 / 750 / 1000 mg/day), the adult dose. Maintenance range 20–30 mg/kg/day (max 2,000 mg/day)."
+      ],
+      "tables": [
+        {
+          "form_title": "Oral solution (50 mg/mL)",
+          "columns": [
+            "Week 1 · 10 mg/kg/day",
+            "Week 2 · 15 mg/kg/day",
+            "Week 3 · 20 mg/kg/day (target)",
+            "Week 4"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.2 mL AM & PM (120 mg/d)",
+                "1.7 mL AM & PM (170 mg/d)",
+                "2.2 mL AM & PM (220 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.4 mL AM & PM (140 mg/d)",
+                "2 mL AM & PM (200 mg/d)",
+                "2.6 mL AM & PM (260 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.6 mL AM & PM (160 mg/d)",
+                "2.4 mL AM & PM (240 mg/d)",
+                "3.2 mL AM & PM (320 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.9 mL AM & PM (190 mg/d)",
+                "2.8 mL AM & PM (280 mg/d)",
+                "3.7 mL AM & PM (370 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.1 mL AM & PM (210 mg/d)",
+                "3.2 mL AM & PM (320 mg/d)",
+                "4.2 mL AM & PM (420 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.4 mL AM & PM (240 mg/d)",
+                "3.6 mL AM & PM (360 mg/d)",
+                "4.7 mL AM & PM (470 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.6 mL AM & PM (260 mg/d)",
+                "3.9 mL AM & PM (390 mg/d)",
+                "5 mL AM & PM (500 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "3 mL AM & PM (300 mg/d)",
+                "4.5 mL AM & PM (450 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "3.1 mL AM & PM (310 mg/d)",
+                "4.7 mL AM & PM (470 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "3.4 mL AM & PM (340 mg/d)",
+                "5 mL AM & PM (500 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "7 mL AM & PM (700 mg/d)"
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "3.6 mL AM & PM (360 mg/d)",
+                "5 mL AM & PM (500 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "7 mL AM & PM (700 mg/d)"
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4 mL AM & PM (400 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "8 mL AM & PM (800 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4.1 mL AM & PM (410 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "8 mL AM & PM (800 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4.4 mL AM & PM (440 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "8 mL AM & PM (800 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "45–47.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 47.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4.6 mL AM & PM (460 mg/d)",
+                "7 mL AM & PM (700 mg/d)",
+                "9 mL AM & PM (900 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "47.5–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 47.5,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4.9 mL AM & PM (490 mg/d)",
+                "7 mL AM & PM (700 mg/d)",
+                "9 mL AM & PM (900 mg/d)",
+                null
+              ]
+            },
+            {
+              "band_label": "≥50 kg (adult)",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "5 mL AM & PM (500 mg/d)",
+                "7 mL AM & PM (700 mg/d)",
+                "9 mL AM & PM (900 mg/d)",
+                null
+              ]
+            }
+          ],
+          "kind": "liquid"
+        },
+        {
+          "form_title": "Capsules (250 mg)",
+          "columns": [
+            "Week 1 · 10 mg/kg/day",
+            "Week 2 · 15 mg/kg/day",
+            "Week 3 · 20 mg/kg/day (target)",
+            "Week 4"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                null
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                null
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                null
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                null
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                null
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                null
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg once daily",
+                "1 × 250 mg once daily",
+                "1 × 250 mg AM & PM",
+                null
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg once daily",
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                null
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg once daily",
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                null
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg once daily",
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                null
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg once daily",
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                null
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg once daily",
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                null
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg once daily",
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                null
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg once daily",
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                "2 × 250 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "45–47.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 47.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                "2 × 250 mg AM & PM",
+                null
+              ]
+            },
+            {
+              "band_label": "47.5–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 47.5,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                "2 × 250 mg AM & PM",
+                null
+              ]
+            },
+            {
+              "band_label": "≥50 kg (adult)",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                "2 × 250 mg AM & PM",
+                null
+              ]
+            }
+          ],
+          "kind": "solid"
+        }
+      ]
+    },
+    "valproic_acid": {
+      "sheet": "Valproic acid Initiation",
+      "notes": [
+        "Valproic acid — Initiation titration by weight",
+        "Titrate weekly 10 → 15 → 20 → 25 → 30 mg/kg/day; 30 mg/kg (Week 5) is the maintenance floor and the dose target.",
+        "Optimal window is 10% below to 30% above the Week 5 target mg/kg; amber marks a band outside it.",
+        "Oral solution 50 mg/mL (even AM/PM, half mL under 5 mL). Immediate-release tablets 125 / 250 / 500 mg (whole); doses with no clean tablet amount use the solution. Extended-release tablets exist for once-daily maintenance.",
+        "Weight-dosed to 50 kg; from 50 kg the dose holds at the 50 kg amount (adult). Maintenance range 30–60 mg/kg/day (max 3,000 mg/day)."
+      ],
+      "tables": [
+        {
+          "form_title": "Oral solution (50 mg/mL)",
+          "columns": [
+            "Week 1 · 10 mg/kg/day",
+            "Week 2 · 15 mg/kg/day",
+            "Week 3 · 20 mg/kg/day",
+            "Week 4 · 25 mg/kg/day",
+            "Week 5 · 30 mg/kg/day (target)"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.2 mL AM & PM (120 mg/d)",
+                "1.8 mL AM & PM (180 mg/d)",
+                "2.4 mL AM & PM (240 mg/d)",
+                "3 mL AM & PM (300 mg/d)",
+                "3.6 mL AM & PM (360 mg/d)"
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.4 mL AM & PM (140 mg/d)",
+                "2.1 mL AM & PM (210 mg/d)",
+                "2.8 mL AM & PM (280 mg/d)",
+                "3.5 mL AM & PM (350 mg/d)",
+                "4.2 mL AM & PM (420 mg/d)"
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.6 mL AM & PM (160 mg/d)",
+                "2.4 mL AM & PM (240 mg/d)",
+                "3.2 mL AM & PM (320 mg/d)",
+                "4 mL AM & PM (400 mg/d)",
+                "4.8 mL AM & PM (480 mg/d)"
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2 mL AM & PM (200 mg/d)",
+                "3 mL AM & PM (300 mg/d)",
+                "4 mL AM & PM (400 mg/d)",
+                "5 mL AM & PM (500 mg/d)",
+                "6 mL AM & PM (600 mg/d)"
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.4 mL AM & PM (240 mg/d)",
+                "3.6 mL AM & PM (360 mg/d)",
+                "4.8 mL AM & PM (480 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "7 mL AM & PM (700 mg/d)"
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.7 mL AM & PM (270 mg/d)",
+                "3.8 mL AM & PM (380 mg/d)",
+                "4.9 mL AM & PM (490 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "7 mL AM & PM (700 mg/d)"
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "3.2 mL AM & PM (320 mg/d)",
+                "4.6 mL AM & PM (460 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "7 mL AM & PM (700 mg/d)",
+                "8 mL AM & PM (800 mg/d)"
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.8 mL AM & PM (280 mg/d)",
+                "4.4 mL AM & PM (440 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "8 mL AM & PM (800 mg/d)",
+                "10 mL AM & PM (1000 mg/d)"
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "3 mL AM & PM (300 mg/d)",
+                "5 mL AM & PM (500 mg/d)",
+                "7 mL AM & PM (700 mg/d)",
+                "9 mL AM & PM (900 mg/d)",
+                "11 mL AM & PM (1100 mg/d)"
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4 mL AM & PM (400 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "8 mL AM & PM (800 mg/d)",
+                "10 mL AM & PM (1000 mg/d)",
+                "12 mL AM & PM (1200 mg/d)"
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4 mL AM & PM (400 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "8 mL AM & PM (800 mg/d)",
+                "10 mL AM & PM (1000 mg/d)",
+                "12 mL AM & PM (1200 mg/d)"
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4 mL AM & PM (400 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "8 mL AM & PM (800 mg/d)",
+                "10 mL AM & PM (1000 mg/d)",
+                "12 mL AM & PM (1200 mg/d)"
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "4 mL AM & PM (400 mg/d)",
+                "6 mL AM & PM (600 mg/d)",
+                "8 mL AM & PM (800 mg/d)",
+                "10 mL AM & PM (1000 mg/d)",
+                "12 mL AM & PM (1200 mg/d)"
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "5 mL AM & PM (500 mg/d)",
+                "7 mL AM & PM (700 mg/d)",
+                "9 mL AM & PM (900 mg/d)",
+                "11 mL AM & PM (1100 mg/d)",
+                "13 mL AM & PM (1300 mg/d)"
+              ]
+            },
+            {
+              "band_label": "45–47.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 47.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "5 mL AM & PM (500 mg/d)",
+                "7 mL AM & PM (700 mg/d)",
+                "9 mL AM & PM (900 mg/d)",
+                "11 mL AM & PM (1100 mg/d)",
+                "13 mL AM & PM (1300 mg/d)"
+              ]
+            },
+            {
+              "band_label": "47.5–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 47.5,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "6 mL AM & PM (600 mg/d)",
+                "8 mL AM & PM (800 mg/d)",
+                "10 mL AM & PM (1000 mg/d)",
+                "12 mL AM & PM (1200 mg/d)",
+                "14 mL AM & PM (1400 mg/d)"
+              ]
+            },
+            {
+              "band_label": "≥50 kg (adult)",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "6 mL AM & PM (600 mg/d)",
+                "8 mL AM & PM (800 mg/d)",
+                "10 mL AM & PM (1000 mg/d)",
+                "12 mL AM & PM (1200 mg/d)",
+                "14 mL AM & PM (1400 mg/d)"
+              ]
+            }
+          ],
+          "kind": "liquid"
+        },
+        {
+          "form_title": "IR tablets (125 / 250 / 500 mg)",
+          "columns": [
+            "Week 1 · 10 mg/kg/day",
+            "Week 2 · 15 mg/kg/day",
+            "Week 3 · 20 mg/kg/day",
+            "Week 4 · 25 mg/kg/day",
+            "Week 5 · 30 mg/kg/day (target)"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg once daily",
+                "1 × 125 mg once daily",
+                "1 × 125 mg AM & PM",
+                "1 × 125 mg AM & PM",
+                "1 × 125 mg AM, 2 × 125 mg PM"
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg once daily",
+                "1 × 125 mg AM & PM",
+                "1 × 125 mg AM & PM",
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "2 × 125 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg once daily",
+                "1 × 125 mg AM & PM",
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "2 × 125 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg once daily",
+                "1 × 125 mg AM & PM",
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "2 × 125 mg AM & PM",
+                "2 × 125 mg AM, 3 × 125 mg PM"
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg AM & PM",
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "2 × 125 mg AM & PM",
+                "2 × 125 mg AM, 3 × 125 mg PM",
+                "3 × 125 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg AM & PM",
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "2 × 125 mg AM & PM",
+                "2 × 125 mg AM, 3 × 125 mg PM",
+                "3 × 125 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg AM & PM",
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "2 × 125 mg AM & PM",
+                "3 × 125 mg AM & PM",
+                "3 × 125 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg AM & PM",
+                "2 × 125 mg AM & PM",
+                "2 × 125 mg AM, 3 × 125 mg PM",
+                "3 × 125 mg AM & PM",
+                "4 × 125 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "2 × 125 mg AM & PM",
+                "3 × 125 mg AM & PM",
+                "3 × 125 mg AM & PM",
+                "4 × 125 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "2 × 125 mg AM & PM",
+                "3 × 125 mg AM & PM",
+                "4 × 125 mg AM & PM",
+                "4 × 125 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "2 × 125 mg AM, 3 × 125 mg PM",
+                "3 × 125 mg AM & PM",
+                "4 × 125 mg AM & PM",
+                "5 × 125 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 125 mg AM, 2 × 125 mg PM",
+                "2 × 125 mg AM, 3 × 125 mg PM",
+                "3 × 125 mg AM & PM",
+                "4 × 125 mg AM & PM",
+                "5 × 125 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                "2 × 250 mg AM & PM",
+                "2 × 250 mg AM, 3 × 250 mg PM",
+                "3 × 250 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                "2 × 250 mg AM & PM",
+                "2 × 250 mg AM, 3 × 250 mg PM",
+                "3 × 250 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "45–47.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 47.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                "2 × 250 mg AM & PM",
+                "2 × 250 mg AM, 3 × 250 mg PM",
+                "3 × 250 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "47.5–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 47.5,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                "2 × 250 mg AM & PM",
+                "2 × 250 mg AM, 3 × 250 mg PM",
+                "3 × 250 mg AM & PM"
+              ]
+            },
+            {
+              "band_label": "≥50 kg (adult)",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "1 × 250 mg AM & PM",
+                "1 × 250 mg AM, 2 × 250 mg PM",
+                "2 × 250 mg AM & PM",
+                "2 × 250 mg AM, 3 × 250 mg PM",
+                "3 × 250 mg AM & PM"
+              ]
+            }
+          ],
+          "kind": "solid"
+        }
+      ]
+    },
+    "zonisamide": {
+      "sheet": "Zonisamide Initiation",
+      "notes": [
+        "Zonisamide — Initiation titration by weight / age",
+        "Children: dose by weight (mg/kg); adults (>16 y) use the fixed schedule in the last row. The solution is given twice daily throughout; a small Week-1 tablet/capsule dose may be given once daily (shown in each cell).",
+        "Columns are the weekly titration steps the tool defines (child steps 1 → 3.5 mg/kg/day); keep titrating toward the maintenance range in the last column.",
+        "Only the final shown step is checked against the 10%-below / 30%-above window; amber marks a band outside it. Oral suspension 20 mg/mL (even AM/PM, half mL under 5 mL).",
+        "Capsules 25 / 50 / 100 mg are not splittable, so weeks with no clean whole-capsule twice-daily amount show a dash — use the suspension."
+      ],
+      "tables": [
+        {
+          "form_title": "Oral suspension (20 mg/mL)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Week 6",
+            "Week 7",
+            "Week 8",
+            "Week 9",
+            "Week 10",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.3 mL AM & PM",
+                "0.4 mL AM & PM",
+                "0.5 mL AM & PM",
+                "0.6 mL AM & PM",
+                "0.7 mL AM & PM",
+                "0.8 mL AM & PM",
+                "0.9 mL AM & PM",
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.3 mL AM & PM",
+                "0.5 mL AM & PM",
+                "0.6 mL AM & PM",
+                "0.8 mL AM & PM",
+                "0.9 mL AM & PM",
+                "1.1 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.4 mL AM & PM",
+                "0.6 mL AM & PM",
+                "0.8 mL AM & PM",
+                "1 mL AM & PM",
+                "1.2 mL AM & PM",
+                "1.4 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.2 mL AM & PM",
+                "0.5 mL AM & PM",
+                "0.7 mL AM & PM",
+                "1 mL AM & PM",
+                "1.2 mL AM & PM",
+                "1.5 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.2 mL AM & PM",
+                "0.5 mL AM & PM",
+                "0.8 mL AM & PM",
+                "1.1 mL AM & PM",
+                "1.4 mL AM & PM",
+                "1.7 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.3 mL AM & PM",
+                "0.6 mL AM & PM",
+                "0.9 mL AM & PM",
+                "1.2 mL AM & PM",
+                "1.5 mL AM & PM",
+                "1.8 mL AM & PM",
+                "2.1 mL AM & PM",
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.3 mL AM & PM",
+                "0.7 mL AM & PM",
+                "1 mL AM & PM",
+                "1.4 mL AM & PM",
+                "1.7 mL AM & PM",
+                "2.1 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.3 mL AM & PM",
+                "0.7 mL AM & PM",
+                "1.1 mL AM & PM",
+                "1.5 mL AM & PM",
+                "1.9 mL AM & PM",
+                "2.3 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.4 mL AM & PM",
+                "0.8 mL AM & PM",
+                "1.3 mL AM & PM",
+                "1.7 mL AM & PM",
+                "2.2 mL AM & PM",
+                "2.6 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.4 mL AM & PM",
+                "0.9 mL AM & PM",
+                "1.3 mL AM & PM",
+                "1.8 mL AM & PM",
+                "2.2 mL AM & PM",
+                "2.7 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.4 mL AM & PM",
+                "1 mL AM & PM",
+                "1.4 mL AM & PM",
+                "2 mL AM & PM",
+                "2.4 mL AM & PM",
+                "3 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.5 mL AM & PM",
+                "1.1 mL AM & PM",
+                "1.6 mL AM & PM",
+                "2.2 mL AM & PM",
+                "2.7 mL AM & PM",
+                "3.3 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.5 mL AM & PM",
+                "1.1 mL AM & PM",
+                "1.7 mL AM & PM",
+                "2.3 mL AM & PM",
+                "2.9 mL AM & PM",
+                "3.5 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.6 mL AM & PM",
+                "1.2 mL AM & PM",
+                "1.8 mL AM & PM",
+                "2.4 mL AM & PM",
+                "3 mL AM & PM",
+                "3.6 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "45–47.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 47.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.6 mL AM & PM",
+                "1.3 mL AM & PM",
+                "1.9 mL AM & PM",
+                "2.6 mL AM & PM",
+                "3.2 mL AM & PM",
+                "3.9 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "47.5–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 47.5,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.6 mL AM & PM",
+                "1.3 mL AM & PM",
+                "2 mL AM & PM",
+                "2.7 mL AM & PM",
+                "3.4 mL AM & PM",
+                "4.1 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "> 16 years (adult)",
+              "band": {
+                "basis": "age_years",
+                "min": 16.0,
+                "max": null,
+                "min_inclusive": false,
+                "max_inclusive": true
+              },
+              "cells": [
+                "2.5 mL AM & PM",
+                "2.5 mL AM & PM",
+                "5 mL AM & PM",
+                "5 mL AM & PM",
+                "7.5 mL AM & PM",
+                "7.5 mL AM & PM",
+                "10 mL AM & PM",
+                null,
+                null,
+                null,
+                "400–600 mg/day"
+              ]
+            }
+          ],
+          "kind": "liquid"
+        },
+        {
+          "form_title": "Capsules (25 / 50 / 100 mg)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Week 6",
+            "Week 7",
+            "Week 8",
+            "Week 9",
+            "Week 10",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "45–47.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 47.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "47.5–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 47.5,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                "3 × 25 mg AM & PM",
+                "4 × 25 mg AM & PM",
+                null,
+                null,
+                "5–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "> 16 years (adult)",
+              "band": {
+                "basis": "age_years",
+                "min": 16.0,
+                "max": null,
+                "min_inclusive": false,
+                "max_inclusive": true
+              },
+              "cells": [
+                "1 × 100 mg once daily",
+                "1 × 100 mg once daily",
+                "1 × 100 mg AM & PM",
+                "1 × 100 mg AM & PM",
+                "1 × 100 mg AM, 2 × 100 mg PM",
+                "1 × 100 mg AM, 2 × 100 mg PM",
+                "2 × 100 mg AM & PM",
+                null,
+                null,
+                null,
+                "400–600 mg/day"
+              ]
+            }
+          ],
+          "kind": "solid"
+        }
+      ]
+    },
+    "lacosamide": {
+      "sheet": "Lacosamide Initiation",
+      "notes": [
+        "Lacosamide — Initiation titration by weight",
+        "Twice-daily throughout. Under 50 kg dose by weight (mg/kg); at 50 kg and above use the fixed adult schedule in the last row.",
+        "Columns are weekly steps: 1.5, 3, 4.5, 6 mg/kg/day under 30 kg, and 1, 2, 3, 4 mg/kg/day for 30–50 kg. Both end at the bottom of the Lexicomp maintenance range. Continue toward the range in the last column if needed.",
+        "Every band’s final step is checked against the 10%-below / 30%-above window. Oral solution 10 mg/mL, split evenly AM/PM, measured to 0.1 mL under 5 mL and 0.5 mL from 5 mL.",
+        "Tablets 50 / 100 / 150 / 200 mg, whole or half; schedules end on whole tablets. Tablet steps may go up to the Lexicomp increment of 2 mg/kg/day, so they can differ from the solution. A dash means use the solution."
+      ],
+      "tables": [
+        {
+          "form_title": "Oral solution (10 mg/mL)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Week 6",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "6–8.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 6.0,
+                "max": 8.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.6 mL AM & PM",
+                "1 mL AM & PM",
+                "1.4 mL AM & PM",
+                "1.8 mL AM & PM",
+                "2.2 mL AM & PM",
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "8.5–11 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 8.5,
+                "max": 11.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.7 mL AM & PM",
+                "1.4 mL AM & PM",
+                "2.1 mL AM & PM",
+                "2.8 mL AM & PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "11–13.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 11.0,
+                "max": 13.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.9 mL AM & PM",
+                "1.8 mL AM & PM",
+                "2.7 mL AM & PM",
+                "3.6 mL AM & PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "13.5–16 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 13.5,
+                "max": 16.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.1 mL AM & PM",
+                "2.2 mL AM & PM",
+                "3.3 mL AM & PM",
+                "4.4 mL AM & PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "16–18.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 16.0,
+                "max": 18.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.3 mL AM & PM",
+                "2.6 mL AM & PM",
+                "3.9 mL AM & PM",
+                "5 mL AM & PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "18.5–21 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 18.5,
+                "max": 21.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.5 mL AM & PM",
+                "3 mL AM & PM",
+                "4.5 mL AM & PM",
+                "6 mL AM & PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "21–23.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 21.0,
+                "max": 23.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.7 mL AM & PM",
+                "3.3 mL AM & PM",
+                "5 mL AM & PM",
+                "6.5 mL AM & PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "23.5–26 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 23.5,
+                "max": 26.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.8 mL AM & PM",
+                "3.7 mL AM & PM",
+                "5.5 mL AM & PM",
+                "7 mL AM & PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "26–28.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 26.0,
+                "max": 28.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2 mL AM & PM",
+                "4.1 mL AM & PM",
+                "6 mL AM & PM",
+                "8 mL AM & PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "28.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 28.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.2 mL AM & PM",
+                "4.4 mL AM & PM",
+                "6.5 mL AM & PM",
+                "8.5 mL AM & PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.6 mL AM & PM",
+                "3.1 mL AM & PM",
+                "4.7 mL AM & PM",
+                "6 mL AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.7 mL AM & PM",
+                "3.4 mL AM & PM",
+                "5 mL AM & PM",
+                "6.5 mL AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.8 mL AM & PM",
+                "3.6 mL AM & PM",
+                "5.5 mL AM & PM",
+                "7 mL AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.9 mL AM & PM",
+                "3.9 mL AM & PM",
+                "5.5 mL AM & PM",
+                "7.5 mL AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.1 mL AM & PM",
+                "4.1 mL AM & PM",
+                "6 mL AM & PM",
+                "8 mL AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.2 mL AM & PM",
+                "4.4 mL AM & PM",
+                "6.5 mL AM & PM",
+                "8.5 mL AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "45–47.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 47.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.3 mL AM & PM",
+                "4.6 mL AM & PM",
+                "7 mL AM & PM",
+                "9 mL AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "47.5–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 47.5,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.4 mL AM & PM",
+                "4.9 mL AM & PM",
+                "7.5 mL AM & PM",
+                "9.5 mL AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "≥50 kg (adult)",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "5 mL AM & PM",
+                "7 mL AM & PM",
+                "10 mL AM & PM",
+                null,
+                null,
+                null,
+                "200–400 mg/day"
+              ]
+            }
+          ],
+          "kind": "liquid"
+        },
+        {
+          "form_title": "Tablets (50 / 100 / 150 / 200 mg)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Week 6",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "6–8.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 6.0,
+                "max": 8.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "8.5–11 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 8.5,
+                "max": 11.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "11–13.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 11.0,
+                "max": 13.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "13.5–16 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 13.5,
+                "max": 16.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "—",
+                "—",
+                "—",
+                "—",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "16–18.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 16.0,
+                "max": 18.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "½ × 50 mg AM, 1 × 50 mg PM",
+                "1 × 50 mg AM & PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "18.5–21 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 18.5,
+                "max": 21.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "½ × 50 mg AM, 1 × 50 mg PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 1½ × 50 mg PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "21–23.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 21.0,
+                "max": 23.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "½ × 50 mg AM, 1 × 50 mg PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 1½ × 50 mg PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "23.5–26 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 23.5,
+                "max": 26.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "½ × 50 mg AM, 1 × 50 mg PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 1½ × 50 mg PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "26–28.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 26.0,
+                "max": 28.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                null,
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "28.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 28.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                "2 × 50 mg AM & PM",
+                null,
+                "6–12 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM, 1 × 50 mg PM",
+                "1 × 50 mg AM, 1½ × 50 mg PM",
+                "2 × 50 mg AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "45–47.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 47.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 50 mg once daily",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                "2 × 50 mg AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "47.5–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 47.5,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 50 mg once daily",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                "2 × 50 mg AM & PM",
+                null,
+                null,
+                "4–8 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "≥50 kg (adult)",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                "2 × 50 mg AM & PM",
+                null,
+                null,
+                null,
+                "200–400 mg/day"
+              ]
+            }
+          ],
+          "kind": "solid"
+        }
+      ]
+    },
+    "topiramate": {
+      "sheet": "Topiramate Initiation",
+      "notes": [
+        "Topiramate — Initiation titration by weight group",
+        "Dosed by weight group with fixed milligram amounts (not mg/kg). Under 38 kg, week 1 is given once daily at night, then twice daily from week 2. Over 38 kg, doses are twice daily from week 1.",
+        "Columns are the weekly titration steps; keep increasing weekly toward the maintenance range shown in the last column.",
+        "Oral solution 25 mg/mL. Tablets and sprinkle capsules 15 / 25 / 50 / 100 / 200 mg (whole); a week with no clean twice-daily tablet amount shows a dash — use the solution or sprinkle capsules.",
+        "Titrate slowly (weekly) to limit cognitive and tingling side effects. Extended-release once-daily capsules also exist."
+      ],
+      "tables": [
+        {
+          "form_title": "Oral solution (25 mg/mL)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Week 6",
+            "Week 7",
+            "Week 8",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "≤ 11 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": null,
+                "max": 11.0,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "1 mL once daily",
+                "1 mL AM & PM",
+                "1.5 mL AM & PM",
+                "2 mL AM & PM",
+                "2.5 mL AM & PM",
+                "3 mL AM & PM",
+                null,
+                null,
+                "150–250 mg/day"
+              ]
+            },
+            {
+              "band_label": "12–22 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.0,
+                "max": 22.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 mL once daily",
+                "1 mL AM & PM",
+                "1.5 mL AM & PM",
+                "2 mL AM & PM",
+                "2.5 mL AM & PM",
+                "3 mL AM & PM",
+                "3.5 mL AM & PM",
+                "4 mL AM & PM",
+                "200–300 mg/day"
+              ]
+            },
+            {
+              "band_label": "23–38 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 23.0,
+                "max": 38.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 mL once daily",
+                "1 mL AM & PM",
+                "1.5 mL AM & PM",
+                "2 mL AM & PM",
+                "2.5 mL AM & PM",
+                "3 mL AM & PM",
+                "3.5 mL AM & PM",
+                "4 mL AM & PM",
+                "200–350 mg/day"
+              ]
+            },
+            {
+              "band_label": "> 38 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 38.0,
+                "max": null,
+                "min_inclusive": false,
+                "max_inclusive": true
+              },
+              "cells": [
+                "1 mL AM & PM",
+                "2 mL AM & PM",
+                "3 mL AM & PM",
+                "4 mL AM & PM",
+                "5 mL AM & PM",
+                null,
+                null,
+                null,
+                "250–400 mg/day"
+              ]
+            }
+          ],
+          "kind": "liquid"
+        },
+        {
+          "form_title": "Tablets / sprinkle capsules (15 / 25 / 50 / 100 / 200 mg)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Week 6",
+            "Week 7",
+            "Week 8",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "≤ 11 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": null,
+                "max": 11.0,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                null,
+                null,
+                "150–250 mg/day"
+              ]
+            },
+            {
+              "band_label": "12–22 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.0,
+                "max": 22.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                "4 × 25 mg AM & PM",
+                null,
+                "200–300 mg/day"
+              ]
+            },
+            {
+              "band_label": "23–38 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 23.0,
+                "max": 38.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 25 mg once daily",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                "4 × 25 mg AM & PM",
+                null,
+                "200–350 mg/day"
+              ]
+            },
+            {
+              "band_label": "> 38 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 38.0,
+                "max": null,
+                "min_inclusive": false,
+                "max_inclusive": true
+              },
+              "cells": [
+                "1 × 50 mg once daily",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                "2 × 50 mg AM & PM",
+                "2 × 50 mg AM, 3 × 50 mg PM",
+                null,
+                null,
+                null,
+                "250–400 mg/day"
+              ]
+            }
+          ],
+          "kind": "solid"
+        }
+      ]
+    },
+    "oxcarbazepine": {
+      "sheet": "Oxcarbazepine Initiation",
+      "notes": [
+        "Oxcarbazepine — Initiation titration by weight",
+        "Under 20 kg dose by weight (mg/kg); at 20 kg and above use the fixed weight-group schedules. The suspension is given twice daily throughout; a Week-1 tablet dose may be given once daily (shown in each cell).",
+        "Columns are the weekly titration steps; keep increasing weekly toward the maintenance range shown in the last column.",
+        "Oral suspension 60 mg/mL, split evenly AM/PM and measured to 0.1 mL (whole mL at 5 mL and up). Tablets 150 / 300 / 600 mg, whole or half. Schedules always end on whole tablets. A dash means no tablet dose fits that week, so use the suspension.",
+        "Every band’s final step is checked against the 10%-below / 30%-above window."
+      ],
+      "tables": [
+        {
+          "form_title": "Oral suspension (60 mg/mL)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.7 mL AM & PM",
+                "1.3 mL AM & PM",
+                "1.8 mL AM & PM",
+                "2.3 mL AM & PM",
+                null,
+                "7.5–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.9 mL AM & PM",
+                "1.5 mL AM & PM",
+                "2.1 mL AM & PM",
+                "2.7 mL AM & PM",
+                null,
+                "7.5–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 mL AM & PM",
+                "1.7 mL AM & PM",
+                "2.4 mL AM & PM",
+                "3.1 mL AM & PM",
+                null,
+                "7.5–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.2 mL AM & PM",
+                "2 mL AM & PM",
+                "2.8 mL AM & PM",
+                "3.6 mL AM & PM",
+                null,
+                "7.5–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "20–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.7 mL AM & PM",
+                "2.5 mL AM & PM",
+                "3.3 mL AM & PM",
+                "4.1 mL AM & PM",
+                "4.9 mL AM & PM",
+                "600–900 mg/day"
+              ]
+            },
+            {
+              "band_label": "25–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.5 mL AM & PM",
+                "4 mL AM & PM",
+                "5 mL AM & PM",
+                "6 mL AM & PM",
+                "7 mL AM & PM",
+                "900–1,200 mg/day"
+              ]
+            },
+            {
+              "band_label": "35–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.5 mL AM & PM",
+                "4 mL AM & PM",
+                "5 mL AM & PM",
+                "6 mL AM & PM",
+                "7 mL AM & PM",
+                "900–1,500 mg/day"
+              ]
+            },
+            {
+              "band_label": "45–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.5 mL AM & PM",
+                "4.5 mL AM & PM",
+                "6 mL AM & PM",
+                "8 mL AM & PM",
+                "10 mL AM & PM",
+                "1,200–1,500 mg/day"
+              ]
+            },
+            {
+              "band_label": "50–60 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": 60.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.5 mL AM & PM",
+                "5 mL AM & PM",
+                "7 mL AM & PM",
+                "10 mL AM & PM",
+                null,
+                "1,200–1,800 mg/day"
+              ]
+            },
+            {
+              "band_label": "≥60 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 60.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "2.5 mL AM & PM",
+                "5 mL AM & PM",
+                "7 mL AM & PM",
+                "10 mL AM & PM",
+                null,
+                "1,200–2,100 mg/day"
+              ]
+            }
+          ],
+          "kind": "liquid"
+        },
+        {
+          "form_title": "Tablets (150 / 300 / 600 mg)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 150 mg once daily",
+                "½ × 150 mg AM & PM",
+                "½ × 150 mg AM, 1 × 150 mg PM",
+                "1 × 150 mg AM & PM",
+                null,
+                "7.5–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 150 mg once daily",
+                "½ × 150 mg AM & PM",
+                "½ × 150 mg AM, 1 × 150 mg PM",
+                "1 × 150 mg AM & PM",
+                null,
+                "7.5–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 150 mg once daily",
+                "½ × 150 mg AM & PM",
+                "1 × 150 mg AM & PM",
+                "1 × 150 mg AM, 2 × 150 mg PM",
+                null,
+                "7.5–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 150 mg once daily",
+                "1 × 150 mg AM & PM",
+                "1 × 150 mg AM & PM",
+                "1 × 150 mg AM, 2 × 150 mg PM",
+                null,
+                "7.5–60 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "20–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 150 mg once daily",
+                "½ × 150 mg AM, 1 × 150 mg PM",
+                "1 × 150 mg AM & PM",
+                "1 × 150 mg AM, 2 × 150 mg PM",
+                "2 × 150 mg AM & PM",
+                "600–900 mg/day"
+              ]
+            },
+            {
+              "band_label": "25–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 150 mg AM & PM",
+                "1 × 150 mg AM, 2 × 150 mg PM",
+                "2 × 150 mg AM & PM",
+                "2 × 150 mg AM, 3 × 150 mg PM",
+                "3 × 150 mg AM & PM",
+                "900–1,200 mg/day"
+              ]
+            },
+            {
+              "band_label": "35–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 150 mg AM & PM",
+                "1 × 150 mg AM, 2 × 150 mg PM",
+                "2 × 150 mg AM & PM",
+                "2 × 150 mg AM, 3 × 150 mg PM",
+                "3 × 150 mg AM & PM",
+                "900–1,500 mg/day"
+              ]
+            },
+            {
+              "band_label": "45–50 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 45.0,
+                "max": 50.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 300 mg once daily",
+                "1 × 300 mg AM & PM",
+                "1 × 300 mg AM, 2 × 300 mg PM",
+                "2 × 300 mg AM & PM",
+                "2 × 300 mg AM & PM",
+                "1,200–1,500 mg/day"
+              ]
+            },
+            {
+              "band_label": "50–60 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 50.0,
+                "max": 60.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 300 mg once daily",
+                "1 × 300 mg AM & PM",
+                "1 × 300 mg AM, 2 × 300 mg PM",
+                "2 × 300 mg AM & PM",
+                null,
+                "1,200–1,800 mg/day"
+              ]
+            },
+            {
+              "band_label": "≥60 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 60.0,
+                "max": null,
+                "min_inclusive": true,
+                "max_inclusive": true
+              },
+              "cells": [
+                "1 × 300 mg once daily",
+                "1 × 300 mg AM & PM",
+                "1 × 300 mg AM, 2 × 300 mg PM",
+                "2 × 300 mg AM & PM",
+                null,
+                "1,200–2,100 mg/day"
+              ]
+            }
+          ],
+          "kind": "solid"
+        }
+      ]
+    },
+    "lamotrigine": {
+      "sheet": "Lamotrigine Initiation",
+      "notes": [
+        "Lamotrigine — Initiation titration (slow; not on valproate or enzyme inducers)",
+        "Titrate lamotrigine slowly. Rushing raises the risk of serious rash. This schedule is for patients not on valproate and not on enzyme-inducing drugs, which need different, lower dosing.",
+        "Children dose by weight. Weeks 1–2: 0.3 mg/kg/day, once daily. Weeks 3–4: 0.6 mg/kg/day, twice daily. Then increase weekly by up to 0.6 mg/kg/day (no more than 25 mg/day) until about 4.5 mg/kg/day. Adolescents and adults: 25 mg/day for weeks 1–2, 50 mg/day for weeks 3–4, then 50 mg/day more each week to 250 mg/day.",
+        "Suspension 10 mg/mL, measured to 0.1 mL under 5 mL and to 0.5 mL from 5 mL. Tablets may be halved, but every schedule ends on whole tablets. Many children start on 5 mg tablets and switch to 25 mg tablets once the dose allows, so they need both prescriptions.",
+        "Every band’s final step is checked against the 10%-below / 30%-above window. Schedules run 8 to 14 weeks. After that, keep titrating toward the maintenance range in the last column."
+      ],
+      "tables": [
+        {
+          "form_title": "Oral suspension (10 mg/mL, measured to 0.1 mL)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Week 6",
+            "Week 7",
+            "Week 8",
+            "Week 9",
+            "Week 10",
+            "Week 11",
+            "Week 12",
+            "Week 13",
+            "Week 14",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.3 mL once daily",
+                "0.3 mL once daily",
+                "0.3 mL AM & PM",
+                "0.3 mL AM & PM",
+                "0.6 mL AM & PM",
+                "0.9 mL AM & PM",
+                "1.2 mL AM & PM",
+                "1.5 mL AM & PM",
+                "1.8 mL AM & PM",
+                "2.1 mL AM & PM",
+                "2.4 mL AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.4 mL once daily",
+                "0.4 mL once daily",
+                "0.4 mL AM & PM",
+                "0.4 mL AM & PM",
+                "0.8 mL AM & PM",
+                "1.2 mL AM & PM",
+                "1.6 mL AM & PM",
+                "2 mL AM & PM",
+                "2.4 mL AM & PM",
+                "2.8 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.4 mL once daily",
+                "0.4 mL once daily",
+                "0.4 mL AM & PM",
+                "0.4 mL AM & PM",
+                "0.8 mL AM & PM",
+                "1.2 mL AM & PM",
+                "1.6 mL AM & PM",
+                "2 mL AM & PM",
+                "2.4 mL AM & PM",
+                "2.8 mL AM & PM",
+                "3.2 mL AM & PM",
+                "3.6 mL AM & PM",
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.5 mL once daily",
+                "0.5 mL once daily",
+                "0.5 mL AM & PM",
+                "0.5 mL AM & PM",
+                "1 mL AM & PM",
+                "1.5 mL AM & PM",
+                "2 mL AM & PM",
+                "2.5 mL AM & PM",
+                "3 mL AM & PM",
+                "3.5 mL AM & PM",
+                "4 mL AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.6 mL once daily",
+                "0.6 mL once daily",
+                "0.6 mL AM & PM",
+                "0.6 mL AM & PM",
+                "1.2 mL AM & PM",
+                "1.8 mL AM & PM",
+                "2.4 mL AM & PM",
+                "3 mL AM & PM",
+                "3.6 mL AM & PM",
+                "4.2 mL AM & PM",
+                "4.8 mL AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.7 mL once daily",
+                "0.7 mL once daily",
+                "0.7 mL AM & PM",
+                "0.7 mL AM & PM",
+                "1.4 mL AM & PM",
+                "2.1 mL AM & PM",
+                "2.8 mL AM & PM",
+                "3.5 mL AM & PM",
+                "4.2 mL AM & PM",
+                "4.9 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.7 mL once daily",
+                "0.7 mL once daily",
+                "0.7 mL AM & PM",
+                "0.7 mL AM & PM",
+                "1.5 mL AM & PM",
+                "2.3 mL AM & PM",
+                "3.1 mL AM & PM",
+                "3.9 mL AM & PM",
+                "4.7 mL AM & PM",
+                "5.5 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.8 mL once daily",
+                "0.8 mL once daily",
+                "0.8 mL AM & PM",
+                "0.8 mL AM & PM",
+                "1.5 mL AM & PM",
+                "2.3 mL AM & PM",
+                "3.1 mL AM & PM",
+                "3.9 mL AM & PM",
+                "4.7 mL AM & PM",
+                "5.5 mL AM & PM",
+                "6 mL AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "0.9 mL once daily",
+                "0.9 mL once daily",
+                "0.9 mL AM & PM",
+                "0.9 mL AM & PM",
+                "1.6 mL AM & PM",
+                "2.3 mL AM & PM",
+                "3.1 mL AM & PM",
+                "3.9 mL AM & PM",
+                "4.7 mL AM & PM",
+                "5.5 mL AM & PM",
+                "6 mL AM & PM",
+                "6.5 mL AM & PM",
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 mL once daily",
+                "1 mL once daily",
+                "1 mL AM & PM",
+                "1 mL AM & PM",
+                "2 mL AM & PM",
+                "3 mL AM & PM",
+                "4 mL AM & PM",
+                "5 mL AM & PM",
+                "6 mL AM & PM",
+                "7 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 mL once daily",
+                "1 mL once daily",
+                "1 mL AM & PM",
+                "1 mL AM & PM",
+                "2 mL AM & PM",
+                "3 mL AM & PM",
+                "4 mL AM & PM",
+                "5 mL AM & PM",
+                "6 mL AM & PM",
+                "7 mL AM & PM",
+                "8 mL AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.1 mL once daily",
+                "1.1 mL once daily",
+                "1.1 mL AM & PM",
+                "1.1 mL AM & PM",
+                "2.2 mL AM & PM",
+                "3.3 mL AM & PM",
+                "4.4 mL AM & PM",
+                "5.5 mL AM & PM",
+                "6.5 mL AM & PM",
+                "7.5 mL AM & PM",
+                "8.5 mL AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.2 mL once daily",
+                "1.2 mL once daily",
+                "1.2 mL AM & PM",
+                "1.2 mL AM & PM",
+                "2.4 mL AM & PM",
+                "3.6 mL AM & PM",
+                "4.8 mL AM & PM",
+                "6 mL AM & PM",
+                "7 mL AM & PM",
+                "8 mL AM & PM",
+                "9 mL AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1.3 mL once daily",
+                "1.3 mL once daily",
+                "1.3 mL AM & PM",
+                "1.3 mL AM & PM",
+                "2.4 mL AM & PM",
+                "3.6 mL AM & PM",
+                "4.8 mL AM & PM",
+                "6 mL AM & PM",
+                "7 mL AM & PM",
+                "8 mL AM & PM",
+                "9 mL AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "12–16 y (adolescent)",
+              "band": {
+                "basis": "age_years",
+                "min": 12.0,
+                "max": 16.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2.5 mL once daily",
+                "2.5 mL once daily",
+                "2.5 mL AM & PM",
+                "2.5 mL AM & PM",
+                "5 mL AM & PM",
+                "7.5 mL AM & PM",
+                "10 mL AM & PM",
+                "12.5 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "225–375 mg/day"
+              ]
+            },
+            {
+              "band_label": "> 16 y (adult)",
+              "band": {
+                "basis": "age_years",
+                "min": 16.0,
+                "max": null,
+                "min_inclusive": false,
+                "max_inclusive": true
+              },
+              "cells": [
+                "2.5 mL once daily",
+                "2.5 mL once daily",
+                "2.5 mL AM & PM",
+                "2.5 mL AM & PM",
+                "5 mL AM & PM",
+                "7.5 mL AM & PM",
+                "10 mL AM & PM",
+                "12.5 mL AM & PM",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "225–375 mg/day"
+              ]
+            }
+          ],
+          "kind": "liquid"
+        },
+        {
+          "form_title": "Chewable / dispersible tablets (5 / 25 / 50 / 100 mg)",
+          "columns": [
+            "Week 1",
+            "Week 2",
+            "Week 3",
+            "Week 4",
+            "Week 5",
+            "Week 6",
+            "Week 7",
+            "Week 8",
+            "Week 9",
+            "Week 10",
+            "Week 11",
+            "Week 12",
+            "Week 13",
+            "Week 14",
+            "Titrate toward"
+          ],
+          "bands": [
+            {
+              "band_label": "10–12.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 10.0,
+                "max": 12.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 5 mg once daily",
+                "½ × 5 mg once daily",
+                "½ × 5 mg AM & PM",
+                "½ × 5 mg AM & PM",
+                "1 × 5 mg AM & PM",
+                "1 × 5 mg AM, 2 × 5 mg PM",
+                "2 × 5 mg AM & PM",
+                "2 × 5 mg AM, 3 × 5 mg PM",
+                "3 × 5 mg AM & PM",
+                "3 × 5 mg AM, 4 × 5 mg PM",
+                "4 × 5 mg AM & PM",
+                "4 × 5 mg AM, 5 × 5 mg PM",
+                "1 × 25 mg AM & PM",
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "12.5–15 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 12.5,
+                "max": 15.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 5 mg once daily",
+                "½ × 5 mg once daily",
+                "½ × 5 mg AM, 1 × 5 mg PM",
+                "½ × 5 mg AM, 1 × 5 mg PM",
+                "1 × 5 mg AM, 2 × 5 mg PM",
+                "2 × 5 mg AM, 2½ × 5 mg PM",
+                "3 × 5 mg AM & PM",
+                "3½ × 5 mg AM, 4 × 5 mg PM",
+                "4 × 5 mg AM, 5 × 5 mg PM",
+                "5 × 5 mg AM, 5½ × 5 mg PM",
+                "6 × 5 mg AM & PM",
+                "6½ × 5 mg AM, 7 × 5 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "15–17.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 15.0,
+                "max": 17.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 5 mg once daily",
+                "½ × 5 mg once daily",
+                "½ × 5 mg AM, 1 × 5 mg PM",
+                "½ × 5 mg AM, 1 × 5 mg PM",
+                "1 × 5 mg AM, 2 × 5 mg PM",
+                "2 × 5 mg AM, 2½ × 5 mg PM",
+                "3 × 5 mg AM & PM",
+                "3½ × 5 mg AM, 4 × 5 mg PM",
+                "4 × 5 mg AM, 5 × 5 mg PM",
+                "5 × 5 mg AM, 5½ × 5 mg PM",
+                "6 × 5 mg AM & PM",
+                "6½ × 5 mg AM, 7 × 5 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "17.5–20 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 17.5,
+                "max": 20.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 5 mg once daily",
+                "1 × 5 mg once daily",
+                "1 × 5 mg AM & PM",
+                "1 × 5 mg AM & PM",
+                "2 × 5 mg AM & PM",
+                "3 × 5 mg AM & PM",
+                "4 × 5 mg AM & PM",
+                "5 × 5 mg AM & PM",
+                "6 × 5 mg AM & PM",
+                "7 × 5 mg AM & PM",
+                "8 × 5 mg AM & PM",
+                "9 × 5 mg AM & PM",
+                "2 × 25 mg AM & PM",
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "20–22.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 20.0,
+                "max": 22.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 5 mg once daily",
+                "1 × 5 mg once daily",
+                "1 × 5 mg AM, 1½ × 5 mg PM",
+                "1 × 5 mg AM, 1½ × 5 mg PM",
+                "½ × 25 mg AM & PM",
+                "½ × 25 mg AM, 1 × 25 mg PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 1½ × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1½ × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "22.5–25 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 22.5,
+                "max": 25.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1 × 5 mg once daily",
+                "1 × 5 mg once daily",
+                "1 × 5 mg AM, 1½ × 5 mg PM",
+                "1 × 5 mg AM, 1½ × 5 mg PM",
+                "½ × 25 mg AM & PM",
+                "½ × 25 mg AM, 1 × 25 mg PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 1½ × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1½ × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "25–27.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 25.0,
+                "max": 27.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1½ × 5 mg once daily",
+                "1½ × 5 mg once daily",
+                "1 × 5 mg AM, 2 × 5 mg PM",
+                "1 × 5 mg AM, 2 × 5 mg PM",
+                "½ × 25 mg AM & PM",
+                "½ × 25 mg AM, 1 × 25 mg PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 1½ × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1½ × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 2½ × 25 mg PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "27.5–30 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 27.5,
+                "max": 30.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1½ × 5 mg once daily",
+                "1½ × 5 mg once daily",
+                "1 × 5 mg AM, 2 × 5 mg PM",
+                "1 × 5 mg AM, 2 × 5 mg PM",
+                "3 × 5 mg AM, 3½ × 5 mg PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 1½ × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1½ × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 2½ × 25 mg PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "30–32.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 30.0,
+                "max": 32.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "1½ × 5 mg once daily",
+                "1½ × 5 mg once daily",
+                "1½ × 5 mg AM, 2 × 5 mg PM",
+                "1½ × 5 mg AM, 2 × 5 mg PM",
+                "3 × 5 mg AM, 3½ × 5 mg PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 1½ × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1½ × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 2½ × 25 mg PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "2½ × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "32.5–35 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 32.5,
+                "max": 35.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2 × 5 mg once daily",
+                "2 × 5 mg once daily",
+                "2 × 5 mg AM & PM",
+                "2 × 5 mg AM & PM",
+                "½ × 25 mg AM, 1 × 25 mg PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 1½ × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1½ × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 2½ × 25 mg PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "2½ × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "35–37.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 35.0,
+                "max": 37.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2 × 5 mg once daily",
+                "2 × 5 mg once daily",
+                "2 × 5 mg AM & PM",
+                "2 × 5 mg AM & PM",
+                "4 × 5 mg AM & PM",
+                "1 × 25 mg AM, 1½ × 25 mg PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "1½ × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 2½ × 25 mg PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "2½ × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "37.5–40 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 37.5,
+                "max": 40.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2 × 5 mg once daily",
+                "2 × 5 mg once daily",
+                "2 × 5 mg AM, 2½ × 5 mg PM",
+                "2 × 5 mg AM, 2½ × 5 mg PM",
+                "½ × 25 mg AM, 1 × 25 mg PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                "3 × 25 mg AM, 4 × 25 mg PM",
+                "4 × 25 mg AM & PM",
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "40–42.5 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 40.0,
+                "max": 42.5,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "2 × 5 mg once daily",
+                "2 × 5 mg once daily",
+                "2 × 5 mg AM, 2½ × 5 mg PM",
+                "2 × 5 mg AM, 2½ × 5 mg PM",
+                "½ × 25 mg AM, 1 × 25 mg PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                "3 × 25 mg AM, 4 × 25 mg PM",
+                "4 × 25 mg AM & PM",
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "42.5–45 kg",
+              "band": {
+                "basis": "weight_kg",
+                "min": 42.5,
+                "max": 45.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 25 mg once daily",
+                "½ × 25 mg once daily",
+                "½ × 25 mg AM & PM",
+                "½ × 25 mg AM & PM",
+                "1 × 25 mg AM & PM",
+                "1 × 25 mg AM, 2 × 25 mg PM",
+                "2 × 25 mg AM & PM",
+                "2 × 25 mg AM, 3 × 25 mg PM",
+                "3 × 25 mg AM & PM",
+                "3 × 25 mg AM, 4 × 25 mg PM",
+                "4 × 25 mg AM & PM",
+                null,
+                null,
+                null,
+                "4.5–7.5 mg/kg/day"
+              ]
+            },
+            {
+              "band_label": "12–16 y (adolescent)",
+              "band": {
+                "basis": "age_years",
+                "min": 12.0,
+                "max": 16.0,
+                "min_inclusive": true,
+                "max_inclusive": false
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "½ × 50 mg AM & PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                "2 × 50 mg AM & PM",
+                "2 × 50 mg AM, 3 × 50 mg PM",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "225–375 mg/day"
+              ]
+            },
+            {
+              "band_label": "> 16 y (adult)",
+              "band": {
+                "basis": "age_years",
+                "min": 16.0,
+                "max": null,
+                "min_inclusive": false,
+                "max_inclusive": true
+              },
+              "cells": [
+                "½ × 50 mg once daily",
+                "½ × 50 mg once daily",
+                "½ × 50 mg AM & PM",
+                "½ × 50 mg AM & PM",
+                "1 × 50 mg AM & PM",
+                "1 × 50 mg AM, 2 × 50 mg PM",
+                "2 × 50 mg AM & PM",
+                "2 × 50 mg AM, 3 × 50 mg PM",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "225–375 mg/day"
+              ]
+            }
+          ],
+          "kind": "solid"
+        }
+      ]
+    }
+  }
+}

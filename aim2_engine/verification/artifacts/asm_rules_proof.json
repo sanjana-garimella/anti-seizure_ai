@@ -1,0 +1,937 @@
+{
+  "artifact": "asm_rules_verification_proof",
+  "status": "DRAFT - unverified (advisory; requires PI review)",
+  "source_file": "data/asm_rules.json",
+  "checker": "exact-interval (pure stdlib)",
+  "study_domain": {
+    "age_years": [
+      2.0,
+      17.0
+    ],
+    "weight_kg": [
+      5.0,
+      150.0
+    ],
+    "weight_domain_provenance": "ASSUMPTION (unverified) - PI to confirm"
+  },
+  "counts": {
+    "FAIL": 0,
+    "WARN": 19,
+    "INFO": 43
+  },
+  "hard_properties_proved": true,
+  "findings": [
+    {
+      "property": "A",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "bands 'Children 2\u201312 years - WITHOUT valproate and WITHOUT enzyme inducer' (#0) and 'Adolescents 12\u201316 years - WITHOUT valproate and WITHOUT enzyme inducer' (#1) overlap; first-match selection is order-dependent -- differ by CONCOMITANT MED, not age/weight; handled by conmed-based band_for(concomitant_asms) selection (must stay conmed-aware to avoid SJS/TEN risk)",
+      "witness": {
+        "age_overlap": [
+          12.0,
+          12.0
+        ],
+        "weight_overlap": [
+          null,
+          null
+        ],
+        "dosing_differs": true,
+        "needs_conmed_selection": true
+      }
+    },
+    {
+      "property": "A",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "bands 'Children 2\u201312 years - WITHOUT valproate and WITHOUT enzyme inducer' (#0) and '2-17y, WITH valproate (much lower & slower)' (#3) overlap; first-match selection is order-dependent -- differ by CONCOMITANT MED, not age/weight; handled by conmed-based band_for(concomitant_asms) selection (must stay conmed-aware to avoid SJS/TEN risk)",
+      "witness": {
+        "age_overlap": [
+          2.0,
+          12.0
+        ],
+        "weight_overlap": [
+          null,
+          null
+        ],
+        "dosing_differs": true,
+        "needs_conmed_selection": true
+      }
+    },
+    {
+      "property": "A",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "bands 'Children 2\u201312 years - WITHOUT valproate and WITHOUT enzyme inducer' (#0) and '2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate' (#4) overlap; first-match selection is order-dependent -- differ by CONCOMITANT MED, not age/weight; handled by conmed-based band_for(concomitant_asms) selection (must stay conmed-aware to avoid SJS/TEN risk)",
+      "witness": {
+        "age_overlap": [
+          2.0,
+          12.0
+        ],
+        "weight_overlap": [
+          null,
+          null
+        ],
+        "dosing_differs": true,
+        "needs_conmed_selection": true
+      }
+    },
+    {
+      "property": "A",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "bands 'Adolescents 12\u201316 years - WITHOUT valproate and WITHOUT enzyme inducer' (#1) and '2-17y, WITH valproate (much lower & slower)' (#3) overlap; first-match selection is order-dependent -- differ by CONCOMITANT MED, not age/weight; handled by conmed-based band_for(concomitant_asms) selection (must stay conmed-aware to avoid SJS/TEN risk)",
+      "witness": {
+        "age_overlap": [
+          12.0,
+          16.0
+        ],
+        "weight_overlap": [
+          null,
+          null
+        ],
+        "dosing_differs": true,
+        "needs_conmed_selection": true
+      }
+    },
+    {
+      "property": "A",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "bands 'Adolescents 12\u201316 years - WITHOUT valproate and WITHOUT enzyme inducer' (#1) and '2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate' (#4) overlap; first-match selection is order-dependent -- differ by CONCOMITANT MED, not age/weight; handled by conmed-based band_for(concomitant_asms) selection (must stay conmed-aware to avoid SJS/TEN risk)",
+      "witness": {
+        "age_overlap": [
+          12.0,
+          16.0
+        ],
+        "weight_overlap": [
+          null,
+          null
+        ],
+        "dosing_differs": true,
+        "needs_conmed_selection": true
+      }
+    },
+    {
+      "property": "A",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "bands '>16 years - WITHOUT valproate and WITHOUT enzyme inducer' (#2) and '2-17y, WITH valproate (much lower & slower)' (#3) overlap; first-match selection is order-dependent -- differ by CONCOMITANT MED, not age/weight; handled by conmed-based band_for(concomitant_asms) selection (must stay conmed-aware to avoid SJS/TEN risk)",
+      "witness": {
+        "age_overlap": [
+          16.01,
+          17.0
+        ],
+        "weight_overlap": [
+          null,
+          null
+        ],
+        "dosing_differs": true,
+        "needs_conmed_selection": true
+      }
+    },
+    {
+      "property": "A",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "bands '>16 years - WITHOUT valproate and WITHOUT enzyme inducer' (#2) and '2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate' (#4) overlap; first-match selection is order-dependent -- differ by CONCOMITANT MED, not age/weight; handled by conmed-based band_for(concomitant_asms) selection (must stay conmed-aware to avoid SJS/TEN risk)",
+      "witness": {
+        "age_overlap": [
+          16.01,
+          17.0
+        ],
+        "weight_overlap": [
+          null,
+          null
+        ],
+        "dosing_differs": true,
+        "needs_conmed_selection": true
+      }
+    },
+    {
+      "property": "A",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "bands '2-17y, WITH valproate (much lower & slower)' (#3) and '2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate' (#4) overlap; first-match selection is order-dependent -- differ by CONCOMITANT MED, not age/weight; handled by conmed-based band_for(concomitant_asms) selection (must stay conmed-aware to avoid SJS/TEN risk)",
+      "witness": {
+        "age_overlap": [
+          2.0,
+          17.0
+        ],
+        "weight_overlap": [
+          null,
+          null
+        ],
+        "dosing_differs": true,
+        "needs_conmed_selection": true
+      }
+    },
+    {
+      "property": "B",
+      "severity": "WARN",
+      "drug": "lacosamide",
+      "message": "no band covers age [2,17]y x weight [5,6]kg",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          5.0,
+          6.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 5.5
+        }
+      }
+    },
+    {
+      "property": "D",
+      "severity": "WARN",
+      "drug": "carbamazepine",
+      "message": "band 'Children 2 to <6 years': absolute cap 800.0 mg/day is below the mg/kg target (35.0 mg/kg/day) for weight >= 22.9 kg; target unreachable there",
+      "witness": {
+        "band": 0,
+        "crossover_kg": 22.857,
+        "abs_max": 800.0,
+        "target_max": 35.0,
+        "witness_weight_kg": 22.857
+      }
+    },
+    {
+      "property": "D",
+      "severity": "WARN",
+      "drug": "ethosuximide",
+      "message": "band 'Children \u22652 years and Adults': absolute cap 2000.0 mg/day is below the mg/kg target (30.0 mg/kg/day) for weight >= 66.7 kg; target unreachable there",
+      "witness": {
+        "band": 0,
+        "crossover_kg": 66.667,
+        "abs_max": 2000.0,
+        "target_max": 30.0,
+        "witness_weight_kg": 66.667
+      }
+    },
+    {
+      "property": "D",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "band 'Children 2\u201312 years - WITHOUT valproate and WITHOUT enzyme inducer': absolute cap 300.0 mg/day is below the mg/kg target (7.5 mg/kg/day) for weight >= 40.0 kg; target unreachable there",
+      "witness": {
+        "band": 0,
+        "crossover_kg": 40.0,
+        "abs_max": 300.0,
+        "target_max": 7.5,
+        "witness_weight_kg": 40.0
+      }
+    },
+    {
+      "property": "D",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "band '2-17y, WITH valproate (much lower & slower)': absolute cap 200 mg/day is below the mg/kg target (5.0 mg/kg/day) for weight >= 40.0 kg; target unreachable there",
+      "witness": {
+        "band": 3,
+        "crossover_kg": 40.0,
+        "abs_max": 200,
+        "target_max": 5.0,
+        "witness_weight_kg": 40.0
+      }
+    },
+    {
+      "property": "D",
+      "severity": "WARN",
+      "drug": "lamotrigine",
+      "message": "band '2-17y, WITH enzyme inducer (carbamazepine/phenytoin/phenobarbital/primidone) and WITHOUT valproate': absolute cap 400 mg/day is below the mg/kg target (15.0 mg/kg/day) for weight >= 26.7 kg; target unreachable there",
+      "witness": {
+        "band": 4,
+        "crossover_kg": 26.667,
+        "abs_max": 400,
+        "target_max": 15.0,
+        "witness_weight_kg": 26.667
+      }
+    },
+    {
+      "property": "D",
+      "severity": "WARN",
+      "drug": "levetiracetam",
+      "message": "band 'Children \u22652 years and Adults': absolute cap 3000.0 mg/day is below the mg/kg target (60.0 mg/kg/day) for weight >= 50.0 kg; target unreachable there",
+      "witness": {
+        "band": 0,
+        "crossover_kg": 50.0,
+        "abs_max": 3000.0,
+        "target_max": 60.0,
+        "witness_weight_kg": 50.0
+      }
+    },
+    {
+      "property": "D",
+      "severity": "WARN",
+      "drug": "oxcarbazepine",
+      "message": "band '<20 kg': absolute cap 900.0 mg/day is below the mg/kg target (60.0 mg/kg/day) for weight >= 15.0 kg; target unreachable there",
+      "witness": {
+        "band": 0,
+        "crossover_kg": 15.0,
+        "abs_max": 900.0,
+        "target_max": 60.0,
+        "witness_weight_kg": 15.0
+      }
+    },
+    {
+      "property": "D",
+      "severity": "WARN",
+      "drug": "valproic_acid",
+      "message": "band 'Children \u22652 years and Adults': absolute cap 3000.0 mg/day is below the mg/kg target (60.0 mg/kg/day) for weight >= 50.0 kg; target unreachable there",
+      "witness": {
+        "band": 0,
+        "crossover_kg": 50.0,
+        "abs_max": 3000.0,
+        "target_max": 60.0,
+        "witness_weight_kg": 50.0
+      }
+    },
+    {
+      "property": "D",
+      "severity": "WARN",
+      "drug": "zonisamide",
+      "message": "band 'Children 2 to <5 years': absolute cap 500.0 mg/day is below the mg/kg target (8.0 mg/kg/day) for weight >= 62.5 kg; target unreachable there",
+      "witness": {
+        "band": 0,
+        "crossover_kg": 62.5,
+        "abs_max": 500.0,
+        "target_max": 8.0,
+        "witness_weight_kg": 62.5
+      }
+    },
+    {
+      "property": "D",
+      "severity": "WARN",
+      "drug": "zonisamide",
+      "message": "band 'Children \u22655 to <16 years': absolute cap 500.0 mg/day is below the mg/kg target (8.0 mg/kg/day) for weight >= 62.5 kg; target unreachable there",
+      "witness": {
+        "band": 1,
+        "crossover_kg": 62.5,
+        "abs_max": 500.0,
+        "target_max": 8.0,
+        "witness_weight_kg": 62.5
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "brivaracetam",
+      "message": "no band covers age [2,17]y x weight [10.99,11]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          10.99,
+          11.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 10.995000000000001
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "brivaracetam",
+      "message": "no band covers age [2,17]y x weight [19.99,20]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          19.99,
+          20.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 19.994999999999997
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "brivaracetam",
+      "message": "no band covers age [2,17]y x weight [49.99,50]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          49.99,
+          50.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 49.995000000000005
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "carbamazepine",
+      "message": "no band covers age [5.99,6]y x weight [5,150]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          5.99,
+          6.0
+        ],
+        "weight_gap": [
+          5.0,
+          150.0
+        ],
+        "witness": {
+          "age": 5.995,
+          "weight": 77.5
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "carbamazepine",
+      "message": "no band covers age [12.99,13]y x weight [5,150]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          12.99,
+          13.0
+        ],
+        "weight_gap": [
+          5.0,
+          150.0
+        ],
+        "witness": {
+          "age": 12.995000000000001,
+          "weight": 77.5
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "clobazam",
+      "message": "no band covers age [2,17]y x weight [19.99,20]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          19.99,
+          20.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 19.994999999999997
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "clobazam",
+      "message": "no band covers age [2,17]y x weight [29.99,30]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          29.99,
+          30.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 29.994999999999997
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "clobazam",
+      "message": "no band covers age [2,17]y x weight [49.99,50]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          49.99,
+          50.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 49.995000000000005
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "lacosamide",
+      "message": "no band covers age [2,17]y x weight [29.99,30]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          29.99,
+          30.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 29.994999999999997
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "lacosamide",
+      "message": "no band covers age [2,17]y x weight [49.99,50]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          49.99,
+          50.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 49.995000000000005
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "no band covers age [2,17]y x weight [19.99,20]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          19.99,
+          20.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 19.994999999999997
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "no band covers age [2,17]y x weight [24.99,25]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          24.99,
+          25.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 24.994999999999997
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "no band covers age [2,17]y x weight [34.99,35]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          34.99,
+          35.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 34.995000000000005
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "no band covers age [2,17]y x weight [44.99,45]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          44.99,
+          45.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 44.995000000000005
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "no band covers age [2,17]y x weight [49.99,50]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          49.99,
+          50.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 49.995000000000005
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "no band covers age [2,17]y x weight [59.99,60]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          59.99,
+          60.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 59.995000000000005
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "topiramate",
+      "message": "no band covers age [2,17]y x weight [11.99,12]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          11.99,
+          12.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 11.995000000000001
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "topiramate",
+      "message": "no band covers age [2,17]y x weight [22.99,23]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          22.99,
+          23.0
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 22.994999999999997
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "topiramate",
+      "message": "no band covers age [2,17]y x weight [38,38.01]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          2.0,
+          17.0
+        ],
+        "weight_gap": [
+          38.0,
+          38.01
+        ],
+        "witness": {
+          "age": 9.5,
+          "weight": 38.004999999999995
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "zonisamide",
+      "message": "no band covers age [4.99,5]y x weight [5,150]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          4.99,
+          5.0
+        ],
+        "weight_gap": [
+          5.0,
+          150.0
+        ],
+        "witness": {
+          "age": 4.995,
+          "weight": 77.5
+        }
+      }
+    },
+    {
+      "property": "B",
+      "severity": "INFO",
+      "drug": "zonisamide",
+      "message": "no band covers age [16,16.01]y x weight [5,150]kg (micro-gap: 'X to <Y' encoding)",
+      "witness": {
+        "age_gap": [
+          16.0,
+          16.01
+        ],
+        "weight_gap": [
+          5.0,
+          150.0
+        ],
+        "witness": {
+          "age": 16.005000000000003,
+          "weight": 77.5
+        }
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "brivaracetam",
+      "message": "band '\u226550 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 3
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "carbamazepine",
+      "message": "band 'Children \u22656 to 12 years' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 1
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "carbamazepine",
+      "message": "band 'Adolescents 13\u201318 years' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "carbamazepine",
+      "message": "band 'Adults >18 years' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 3
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "clobazam",
+      "message": "band '<20 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 0
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "clobazam",
+      "message": "band '20 to <30 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 1
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "clobazam",
+      "message": "band '30 to <50 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "clobazam",
+      "message": "band '\u226550 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 3
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "lacosamide",
+      "message": "band '\u226550 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "lamotrigine",
+      "message": "band 'Adolescents 12\u201316 years - WITHOUT valproate and WITHOUT enzyme inducer' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 1
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "lamotrigine",
+      "message": "band '>16 years - WITHOUT valproate and WITHOUT enzyme inducer' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "band '20 to <25 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 1
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "band '25 to <35 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "band '35 to <45 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 3
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "band '45 to <50 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 4
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "band '50 to <60 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 5
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "oxcarbazepine",
+      "message": "band '\u226560 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 6
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "topiramate",
+      "message": "band '\u226411 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 0
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "topiramate",
+      "message": "band '12\u201322 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 1
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "topiramate",
+      "message": "band '23\u201338 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 2
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "topiramate",
+      "message": "band '>38 kg' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 3
+      }
+    },
+    {
+      "property": "C",
+      "severity": "INFO",
+      "drug": "zonisamide",
+      "message": "band '>16 years' has no mg/kg ladder numbers (basis=weight_band_fixed_mg_per_day) - UNVERIFIABLE here; needs PI transcription",
+      "witness": {
+        "band": 2
+      }
+    }
+  ]
+}

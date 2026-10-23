@@ -1,0 +1,51 @@
+{
+  "source": "Aim2_Synthetic_Validation_Cases_reviewed_20260708.xlsx",
+  "reviewed_by": "Dr. Kristen Barbour (PI)",
+  "data": "100% simulated",
+  "total_cases": 132,
+  "agreement": {
+    "Yes": 5,
+    "No": 4,
+    "Unsure": 0,
+    "blank": 123
+  },
+  "flagged_cases": [
+    {
+      "case": "B1",
+      "scenario": "breakthrough + manageable sleepiness",
+      "engine": "Increase the dose more slowly",
+      "agree": "No",
+      "clinician_recommendation": null,
+      "comment": "This is the nonurgent_decision_tables file : Level 1 side effects & the first row (1. Continue titration on schedule\n2. Follow up in 4 weeks)",
+      "resolution": "Fixed: BT-table gate now routes non-urgent, titrating, level-1 breakthrough to 'continue on schedule' (no_change) instead of the legacy 'slower'. (decision.py gate; test_engine.test_breakthrough_level1_titrating_continues)"
+    },
+    {
+      "case": "B2",
+      "scenario": "breakthrough + manageable mood",
+      "engine": "Increase the dose more slowly",
+      "agree": "No",
+      "clinician_recommendation": null,
+      "comment": "This is the nonurgent_decision_tables file : Level 1 side effects & the first row (1. Continue titration on schedule\n2. Follow up in 4 weeks)",
+      "resolution": "Fixed: same non-urgent level-1 routing change as B1."
+    },
+    {
+      "case": "B3",
+      "scenario": "breakthrough + manageable dizziness",
+      "engine": "Increase the dose more slowly",
+      "agree": "No",
+      "clinician_recommendation": null,
+      "comment": "This is the nonurgent_decision_tables file : Level 1 side effects & the first row (1. Continue titration on schedule\n2. Follow up in 4 weeks)",
+      "resolution": "Fixed: same non-urgent level-1 routing change as B1."
+    },
+    {
+      "case": "D4",
+      "scenario": "seizure-free, titrating, no SE",
+      "engine": "Keep the current dose (no change)",
+      "agree": "No",
+      "clinician_recommendation": null,
+      "comment": "Only need follow up scheduled if it is listed on the decision_tables file. Otherwise, you can leave this part out. ",
+      "resolution": "Fixed: No-Seizures 'continue' path no longer auto-schedules a follow-up; follow-up is emitted only when the decision table lists one. (decision.py NS branch; test_dose_ladder.TestKristenValidationFixes)"
+    }
+  ],
+  "note": "DRAFT engine outputs reviewed between-visit. Flagged cases are addressed by the 2026-07-08 decision-table reconciliation + engine changes; see each resolution. Pending final PI sign-off (NEEDS_PI_SIGNOFF.md)."
+}

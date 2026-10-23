@@ -1,0 +1,35 @@
+**/__pycache__/
+*.pyc
+.DS_Store
+.Rhistory
+*.db.bak*
+# Local app data (synthetic now, but never commit a patient DB, keys, or audit logs)
+aim2_engine/clinic_data/
+# Clinician-filled data files (keep templates in git, not the filled copies)
+aim2_engine/data/asm_rules.json
+aim2_engine/data/drug_synonyms.json
+aim2_engine/data/drug_classes.json
+aim2_engine/data/redflag_terms.json
+# Private validation material — engine answer key must never be committed/sent (S1)
+aim2_engine/validation/private/
+INTERNAL_engine_answer_key_DO_NOT_SEND.csv
+# Poster material is local only - never in git (owner's choice, 2026-10-23)
+/poster/
+/.poster_venv/
+/poster_assets/
+/poster_build/
+/poster_preview/
+/Poster Samples/
+_archive/poster/
+# Local tooling
+.mplconfig/
+.~lock.*
+~$*
+# Local secrets (keep .env.example)
+.env
+# Hand-made backups (git replaces these)
+aim2_engine/_backups/
+# Old / superseded files moved out of the way 2026-10-23. Kept in git for later
+# verification, EXCEPT DB backups (never commit a DB) and poster material (above).
+_archive/clinic_data_backups/
+

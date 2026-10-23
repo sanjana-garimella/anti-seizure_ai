@@ -1,0 +1,1077 @@
+{
+  "meta": {
+    "seed": 20260708,
+    "n_notes": 1200,
+    "n_engine_cases": 1000,
+    "engine_version": "0.3.0",
+    "caveat": "SYNTHETIC, non-PHI, diagnostic only. Advisory NLP layers never touch engine_core. Red-flag SCORE is a simulated stand-in for a future scored classifier; conformal.py is designed to wrap such a classifier. NOT a clinical gold standard (NEEDS_PI_SIGNOFF.md)."
+  },
+  "extraction": {
+    "by_model": {
+      "lexicon": {
+        "n_notes": 1200,
+        "micro_precision": 1.0,
+        "micro_recall": 0.932,
+        "micro_f1": 0.9648,
+        "macro_f1": 0.9629,
+        "exact_match_accuracy": 0.8558,
+        "safety_recall": {
+          "side_effect:rash": 0.9704,
+          "seizure_mention": 0.9594
+        },
+        "rash_recall_stratified": {
+          "ordinary_phrasing": 0.9664,
+          "sjs_phrasing": 0.9783,
+          "ordinary_n": 149,
+          "sjs_n": 184
+        },
+        "missed_sjs_rash_examples": [
+          "Whole body shaking for ten minutes. She denies any rash, dizziness, or nausea this week. His mood has been very up and down. A large rash that keeps getting bigger and is on her lips.",
+          "She had another seizure last night. She denies any rash, dizziness, or nausea this week. The rash spread to his whole body overnight. Whole body shaking for ten minutes.",
+          "She denies any rash, dizziness, or nausea this week. She has been really sleepy and tired. The rash is spreading all over her face. She seems dizzy and unsteady.",
+          "He seems drowsy in the mornings. The doctor ordered an EEG. She denies any rash, dizziness, or nausea this week. He started taking levetiracetam twice a day. The rash spread to his whole body overnight."
+        ],
+        "per_label": {
+          "drug_mention": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 372,
+            "fp": 0,
+            "fn": 0
+          },
+          "seizure_mention": {
+            "precision": 1.0,
+            "recall": 0.9594,
+            "f1": 0.9793,
+            "tp": 496,
+            "fp": 0,
+            "fn": 21
+          },
+          "side_effect:behavior": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:dizziness": {
+            "precision": 1.0,
+            "recall": 0.9719,
+            "f1": 0.9857,
+            "tp": 242,
+            "fp": 0,
+            "fn": 7
+          },
+          "side_effect:irritability": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 207,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:nausea": {
+            "precision": 1.0,
+            "recall": 0.7126,
+            "f1": 0.8322,
+            "tp": 181,
+            "fp": 0,
+            "fn": 73
+          },
+          "side_effect:rash": {
+            "precision": 1.0,
+            "recall": 0.9704,
+            "f1": 0.985,
+            "tp": 361,
+            "fp": 0,
+            "fn": 11
+          },
+          "side_effect:sleepiness": {
+            "precision": 1.0,
+            "recall": 0.7926,
+            "f1": 0.8843,
+            "tp": 256,
+            "fp": 0,
+            "fn": 67
+          },
+          "test_mention": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 248,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "biobert": {
+        "n_notes": 1200,
+        "micro_precision": 0.9961,
+        "micro_recall": 0.3921,
+        "micro_f1": 0.5627,
+        "macro_f1": 0.6127,
+        "exact_match_accuracy": 0.2208,
+        "safety_recall": {
+          "side_effect:rash": 0.6183,
+          "seizure_mention": 0.8143
+        },
+        "rash_recall_stratified": {
+          "ordinary_phrasing": 0.5369,
+          "sjs_phrasing": 0.6413,
+          "ordinary_n": 149,
+          "sjs_n": 184
+        },
+        "missed_sjs_rash_examples": [
+          "He seems drowsy in the mornings. The rash spread to his whole body overnight. His teacher says he is more aggressive and hyper.",
+          "A few staring spells during class. The rash spread to his whole body overnight. He started taking levetiracetam twice a day. He seems drowsy in the mornings.",
+          "She had blood work done to check her liver levels. He is not eating well and feels sick. The rash spread to his whole body overnight. A few staring spells during class.",
+          "He seems drowsy in the mornings. He has been wobbly on his feet. The rash is spreading all over her face.",
+          "She has been really sleepy and tired. The rash spread to his whole body overnight. He has been happy and active, eating and sleeping normally. He has been napping much more than usual.",
+          "Whole body shaking for ten minutes. Blistering rash around his mouth and eyes. He is not eating well and feels sick. She is doing great this month, nothing new to report. He had a seizure with jerking and staring.",
+          "The rash spread to his whole body overnight. She had another seizure last night. His mood has been very up and down.",
+          "The doctor ordered an EEG. She seems dizzy and unsteady. No side effects that we have noticed. She has been really sleepy and tired. He had a seizure with jerking and staring. He has been napping much more than usual. A large rash that keeps getting bigger and is on her lips.",
+          "They did an MRI last month. He had a seizure with jerking and staring. The rash spread to his whole body overnight. He is not eating well and feels sick. She has been really sleepy and tired.",
+          "She has been nauseous and vomiting. Some twitching in his left arm. The rash spread to his whole body overnight. His teacher says he is more aggressive and hyper. He has been happy and active, eating and sleeping normally.",
+          "He seems drowsy in the mornings. Blistering rash around his mouth and eyes.",
+          "The rash is spreading all over her face. She had another seizure last night."
+        ],
+        "per_label": {
+          "drug_mention": {
+            "precision": NaN,
+            "recall": 0.0,
+            "f1": NaN,
+            "tp": 0,
+            "fp": 0,
+            "fn": 372
+          },
+          "seizure_mention": {
+            "precision": 1.0,
+            "recall": 0.8143,
+            "f1": 0.8977,
+            "tp": 421,
+            "fp": 0,
+            "fn": 96
+          },
+          "side_effect:behavior": {
+            "precision": 1.0,
+            "recall": 0.5333,
+            "f1": 0.6957,
+            "tp": 48,
+            "fp": 0,
+            "fn": 42
+          },
+          "side_effect:dizziness": {
+            "precision": 1.0,
+            "recall": 0.1727,
+            "f1": 0.2945,
+            "tp": 43,
+            "fp": 0,
+            "fn": 206
+          },
+          "side_effect:irritability": {
+            "precision": 1.0,
+            "recall": 0.43,
+            "f1": 0.6014,
+            "tp": 89,
+            "fp": 0,
+            "fn": 118
+          },
+          "side_effect:nausea": {
+            "precision": 1.0,
+            "recall": 0.3858,
+            "f1": 0.5568,
+            "tp": 98,
+            "fp": 0,
+            "fn": 156
+          },
+          "side_effect:rash": {
+            "precision": 0.9829,
+            "recall": 0.6183,
+            "f1": 0.7591,
+            "tp": 230,
+            "fp": 4,
+            "fn": 142
+          },
+          "side_effect:sleepiness": {
+            "precision": 1.0,
+            "recall": 0.3189,
+            "f1": 0.4836,
+            "tp": 103,
+            "fp": 0,
+            "fn": 220
+          },
+          "test_mention": {
+            "precision": NaN,
+            "recall": 0.0,
+            "f1": NaN,
+            "tp": 0,
+            "fp": 0,
+            "fn": 248
+          }
+        }
+      },
+      "biobert+sent": {
+        "n_notes": 1200,
+        "micro_precision": 1.0,
+        "micro_recall": 0.4685,
+        "micro_f1": 0.638,
+        "macro_f1": 0.7252,
+        "exact_match_accuracy": 0.2758,
+        "safety_recall": {
+          "side_effect:rash": 1.0,
+          "seizure_mention": 0.735
+        },
+        "rash_recall_stratified": {
+          "ordinary_phrasing": 1.0,
+          "sjs_phrasing": 1.0,
+          "ordinary_n": 149,
+          "sjs_n": 184
+        },
+        "missed_sjs_rash_examples": [],
+        "per_label": {
+          "drug_mention": {
+            "precision": NaN,
+            "recall": 0.0,
+            "f1": NaN,
+            "tp": 0,
+            "fp": 0,
+            "fn": 372
+          },
+          "seizure_mention": {
+            "precision": 1.0,
+            "recall": 0.735,
+            "f1": 0.8473,
+            "tp": 380,
+            "fp": 0,
+            "fn": 137
+          },
+          "side_effect:behavior": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:dizziness": {
+            "precision": 1.0,
+            "recall": 0.3454,
+            "f1": 0.5134,
+            "tp": 86,
+            "fp": 0,
+            "fn": 163
+          },
+          "side_effect:irritability": {
+            "precision": 1.0,
+            "recall": 0.5556,
+            "f1": 0.7143,
+            "tp": 115,
+            "fp": 0,
+            "fn": 92
+          },
+          "side_effect:nausea": {
+            "precision": 1.0,
+            "recall": 0.4016,
+            "f1": 0.573,
+            "tp": 102,
+            "fp": 0,
+            "fn": 152
+          },
+          "side_effect:rash": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 372,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:sleepiness": {
+            "precision": 1.0,
+            "recall": 0.2724,
+            "f1": 0.4282,
+            "tp": 88,
+            "fp": 0,
+            "fn": 235
+          },
+          "test_mention": {
+            "precision": NaN,
+            "recall": 0.0,
+            "f1": NaN,
+            "tp": 0,
+            "fp": 0,
+            "fn": 248
+          }
+        }
+      },
+      "clinical_bert": {
+        "n_notes": 1200,
+        "micro_precision": 0.9868,
+        "micro_recall": 0.7371,
+        "micro_f1": 0.8438,
+        "macro_f1": 0.795,
+        "exact_match_accuracy": 0.5258,
+        "safety_recall": {
+          "side_effect:rash": 0.6183,
+          "seizure_mention": 0.9594
+        },
+        "rash_recall_stratified": {
+          "ordinary_phrasing": 0.5369,
+          "sjs_phrasing": 0.6413,
+          "ordinary_n": 149,
+          "sjs_n": 184
+        },
+        "missed_sjs_rash_examples": [
+          "He seems drowsy in the mornings. The rash spread to his whole body overnight. His teacher says he is more aggressive and hyper.",
+          "A few staring spells during class. The rash spread to his whole body overnight. He started taking levetiracetam twice a day. He seems drowsy in the mornings.",
+          "She had blood work done to check her liver levels. He is not eating well and feels sick. The rash spread to his whole body overnight. A few staring spells during class.",
+          "He seems drowsy in the mornings. He has been wobbly on his feet. The rash is spreading all over her face.",
+          "She has been really sleepy and tired. The rash spread to his whole body overnight. He has been happy and active, eating and sleeping normally. He has been napping much more than usual.",
+          "Whole body shaking for ten minutes. Blistering rash around his mouth and eyes. He is not eating well and feels sick. She is doing great this month, nothing new to report. He had a seizure with jerking and staring.",
+          "The rash spread to his whole body overnight. She had another seizure last night. His mood has been very up and down.",
+          "The doctor ordered an EEG. She seems dizzy and unsteady. No side effects that we have noticed. She has been really sleepy and tired. He had a seizure with jerking and staring. He has been napping much more than usual. A large rash that keeps getting bigger and is on her lips.",
+          "They did an MRI last month. He had a seizure with jerking and staring. The rash spread to his whole body overnight. He is not eating well and feels sick. She has been really sleepy and tired.",
+          "She has been nauseous and vomiting. Some twitching in his left arm. The rash spread to his whole body overnight. His teacher says he is more aggressive and hyper. He has been happy and active, eating and sleeping normally.",
+          "He seems drowsy in the mornings. Blistering rash around his mouth and eyes.",
+          "The rash is spreading all over her face. She had another seizure last night."
+        ],
+        "per_label": {
+          "drug_mention": {
+            "precision": 1.0,
+            "recall": 0.9973,
+            "f1": 0.9987,
+            "tp": 371,
+            "fp": 0,
+            "fn": 1
+          },
+          "seizure_mention": {
+            "precision": 1.0,
+            "recall": 0.9594,
+            "f1": 0.9793,
+            "tp": 496,
+            "fp": 0,
+            "fn": 21
+          },
+          "side_effect:behavior": {
+            "precision": 1.0,
+            "recall": 0.5889,
+            "f1": 0.7413,
+            "tp": 53,
+            "fp": 0,
+            "fn": 37
+          },
+          "side_effect:dizziness": {
+            "precision": 1.0,
+            "recall": 0.494,
+            "f1": 0.6613,
+            "tp": 123,
+            "fp": 0,
+            "fn": 126
+          },
+          "side_effect:irritability": {
+            "precision": 1.0,
+            "recall": 0.5266,
+            "f1": 0.6899,
+            "tp": 109,
+            "fp": 0,
+            "fn": 98
+          },
+          "side_effect:nausea": {
+            "precision": 0.9907,
+            "recall": 0.4173,
+            "f1": 0.5873,
+            "tp": 106,
+            "fp": 1,
+            "fn": 148
+          },
+          "side_effect:rash": {
+            "precision": 0.9504,
+            "recall": 0.6183,
+            "f1": 0.7492,
+            "tp": 230,
+            "fp": 12,
+            "fn": 142
+          },
+          "side_effect:sleepiness": {
+            "precision": 1.0,
+            "recall": 0.6316,
+            "f1": 0.7742,
+            "tp": 204,
+            "fp": 0,
+            "fn": 119
+          },
+          "test_mention": {
+            "precision": 0.9502,
+            "recall": 1.0,
+            "f1": 0.9745,
+            "tp": 248,
+            "fp": 13,
+            "fn": 0
+          }
+        }
+      },
+      "clinical_bert+sent": {
+        "n_notes": 1200,
+        "micro_precision": 1.0,
+        "micro_recall": 0.8457,
+        "micro_f1": 0.9164,
+        "macro_f1": 0.8863,
+        "exact_match_accuracy": 0.6958,
+        "safety_recall": {
+          "side_effect:rash": 1.0,
+          "seizure_mention": 0.9594
+        },
+        "rash_recall_stratified": {
+          "ordinary_phrasing": 1.0,
+          "sjs_phrasing": 1.0,
+          "ordinary_n": 149,
+          "sjs_n": 184
+        },
+        "missed_sjs_rash_examples": [],
+        "per_label": {
+          "drug_mention": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 372,
+            "fp": 0,
+            "fn": 0
+          },
+          "seizure_mention": {
+            "precision": 1.0,
+            "recall": 0.9594,
+            "f1": 0.9793,
+            "tp": 496,
+            "fp": 0,
+            "fn": 21
+          },
+          "side_effect:behavior": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:dizziness": {
+            "precision": 1.0,
+            "recall": 0.7028,
+            "f1": 0.8255,
+            "tp": 175,
+            "fp": 0,
+            "fn": 74
+          },
+          "side_effect:irritability": {
+            "precision": 1.0,
+            "recall": 0.5556,
+            "f1": 0.7143,
+            "tp": 115,
+            "fp": 0,
+            "fn": 92
+          },
+          "side_effect:nausea": {
+            "precision": 1.0,
+            "recall": 0.4016,
+            "f1": 0.573,
+            "tp": 102,
+            "fp": 0,
+            "fn": 152
+          },
+          "side_effect:rash": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 372,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:sleepiness": {
+            "precision": 1.0,
+            "recall": 0.7926,
+            "f1": 0.8843,
+            "tp": 256,
+            "fp": 0,
+            "fn": 67
+          },
+          "test_mention": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 248,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "humadex_english_medical_ner": {
+        "n_notes": 1200,
+        "micro_precision": 0.9564,
+        "micro_recall": 0.7496,
+        "micro_f1": 0.8405,
+        "macro_f1": 0.8111,
+        "exact_match_accuracy": 0.5017,
+        "safety_recall": {
+          "side_effect:rash": 0.621,
+          "seizure_mention": 0.9594
+        },
+        "rash_recall_stratified": {
+          "ordinary_phrasing": 0.5369,
+          "sjs_phrasing": 0.6467,
+          "ordinary_n": 149,
+          "sjs_n": 184
+        },
+        "missed_sjs_rash_examples": [
+          "He seems drowsy in the mornings. The rash spread to his whole body overnight. His teacher says he is more aggressive and hyper.",
+          "A few staring spells during class. The rash spread to his whole body overnight. He started taking levetiracetam twice a day. He seems drowsy in the mornings.",
+          "She had blood work done to check her liver levels. He is not eating well and feels sick. The rash spread to his whole body overnight. A few staring spells during class.",
+          "He seems drowsy in the mornings. He has been wobbly on his feet. The rash is spreading all over her face.",
+          "She has been really sleepy and tired. The rash spread to his whole body overnight. He has been happy and active, eating and sleeping normally. He has been napping much more than usual.",
+          "Whole body shaking for ten minutes. Blistering rash around his mouth and eyes. He is not eating well and feels sick. She is doing great this month, nothing new to report. He had a seizure with jerking and staring.",
+          "The rash spread to his whole body overnight. She had another seizure last night. His mood has been very up and down.",
+          "The doctor ordered an EEG. She seems dizzy and unsteady. No side effects that we have noticed. She has been really sleepy and tired. He had a seizure with jerking and staring. He has been napping much more than usual. A large rash that keeps getting bigger and is on her lips.",
+          "They did an MRI last month. He had a seizure with jerking and staring. The rash spread to his whole body overnight. He is not eating well and feels sick. She has been really sleepy and tired.",
+          "She has been nauseous and vomiting. Some twitching in his left arm. The rash spread to his whole body overnight. His teacher says he is more aggressive and hyper. He has been happy and active, eating and sleeping normally.",
+          "He seems drowsy in the mornings. Blistering rash around his mouth and eyes.",
+          "The rash is spreading all over her face. She had another seizure last night."
+        ],
+        "per_label": {
+          "drug_mention": {
+            "precision": 0.8248,
+            "recall": 1.0,
+            "f1": 0.904,
+            "tp": 372,
+            "fp": 79,
+            "fn": 0
+          },
+          "seizure_mention": {
+            "precision": 1.0,
+            "recall": 0.9594,
+            "f1": 0.9793,
+            "tp": 496,
+            "fp": 0,
+            "fn": 21
+          },
+          "side_effect:behavior": {
+            "precision": 1.0,
+            "recall": 0.8333,
+            "f1": 0.9091,
+            "tp": 75,
+            "fp": 0,
+            "fn": 15
+          },
+          "side_effect:dizziness": {
+            "precision": 1.0,
+            "recall": 0.4337,
+            "f1": 0.605,
+            "tp": 108,
+            "fp": 0,
+            "fn": 141
+          },
+          "side_effect:irritability": {
+            "precision": 1.0,
+            "recall": 0.7053,
+            "f1": 0.8272,
+            "tp": 146,
+            "fp": 0,
+            "fn": 61
+          },
+          "side_effect:nausea": {
+            "precision": 1.0,
+            "recall": 0.3976,
+            "f1": 0.569,
+            "tp": 101,
+            "fp": 0,
+            "fn": 153
+          },
+          "side_effect:rash": {
+            "precision": 0.9665,
+            "recall": 0.621,
+            "f1": 0.7561,
+            "tp": 231,
+            "fp": 8,
+            "fn": 141
+          },
+          "side_effect:sleepiness": {
+            "precision": 1.0,
+            "recall": 0.6161,
+            "f1": 0.7625,
+            "tp": 199,
+            "fp": 0,
+            "fn": 124
+          },
+          "test_mention": {
+            "precision": 0.9879,
+            "recall": 0.9879,
+            "f1": 0.9879,
+            "tp": 245,
+            "fp": 3,
+            "fn": 3
+          }
+        }
+      },
+      "humadex_english_medical_ner+sent": {
+        "n_notes": 1200,
+        "micro_precision": 0.968,
+        "micro_recall": 0.9088,
+        "micro_f1": 0.9375,
+        "macro_f1": 0.9267,
+        "exact_match_accuracy": 0.7492,
+        "safety_recall": {
+          "side_effect:rash": 1.0,
+          "seizure_mention": 0.9594
+        },
+        "rash_recall_stratified": {
+          "ordinary_phrasing": 1.0,
+          "sjs_phrasing": 1.0,
+          "ordinary_n": 149,
+          "sjs_n": 184
+        },
+        "missed_sjs_rash_examples": [],
+        "per_label": {
+          "drug_mention": {
+            "precision": 0.8248,
+            "recall": 1.0,
+            "f1": 0.904,
+            "tp": 372,
+            "fp": 79,
+            "fn": 0
+          },
+          "seizure_mention": {
+            "precision": 1.0,
+            "recall": 0.9594,
+            "f1": 0.9793,
+            "tp": 496,
+            "fp": 0,
+            "fn": 21
+          },
+          "side_effect:behavior": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:dizziness": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 249,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:irritability": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 207,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:nausea": {
+            "precision": 1.0,
+            "recall": 0.4016,
+            "f1": 0.573,
+            "tp": 102,
+            "fp": 0,
+            "fn": 152
+          },
+          "side_effect:rash": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 372,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:sleepiness": {
+            "precision": 1.0,
+            "recall": 0.7926,
+            "f1": 0.8843,
+            "tp": 256,
+            "fp": 0,
+            "fn": 67
+          },
+          "test_mention": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 248,
+            "fp": 0,
+            "fn": 0
+          }
+        }
+      },
+      "d4data_biomedical_ner_all": {
+        "n_notes": 1200,
+        "micro_precision": 0.8546,
+        "micro_recall": 0.6322,
+        "micro_f1": 0.7268,
+        "macro_f1": 0.6959,
+        "exact_match_accuracy": 0.3358,
+        "safety_recall": {
+          "side_effect:rash": 0.6183,
+          "seizure_mention": 0.9594
+        },
+        "rash_recall_stratified": {
+          "ordinary_phrasing": 0.5369,
+          "sjs_phrasing": 0.6413,
+          "ordinary_n": 149,
+          "sjs_n": 184
+        },
+        "missed_sjs_rash_examples": [
+          "He seems drowsy in the mornings. The rash spread to his whole body overnight. His teacher says he is more aggressive and hyper.",
+          "A few staring spells during class. The rash spread to his whole body overnight. He started taking levetiracetam twice a day. He seems drowsy in the mornings.",
+          "She had blood work done to check her liver levels. He is not eating well and feels sick. The rash spread to his whole body overnight. A few staring spells during class.",
+          "He seems drowsy in the mornings. He has been wobbly on his feet. The rash is spreading all over her face.",
+          "She has been really sleepy and tired. The rash spread to his whole body overnight. He has been happy and active, eating and sleeping normally. He has been napping much more than usual.",
+          "Whole body shaking for ten minutes. Blistering rash around his mouth and eyes. He is not eating well and feels sick. She is doing great this month, nothing new to report. He had a seizure with jerking and staring.",
+          "The rash spread to his whole body overnight. She had another seizure last night. His mood has been very up and down.",
+          "The doctor ordered an EEG. She seems dizzy and unsteady. No side effects that we have noticed. She has been really sleepy and tired. He had a seizure with jerking and staring. He has been napping much more than usual. A large rash that keeps getting bigger and is on her lips.",
+          "They did an MRI last month. He had a seizure with jerking and staring. The rash spread to his whole body overnight. He is not eating well and feels sick. She has been really sleepy and tired.",
+          "She has been nauseous and vomiting. Some twitching in his left arm. The rash spread to his whole body overnight. His teacher says he is more aggressive and hyper. He has been happy and active, eating and sleeping normally.",
+          "He seems drowsy in the mornings. Blistering rash around his mouth and eyes.",
+          "The rash is spreading all over her face. She had another seizure last night."
+        ],
+        "per_label": {
+          "drug_mention": {
+            "precision": 0.8607,
+            "recall": 0.5645,
+            "f1": 0.6818,
+            "tp": 210,
+            "fp": 34,
+            "fn": 162
+          },
+          "seizure_mention": {
+            "precision": 1.0,
+            "recall": 0.9594,
+            "f1": 0.9793,
+            "tp": 496,
+            "fp": 0,
+            "fn": 21
+          },
+          "side_effect:behavior": {
+            "precision": 1.0,
+            "recall": 0.5889,
+            "f1": 0.7413,
+            "tp": 53,
+            "fp": 0,
+            "fn": 37
+          },
+          "side_effect:dizziness": {
+            "precision": 1.0,
+            "recall": 0.4257,
+            "f1": 0.5972,
+            "tp": 106,
+            "fp": 0,
+            "fn": 143
+          },
+          "side_effect:irritability": {
+            "precision": 1.0,
+            "recall": 0.4203,
+            "f1": 0.5918,
+            "tp": 87,
+            "fp": 0,
+            "fn": 120
+          },
+          "side_effect:nausea": {
+            "precision": 0.9924,
+            "recall": 0.5157,
+            "f1": 0.6788,
+            "tp": 131,
+            "fp": 1,
+            "fn": 123
+          },
+          "side_effect:rash": {
+            "precision": 0.9829,
+            "recall": 0.6183,
+            "f1": 0.7591,
+            "tp": 230,
+            "fp": 4,
+            "fn": 142
+          },
+          "side_effect:sleepiness": {
+            "precision": 1.0,
+            "recall": 0.5975,
+            "f1": 0.7481,
+            "tp": 193,
+            "fp": 0,
+            "fn": 130
+          },
+          "test_mention": {
+            "precision": 0.393,
+            "recall": 0.6371,
+            "f1": 0.4862,
+            "tp": 158,
+            "fp": 244,
+            "fn": 90
+          }
+        }
+      },
+      "d4data_biomedical_ner_all+sent": {
+        "n_notes": 1200,
+        "micro_precision": 0.9007,
+        "micro_recall": 0.8408,
+        "micro_f1": 0.8697,
+        "macro_f1": 0.8658,
+        "exact_match_accuracy": 0.5767,
+        "safety_recall": {
+          "side_effect:rash": 1.0,
+          "seizure_mention": 0.9594
+        },
+        "rash_recall_stratified": {
+          "ordinary_phrasing": 1.0,
+          "sjs_phrasing": 1.0,
+          "ordinary_n": 149,
+          "sjs_n": 184
+        },
+        "missed_sjs_rash_examples": [],
+        "per_label": {
+          "drug_mention": {
+            "precision": 1.0,
+            "recall": 0.7151,
+            "f1": 0.8339,
+            "tp": 266,
+            "fp": 0,
+            "fn": 106
+          },
+          "seizure_mention": {
+            "precision": 1.0,
+            "recall": 0.9594,
+            "f1": 0.9793,
+            "tp": 496,
+            "fp": 0,
+            "fn": 21
+          },
+          "side_effect:behavior": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 90,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:dizziness": {
+            "precision": 1.0,
+            "recall": 0.7028,
+            "f1": 0.8255,
+            "tp": 175,
+            "fp": 0,
+            "fn": 74
+          },
+          "side_effect:irritability": {
+            "precision": 1.0,
+            "recall": 0.5556,
+            "f1": 0.7143,
+            "tp": 115,
+            "fp": 0,
+            "fn": 92
+          },
+          "side_effect:nausea": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 254,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:rash": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 372,
+            "fp": 0,
+            "fn": 0
+          },
+          "side_effect:sleepiness": {
+            "precision": 1.0,
+            "recall": 0.7926,
+            "f1": 0.8843,
+            "tp": 256,
+            "fp": 0,
+            "fn": 67
+          },
+          "test_mention": {
+            "precision": 0.4365,
+            "recall": 0.7621,
+            "f1": 0.5551,
+            "tp": 189,
+            "fp": 244,
+            "fn": 59
+          }
+        }
+      }
+    },
+    "models_skipped": {}
+  },
+  "calibration": {
+    "n_calibration": 600,
+    "n_test": 600,
+    "prevalence_urgent": 0.2917,
+    "ece_raw": 0.1506,
+    "ece_isotonic": 0.0183,
+    "reliability_raw": [
+      {
+        "bin": [
+          0.0,
+          0.1
+        ],
+        "n": 101,
+        "avg_pred": 0.062,
+        "frac_pos": 0.0
+      },
+      {
+        "bin": [
+          0.1,
+          0.2
+        ],
+        "n": 124,
+        "avg_pred": 0.146,
+        "frac_pos": 0.008
+      },
+      {
+        "bin": [
+          0.2,
+          0.3
+        ],
+        "n": 82,
+        "avg_pred": 0.254,
+        "frac_pos": 0.024
+      },
+      {
+        "bin": [
+          0.3,
+          0.4
+        ],
+        "n": 54,
+        "avg_pred": 0.349,
+        "frac_pos": 0.093
+      },
+      {
+        "bin": [
+          0.4,
+          0.5
+        ],
+        "n": 43,
+        "avg_pred": 0.446,
+        "frac_pos": 0.209
+      },
+      {
+        "bin": [
+          0.5,
+          0.6
+        ],
+        "n": 29,
+        "avg_pred": 0.546,
+        "frac_pos": 0.276
+      },
+      {
+        "bin": [
+          0.6,
+          0.7
+        ],
+        "n": 32,
+        "avg_pred": 0.637,
+        "frac_pos": 0.562
+      },
+      {
+        "bin": [
+          0.7,
+          0.8
+        ],
+        "n": 32,
+        "avg_pred": 0.748,
+        "frac_pos": 0.875
+      },
+      {
+        "bin": [
+          0.8,
+          0.9
+        ],
+        "n": 52,
+        "avg_pred": 0.852,
+        "frac_pos": 0.981
+      },
+      {
+        "bin": [
+          0.9,
+          1.0
+        ],
+        "n": 51,
+        "avg_pred": 0.939,
+        "frac_pos": 1.0
+      }
+    ]
+  },
+  "conformal": {
+    "sweep": [
+      {
+        "alpha_miss": 0.1,
+        "n_trials": 200,
+        "n_per_trial": 2000,
+        "mean_empirical_miss_rate": 0.0874,
+        "sem_miss_rate": 0.00127,
+        "worst_empirical_miss_rate": 0.1465,
+        "frac_trials_within_alpha": 0.755,
+        "mean_defer_rate": 0.0036,
+        "mean_flag_fp_rate": 0.0996,
+        "guarantee_met": true,
+        "note": "mean miss tracks alpha within Monte-Carlo error; conformal calibrates the miss rate TO alpha rather than far below it"
+      },
+      {
+        "alpha_miss": 0.05,
+        "n_trials": 200,
+        "n_per_trial": 2000,
+        "mean_empirical_miss_rate": 0.0516,
+        "sem_miss_rate": 0.00115,
+        "worst_empirical_miss_rate": 0.1049,
+        "frac_trials_within_alpha": 0.47,
+        "mean_defer_rate": 0.0557,
+        "mean_flag_fp_rate": 0.0996,
+        "guarantee_met": true,
+        "note": "mean miss tracks alpha within Monte-Carlo error; conformal calibrates the miss rate TO alpha rather than far below it"
+      },
+      {
+        "alpha_miss": 0.01,
+        "n_trials": 200,
+        "n_per_trial": 2000,
+        "mean_empirical_miss_rate": 0.0112,
+        "sem_miss_rate": 0.00058,
+        "worst_empirical_miss_rate": 0.0455,
+        "frac_trials_within_alpha": 0.485,
+        "mean_defer_rate": 0.223,
+        "mean_flag_fp_rate": 0.0996,
+        "guarantee_met": false,
+        "note": "mean miss tracks alpha within Monte-Carlo error; conformal calibrates the miss rate TO alpha rather than far below it"
+      }
+    ]
+  },
+  "engine_fuzz": {
+    "n_cases": 1000,
+    "engine_version": "0.3.0",
+    "exceptions": 0,
+    "exception_samples": [],
+    "nondeterministic": 0,
+    "category_distribution": {
+      "no_change": 418,
+      "switch_medication": 261,
+      "insufficient_data": 188,
+      "slower_uptitration": 81,
+      "escalate": 52
+    },
+    "sjs_trigger_cases": 48,
+    "sjs_safeguarded": 48,
+    "sjs_unsafe_violations": 0,
+    "sjs_safety_property_holds": true
+  },
+  "findings": [
+    "EXTRACTION models evaluated: lexicon, biobert, biobert+sent, clinical_bert, clinical_bert+sent, humadex_english_medical_ner, humadex_english_medical_ner+sent, d4data_biomedical_ner_all, d4data_biomedical_ner_all+sent. Best rash-recall: humadex_english_medical_ner+sent (1.0).",
+    "PASS calibration: isotonic cut ECE 0.1506 -> 0.0183 on held-out data (well-calibrated confidence).",
+    "PASS conformal @alpha=0.1: mean miss 0.0874 <= alpha (defer 0.0036).",
+    "PASS conformal @alpha=0.05: mean miss 0.0516 <= alpha (defer 0.0557).",
+    "FLAG conformal @alpha=0.01: mean miss 0.0112+-0.00058 sits marginally ABOVE nominal - split-conformal is slightly anti-conservative at this extreme quantile with a finite calibration set. For a never-miss net at alpha=0.01, use a more conservative quantile index or a larger calibration set.",
+    "PASS engine safety: all 48 blistering-rash (SJS-trigger) cases were safeguarded; none escalated/uptitrated.",
+    "PASS engine robustness: 0 exceptions, 0 nondeterministic over 1000 random cases."
+  ]
+}

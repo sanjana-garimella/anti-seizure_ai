@@ -1,0 +1,1198 @@
+{
+  "cases": [
+    {
+      "case_id": "C01",
+      "patient_context": {
+        "external_id": "C01",
+        "age_years": 8,
+        "weight_kg": 30,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q4": [
+          "sudden_jerks"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q10a": "still_increasing",
+        "Q11": "worse"
+      },
+      "summary": "Medication: Levetiracetam; age 8; medicine taken: almost never misses a dose; seizures: yes (2 per week); sudden jerks or twitches; side effects: none; dose status: still increasing; overall: worse"
+    },
+    {
+      "case_id": "C02",
+      "patient_context": {
+        "external_id": "C02",
+        "age_years": 11,
+        "weight_kg": 38,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "small",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Oxcarbazepine; age 11; medicine taken: almost never misses a dose; seizures: yes (1 per week); one part of the body / unusual movements; side effects: sleepiness; impact: a small impact; dose status: still increasing"
+    },
+    {
+      "case_id": "C03",
+      "patient_context": {
+        "external_id": "C03",
+        "age_years": 13,
+        "weight_kg": 50,
+        "epilepsy_type": "focal",
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": "oxcarbazepine"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 3,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10b_impact": "big_wants_change",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Carbamazepine; age 13; medicine taken: almost never misses a dose; seizures: yes (3 per week); one part of the body / unusual movements; side effects: behavior; impact: a big impact \u2014 family would like a change; dose status: still increasing; note: approved switch option = Oxcarbazepine"
+    },
+    {
+      "case_id": "C04",
+      "patient_context": {
+        "external_id": "C04",
+        "age_years": 9,
+        "weight_kg": 31,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "sometimes",
+        "Q3": "yes",
+        "Q7": "no",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Levetiracetam; age 9; medicine taken: sometimes misses doses; seizures: yes; doses were missed beforehand; side effects: none; dose status: still increasing"
+    },
+    {
+      "case_id": "C05",
+      "patient_context": {
+        "external_id": "C05",
+        "age_years": 6,
+        "weight_kg": 21,
+        "epilepsy_type": "focal",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q10a": "still_increasing",
+        "Q12": "change_dose"
+      },
+      "summary": "Medication: Valproic Acid; age 6; medicine taken: almost never misses a dose; seizures: yes (1 per week); side effects: none; dose status: still increasing; family preference: would prefer a slower or changed dose"
+    },
+    {
+      "case_id": "C06",
+      "patient_context": {
+        "external_id": "C06",
+        "age_years": 14,
+        "weight_kg": 55,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": false,
+        "can_switch_to": "brivaracetam"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Levetiracetam; age 14; medicine taken: almost never misses a dose; seizures: yes (2 per week); side effects: none; dose status: at goal; note: physician has NOT approved a further increase; note: approved switch option = Brivaracetam"
+    },
+    {
+      "case_id": "C07",
+      "patient_context": {
+        "external_id": "C07",
+        "age_years": 12,
+        "weight_kg": 44,
+        "epilepsy_type": "focal",
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": false,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Topiramate; age 12; medicine taken: almost never misses a dose; seizures: yes (2 per week); side effects: none; dose status: at goal; note: physician has NOT approved a further increase"
+    },
+    {
+      "case_id": "C08",
+      "patient_context": {
+        "external_id": "C08",
+        "age_years": 10,
+        "weight_kg": 34,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "sleepiness",
+          "irritability"
+        ],
+        "Q10b_impact": "small",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Levetiracetam; age 10; medicine taken: almost never misses a dose; seizures: none; side effects: sleepiness, irritability; impact: a small impact; dose status: still increasing"
+    },
+    {
+      "case_id": "C09",
+      "patient_context": {
+        "external_id": "C09",
+        "age_years": 12,
+        "weight_kg": 45,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": "levetiracetam"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "big_wants_change",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Lamotrigine; age 12; medicine taken: almost never misses a dose; seizures: none; side effects: dizziness; impact: a big impact \u2014 family would like a change; dose status: at goal; note: approved switch option = Levetiracetam"
+    },
+    {
+      "case_id": "C10",
+      "patient_context": {
+        "external_id": "C10",
+        "age_years": 8,
+        "weight_kg": 28,
+        "epilepsy_type": "absence",
+        "medication": "ethosuximide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      },
+      "summary": "Medication: Ethosuximide; age 8; medicine taken: almost never misses a dose; seizures: none; side effects: none; dose status: still increasing; overall: better"
+    },
+    {
+      "case_id": "C11",
+      "patient_context": {
+        "external_id": "C11",
+        "age_years": 15,
+        "weight_kg": 60,
+        "epilepsy_type": "focal",
+        "medication": "lacosamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q11": "better"
+      },
+      "summary": "Medication: Lacosamide; age 15; medicine taken: almost never misses a dose; seizures: none; side effects: none; dose status: at goal; overall: better"
+    },
+    {
+      "case_id": "C12",
+      "patient_context": {
+        "external_id": "C12",
+        "age_years": 5,
+        "weight_kg": 18,
+        "epilepsy_type": "generalized",
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "not_sure"
+      },
+      "summary": "Medication: Clobazam; age 5; medicine taken: almost never misses a dose; seizures: none; side effects: none; dose status: not sure"
+    },
+    {
+      "case_id": "C13",
+      "patient_context": {
+        "external_id": "C13",
+        "age_years": 7,
+        "weight_kg": 24,
+        "epilepsy_type": "generalized",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Lamotrigine; age 7; medicine taken: almost never misses a dose; seizures: none; side effects: rash; rash: blisters; dose status: at goal"
+    },
+    {
+      "case_id": "C14",
+      "patient_context": {
+        "external_id": "C14",
+        "age_years": 9,
+        "weight_kg": 30,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "stopped",
+        "Q3": "yes",
+        "Q7": "no",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Oxcarbazepine; age 9; medicine taken: has stopped taking it; seizures: yes; doses were missed beforehand; side effects: none; dose status: still increasing"
+    },
+    {
+      "case_id": "C15",
+      "patient_context": {
+        "external_id": "C15",
+        "age_years": 10,
+        "weight_kg": 33,
+        "epilepsy_type": "focal",
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10b_impact": "small",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Zonisamide; age 10; medicine taken: almost never misses a dose; seizures: none; side effects: nausea; impact: a small impact; dose status: at goal"
+    },
+    {
+      "case_id": "C16",
+      "patient_context": {
+        "external_id": "C16",
+        "age_years": 11,
+        "weight_kg": 40,
+        "epilepsy_type": "focal",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 4,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "small",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Valproic Acid; age 11; medicine taken: almost never misses a dose; seizures: yes (4 per week); side effects: sleepiness; impact: a small impact; dose status: still increasing"
+    },
+    {
+      "case_id": "C17",
+      "patient_context": {
+        "external_id": "C17",
+        "age_years": 14,
+        "weight_kg": 52,
+        "epilepsy_type": "focal",
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": "oxcarbazepine"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "medium_big",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Carbamazepine; age 14; medicine taken: almost never misses a dose; seizures: none; side effects: dizziness; impact: a lot of impact (still tolerable); dose status: still increasing; note: approved switch option = Oxcarbazepine"
+    },
+    {
+      "case_id": "C18",
+      "patient_context": {
+        "external_id": "C18",
+        "age_years": 6,
+        "weight_kg": 20,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 1,
+        "Q5_unit": "per_month",
+        "Q7": "yes",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Levetiracetam; age 6; medicine taken: almost never misses a dose; seizures: yes (1 per month); side effects: none; dose status: still increasing"
+    },
+    {
+      "case_id": "C19",
+      "patient_context": {
+        "external_id": "C19",
+        "age_years": 13,
+        "weight_kg": 47,
+        "epilepsy_type": "focal",
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "sometimes",
+        "Q3": "yes",
+        "Q7": "no",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10b_impact": "small",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Topiramate; age 13; medicine taken: sometimes misses doses; seizures: yes; doses were missed beforehand; side effects: behavior; impact: a small impact; dose status: still increasing"
+    },
+    {
+      "case_id": "C20",
+      "patient_context": {
+        "external_id": "C20",
+        "age_years": 16,
+        "weight_kg": 62,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q11": "about_same",
+        "Q12": "no_preference"
+      },
+      "summary": "Medication: Lamotrigine; age 16; medicine taken: almost never misses a dose; seizures: none; side effects: none; dose status: at goal; overall: about same; family preference: no strong preference (defers to the team)"
+    },
+    {
+      "case_id": "C21",
+      "patient_context": {
+        "external_id": "C21",
+        "age_years": 12,
+        "weight_kg": 43,
+        "epilepsy_type": "focal",
+        "medication": "brivaracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Brivaracetam; age 12; medicine taken: almost never misses a dose; seizures: yes (2 per week); side effects: none; dose status: still increasing"
+    },
+    {
+      "case_id": "C22",
+      "patient_context": {
+        "external_id": "C22",
+        "age_years": 9,
+        "weight_kg": 29,
+        "epilepsy_type": "absence",
+        "medication": "ethosuximide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": "valproic_acid"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 5,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10b_impact": "big_wants_change",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Ethosuximide; age 9; medicine taken: almost never misses a dose; seizures: yes (5 per week); side effects: nausea; impact: a big impact \u2014 family would like a change; dose status: at goal; note: approved switch option = Valproic Acid"
+    },
+    {
+      "case_id": "C23",
+      "patient_context": {
+        "external_id": "C23",
+        "age_years": 7,
+        "weight_kg": 25,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "no_impact",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Oxcarbazepine; age 7; medicine taken: almost never misses a dose; seizures: none; side effects: sleepiness; impact: no impact on daily life; dose status: at goal"
+    },
+    {
+      "case_id": "C24",
+      "patient_context": {
+        "external_id": "C24",
+        "age_years": 10,
+        "weight_kg": 35,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q11": "better",
+        "Q12": "no_preference"
+      },
+      "summary": "Medication: Levetiracetam; age 10; medicine taken: almost never misses a dose; seizures: none; side effects: none; dose status: still increasing; overall: better; family preference: no strong preference (defers to the team)"
+    },
+    {
+      "case_id": "C25",
+      "patient_context": {
+        "external_id": "C25",
+        "age_years": 8,
+        "weight_kg": 27,
+        "epilepsy_type": "focal",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "irritability"
+        ],
+        "Q9a": "small",
+        "Q10b_impact": "small",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Valproic Acid; age 8; medicine taken: almost never misses a dose; seizures: none; side effects: irritability; rash: small; impact: a small impact; dose status: at goal"
+    },
+    {
+      "case_id": "C26",
+      "patient_context": {
+        "external_id": "C26",
+        "age_years": 12,
+        "weight_kg": 46,
+        "epilepsy_type": "focal",
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": "lacosamide"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "big_wants_change",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Zonisamide; age 12; medicine taken: almost never misses a dose; seizures: yes (1 per week); side effects: dizziness; impact: a big impact \u2014 family would like a change; dose status: at goal; note: approved switch option = Lacosamide"
+    },
+    {
+      "case_id": "C27",
+      "patient_context": {
+        "external_id": "C27",
+        "age_years": 14,
+        "weight_kg": 54,
+        "epilepsy_type": "focal",
+        "medication": "lacosamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "sometimes",
+        "Q3": "yes",
+        "Q7": "no",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Lacosamide; age 14; medicine taken: sometimes misses doses; seizures: yes; doses were missed beforehand; side effects: none; dose status: at goal"
+    },
+    {
+      "case_id": "C28",
+      "patient_context": {
+        "external_id": "C28",
+        "age_years": 6,
+        "weight_kg": 19,
+        "epilepsy_type": "generalized",
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q10a": "still_increasing",
+        "Q12": "change_dose"
+      },
+      "summary": "Medication: Clobazam; age 6; medicine taken: almost never misses a dose; seizures: yes (2 per week); side effects: none; dose status: still increasing; family preference: would prefer a slower or changed dose"
+    },
+    {
+      "case_id": "C29",
+      "patient_context": {
+        "external_id": "C29",
+        "age_years": 11,
+        "weight_kg": 41,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "not_sure",
+        "Q11": "not_sure"
+      },
+      "summary": "Medication: Lamotrigine; age 11; medicine taken: almost never misses a dose; seizures: none; side effects: none; dose status: not sure; overall: not sure"
+    },
+    {
+      "case_id": "C30",
+      "patient_context": {
+        "external_id": "C30",
+        "age_years": 9,
+        "weight_kg": 31,
+        "epilepsy_type": "focal",
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Carbamazepine; age 9; medicine taken: almost never misses a dose; seizures: none; side effects: rash; rash: blisters; dose status: still increasing"
+    },
+    {
+      "case_id": "C31",
+      "patient_context": {
+        "external_id": "C31",
+        "age_years": 5,
+        "weight_kg": 18,
+        "epilepsy_type": "generalized",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 1,
+        "Q5_unit": "per_month",
+        "Q7": "yes",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Levetiracetam; age 5; medicine taken: almost never misses a dose; seizures: yes (1 per month); side effects: none; dose status: still increasing"
+    },
+    {
+      "case_id": "C32",
+      "patient_context": {
+        "external_id": "C32",
+        "age_years": 16,
+        "weight_kg": 64,
+        "epilepsy_type": "focal",
+        "medication": "brivaracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": "lacosamide"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10b_impact": "big_wants_change",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Brivaracetam; age 16; medicine taken: almost never misses a dose; seizures: none; side effects: irritability; impact: a big impact \u2014 family would like a change; dose status: still increasing; note: approved switch option = Lacosamide"
+    },
+    {
+      "case_id": "C33",
+      "patient_context": {
+        "external_id": "C33",
+        "age_years": 10,
+        "weight_kg": 33,
+        "epilepsy_type": "focal",
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": "valproic_acid"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10b_impact": "medium_big",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Topiramate; age 10; medicine taken: almost never misses a dose; seizures: none; side effects: behavior; impact: a lot of impact (still tolerable); dose status: at goal; note: approved switch option = Valproic Acid"
+    },
+    {
+      "case_id": "C34",
+      "patient_context": {
+        "external_id": "C34",
+        "age_years": 12,
+        "weight_kg": 46,
+        "epilepsy_type": "focal",
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 3,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "big_wants_change",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Carbamazepine; age 12; medicine taken: almost never misses a dose; seizures: yes (3 per week); side effects: dizziness; impact: a big impact \u2014 family would like a change; dose status: still increasing"
+    },
+    {
+      "case_id": "C35",
+      "patient_context": {
+        "external_id": "C35",
+        "age_years": 14,
+        "weight_kg": 55,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q10a": "still_increasing",
+        "Q12": "different_medicine"
+      },
+      "summary": "Medication: Lamotrigine; age 14; medicine taken: almost never misses a dose; seizures: yes (2 per week); side effects: none; dose status: still increasing; family preference: would like to try a different medicine"
+    },
+    {
+      "case_id": "C36",
+      "patient_context": {
+        "external_id": "C36",
+        "age_years": 9,
+        "weight_kg": 30,
+        "epilepsy_type": "focal",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "sometimes",
+        "Q3": "yes",
+        "Q7": "yes",
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Valproic Acid; age 9; medicine taken: sometimes misses doses; seizures: yes (1 per week); side effects: none; dose status: still increasing"
+    },
+    {
+      "case_id": "C37",
+      "patient_context": {
+        "external_id": "C37",
+        "age_years": 8,
+        "weight_kg": 27,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Oxcarbazepine; age 8; medicine taken: almost never misses a dose; seizures: yes (2 per week); side effects: none; dose status: at goal"
+    },
+    {
+      "case_id": "C38",
+      "patient_context": {
+        "external_id": "C38",
+        "age_years": 13,
+        "weight_kg": 48,
+        "epilepsy_type": "focal",
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": false,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Zonisamide; age 13; medicine taken: almost never misses a dose; seizures: none; side effects: none; dose status: still increasing; note: physician has NOT approved a further increase"
+    },
+    {
+      "case_id": "C39",
+      "patient_context": {
+        "external_id": "C39",
+        "age_years": 7,
+        "weight_kg": 25,
+        "epilepsy_type": "absence",
+        "medication": "ethosuximide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10b_impact": "small",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Ethosuximide; age 7; medicine taken: almost never misses a dose; seizures: none; side effects: nausea; impact: a small impact; dose status: still increasing"
+    },
+    {
+      "case_id": "C40",
+      "patient_context": {
+        "external_id": "C40",
+        "age_years": 15,
+        "weight_kg": 58,
+        "epilepsy_type": "focal",
+        "medication": "lacosamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "small",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Lacosamide; age 15; medicine taken: almost never misses a dose; seizures: yes (1 per week); side effects: sleepiness; impact: a small impact; dose status: still increasing"
+    },
+    {
+      "case_id": "C41",
+      "patient_context": {
+        "external_id": "C41",
+        "age_years": 6,
+        "weight_kg": 20,
+        "epilepsy_type": "generalized",
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Clobazam; age 6; medicine taken: almost never misses a dose; seizures: yes (2 per week); side effects: none; dose status: still increasing"
+    },
+    {
+      "case_id": "C42",
+      "patient_context": {
+        "external_id": "C42",
+        "age_years": 11,
+        "weight_kg": 40,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "small",
+        "Q10b_impact": "small",
+        "Q10a": "at_goal"
+      },
+      "summary": "Medication: Lamotrigine; age 11; medicine taken: almost never misses a dose; seizures: none; side effects: rash; rash: small; impact: a small impact; dose status: at goal"
+    },
+    {
+      "case_id": "C43",
+      "patient_context": {
+        "external_id": "C43",
+        "age_years": 10,
+        "weight_kg": 34,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q11": "worse",
+        "Q12": "no_preference"
+      },
+      "summary": "Medication: Levetiracetam; age 10; medicine taken: almost never misses a dose; seizures: none; side effects: none; dose status: at goal; overall: worse; family preference: no strong preference (defers to the team)"
+    },
+    {
+      "case_id": "C44",
+      "patient_context": {
+        "external_id": "C44",
+        "age_years": 9,
+        "weight_kg": 31,
+        "epilepsy_type": "focal",
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "stopped",
+        "Q3": "yes",
+        "Q7": "no",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Carbamazepine; age 9; medicine taken: has stopped taking it; seizures: yes; doses were missed beforehand; side effects: none; dose status: still increasing"
+    },
+    {
+      "case_id": "C45",
+      "patient_context": {
+        "external_id": "C45",
+        "age_years": 13,
+        "weight_kg": 47,
+        "epilepsy_type": "focal",
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10b_impact": "big_wants_change",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Topiramate; age 13; medicine taken: almost never misses a dose; seizures: none; side effects: behavior; impact: a big impact \u2014 family would like a change; dose status: still increasing"
+    },
+    {
+      "case_id": "C46",
+      "patient_context": {
+        "external_id": "C46",
+        "age_years": 12,
+        "weight_kg": 44,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q6": "new_type",
+        "Q7": "yes",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Oxcarbazepine; age 12; medicine taken: almost never misses a dose; seizures: yes (1 per week); one part of the body / unusual movements; side effects: none; dose status: still increasing"
+    },
+    {
+      "case_id": "C47",
+      "patient_context": {
+        "external_id": "C47",
+        "age_years": 8,
+        "weight_kg": 28,
+        "epilepsy_type": "focal",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "medium_big",
+        "Q10a": "still_increasing"
+      },
+      "summary": "Medication: Valproic Acid; age 8; medicine taken: almost never misses a dose; seizures: yes (2 per week); side effects: sleepiness; impact: a lot of impact (still tolerable); dose status: still increasing"
+    },
+    {
+      "case_id": "C48",
+      "patient_context": {
+        "external_id": "C48",
+        "age_years": 11,
+        "weight_kg": 42,
+        "epilepsy_type": "focal",
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency_per_day": 2,
+        "can_increase_dose": true,
+        "can_switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "not_sure",
+        "Q11": "not_sure"
+      },
+      "summary": "Medication: Zonisamide; age 11; medicine taken: almost never misses a dose; seizures: none; side effects: none; dose status: not sure; overall: not sure"
+    }
+  ]
+}

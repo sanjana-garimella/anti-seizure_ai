@@ -1,0 +1,107 @@
+<svg viewBox="0 0 900 980" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="900" height="980" fill="#ffffff"/>
+
+  <!-- TITLE -->
+  <text x="450" y="46" text-anchor="middle" font-size="21" font-weight="700" fill="#1a2e4a" letter-spacing="0.3">Choosing Next Steps for Seizure Medication</text>
+  <line x1="110" y1="56" x2="790" y2="56" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- BOX 1: Context -->
+  <rect x="175" y="72" width="550" height="90" rx="14" ry="14" fill="#e8f1fb" stroke="#92b8e0" stroke-width="1.8"/>
+  <text x="450" y="106" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1e3a5f">Your child is still having seizures</text>
+  <text x="450" y="125" text-anchor="middle" font-size="13" fill="#2c4f7c">and is already experiencing some side effects</text>
+  <text x="450" y="144" text-anchor="middle" font-size="13" fill="#2c4f7c">from their current medication.</text>
+
+  <!-- Arrow 1 -->
+  <line x1="450" y1="162" x2="450" y2="194" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="450,202 443,190 457,190" fill="#94a3b8"/>
+
+  <!-- BOX 2: Decision Prompt -->
+  <rect x="148" y="202" width="604" height="106" rx="14" ry="14" fill="#dbeafe" stroke="#6ea8d8" stroke-width="1.8"/>
+  <text x="450" y="234" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1e3a5f">You know your child best. What feels right to you?</text>
+  <line x1="200" y1="244" x2="700" y2="244" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="450" y="266" text-anchor="middle" font-size="13" fill="#1e3a5f">Would you be open to increasing the dose,</text>
+  <text x="450" y="285" text-anchor="middle" font-size="13" fill="#2c4f7c">knowing side effects may worsen?</text>
+
+  <!-- Split arrow line -->
+  <line x1="450" y1="308" x2="450" y2="334" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="220" y1="334" x2="680" y2="334" stroke="#94a3b8" stroke-width="2"/>
+  <!-- Left arm -->
+  <line x1="220" y1="334" x2="220" y2="366" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="220,374 213,362 227,362" fill="#94a3b8"/>
+  <!-- Right arm -->
+  <line x1="680" y1="334" x2="680" y2="366" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="680,374 673,362 687,362" fill="#94a3b8"/>
+
+  <!-- YES pill -->
+  <rect x="170" y="316" width="44" height="22" rx="6" fill="#d1fae5" stroke="#6ee7b7" stroke-width="1.3"/>
+  <text x="192" y="331" text-anchor="middle" font-size="11.5" font-weight="700" fill="#065f46">YES</text>
+
+  <!-- NO pill -->
+  <rect x="658" y="316" width="44" height="22" rx="6" fill="#fff3e0" stroke="#fdba74" stroke-width="1.3"/>
+  <text x="680" y="331" text-anchor="middle" font-size="11.5" font-weight="700" fill="#9a3412">NO</text>
+
+  <!-- LEFT BRANCH: Green Decision -->
+  <rect x="50" y="374" width="336" height="80" rx="13" ry="13" fill="#d1fae5" stroke="#6ee7b7" stroke-width="1.8"/>
+  <circle cx="86" cy="414" r="14" fill="#a7f3d0"/>
+  <polyline points="79,414 84,420 95,407" fill="none" stroke="#065f46" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="218" y="404" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">Yes — side effects feel manageable</text>
+  <text x="218" y="422" text-anchor="middle" font-size="13" font-weight="700" fill="#047857">enough to try a higher dose</text>
+  <text x="218" y="441" text-anchor="middle" font-size="12" fill="#047857">I am open to adjusting the medication.</text>
+
+  <!-- Arrow left down -->
+  <line x1="218" y1="454" x2="218" y2="488" stroke="#6ee7b7" stroke-width="2"/>
+  <polygon points="218,496 211,484 225,484" fill="#6ee7b7"/>
+
+  <!-- LEFT BRANCH: Green Outcome -->
+  <rect x="50" y="496" width="336" height="138" rx="13" ry="13" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.8"/>
+  <text x="218" y="524" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">Option: Increase current</text>
+  <text x="218" y="542" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">medication dose</text>
+  <line x1="80" y1="552" x2="356" y2="552" stroke="#a7f3d0" stroke-width="1.2"/>
+  <text x="218" y="571" text-anchor="middle" font-size="12" fill="#047857">May improve seizure control,</text>
+  <text x="218" y="589" text-anchor="middle" font-size="12" fill="#047857">but side effects could worsen.</text>
+  <text x="218" y="612" text-anchor="middle" font-size="11.5" fill="#065f46" font-style="italic">Talk with your care team about</text>
+  <text x="218" y="628" text-anchor="middle" font-size="11.5" fill="#065f46" font-style="italic">which side effects to watch for.</text>
+
+  <!-- RIGHT BRANCH: Orange Decision -->
+  <rect x="514" y="374" width="336" height="80" rx="13" ry="13" fill="#fff3e0" stroke="#fdba74" stroke-width="1.8"/>
+  <polygon points="680,395 668,416 692,416" fill="#fed7aa" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="680" y="412" text-anchor="middle" font-size="10" font-weight="700" fill="#9a3412">!</text>
+  <text x="682" y="403" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3412">No — this feels like the maximum</text>
+  <text x="682" y="421" text-anchor="middle" font-size="13" font-weight="700" fill="#c2410c">dose for my child</text>
+  <text x="682" y="441" text-anchor="middle" font-size="12" fill="#c2410c">I do not want to increase further.</text>
+
+  <!-- Arrow right down -->
+  <line x1="682" y1="454" x2="682" y2="488" stroke="#fdba74" stroke-width="2"/>
+  <polygon points="682,496 675,484 689,484" fill="#fdba74"/>
+
+  <!-- RIGHT BRANCH: Orange Outcome -->
+  <rect x="514" y="496" width="336" height="200" rx="13" ry="13" fill="#fff8f0" stroke="#fdba74" stroke-width="1.8"/>
+  <text x="682" y="524" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3412">Option: Keep current dose</text>
+  <text x="682" y="542" text-anchor="middle" font-size="13" font-weight="700" fill="#9a3412">and add a second medication</text>
+  <line x1="540" y1="552" x2="824" y2="552" stroke="#fde68a" stroke-width="1.2"/>
+  <text x="682" y="572" text-anchor="middle" font-size="12" font-weight="600" fill="#92400e">Benefits of this approach:</text>
+  <circle cx="530" cy="593" r="4" fill="#fb923c"/>
+  <text x="542" y="597" font-size="11.5" fill="#92400e">Two medicines with different mechanisms</text>
+  <text x="542" y="613" font-size="11.5" fill="#92400e">may control seizures better than one</text>
+  <text x="542" y="629" font-size="11.5" fill="#92400e">alone (complementary pharmacology)</text>
+  <circle cx="530" cy="651" r="4" fill="#fb923c"/>
+  <text x="542" y="655" font-size="11.5" fill="#92400e">Lower doses of each medication</text>
+  <text x="542" y="671" font-size="11.5" fill="#92400e">may help reduce side effects</text>
+
+  <!-- MERGE LINES to bottom box -->
+  <line x1="218" y1="634" x2="218" y2="802" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="682" y1="696" x2="682" y2="802" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="218" y1="802" x2="682" y2="802" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <line x1="450" y1="802" x2="450" y2="836" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="450,844 443,832 457,832" fill="#94a3b8"/>
+
+  <!-- BOTTOM shared box -->
+  <rect x="155" y="844" width="590" height="108" rx="14" ry="14" fill="#f0f4ff" stroke="#a5b4fc" stroke-width="1.8"/>
+  <text x="450" y="872" text-anchor="middle" font-size="13.5" font-weight="700" fill="#312e81">Your care team is here to support you</text>
+  <text x="450" y="893" text-anchor="middle" font-size="12.5" fill="#3730a3">Either path is a valid choice. There is no single right answer —</text>
+  <text x="450" y="912" text-anchor="middle" font-size="12.5" fill="#3730a3">what matters most is what feels right for your child and family.</text>
+  <text x="450" y="935" text-anchor="middle" font-size="12" fill="#4f46e5" font-style="italic">Please share any questions or concerns with your neurologist.</text>
+
+</svg>

@@ -1,0 +1,130 @@
+<svg viewBox="0 0 680 860" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="680" height="860" fill="#ffffff"/>
+
+  <!-- TITLE -->
+  <text x="340" y="44" text-anchor="middle" font-size="20" font-weight="700" fill="#1a2e4a">How Are the Side Effects Affecting Your Child?</text>
+  <text x="340" y="66" text-anchor="middle" font-size="13" fill="#475569">Choose the level that best describes your experience</text>
+  <line x1="60" y1="78" x2="620" y2="78" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!--
+    Bar runs y=96 to y=726 (total = 630px)
+    Segment heights (bottom to top = level 0 to 5):
+      Level 0: 185px  (y=541–726)
+      Level 1: 160px  (y=381–541)
+      Level 2:  90px  (y=291–381)
+      Level 3:  85px  (y=206–291)
+      Level 4:  65px  (y=141–206)
+      Level 5:  45px  (y=96–141)
+      Total:   630px
+  -->
+
+  <!-- Segment 0 – No side effects – deep green -->
+  <rect x="240" y="541" width="60" height="185" fill="#22c55e"/>
+  <!-- Segment 1 – Small impact – light green -->
+  <rect x="240" y="381" width="60" height="160" fill="#86efac"/>
+  <!-- Segment 2 – Medium, tolerable – yellow -->
+  <rect x="240" y="291" width="60" height="90"  fill="#fde68a"/>
+  <!-- Segment 3 – Medium, can't increase – amber -->
+  <rect x="240" y="206" width="60" height="85"  fill="#fb923c"/>
+  <!-- Segment 4 – Big impact, decrease – orange-red -->
+  <rect x="240" y="141" width="60" height="65"  fill="#ef4444"/>
+  <!-- Segment 5 – Always bad, switch – deep red -->
+  <rect x="240" y="96"  width="60" height="45"  fill="#991b1b"/>
+
+  <!-- Bar border -->
+  <rect x="240" y="96" width="60" height="630" rx="6" ry="6" fill="none" stroke="#94a3b8" stroke-width="2"/>
+
+  <!-- Dividers -->
+  <line x1="240" y1="141" x2="300" y2="141" stroke="#ffffff" stroke-width="2"/>
+  <line x1="240" y1="206" x2="300" y2="206" stroke="#ffffff" stroke-width="2"/>
+  <line x1="240" y1="291" x2="300" y2="291" stroke="#ffffff" stroke-width="2"/>
+  <line x1="240" y1="381" x2="300" y2="381" stroke="#ffffff" stroke-width="2"/>
+  <line x1="240" y1="541" x2="300" y2="541" stroke="#ffffff" stroke-width="2"/>
+
+  <!-- LEVEL NUMBERS on bar -->
+  <!-- Level 5 center: 96 + 45/2 = 118 -->
+  <text x="270" y="124"  text-anchor="middle" font-size="14" font-weight="800" fill="#ffffff">5</text>
+  <!-- Level 4 center: 141 + 65/2 = 173 -->
+  <text x="270" y="179"  text-anchor="middle" font-size="15" font-weight="800" fill="#ffffff">4</text>
+  <!-- Level 3 center: 206 + 85/2 = 248 -->
+  <text x="270" y="254"  text-anchor="middle" font-size="16" font-weight="800" fill="#ffffff">3</text>
+  <!-- Level 2 center: 291 + 90/2 = 336 -->
+  <text x="270" y="342"  text-anchor="middle" font-size="16" font-weight="800" fill="#78350f">2</text>
+  <!-- Level 1 center: 381 + 160/2 = 461 -->
+  <text x="270" y="467"  text-anchor="middle" font-size="18" font-weight="800" fill="#14532d">1</text>
+  <!-- Level 0 center: 541 + 185/2 = 633 -->
+  <text x="270" y="639"  text-anchor="middle" font-size="20" font-weight="800" fill="#14532d">0</text>
+
+  <!-- CONNECTOR LINES from bar to label cards -->
+  <line x1="300" y1="118"  x2="330" y2="118"  stroke="#991b1b" stroke-width="1.8"/>
+  <line x1="300" y1="173"  x2="330" y2="173"  stroke="#b91c1c" stroke-width="1.8"/>
+  <line x1="300" y1="248"  x2="330" y2="248"  stroke="#c2410c" stroke-width="1.8"/>
+  <line x1="300" y1="336"  x2="330" y2="336"  stroke="#ca8a04" stroke-width="1.8"/>
+  <line x1="300" y1="461"  x2="330" y2="461"  stroke="#16a34a" stroke-width="1.8"/>
+  <line x1="300" y1="633"  x2="330" y2="633"  stroke="#22c55e" stroke-width="1.8"/>
+
+  <!-- LABEL CARDS -->
+
+  <!-- Level 5 — y=96, height=46 -->
+  <rect x="330" y="96" width="290" height="46" rx="8" ry="8" fill="#fff1f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="346" y="114" font-size="11.5" font-weight="800" fill="#991b1b">Level 5 — Not a fit for my child.</text>
+  <text x="346" y="132" font-size="11" fill="#7f1d1d">I prefer switching to a different medication.</text>
+
+  <!-- Level 4 — y=143, height=60 -->
+  <rect x="330" y="143" width="290" height="60" rx="8" ry="8" fill="#fff5f5" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="346" y="161" font-size="12" font-weight="800" fill="#b91c1c">Level 4 — </text>
+  <text x="413" y="161" font-size="12" fill="#7f1d1d">Big impact.</text>
+  <text x="346" y="179" font-size="11.5" fill="#b91c1c">We probably need to decrease</text>
+  <text x="346" y="195" font-size="11.5" fill="#b91c1c">the current dose.</text>
+
+  <!-- Level 3 — y=208, height=78 -->
+  <rect x="330" y="208" width="290" height="78" rx="8" ry="8" fill="#fff8f0" stroke="#fdba74" stroke-width="1.5"/>
+  <text x="346" y="228" font-size="12" font-weight="800" fill="#c2410c">Level 3 — </text>
+  <text x="413" y="228" font-size="12" fill="#92400e">Medium impact.</text>
+  <text x="346" y="246" font-size="11.5" fill="#c2410c">We probably cannot increase</text>
+  <text x="346" y="263" font-size="11.5" fill="#c2410c">the dose further.</text>
+
+  <!-- Level 2 — y=296, height=78 (smaller card to match smaller segment) -->
+  <rect x="330" y="296" width="290" height="78" rx="8" ry="8" fill="#fefce8" stroke="#fde68a" stroke-width="1.5"/>
+  <text x="346" y="316" font-size="12" font-weight="800" fill="#92400e">Level 2 — </text>
+  <text x="413" y="316" font-size="12" fill="#78350f">Medium impact, but tolerable.</text>
+  <text x="346" y="334" font-size="11.5" fill="#92400e">The dose could probably be</text>
+  <text x="346" y="351" font-size="11.5" fill="#92400e">increased if needed.</text>
+
+  <!-- Level 1 — y=389, height=144 -->
+  <rect x="330" y="389" width="290" height="144" rx="8" ry="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text x="346" y="412" font-size="13" font-weight="800" fill="#15803d">Level 1 — </text>
+  <text x="420" y="412" font-size="13" fill="#166534">Small impact.</text>
+  <text x="346" y="431" font-size="12" fill="#15803d">Noticeable, but not significantly</text>
+  <text x="346" y="449" font-size="12" fill="#15803d">affecting daily life.</text>
+  <line x1="346" y1="463" x2="606" y2="463" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="346" y="480" font-size="11.5" fill="#166534" font-style="italic">Most children and families</text>
+  <text x="346" y="497" font-size="11.5" fill="#166534" font-style="italic">fall within levels 0–1.</text>
+
+  <!-- Level 0 — y=549, height=166 -->
+  <rect x="330" y="549" width="290" height="166" rx="8" ry="8" fill="#f0fdf4" stroke="#6ee7b7" stroke-width="1.5"/>
+  <text x="346" y="574" font-size="14" font-weight="800" fill="#15803d">Level 0 — </text>
+  <text x="430" y="574" font-size="14" fill="#166534">No side effects.</text>
+  <text x="346" y="595" font-size="12.5" fill="#15803d">My child is tolerating the</text>
+  <text x="346" y="613" font-size="12.5" fill="#15803d">medication very well.</text>
+  <line x1="346" y1="627" x2="606" y2="627" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="346" y="645" font-size="11.5" fill="#166534" font-style="italic">Most children and families</text>
+  <text x="346" y="663" font-size="11.5" fill="#166534" font-style="italic">fall within levels 0–1.</text>
+
+  <!-- DIRECTION ARROWS -->
+  <text x="200" y="112" text-anchor="middle" font-size="10.5" fill="#991b1b" font-weight="600">More severe</text>
+  <line x1="205" y1="90" x2="205" y2="103" stroke="#991b1b" stroke-width="1.5"/>
+  <polygon points="205,84 200,96 210,96" fill="#991b1b"/>
+
+  <text x="200" y="744" text-anchor="middle" font-size="10.5" fill="#15803d" font-weight="600">Better tolerated</text>
+  <line x1="205" y1="748" x2="205" y2="761" stroke="#15803d" stroke-width="1.5"/>
+  <polygon points="205,768 200,756 210,756" fill="#15803d"/>
+
+  <!-- Footer -->
+  <line x1="60" y1="776" x2="620" y2="776" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="340" y="800" text-anchor="middle" font-size="12" fill="#64748b" font-style="italic">Use this scale to help guide the conversation with your child's neurologist.</text>
+  <text x="340" y="818" text-anchor="middle" font-size="12" fill="#64748b" font-style="italic">Your input directly shapes the treatment plan.</text>
+
+</svg>

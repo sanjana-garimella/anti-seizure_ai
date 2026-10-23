@@ -1,0 +1,387 @@
+{
+  "_README": "Breakthrough-seizure decision tables transcribed from Dr. Barbour's 2026-06-25 feedback; reconciled 2026-07-08 with revised breakthrough-nonurgent/urgent/emergent_decision_tables xlsx (breakthrough-nonurgent/urgent/emergent_decision_tables.xlsx). DRAFT - verified:false, pending PI sign-off (NEEDS_PI_SIGNOFF.md). The engine consults this for BREAKTHROUGH patients ONLY when the 6-level side-effect scale captured a level (side_effect_level 0-5); legacy 3-level inputs keep the existing rules R5b-R13 (gold cases unaffected). Each cell: category (engine RecommendationCategory token), optional at_max_category (used when the medicine is already at the dose ceiling), pace, dosing (offer uneven/TID dosing switch), labs (order drug labs), urgent (add an urgent flag for physician), safety (withhold family message + urgent review), followup_weeks, and `steps` = the verbatim action list for the clinician. Multi-step dose instructions (e.g. 'end at +1 increase', 'make 1-2 increases') are surfaced as guidance; the engine does not compute the exact dose number (see NEEDS_PI_SIGNOFF).",
+  "verified": false,
+  "source": "clinician (Barbour 2026-06-25; reconciled 2026-07-08)",
+  "_levels": [
+    "L0",
+    "L1",
+    "L2",
+    "L3 medium-a-lot",
+    "L4 big",
+    "L5 not-a-fit"
+  ],
+  "tables": {
+    "non_urgent": {
+      "titrating": [
+        {
+          "category": "no_change",
+          "pace": "standard",
+          "followup_weeks": 4,
+          "steps": "Continue titration on schedule; follow up in 4 weeks"
+        },
+        {
+          "category": "no_change",
+          "pace": "standard",
+          "followup_weeks": 4,
+          "steps": "Continue titration on schedule; follow up in 4 weeks"
+        },
+        {
+          "category": "no_change",
+          "pace": "standard",
+          "followup_weeks": 4,
+          "steps": "Continue titration on schedule; follow up in 4 weeks"
+        },
+        {
+          "category": "hold",
+          "dosing": true,
+          "labs": true,
+          "followup_weeks": 4,
+          "steps": "Switch dosing (uneven/TID/wait); weeks 1-2 stay at current dose, after week 2 make 1 dose increase; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "add_medication",
+          "labs": true,
+          "followup_weeks": 4,
+          "steps": "Lower dose; add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "switch_medication",
+          "followup_weeks": 4,
+          "steps": "Switch medication; follow up 4 weeks"
+        }
+      ],
+      "holding": [
+        {
+          "category": "no_change",
+          "followup_weeks": 4,
+          "steps": "Stay at current dose; follow up 4 weeks"
+        },
+        {
+          "category": "escalate",
+          "followup_weeks": 4,
+          "steps": "Make 1 dose increase; follow up 4 weeks"
+        },
+        {
+          "category": "escalate",
+          "followup_weeks": 4,
+          "steps": "Make 1 dose increase; follow up 4 weeks"
+        },
+        {
+          "category": "hold",
+          "dosing": true,
+          "labs": true,
+          "followup_weeks": 4,
+          "steps": "Switch dosing (uneven/TID/wait); weeks 1-2 stay, after week 2 make 1 dose increase; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "add_medication",
+          "labs": true,
+          "followup_weeks": 4,
+          "steps": "Lower dose; add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "switch_medication",
+          "followup_weeks": 4,
+          "steps": "Switch medication; follow up 4 weeks"
+        }
+      ],
+      "steady": [
+        {
+          "category": "escalate",
+          "followup_weeks": 4,
+          "steps": "Increase dose; follow up 4 weeks"
+        },
+        {
+          "category": "escalate",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks"
+        },
+        {
+          "category": "escalate",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks"
+        },
+        {
+          "category": "escalate",
+          "dosing": true,
+          "labs": true,
+          "followup_weeks": 4,
+          "steps": "Switch dosing (uneven/TID/wait); make 1 dose increase; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "add_medication",
+          "labs": true,
+          "followup_weeks": 4,
+          "steps": "Lower dose; add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "switch_medication",
+          "followup_weeks": 4,
+          "steps": "Switch medication; follow up 4 weeks"
+        }
+      ]
+    },
+    "urgent": {
+      "titrating": [
+        {
+          "category": "escalate",
+          "pace": "faster",
+          "at_max_category": "no_change",
+          "followup_weeks": 4,
+          "steps": "Quicken titration to every 3 days, end 1 dose increase higher; follow up 4 weeks; if at max: no change"
+        },
+        {
+          "category": "escalate",
+          "pace": "faster",
+          "at_max_category": "no_change",
+          "followup_weeks": 4,
+          "steps": "Quicken titration to every 3 days, end 1 dose increase higher; follow up 4 weeks; if at max: no change"
+        },
+        {
+          "category": "escalate",
+          "pace": "faster",
+          "at_max_category": "no_change",
+          "followup_weeks": 4,
+          "steps": "Quicken titration to every 3 days, end 1 dose increase higher; follow up 4 weeks; if at max: no change"
+        },
+        {
+          "category": "escalate",
+          "dosing": true,
+          "labs": true,
+          "at_max_category": "no_change",
+          "followup_weeks": 4,
+          "steps": "Switch dosing (uneven/TID/wait/add a second medication); end 1 dose increase higher; follow up 4 weeks; order labs; if at max: no change"
+        },
+        {
+          "category": "add_medication",
+          "labs": true,
+          "followup_weeks": 4,
+          "steps": "Lower dose; add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "switch_medication",
+          "followup_weeks": 4,
+          "steps": "Switch medication; follow up 4 weeks"
+        }
+      ],
+      "holding": [
+        {
+          "category": "escalate",
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks; if max before 2 increases: make 1 increase and stop at max; if max before 1 increase: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks; if max before 2 increases: make 1 increase and stop at max; if max before 1 increase: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks; if max before 2 increases: make 1 increase and stop at max; if max before 1 increase: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "dosing": true,
+          "labs": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Switch dosing (uneven/TID/wait/add a second medication); make 2 dose increases; follow up 4 weeks; order labs; if max before 2: make 1 and stop at max; if max before 1: add a second medication"
+        },
+        {
+          "category": "add_medication",
+          "labs": true,
+          "followup_weeks": 4,
+          "steps": "Lower dose; add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "switch_medication",
+          "followup_weeks": 4,
+          "steps": "Switch medication; follow up 4 weeks"
+        }
+      ],
+      "steady": [
+        {
+          "category": "escalate",
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks; if max before 2 increases: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks; if max before 2 increases: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks; if max before 2 increases: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "dosing": true,
+          "labs": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Switch dosing (uneven/TID/wait/add a second medication); make 2 dose increases; follow up 4 weeks; order labs; if max before 2: add a second medication"
+        },
+        {
+          "category": "add_medication",
+          "labs": true,
+          "followup_weeks": 4,
+          "steps": "Lower dose; add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "switch_medication",
+          "followup_weeks": 4,
+          "steps": "Switch medication; follow up 4 weeks"
+        }
+      ]
+    },
+    "emergent": {
+      "titrating": [
+        {
+          "category": "escalate",
+          "pace": "faster",
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Quicken titration to every 3 days, end 2 dose increases higher; follow up 4 weeks; if max before 2: make 1 increase and stop at max; if max before 1: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "pace": "faster",
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Quicken titration to every 3 days, end 2 dose increases higher; follow up 4 weeks; if max before 2: make 1 increase and stop at max; if max before 1: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "pace": "faster",
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Quicken titration to every 3 days, end 2 dose increases higher; follow up 4 weeks; if max before 2: make 1 increase and stop at max; if max before 1: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "dosing": true,
+          "labs": true,
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Switch dosing (uneven/TID/wait/add a second medication); end 2 dose increases higher; follow up 4 weeks; order labs; if max before 2: make 1 and stop at max; if max before 1: add a second medication"
+        },
+        {
+          "category": "add_medication",
+          "labs": true,
+          "urgent": true,
+          "followup_weeks": 4,
+          "steps": "Week 1 make 1 dose decrease; after week 1 make a second dose decrease; add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "switch_medication",
+          "safety": true,
+          "followup_weeks": 4,
+          "steps": "Switch medication; schedule an urgent visit / phone call with the doctor"
+        }
+      ],
+      "holding": [
+        {
+          "category": "escalate",
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks; if max before 2: make 1 increase and stop at max; if max before 1: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks; if max before 2: make 1 increase and stop at max; if max before 1: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; follow up 4 weeks; if max before 2: make 1 increase and stop at max; if max before 1: add a second medication"
+        },
+        {
+          "category": "escalate",
+          "dosing": true,
+          "labs": true,
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "If able to do 1 dose increase without exceeding max: switch dosing (uneven/TID/wait/add a second medication) and end 2 dose increases higher; if max before 2: keep dose same or add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "add_medication",
+          "labs": true,
+          "urgent": true,
+          "followup_weeks": 4,
+          "steps": "Week 1 make 1 dose decrease; after week 1 make a second dose decrease; add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "switch_medication",
+          "safety": true,
+          "followup_weeks": 4,
+          "steps": "Switch medication; schedule an urgent visit / phone call with the doctor"
+        }
+      ],
+      "steady": [
+        {
+          "category": "escalate",
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; if this exceeds max: keep dose same or add a second medication; follow up 4 weeks"
+        },
+        {
+          "category": "escalate",
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; if this exceeds max: keep dose same or add a second medication; follow up 4 weeks"
+        },
+        {
+          "category": "escalate",
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "Make 2 dose increases; if this exceeds max: keep dose same or add a second medication; follow up 4 weeks"
+        },
+        {
+          "category": "escalate",
+          "dosing": true,
+          "labs": true,
+          "urgent": true,
+          "at_max_category": "add_medication",
+          "followup_weeks": 4,
+          "steps": "If able to do 2 dose increases without exceeding max: switch dosing + end 2 increases higher (slow); if at max after 1-2: keep same or add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "add_medication",
+          "labs": true,
+          "urgent": true,
+          "followup_weeks": 4,
+          "steps": "Week 1 make 1 dose decrease; after week 1 make a second dose decrease; add a second medication; follow up 4 weeks; order labs"
+        },
+        {
+          "category": "switch_medication",
+          "safety": true,
+          "followup_weeks": 4,
+          "steps": "Switch medication; schedule an urgent visit / phone call with the doctor"
+        }
+      ]
+    }
+  }
+}

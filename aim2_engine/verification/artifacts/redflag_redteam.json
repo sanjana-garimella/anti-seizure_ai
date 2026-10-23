@@ -1,0 +1,246 @@
+{
+  "artifact": "redflag_redteam_eval",
+  "status": "DRAFT eval (pre-human triage; advisory only)",
+  "n_cases": 20,
+  "misses": 3,
+  "must_catch_misses": 0,
+  "false_alarms": 0,
+  "assertion_layer_available": true,
+  "results": [
+    {
+      "text": "her rash is spreading all over her face",
+      "family": "clean",
+      "should_flag": true,
+      "must_catch": true,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "rash is spreading",
+        "rash+modifier"
+      ],
+      "note": "canonical SJS"
+    },
+    {
+      "text": "the seizure lasted 7 minutes",
+      "family": "clean",
+      "should_flag": true,
+      "must_catch": true,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "7 minutes"
+      ],
+      "note": "prolonged seizure"
+    },
+    {
+      "text": "we called 911 and went to the ER",
+      "family": "clean",
+      "should_flag": true,
+      "must_catch": true,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "went to the er",
+        "called 911"
+      ],
+      "note": "emergency care"
+    },
+    {
+      "text": "he was unresponsive afterward",
+      "family": "clean",
+      "should_flag": true,
+      "must_catch": true,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "unresponsive"
+      ],
+      "note": "unresponsive"
+    },
+    {
+      "text": "small rash on his arm, looks fine now",
+      "family": "clean",
+      "should_flag": false,
+      "must_catch": false,
+      "fired": false,
+      "status": "OK",
+      "evidence": [],
+      "note": "benign rash, no modifier"
+    },
+    {
+      "text": "eating and sleeping normally",
+      "family": "clean",
+      "should_flag": false,
+      "must_catch": false,
+      "fired": false,
+      "status": "OK",
+      "evidence": [],
+      "note": "reassurance"
+    },
+    {
+      "text": "no rash, no blistering, no peeling",
+      "family": "negation",
+      "should_flag": true,
+      "must_catch": false,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "blister",
+        "blistering",
+        "peeling"
+      ],
+      "note": "escalate-only: fires despite negation by design"
+    },
+    {
+      "text": "denies any trouble breathing",
+      "family": "negation",
+      "should_flag": true,
+      "must_catch": false,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "trouble breathing"
+      ],
+      "note": "escalate-only: fires despite negation by design"
+    },
+    {
+      "text": "she is no longer breathing well",
+      "family": "negation",
+      "should_flag": true,
+      "must_catch": false,
+      "fired": false,
+      "status": "MISS",
+      "evidence": [],
+      "note": "leak: 'no longer breathing well' has no matching danger term"
+    },
+    {
+      "text": "the siezure went on for 7 minutes",
+      "family": "typo",
+      "should_flag": true,
+      "must_catch": true,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "7 minutes"
+      ],
+      "note": "misspelled seizure, duration still there"
+    },
+    {
+      "text": "big rash blistring on her lips",
+      "family": "typo",
+      "should_flag": true,
+      "must_catch": false,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "big rash",
+        "rash+modifier"
+      ],
+      "note": "misspelled blistering"
+    },
+    {
+      "text": "rash spreadin fast and getting bigger",
+      "family": "typo",
+      "should_flag": true,
+      "must_catch": false,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "rash+modifier"
+      ],
+      "note": "dropped-g 'spreading'"
+    },
+    {
+      "text": "she has s.j.s per the ER",
+      "family": "spacing",
+      "should_flag": true,
+      "must_catch": false,
+      "fired": false,
+      "status": "MISS",
+      "evidence": [],
+      "note": "punctuated SJS"
+    },
+    {
+      "text": "b l i s t e r s forming on his mouth",
+      "family": "spacing",
+      "should_flag": true,
+      "must_catch": false,
+      "fired": false,
+      "status": "MISS",
+      "evidence": [],
+      "note": "spaced letters"
+    },
+    {
+      "text": "it went on for a good six minutes",
+      "family": "duration",
+      "should_flag": true,
+      "must_catch": true,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "six minutes"
+      ],
+      "note": "number-word duration"
+    },
+    {
+      "text": "about 6 or 7 min, maybe longer",
+      "family": "duration",
+      "should_flag": true,
+      "must_catch": true,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "7 min"
+      ],
+      "note": "range duration"
+    },
+    {
+      "text": "lasted only 30 seconds",
+      "family": "duration",
+      "should_flag": false,
+      "must_catch": false,
+      "fired": false,
+      "status": "OK",
+      "evidence": [],
+      "note": "short seizure, must NOT flag"
+    },
+    {
+      "text": "just a little blister on his lip",
+      "family": "understatement",
+      "should_flag": true,
+      "must_catch": false,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "blister",
+        "blister+modifier"
+      ],
+      "note": "blister downplayed"
+    },
+    {
+      "text": "tiny bit of skin peeling near his mouth",
+      "family": "understatement",
+      "should_flag": true,
+      "must_catch": false,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "peeling",
+        "peel+modifier"
+      ],
+      "note": "peeling downplayed"
+    },
+    {
+      "text": "my other child once had SJS, not this patient",
+      "family": "family",
+      "should_flag": true,
+      "must_catch": false,
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "SJS"
+      ],
+      "note": "fires (escalate-only); assertion layer flags someone-else as advisory"
+    }
+  ]
+}

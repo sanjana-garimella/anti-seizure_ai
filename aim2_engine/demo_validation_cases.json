@@ -1,0 +1,1577 @@
+{
+  "cases": [
+    {
+      "case_id": "A1",
+      "group": "Reported seizures, taking medicine well, no side effects",
+      "patient": {
+        "external_id": "A1 \u00b7 Keppra (val)",
+        "age": 8,
+        "weight": 30,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "sudden_jerks"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q6": "more",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "A2",
+      "group": "Reported seizures, taking medicine well, no side effects",
+      "patient": {
+        "external_id": "A2 \u00b7 Trileptal (val)",
+        "age": 11,
+        "weight": 38,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q6": "about_same",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "A3",
+      "group": "Reported seizures, taking medicine well, no side effects",
+      "patient": {
+        "external_id": "A3 \u00b7 Lamictal (val)",
+        "age": 14,
+        "weight": 55,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q6": "more",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "A4",
+      "group": "Reported seizures, taking medicine well, no side effects",
+      "patient": {
+        "external_id": "A4 \u00b7 Keppra (val)",
+        "age": 14,
+        "weight": 55,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": false,
+        "switch_to": "brivaracetam"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "A5",
+      "group": "Reported seizures, taking medicine well, no side effects",
+      "patient": {
+        "external_id": "A5 \u00b7 Topamax (val)",
+        "age": 12,
+        "weight": 44,
+        "epilepsy_type": "focal",
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": false,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "A6",
+      "group": "Reported seizures, taking medicine well, no side effects",
+      "patient": {
+        "external_id": "A6 \u00b7 Depakote (val)",
+        "age": 6,
+        "weight": 21,
+        "epilepsy_type": "generalized",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "A7",
+      "group": "Reported seizures, taking medicine well, no side effects",
+      "patient": {
+        "external_id": "A7 \u00b7 Vimpat (val)",
+        "age": 15,
+        "weight": 60,
+        "epilepsy_type": "focal",
+        "medication": "lacosamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 3,
+        "Q5_unit": "per_week",
+        "Q6": "more",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "A8",
+      "group": "Reported seizures, taking medicine well, no side effects",
+      "patient": {
+        "external_id": "A8 \u00b7 Onfi (val)",
+        "age": 6,
+        "weight": 19,
+        "epilepsy_type": "generalized",
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "whole_body"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "B1",
+      "group": "Reported seizures plus side effects",
+      "patient": {
+        "external_id": "B1 \u00b7 Trileptal (val)",
+        "age": 11,
+        "weight": 38,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "B2",
+      "group": "Reported seizures plus side effects",
+      "patient": {
+        "external_id": "B2 \u00b7 Depakote (val)",
+        "age": 11,
+        "weight": 40,
+        "epilepsy_type": "focal",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 4,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "B3",
+      "group": "Reported seizures plus side effects",
+      "patient": {
+        "external_id": "B3 \u00b7 Tegretol (val)",
+        "age": 13,
+        "weight": 50,
+        "epilepsy_type": "focal",
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": "oxcarbazepine"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 3,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "B4",
+      "group": "Reported seizures plus side effects",
+      "patient": {
+        "external_id": "B4 \u00b7 Topamax (val)",
+        "age": 13,
+        "weight": 47,
+        "epilepsy_type": "focal",
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10b_impact": "medium_big"
+      }
+    },
+    {
+      "case_id": "B5",
+      "group": "Reported seizures plus side effects",
+      "patient": {
+        "external_id": "B5 \u00b7 Keppra (val)",
+        "age": 9,
+        "weight": 31,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": "brivaracetam"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10b_impact": "medium_big"
+      }
+    },
+    {
+      "case_id": "B6",
+      "group": "Reported seizures plus side effects",
+      "patient": {
+        "external_id": "B6 \u00b7 Lamictal (val)",
+        "age": 13,
+        "weight": 48,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "B7",
+      "group": "Reported seizures plus side effects",
+      "patient": {
+        "external_id": "B7 \u00b7 Briviact (val)",
+        "age": 12,
+        "weight": 43,
+        "epilepsy_type": "focal",
+        "medication": "brivaracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": "lacosamide"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "C1",
+      "group": "Reported seizures with possible reasons (adherence / triggers)",
+      "patient": {
+        "external_id": "C1 \u00b7 Keppra (val)",
+        "age": 9,
+        "weight": 31,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "sometimes",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q2a": [
+          "hard_to_remember"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "no"
+      }
+    },
+    {
+      "case_id": "C2",
+      "group": "Reported seizures with possible reasons (adherence / triggers)",
+      "patient": {
+        "external_id": "C2 \u00b7 Trileptal (val)",
+        "age": 9,
+        "weight": 30,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "stopped",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q2a": [
+          "side_effects"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "no"
+      }
+    },
+    {
+      "case_id": "C3",
+      "group": "Reported seizures with possible reasons (adherence / triggers)",
+      "patient": {
+        "external_id": "C3 \u00b7 Tegretol (val)",
+        "age": 9,
+        "weight": 31,
+        "epilepsy_type": "focal",
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "stopped",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q2a": [
+          "cost"
+        ],
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "no"
+      }
+    },
+    {
+      "case_id": "C4",
+      "group": "Reported seizures with possible reasons (adherence / triggers)",
+      "patient": {
+        "external_id": "C4 \u00b7 Depakote (val)",
+        "age": 9,
+        "weight": 30,
+        "epilepsy_type": "focal",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "sometimes",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "C5",
+      "group": "Reported seizures with possible reasons (adherence / triggers)",
+      "patient": {
+        "external_id": "C5 \u00b7 Vimpat (val)",
+        "age": 14,
+        "weight": 54,
+        "epilepsy_type": "focal",
+        "medication": "lacosamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "sometimes",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "no"
+      }
+    },
+    {
+      "case_id": "C6",
+      "group": "Reported seizures with possible reasons (adherence / triggers)",
+      "patient": {
+        "external_id": "C6 \u00b7 Onfi (val)",
+        "age": 6,
+        "weight": 19,
+        "epilepsy_type": "generalized",
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "C7",
+      "group": "Reported seizures with possible reasons (adherence / triggers)",
+      "patient": {
+        "external_id": "C7 \u00b7 Lamictal (val)",
+        "age": 16,
+        "weight": 62,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q5": 2,
+        "Q5_unit": "per_month",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "D1",
+      "group": "Seizure-free, still increasing the dose",
+      "patient": {
+        "external_id": "D1 \u00b7 Keppra (val)",
+        "age": 10,
+        "weight": 35,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "D2",
+      "group": "Seizure-free, still increasing the dose",
+      "patient": {
+        "external_id": "D2 \u00b7 Lamictal (val)",
+        "age": 11,
+        "weight": 40,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "D3",
+      "group": "Seizure-free, still increasing the dose",
+      "patient": {
+        "external_id": "D3 \u00b7 Zarontin (val)",
+        "age": 8,
+        "weight": 28,
+        "epilepsy_type": "absence",
+        "medication": "ethosuximide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "D4",
+      "group": "Seizure-free, still increasing the dose",
+      "patient": {
+        "external_id": "D4 \u00b7 Briviact (val)",
+        "age": 12,
+        "weight": 43,
+        "epilepsy_type": "focal",
+        "medication": "brivaracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing"
+      }
+    },
+    {
+      "case_id": "D5",
+      "group": "Seizure-free, still increasing the dose",
+      "patient": {
+        "external_id": "D5 \u00b7 Zonegran (val)",
+        "age": 13,
+        "weight": 48,
+        "epilepsy_type": "focal",
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "E1",
+      "group": "Seizure-free with manageable side effects, still increasing",
+      "patient": {
+        "external_id": "E1 \u00b7 Keppra (val)",
+        "age": 10,
+        "weight": 34,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "sleepiness",
+          "irritability"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "E2",
+      "group": "Seizure-free with manageable side effects, still increasing",
+      "patient": {
+        "external_id": "E2 \u00b7 Zonegran (val)",
+        "age": 10,
+        "weight": 33,
+        "epilepsy_type": "focal",
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "E3",
+      "group": "Seizure-free with manageable side effects, still increasing",
+      "patient": {
+        "external_id": "E3 \u00b7 Depakote (val)",
+        "age": 8,
+        "weight": 27,
+        "epilepsy_type": "focal",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "E4",
+      "group": "Seizure-free with manageable side effects, still increasing",
+      "patient": {
+        "external_id": "E4 \u00b7 Trileptal (val)",
+        "age": 7,
+        "weight": 25,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "no_impact"
+      }
+    },
+    {
+      "case_id": "E5",
+      "group": "Seizure-free with manageable side effects, still increasing",
+      "patient": {
+        "external_id": "E5 \u00b7 Topamax (val)",
+        "age": 10,
+        "weight": 33,
+        "epilepsy_type": "focal",
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "F1",
+      "group": "Seizure-free with intolerable side effects",
+      "patient": {
+        "external_id": "F1 \u00b7 Lamictal (val)",
+        "age": 12,
+        "weight": 45,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": "levetiracetam"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "F2",
+      "group": "Seizure-free with intolerable side effects",
+      "patient": {
+        "external_id": "F2 \u00b7 Tegretol (val)",
+        "age": 14,
+        "weight": 52,
+        "epilepsy_type": "focal",
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": "oxcarbazepine"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "medium_big"
+      }
+    },
+    {
+      "case_id": "F3",
+      "group": "Seizure-free with intolerable side effects",
+      "patient": {
+        "external_id": "F3 \u00b7 Topamax (val)",
+        "age": 10,
+        "weight": 33,
+        "epilepsy_type": "focal",
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": "valproic_acid"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10b_impact": "medium_big"
+      }
+    },
+    {
+      "case_id": "F4",
+      "group": "Seizure-free with intolerable side effects",
+      "patient": {
+        "external_id": "F4 \u00b7 Zonegran (val)",
+        "age": 12,
+        "weight": 46,
+        "epilepsy_type": "focal",
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": "lacosamide"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "F5",
+      "group": "Seizure-free with intolerable side effects",
+      "patient": {
+        "external_id": "F5 \u00b7 Briviact (val)",
+        "age": 16,
+        "weight": 64,
+        "epilepsy_type": "focal",
+        "medication": "brivaracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": "lacosamide"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "G1",
+      "group": "Seizure-free, at the goal dose",
+      "patient": {
+        "external_id": "G1 \u00b7 Vimpat (val)",
+        "age": 15,
+        "weight": 60,
+        "epilepsy_type": "focal",
+        "medication": "lacosamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "G2",
+      "group": "Seizure-free, at the goal dose",
+      "patient": {
+        "external_id": "G2 \u00b7 Lamictal (val)",
+        "age": 16,
+        "weight": 62,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q11": "about_the_same"
+      }
+    },
+    {
+      "case_id": "G3",
+      "group": "Seizure-free, at the goal dose",
+      "patient": {
+        "external_id": "G3 \u00b7 Trileptal (val)",
+        "age": 7,
+        "weight": 25,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10b_impact": "no_impact"
+      }
+    },
+    {
+      "case_id": "G4",
+      "group": "Seizure-free, at the goal dose",
+      "patient": {
+        "external_id": "G4 \u00b7 Depakote (val)",
+        "age": 8,
+        "weight": 27,
+        "epilepsy_type": "focal",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "G5",
+      "group": "Seizure-free, at the goal dose",
+      "patient": {
+        "external_id": "G5 \u00b7 Zarontin (val)",
+        "age": 9,
+        "weight": 29,
+        "epilepsy_type": "absence",
+        "medication": "ethosuximide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal"
+      }
+    },
+    {
+      "case_id": "H1",
+      "group": "Safety symptoms reported",
+      "patient": {
+        "external_id": "H1 \u00b7 Lamictal (val)",
+        "age": 7,
+        "weight": 24,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters"
+      }
+    },
+    {
+      "case_id": "H2",
+      "group": "Safety symptoms reported",
+      "patient": {
+        "external_id": "H2 \u00b7 Tegretol (val)",
+        "age": 9,
+        "weight": 31,
+        "epilepsy_type": "focal",
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters"
+      }
+    },
+    {
+      "case_id": "H3",
+      "group": "Safety symptoms reported",
+      "patient": {
+        "external_id": "H3 \u00b7 Keppra (val)",
+        "age": 10,
+        "weight": 34,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "urgent_safety": [
+          "seizure_over_5_min"
+        ]
+      }
+    },
+    {
+      "case_id": "H4",
+      "group": "Safety symptoms reported",
+      "patient": {
+        "external_id": "H4 \u00b7 Depakote (val)",
+        "age": 6,
+        "weight": 21,
+        "epilepsy_type": "generalized",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "urgent_safety": [
+          "repeated_seizures"
+        ]
+      }
+    },
+    {
+      "case_id": "H5",
+      "group": "Safety symptoms reported",
+      "patient": {
+        "external_id": "H5 \u00b7 Trileptal (val)",
+        "age": 11,
+        "weight": 40,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "urgent_safety": [
+          "er_or_hospital",
+          "widespread_rash"
+        ]
+      }
+    },
+    {
+      "case_id": "H6",
+      "group": "Safety symptoms reported",
+      "patient": {
+        "external_id": "H6 \u00b7 Lamictal (val)",
+        "age": 11,
+        "weight": 40,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "small",
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "I1",
+      "group": "Limited or unclear information",
+      "patient": {
+        "external_id": "I1 \u00b7 Onfi (val)",
+        "age": 5,
+        "weight": 18,
+        "epilepsy_type": "generalized",
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "not_sure"
+      }
+    },
+    {
+      "case_id": "I2",
+      "group": "Limited or unclear information",
+      "patient": {
+        "external_id": "I2 \u00b7 Lamictal (val)",
+        "age": 11,
+        "weight": 41,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "not_sure"
+      }
+    },
+    {
+      "case_id": "I3",
+      "group": "Limited or unclear information",
+      "patient": {
+        "external_id": "I3 \u00b7 Zonegran (val)",
+        "age": 11,
+        "weight": 42,
+        "epilepsy_type": "focal",
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "not_sure"
+      }
+    },
+    {
+      "case_id": "I4",
+      "group": "Limited or unclear information",
+      "patient": {
+        "external_id": "I4 \u00b7 Keppra (val)",
+        "age": 8,
+        "weight": 30,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "not_sure",
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "I5",
+      "group": "Limited or unclear information",
+      "patient": {
+        "external_id": "I5 \u00b7 Topamax (val)",
+        "age": 12,
+        "weight": 44,
+        "epilepsy_type": "focal",
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "J1",
+      "group": "Medication-specific scenarios",
+      "patient": {
+        "external_id": "J1 \u00b7 Lamictal (val)",
+        "age": 9,
+        "weight": 30,
+        "epilepsy_type": "focal",
+        "medication": "lamotrigine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "J2",
+      "group": "Medication-specific scenarios",
+      "patient": {
+        "external_id": "J2 \u00b7 Keppra (val)",
+        "age": 7,
+        "weight": 24,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": "brivaracetam"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q9": [
+          "behavior",
+          "irritability"
+        ],
+        "Q10b_impact": "big_wants_change"
+      }
+    },
+    {
+      "case_id": "J3",
+      "group": "Medication-specific scenarios",
+      "patient": {
+        "external_id": "J3 \u00b7 Zonegran (val)",
+        "age": 6,
+        "weight": 22,
+        "epilepsy_type": "focal",
+        "medication": "zonisamide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "J4",
+      "group": "Medication-specific scenarios",
+      "patient": {
+        "external_id": "J4 \u00b7 Zarontin (val)",
+        "age": 7,
+        "weight": 25,
+        "epilepsy_type": "focal",
+        "medication": "ethosuximide",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q4": [
+          "focal"
+        ],
+        "Q5": 2,
+        "Q5_unit": "per_week",
+        "Q7": "yes"
+      }
+    },
+    {
+      "case_id": "J5",
+      "group": "Medication-specific scenarios",
+      "patient": {
+        "external_id": "J5 \u00b7 Depakote (val)",
+        "age": 15,
+        "weight": 52,
+        "epilepsy_type": "focal",
+        "medication": "valproic_acid",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q11": "better"
+      }
+    },
+    {
+      "case_id": "J6",
+      "group": "Medication-specific scenarios",
+      "patient": {
+        "external_id": "J6 \u00b7 Trileptal (val)",
+        "age": 12,
+        "weight": 44,
+        "epilepsy_type": "focal",
+        "medication": "oxcarbazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10b_impact": "small"
+      }
+    },
+    {
+      "case_id": "J7",
+      "group": "Medication-specific scenarios",
+      "patient": {
+        "external_id": "J7 \u00b7 Tegretol (val)",
+        "age": 13,
+        "weight": 50,
+        "epilepsy_type": "focal",
+        "medication": "carbamazepine",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q12": "different_medicine"
+      }
+    },
+    {
+      "case_id": "J8",
+      "group": "Medication-specific scenarios",
+      "patient": {
+        "external_id": "J8 \u00b7 Topamax (val)",
+        "age": 13,
+        "weight": 47,
+        "epilepsy_type": "focal",
+        "medication": "topiramate",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": "valproic_acid"
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_big",
+        "Q12": "different_medicine"
+      }
+    },
+    {
+      "case_id": "J9",
+      "group": "Medication-specific scenarios",
+      "patient": {
+        "external_id": "J9 \u00b7 Keppra (val)",
+        "age": 10,
+        "weight": 34,
+        "epilepsy_type": "focal",
+        "medication": "levetiracetam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q12": "change_dose"
+      }
+    },
+    {
+      "case_id": "J10",
+      "group": "Medication-specific scenarios",
+      "patient": {
+        "external_id": "J10 \u00b7 Onfi (val)",
+        "age": 6,
+        "weight": 20,
+        "epilepsy_type": "generalized",
+        "medication": "clobazam",
+        "dose_amount": 250,
+        "dose_unit": "mg",
+        "frequency": 2,
+        "can_increase": true,
+        "switch_to": null
+      },
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q5": 1,
+        "Q5_unit": "per_week",
+        "Q7": "yes",
+        "Q12": "change_dose"
+      }
+    }
+  ]
+}

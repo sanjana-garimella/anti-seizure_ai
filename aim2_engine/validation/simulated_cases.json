@@ -1,0 +1,113 @@
+{
+  "_README": "PROVISIONAL labeled cases for exercising the validation harness (spec §9). gold_standard_category values are the proposal's worked examples plus logical expectations; they are NOT a clinical gold standard. Replace with the physician's chart-review coding before reporting validation (see NEEDS_PI_SIGNOFF.md). No clinical dose values appear here.",
+  "cases": [
+    {
+      "label": "Proposal Ex1: breakthrough + no side effects",
+      "patient": {"external_id": "S01", "age_years": 8, "weight_kg": 30, "seizure_types": ["focal"]},
+      "medication": {"medication": "levetiracetam", "dose_amount": 250, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": true, "can_switch_to": "lamotrigine"},
+      "answers": {"Q2": "almost_never", "Q3": "yes", "Q4": ["whole_body"], "Q5": 2, "Q5_unit": "per_week", "Q7": true, "Q10a": "still_increasing"},
+      "gold_standard_category": "escalate",
+      "gold_label_source": "proposal_example_1 (provisional)"
+    },
+    {
+      "label": "Proposal Ex2: seizure-free + manageable SE + titrating",
+      "patient": {"external_id": "S02", "age_years": 10, "weight_kg": 34, "seizure_types": ["focal"]},
+      "medication": {"medication": "levetiracetam", "dose_amount": 250, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": true},
+      "answers": {"Q2": "almost_never", "Q3": "no", "Q9": ["sleepiness", "irritability"], "Q10a": "still_increasing", "Q10b_impact": "small"},
+      "gold_standard_category": "slower_uptitration",
+      "gold_label_source": "proposal_example_2 (provisional)"
+    },
+    {
+      "label": "Proposal Ex3: seizure-free + intolerable SE",
+      "patient": {"external_id": "S03", "age_years": 12, "weight_kg": 45, "seizure_types": ["focal"]},
+      "medication": {"medication": "levetiracetam", "dose_amount": 500, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": false, "can_switch_to": "lamotrigine"},
+      "answers": {"Q2": "almost_never", "Q3": "no", "Q9": ["dizziness"], "Q10a": "at_goal", "Q10c_impact": "big_wants_change"},
+      "gold_standard_category": "switch_medication",
+      "gold_label_source": "proposal_example_3 (provisional)"
+    },
+    {
+      "label": "SJS rash trigger (safety)",
+      "patient": {"external_id": "S04", "age_years": 7, "weight_kg": 24, "seizure_types": ["generalized"]},
+      "medication": {"medication": "lamotrigine", "dose_amount": 25, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": true},
+      "answers": {"Q2": "almost_never", "Q3": "no", "Q9": ["rash"], "Q9a": "blisters"},
+      "gold_standard_category": "insufficient_data",
+      "gold_label_source": "safety_withhold (provisional)"
+    },
+    {
+      "label": "Adherence-driven breakthrough (missed meds)",
+      "patient": {"external_id": "S05", "age_years": 9, "weight_kg": 31, "seizure_types": ["focal"]},
+      "medication": {"medication": "levetiracetam", "dose_amount": 250, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": true},
+      "answers": {"Q2": "sometimes", "Q2a": ["hard_to_remember"], "Q3": "yes", "Q7": false, "Q10a": "still_increasing"},
+      "gold_standard_category": "no_change",
+      "gold_label_source": "adherence_first (provisional)"
+    },
+    {
+      "label": "Breakthrough + manageable SE",
+      "patient": {"external_id": "S06", "age_years": 11, "weight_kg": 38, "seizure_types": ["focal"]},
+      "medication": {"medication": "oxcarbazepine", "dose_amount": 300, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": true},
+      "answers": {"Q2": "almost_never", "Q3": "yes", "Q5": 1, "Q5_unit": "per_week", "Q7": true, "Q9": ["sleepiness"], "Q10a": "still_increasing", "Q10b_impact": "small"},
+      "gold_standard_category": "slower_uptitration",
+      "gold_label_source": "balance_efficacy_tolerability (provisional)"
+    },
+    {
+      "label": "Breakthrough + intolerable SE",
+      "patient": {"external_id": "S07", "age_years": 13, "weight_kg": 50, "seizure_types": ["focal"]},
+      "medication": {"medication": "topiramate", "dose_amount": 50, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": true, "can_switch_to": "lacosamide"},
+      "answers": {"Q2": "almost_never", "Q3": "yes", "Q5": 3, "Q5_unit": "per_week", "Q7": true, "Q9": ["behavior"], "Q10a": "still_increasing", "Q10b_impact": "big_wants_change"},
+      "gold_standard_category": "switch_medication",
+      "gold_label_source": "intolerable_with_breakthrough (provisional)"
+    },
+    {
+      "label": "Breakthrough + no SE + dose maxed/no room + switch available",
+      "patient": {"external_id": "S08", "age_years": 14, "weight_kg": 55, "seizure_types": ["focal"]},
+      "medication": {"medication": "levetiracetam", "dose_amount": 750, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": false, "can_switch_to": "brivaracetam"},
+      "answers": {"Q2": "almost_never", "Q3": "yes", "Q5": 2, "Q5_unit": "per_week", "Q7": true, "Q10a": "at_goal"},
+      "gold_standard_category": "switch_medication",
+      "gold_label_source": "no_room_to_increase (provisional)"
+    },
+    {
+      "label": "Breakthrough + no SE + family prefers slower",
+      "patient": {"external_id": "S09", "age_years": 6, "weight_kg": 21, "seizure_types": ["generalized"]},
+      "medication": {"medication": "valproic_acid", "dose_amount": 125, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": true},
+      "answers": {"Q2": "almost_never", "Q3": "yes", "Q5": 1, "Q5_unit": "per_week", "Q7": true, "Q10a": "still_increasing", "Q12": "change_dose"},
+      "gold_standard_category": "slower_uptitration",
+      "gold_label_source": "family_preference_modifier (provisional)"
+    },
+    {
+      "label": "Seizure-free + no SE + still titrating",
+      "patient": {"external_id": "S10", "age_years": 8, "weight_kg": 28, "seizure_types": ["absence"]},
+      "medication": {"medication": "ethosuximide", "dose_amount": 250, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": true},
+      "answers": {"Q2": "almost_never", "Q3": "no", "Q10a": "still_increasing", "Q11": "better"},
+      "gold_standard_category": "escalate",
+      "gold_label_source": "continue_to_goal (provisional)"
+    },
+    {
+      "label": "Seizure-free + no SE + at goal",
+      "patient": {"external_id": "S11", "age_years": 15, "weight_kg": 60, "seizure_types": ["focal"]},
+      "medication": {"medication": "lacosamide", "dose_amount": 100, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": true},
+      "answers": {"Q2": "almost_never", "Q3": "no", "Q10a": "at_goal", "Q11": "better"},
+      "gold_standard_category": "no_change",
+      "gold_label_source": "stable_at_goal (provisional)"
+    },
+    {
+      "label": "Seizure-free + no SE + goal status unknown",
+      "patient": {"external_id": "S12", "age_years": 5, "weight_kg": 18, "seizure_types": ["generalized"]},
+      "medication": {"medication": "clobazam", "dose_amount": 5, "dose_unit": "mg", "frequency_per_day": 2},
+      "contingency": {"can_increase_dose": true},
+      "answers": {"Q2": "almost_never", "Q3": "no", "Q10a": "not_sure"},
+      "gold_standard_category": "insufficient_data",
+      "gold_label_source": "needs_goal_clarification (provisional)"
+    }
+  ]
+}

@@ -1,0 +1,583 @@
+{
+  "_README": "Medication-SELECTION rules for the switch/add-a-medication flow (WHICH drug to switch to or add). RULE-BASED ONLY (non-negotiable rule 2) - loaded by engine_core.med_selection; no ML/LLM in this path. Encodes Dr. Barbour's workbook 'Switching to a different medication.xlsx': Sheet 'Seizure med rank' = the ranked base preference + per-drug attributes/summaries shown to families; Sheet 'Rules' = the favor/avoid rules. Distinct from data/asm_rules.json (dosing/titration facts): this file is the selection preference set. Every value is DRAFT / verified:false pending PI sign-off. Keys starting with '_' are comments.",
+  "_provenance": {
+    "source_workbook": "kristen/Switching to a different medication.xlsx",
+    "sheets": {
+      "preference": "Seizure med rank",
+      "rules": "Rules",
+      "simulation": "Simulated Data"
+    },
+    "encoded_on": "2026-07-28",
+    "status": "DRAFT - verified:false - pending PI sign-off (NEEDS_PI_SIGNOFF #41 medication-options rules)",
+    "authored_by": "Dr. Kristen Barbour (PI)",
+    "note": "Selection is preference-ranking only; it never sets a dose. Titration numbers still come from data/asm_rules.json. Output is a DRAFT for neurologist review (human-in-the-loop, non-negotiable rule 2)."
+  },
+  "predicate_grammar": {
+    "flag": "{'flag': <attr>} - true when the boolean patient attribute is set",
+    "eq": "{'eq': {'attr': <attr>, 'value': <v>}}",
+    "gt": "{'gt': {'attr': <attr>, 'value': <n>}}  (also lt)",
+    "no_prior_asm": "{'no_prior_asm': true} - true when the patient has tried no study ASM",
+    "not/all/any": "boolean combinators over sub-predicates"
+  },
+  "ranking": {
+    "method": "Drop every avoided medication; rank the rest by number of 'favor' signals (descending); break ties by base_rank (Sheet-1 preference, lower = better). Take the top 3. If fewer than 3 remain, return what is available and DEFER the remainder to the physician (leave blank)."
+  },
+  "medications": [
+    {
+      "id": "lamotrigine",
+      "display_name": "Lamotrigine (Lamictal)",
+      "base_rank": 1,
+      "quick_summary": "One of the safest, most mood-friendly medications and one of my favorites. Downside is that it requires slow dose increases over two months when starting, so it is not the best medication if you need a medication on board quickly or want to avoid a complex medication titration schedule.",
+      "long_summary": "One of our most effective medications for many seizure types, including generalized seizures. It is also one of our safest options and is commonly used in people who may become pregnant, reflecting its excellent safety profile. It is also one of our best medications from a mood perspective, and some people notice an improvement in mood while taking it. Side effects are usually mild and may include dizziness, headache, blurry vision, nausea, or unsteadiness. The most important side effect is a rash. Rarely, this can be serious, so we increase the dose very slowly to reduce the risk (make weekly/biweekly dose increases over a couple months). Because of this, this is not a good medication to stop and restart abruptly. If taking birth control, this medication requires the use of non-estrogen containing birth control. Routine lab monitoring is usually not needed. Once a stable dose is reached, there is an option for once-daily dosing.",
+      "attributes": {
+        "mood_effect": "Can improve mood",
+        "sleep_effect": "Usually neutral",
+        "labs": "None",
+        "once_daily_option": "Yes"
+      },
+      "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 2",
+      "verified": false
+    },
+    {
+      "id": "brivaracetam",
+      "display_name": "Brivaracetam (Briviact)",
+      "base_rank": 2,
+      "quick_summary": "Excellent medication with few side effects, but insurance often gets in the way because it is newer.",
+      "long_summary": "One of our newer seizure medications with excellent seizure control, few side effects, and simple dosing. It is similar to levetiracetam (Keppra) but tends to cause fewer mood and behavior side effects. The biggest drawback is that insurance companies often require trying other medications first. Side effects are usually mild and may include sleepiness, dizziness, or irritability. Routine lab monitoring is usually not needed. This medication is typically taken twice daily.",
+      "attributes": {
+        "mood_effect": "Usually neutral; less likely to cause mood changes than levetiracetam",
+        "sleep_effect": "Usually neutral; mild sleepiness can occur",
+        "labs": "None",
+        "once_daily_option": "No"
+      },
+      "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 3",
+      "verified": false
+    },
+    {
+      "id": "lacosamide",
+      "display_name": "Lacosamide (Vimpat)",
+      "base_rank": 3,
+      "quick_summary": "One of the easiest medications to tolerate.",
+      "long_summary": "A newer medication that works well for focal seizures and is generally very well tolerated. It is a favorite option for older adults because of its safety even in people with other complex health conditions. It also usually does not affect mood, usually does not cause significant sleepiness, and does not require routine lab monitoring - three big wins when selecting a medication option. Side effects may include dizziness, headache, nausea, or double vision. Rarely, it can affect the heart rhythm, so we use extra caution in people with heart conditions. Routine lab monitoring is usually not needed. Once a stable dose is reached, there is an option for once-daily dosing.",
+      "attributes": {
+        "mood_effect": "Usually neutral",
+        "sleep_effect": "Usually neutral",
+        "labs": "None",
+        "once_daily_option": "Yes"
+      },
+      "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 4",
+      "verified": false
+    },
+    {
+      "id": "oxcarbazepine",
+      "display_name": "Oxcarbazepine (Trileptal)",
+      "base_rank": 4,
+      "quick_summary": "Often a first choice for focal seizures because it works well and is generally well tolerated; requires labs.",
+      "long_summary": "Often one of the first medications used for focal seizures (smaller seizures from one part of the brain) in children because it works well and is generally well tolerated. It usually does not affect mood and may even help with behavior in some children, particularly in children with behavioral challenges or autism. Side effects can include sleepiness (usually mild), dizziness, nausea, headache, double vision, unsteadiness, or rash. Rarely, a serious rash can occur.  If taking birth control, this medication requires the use of non-estrogen containing birth control. This medication requires lab monitoring to check sodium levels, especially when starting treatment. Once a stable dose is reached, there is an option for once-daily dosing.",
+      "attributes": {
+        "mood_effect": "Usually neutral; may help behavior in some children",
+        "sleep_effect": "Mild sleepiness can occur, often improves with time",
+        "labs": "Yes",
+        "once_daily_option": "Yes"
+      },
+      "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 5",
+      "verified": false
+    },
+    {
+      "id": "clobazam",
+      "display_name": "Clobazam (Onfi)",
+      "base_rank": 5,
+      "quick_summary": "Very effective, especially for difficult-to-control seizures, but causes sleepiness in the beginning.",
+      "long_summary": "A very effective medication that often provides meaningful seizure reduction. Sleepiness is common when starting the medication, but many people adjust over time. Some families find it helpful for improving nighttime sleep. Less commonly, it can cause irritability, unsteadiness, or changes in appetite. Routine lab monitoring is usually not needed. This medication is usually taken twice daily.",
+      "attributes": {
+        "mood_effect": "Usually neutral; some experience irritability",
+        "sleep_effect": "Common when starting; often improves as the body adjusts",
+        "labs": "None",
+        "once_daily_option": "No"
+      },
+      "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 6",
+      "verified": false
+    },
+    {
+      "id": "levetiracetam",
+      "display_name": "Levetiracetam (Keppra)",
+      "base_rank": 6,
+      "quick_summary": "Easy and effective, but some experience mood and behavior difficulties.",
+      "long_summary": "One of the most commonly prescribed seizure medications because it is safe, has few medication interactions, and usually does not require lab monitoring. It is effective for many seizure types and is generally easy to use. The main drawback is that some people notice changes in mood or behavior, such as increased irritability, anxiety, or emotional sensitivity, while others have an excellent response without any mood-related side effects. If mood or behavior concerns are already present, I often consider other medications first. Other side effects may include dizziness, fatigue, or difficulty sleeping. Once a stable dose is reached, there is an option for once-daily dosing.",
+      "attributes": {
+        "mood_effect": "Some experience irritability, anxiety, or depression",
+        "sleep_effect": "Usually neutral",
+        "labs": "None",
+        "once_daily_option": "Yes"
+      },
+      "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 7",
+      "verified": false
+    },
+    {
+      "id": "zonisamide",
+      "display_name": "Zonisamide (Zonegran)",
+      "base_rank": 7,
+      "quick_summary": "Good option for once-daily dosing, even when first starting treatment.",
+      "long_summary": "A medication that can be very effective for some people and is often used as a once-daily medication. It is similar to topiramate but is often better tolerated. Side effects may include sleepiness, decreased appetite, dizziness, difficulty concentrating, irritability, depression, nausea, or kidney stones. Only occasional lab monitoring is usually needed. Once a stable dose is reached, it can often be taken once daily.",
+      "attributes": {
+        "mood_effect": "Usually neutral or mild; some experience irritability or depression",
+        "sleep_effect": "Mild sleepiness can occur",
+        "labs": "Occasionally",
+        "once_daily_option": "Yes"
+      },
+      "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 8",
+      "verified": false
+    },
+    {
+      "id": "valproic_acid",
+      "display_name": "Valproic acid (Depakote)",
+      "base_rank": 8,
+      "quick_summary": "One of the most effective medications for generalized and difficult-to-control seizures, though it requires more attention to side effects and labs.",
+      "long_summary": "One of our most effective medications for generalized seizures (whole body seizures) and difficult-to-control seizures. It is often helpful when a single medication is needed to treat multiple seizure types. The main limitation is that it can have more side effects than some of our newer medications, so the benefits and risks need to be weighed for each individual. Possible side effects include weight gain, tremor, stomach upset, hair thinning, liver problems, and changes in platelet counts or bleeding. Regular lab monitoring is required. Because of risks during pregnancy, I am more cautious when prescribing it to females who may become pregnant. Once a stable dose is reached, there is an option for once-daily dosing.",
+      "attributes": {
+        "mood_effect": "Variable. Often neutral; some experience improved mood, while others experience irritability or depression",
+        "sleep_effect": "Can cause sleepiness",
+        "labs": "Yes",
+        "once_daily_option": "Yes"
+      },
+      "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 9",
+      "verified": false
+    },
+    {
+      "id": "topiramate",
+      "display_name": "Topiramate (Topamax)",
+      "base_rank": 9,
+      "quick_summary": "Effective for difficult-to-control seizures, but some experience cognitive side effects (slower thinking).",
+      "long_summary": "An effective medication for many seizure types, especially when other medications have not worked well. Side effects are more common than with some alternatives and may include sleepiness, dizziness, weight-loss, slowed thinking, word-finding difficulty, tingling of the hands and feet, decreased appetite, weight loss, or kidney stones. Can improve migraines. Periodic lab monitoring is recommended. Once a stable dose is reached, there is an option for once-daily dosing.",
+      "attributes": {
+        "mood_effect": "Usually neutral; some experience irritability or depression",
+        "sleep_effect": "Can cause sleepiness",
+        "labs": "Occasionally",
+        "once_daily_option": "Yes"
+      },
+      "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 10",
+      "verified": false
+    }
+  ],
+  "rules": [
+    {
+      "id": "SEL-AGE-SEX-FEMALE-GT10",
+      "question": "Age/sex",
+      "when": {
+        "all": [
+          {
+            "eq": {
+              "attr": "sex",
+              "value": "female"
+            }
+          },
+          {
+            "gt": {
+              "attr": "age",
+              "value": 10
+            }
+          }
+        ]
+      },
+      "favor": [
+        "lamotrigine"
+      ],
+      "avoid": [
+        "valproic_acid",
+        "topiramate"
+      ],
+      "source_cell": "Rules!B2",
+      "source_text": "If a female older than age 10 years, then do not offer valproic acid or topiramate; and favor lamotrigine.",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B2"
+    },
+    {
+      "id": "SEL-SEIZURE-SINGLE-JERK",
+      "question": "Type of seizures",
+      "when": {
+        "flag": "whole_body_single_jerk"
+      },
+      "favor": [
+        "lamotrigine",
+        "clobazam",
+        "brivaracetam"
+      ],
+      "avoid": [
+        "oxcarbazepine",
+        "lacosamide"
+      ],
+      "source_cell": "Rules!B3",
+      "source_text": "If they have single body jerk seizures, then favor lamotrigine, clobazam, and briviact; and don't offer oxcarbazepine or lacosamide. If they have staring seizures, favor lamotrigine and don't offer lacosamide.",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B3"
+    },
+    {
+      "id": "SEL-SEIZURE-STARING",
+      "question": "Type of seizures",
+      "when": {
+        "flag": "staring_seizures"
+      },
+      "favor": [
+        "lamotrigine"
+      ],
+      "avoid": [
+        "lacosamide"
+      ],
+      "source_cell": "Rules!B3",
+      "source_text": "If they have single body jerk seizures, then favor lamotrigine, clobazam, and briviact; and don't offer oxcarbazepine or lacosamide. If they have staring seizures, favor lamotrigine and don't offer lacosamide.",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B3"
+    },
+    {
+      "id": "SEL-ADHERENCE-POOR",
+      "question": "Medication compliance",
+      "when": {
+        "flag": "med_nonadherence"
+      },
+      "favor": [],
+      "avoid": [
+        "lamotrigine",
+        "oxcarbazepine"
+      ],
+      "source_cell": "Rules!B4",
+      "source_text": "If they have poor medication adherence, don't offer lamotrigine or oxcarbazepine",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B4"
+    },
+    {
+      "id": "SEL-PRIOR-TRIED",
+      "question": "Has your child tried any of these other antiseizure medications? (provide a checkbox list for the medications on this list)",
+      "when": null,
+      "avoid_prior_tried": true,
+      "favor": [],
+      "avoid": [],
+      "source_cell": "Rules!B7",
+      "source_text": "Don't offer medications they have already tried",
+      "active": true,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B7"
+    },
+    {
+      "id": "SEL-ANCESTRY-SEA-HAN",
+      "question": "Does your child have Southeast Asian or Han Chinese ancestry?",
+      "when": {
+        "flag": "se_asian_han_chinese"
+      },
+      "favor": [],
+      "avoid": [
+        "lamotrigine",
+        "oxcarbazepine"
+      ],
+      "source_cell": "Rules!B8",
+      "source_text": "If yes, then don't offer lamotrigine or oxcarbazepine.",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B8"
+    },
+    {
+      "id": "SEL-PREFERS-NO-LABS",
+      "question": "Is it important for you to avoid a medication that requires labwork?",
+      "when": {
+        "flag": "prefers_no_labs"
+      },
+      "favor": [],
+      "avoid": [
+        "oxcarbazepine",
+        "zonisamide",
+        "valproic_acid",
+        "topiramate"
+      ],
+      "source_cell": "Rules!B9",
+      "source_text": "If yes, then don't offer oxcarbazepine, zonisamide, valproic acid, and topiramate",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B9"
+    },
+    {
+      "id": "SEL-MOOD",
+      "question": "Does your child have difficulty with mood, such as feeling down, nervous/on edge, anxious, or irritable?",
+      "when": {
+        "flag": "mood_difficulties"
+      },
+      "favor": [
+        "lamotrigine",
+        "oxcarbazepine"
+      ],
+      "avoid": [
+        "levetiracetam",
+        "zonisamide",
+        "topiramate"
+      ],
+      "source_cell": "Rules!B10",
+      "source_text": "Favor lamotrigine and oxcarbazepine. Don't offer Levetiracetam, zonisamide, topiramate",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B10"
+    },
+    {
+      "id": "SEL-BEHAVIOR",
+      "question": "Does your child have difficulty with behavioral regulation, calming down when upset, or aggressive behavior?",
+      "when": {
+        "flag": "behavioral_difficulties"
+      },
+      "favor": [
+        "oxcarbazepine",
+        "lamotrigine",
+        "clobazam"
+      ],
+      "avoid": [
+        "levetiracetam",
+        "zonisamide",
+        "topiramate"
+      ],
+      "source_cell": "Rules!B11",
+      "source_text": "Favor oxcarbazepine, lamotrigine, and clobazam. Don't offer Levetiracetam, zonisamide, topiramate",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B11"
+    },
+    {
+      "id": "SEL-COMBINATION-NAIVE-NO-MOOD-BEH",
+      "question": "Combination rule: If they have never tried another antiseizure medication & answered no to mood & answered no to behavior issues",
+      "when": {
+        "all": [
+          {
+            "no_prior_asm": true
+          },
+          {
+            "not": {
+              "flag": "mood_difficulties"
+            }
+          },
+          {
+            "not": {
+              "flag": "behavioral_difficulties"
+            }
+          }
+        ]
+      },
+      "favor": [],
+      "avoid": [
+        "brivaracetam"
+      ],
+      "source_cell": "Rules!B12",
+      "source_text": "Avoid briviact",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B12"
+    },
+    {
+      "id": "SEL-SLEEP",
+      "question": "Problems sleeping at night",
+      "when": {
+        "flag": "trouble_sleeping"
+      },
+      "favor": [
+        "clobazam"
+      ],
+      "avoid": [
+        "levetiracetam",
+        "zonisamide",
+        "topiramate"
+      ],
+      "source_cell": "Rules!B15",
+      "source_text": "Favor clobazam. Don't offer levetiracetam, zonisamide, or topiramate",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B15"
+    },
+    {
+      "id": "SEL-MIGRAINES",
+      "question": "Frequent migraines or significant headaches",
+      "when": {
+        "flag": "migraines"
+      },
+      "favor": [
+        "topiramate",
+        "valproic_acid",
+        "zonisamide"
+      ],
+      "avoid": [],
+      "source_cell": "Rules!B16",
+      "source_text": "Favor topiramate, valproic acid, zonisamide",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B16"
+    },
+    {
+      "id": "SEL-KIDNEY-DISEASE",
+      "question": "Kidney disease or decreased kidney function",
+      "when": {
+        "flag": "kidney_disease"
+      },
+      "favor": [
+        "lamotrigine"
+      ],
+      "avoid": [
+        "topiramate",
+        "zonisamide",
+        "levetiracetam",
+        "brivaracetam"
+      ],
+      "source_cell": "Rules!B17",
+      "source_text": "Favor lamotrigine. Don't offer topiramate, zonisamide, Levetiracetam, briviact",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B17"
+    },
+    {
+      "id": "SEL-KIDNEY-STONES",
+      "question": "Kidney stones",
+      "when": {
+        "flag": "kidney_stones"
+      },
+      "favor": [],
+      "avoid": [
+        "topiramate",
+        "zonisamide"
+      ],
+      "active": true,
+      "activated_note": "2026-09-30: intake checkbox added to the clinic selection survey (clinic.py _SELECTION_COMORBIDITIES). Not a column in the 50-case Simulated Data sheet, so those cases are unaffected.",
+      "source_cell": "Rules!B18",
+      "source_text": "Don't offer topiramate, zonisamide",
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B18"
+    },
+    {
+      "id": "SEL-LIVER-DISEASE",
+      "question": "Liver disease",
+      "when": {
+        "flag": "liver_disease"
+      },
+      "favor": [],
+      "avoid": [
+        "valproic_acid"
+      ],
+      "source_cell": "Rules!B19",
+      "source_text": "Don't offer valproic acid",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B19"
+    },
+    {
+      "id": "SEL-DIABETES",
+      "question": "Diabetes",
+      "when": {
+        "flag": "diabetes"
+      },
+      "favor": [],
+      "avoid": [
+        "valproic_acid"
+      ],
+      "source_cell": "Rules!B20",
+      "source_text": "Don't offer valproic acid",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B20"
+    },
+    {
+      "id": "SEL-OBESITY",
+      "question": "Overweight or obesity",
+      "when": {
+        "flag": "obesity"
+      },
+      "favor": [],
+      "avoid": [
+        "valproic_acid"
+      ],
+      "source_cell": "Rules!B21",
+      "source_text": "Don't offer valproic acid",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B21"
+    },
+    {
+      "id": "SEL-HEART",
+      "question": "Heart disease or heart rhythm problems",
+      "when": {
+        "flag": "heart_issue"
+      },
+      "favor": [],
+      "avoid": [
+        "lacosamide"
+      ],
+      "source_cell": "Rules!B22",
+      "source_text": "Don't offer lacosamide",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B22"
+    },
+    {
+      "id": "SEL-BLEEDING-DISORDER",
+      "question": "Bleeding disorder",
+      "when": {
+        "flag": "bleeding_disorder"
+      },
+      "favor": [],
+      "avoid": [
+        "valproic_acid"
+      ],
+      "source_cell": "Rules!B23",
+      "source_text": "Don't offer valproic acid",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B23"
+    },
+    {
+      "id": "SEL-SULFA-ALLERGY",
+      "question": "Sulfa drug allergy",
+      "when": {
+        "flag": "sulfa_allergy"
+      },
+      "favor": [],
+      "avoid": [
+        "zonisamide"
+      ],
+      "source_cell": "Rules!B24",
+      "source_text": "Don't offer zonisamide",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B24"
+    },
+    {
+      "id": "SEL-PRIOR-CHEMO",
+      "question": "Previous chemotherapy treatment",
+      "when": {
+        "flag": "prior_chemo"
+      },
+      "favor": [],
+      "avoid": [
+        "oxcarbazepine"
+      ],
+      "source_cell": "Rules!B25",
+      "source_text": "Don't offer oxcarbazepine",
+      "active": true,
+      "avoid_prior_tried": false,
+      "verified": false,
+      "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B25"
+    }
+  ]
+}
