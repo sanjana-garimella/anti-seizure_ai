@@ -222,3 +222,48 @@ See `../aim2_engine/NEEDS_PI_SIGNOFF.md` for the full checklist. Short version:
 2. Replace provisional validation labels with real chart-review gold standard.
 3. IRB + institutional security sign-off before any real patient data.
 4. Aim 1 integration: map real survey submissions → `IntervalSnapshot` (contract in `DATA_CONTRACT.md`).
+
+## How one check-in is processed
+
+1. **Snapshot.** `snapshot_from_interval()` turns survey answers plus the intake record
+   (age, weight, medicine, dose, frequency) into a typed `IntervalSnapshot`.
+2. **Categorize.** `categorize.py` derives the patient's situation: seizure-free or
+   breakthrough (with a non-urgent / urgent / emergent tier for each seizure type),
+   side-effect level 0–5, phase (titrating / holding / steady), adherence, and
+   safety signals (serious rash on a high-risk medicine, whole-body seizure over
+   3 minutes).
+3. **Decide.** `decision.py` runs an ordered rule list (first match wins) and the PI's
+   decision tables. It returns a category (`ESCALATE`, `SLOWER_UPTITRATION`, `HOLD`,
+   `LOWER_DOSE`, `NO_CHANGE`, `SWITCH_MEDICATION`, `ADD_MEDICATION`,
+   `INSUFFICIENT_DATA`) plus pace, follow-up, labs and a `rationale` naming every
+   rule that fired and the inputs it used. Safety checks run on every case and can
+   only add flags, never remove them.
+4. **Build outputs.** `outputs.py` writes the clinical summary in fixed numbered
+   sections, the dose steps (`dose_ladder.resolve_plan()` picks the next rungs from the
+   PI's ladder and never invents a number; `formulation.py` converts them to tablets
+   or liquid; `initiation.py` adds the starting schedule for a switch or add), and the
+   family message from a fixed template chosen by the structured decision.
+5. **Read the free text (ML).** In parallel, the family's own words go through the
+   transformer entity model (results logged for the doctor and for evaluation) and
+   the red-flag detector, whose hits can only raise the case to urgent.
+6. **Check.** `nlp/guardrails.validate_message()` rejects a family draft that names a
+   dose not in `family_message_allowed_doses()`, contradicts the category, or lacks
+   the draft notice. This applies to the template draft and to any LLM rewording.
+7. **Review.** The app saves the `Recommendation` and shows it in the doctor's queue,
+   triaged by urgency. Nothing is sent until a physician approves it.
+
+## Design decisions worth knowing
+
+- **Data, not code, holds the clinical content.** Doses, thresholds and tables live in
+  JSON generated from the PI's spreadsheets, so a clinical change is usually a data
+  change plus a test, not new logic.
+- **One source for every number a family sees.** The message builder and the guardrail
+  share `family_message_allowed_doses()`, so they can't drift apart.
+- **Defer instead of guess.** Missing or conflicting answers give `INSUFFICIENT_DATA`;
+  an ambiguous dosing band or starting schedule is handed to the doctor.
+- **Re-runnable.** Each submission stores the medication context the engine saw, so
+  `tools/regen_notes.py` can rebuild saved notes after an engine change and refuses
+  rows it can't reproduce.
+- **Independent checks.** `verification/verify_all.py` re-derives the rule tables from
+  source rather than trusting the engine, and `validation/holdout_test.py` scores the
+  engine against answers computed straight from the decision tables.
