@@ -63,7 +63,7 @@ class TestConversionRules(unittest.TestCase):
         r = _rows("levetiracetam", [360], current_unit="mL", current_strength=100,
                   absolute_max=3000)[0]
         self.assertIsNone(r["tablet_text"])
-        self.assertIn("1.80 mL", r["liquid_text"])
+        self.assertIn("1.8 mL twice a day", r["liquid_text"])   # rounded to 0.1 mL (decided dose)
 
     def test_tablets_stay_tablets_unless_nothing_fits(self):
         ok = _rows("levetiracetam", [1300], current_unit="tablets", current_strength=250,
@@ -187,8 +187,8 @@ class TestClinicianSummary(unittest.TestCase):
     def test_summary_shows_tablets_for_tablet_family(self):
         r = self._run(dose_amount=2, dose_unit="tablets", concentration=250)
         self.assertEqual(r.category, "escalate")
-        self.assertIn("Next dose (Dr. Barbour's ladder)", r.clinical_summary)
-        self.assertIn("250 mg tablets (current)", r.clinical_summary)
+        self.assertIn("Next dose (Dr. Barbour's ladder, as the family will give it)", r.clinical_summary)
+        self.assertIn("250 mg tablet (IR) (current)", r.clinical_summary)
         self.assertIn("DRAFT conversion", r.clinical_summary)
 
     def test_display_layer_does_not_change_decision(self):
@@ -197,10 +197,13 @@ class TestClinicianSummary(unittest.TestCase):
         self.assertEqual(a.category, b.category)
 
     def test_steps_and_totals_show_mg_per_kg(self):
+        # Dr. Barbour 2026-10-25: only the decided dose is shown (with mg/kg/day), not
+        # the exact ladder value or the % difference from it.
         r = self._run(dose_amount=2, dose_unit="tablets", concentration=250)
-        self.assertIn("step 1 1050 mg/day (35 mg/kg/day)", r.clinical_summary)
-        self.assertIn("1250 mg/day (41.7 mg/kg/day, +4.2%)",
-                      r.clinical_summary)
+        self.assertIn("= 1125 mg/day (37.5 mg/kg/day)", r.clinical_summary)
+        self.assertIn("= 1250 mg/day (41.7 mg/kg/day)", r.clinical_summary)
+        self.assertNotIn("+4.2%", r.clinical_summary)
+        self.assertNotIn("1050 mg/day", r.clinical_summary)     # ladder step 1, not given as-is
 
     def test_rounding_above_effective_max_is_flagged(self):
         p = PatientContext(external_id="T", age_years=11, weight_kg=12, seizure_types=["focal"])
@@ -237,7 +240,7 @@ class TestClinicianSummary(unittest.TestCase):
         m = MedicationContext(medication="levetiracetam", frequency_per_day=2,
                               dose_amount=500, dose_unit="mg")
         r = run_engine(snapshot_from_interval(p, m, PhysicianContingency(), {"Q3": "no"}))
-        self.assertNotIn("Next dose (Dr. Barbour's ladder)", r.clinical_summary)
+        self.assertNotIn("Next dose (Dr. Barbour's ladder", r.clinical_summary)
 
 
 if __name__ == "__main__":
@@ -245,7 +248,9 @@ if __name__ == "__main__":
 
 
 class TestAgeFormAndSingleStrength(unittest.TestCase):
-    """PI instructions 2026-10-06: >10 y tablets, <=10 y liquid; one tablet strength per plan."""
+    """Dr. Barbour 2026-10-25 (#61): keep the form the family already uses; the age rule
+    (>10 y tablets, <=10 y liquid) applies only when the form is unknown (simulated cases).
+    One tablet strength per step."""
 
     def _first(self, age, **kw):
         kw.setdefault("current_unit", "tablets")
@@ -253,21 +258,28 @@ class TestAgeFormAndSingleStrength(unittest.TestCase):
         return _rows("levetiracetam", [1050], age_years=age, absolute_max=3000,
                      current_total_mg_per_day=1000, **kw)[0]
 
-    def test_age_over_10_gets_tablets_not_liquid(self):
+    def test_age_over_10_gets_tablets_when_form_unknown(self):
         r = _rows("levetiracetam", [1500], age_years=11, absolute_max=3000,
-                  current_total_mg_per_day=1000, current_unit="mL")[0]
+                  current_total_mg_per_day=1000)[0]
         self.assertIsNotNone(r["tablet_text"])
         self.assertIsNone(r["liquid_text"])
 
-    def test_age_10_and_under_gets_liquid_not_tablets(self):
+    def test_age_10_and_under_gets_liquid_when_form_unknown(self):
         for age in (10, 10.0, 4):
-            r = self._first(age)
+            r = _rows("levetiracetam", [1050], age_years=age, absolute_max=3000,
+                      current_total_mg_per_day=1000)[0]
             self.assertIsNone(r["tablet_text"], age)
             self.assertIn("mL", r["liquid_text"])
 
-    def test_age_rule_overrides_current_form_with_a_note(self):
-        r = self._first(8)
-        self.assertTrue(any("showing liquid per the age rule" in n for n in r["notes"]))
+    def test_known_form_is_kept_whatever_the_age(self):
+        for age in (4, 8, 10):
+            r = self._first(age)                          # family gives tablets
+            self.assertIsNotNone(r["tablet_text"], age)
+            self.assertFalse(any("age rule" in n for n in r["notes"]), age)
+        r = _rows("levetiracetam", [1500], age_years=14, absolute_max=3000,
+                  current_total_mg_per_day=1000, current_unit="mL")[0]   # family gives liquid
+        self.assertIsNone(r["tablet_text"])
+        self.assertIn("mL", r["liquid_text"])
 
     def test_unknown_age_keeps_current_form(self):
         r = self._first(None)
@@ -283,7 +295,7 @@ class TestAgeFormAndSingleStrength(unittest.TestCase):
         self.assertIsNotNone(r["tablet_text"])
         self.assertTrue(any("no usable oral liquid" in n for n in r["notes"]))
 
-    def test_every_plan_uses_one_tablet_strength(self):
+    def test_every_step_uses_one_tablet_strength(self):
         for drug in ("levetiracetam", "oxcarbazepine", "lamotrigine", "topiramate"):
             for tgt in (150, 300, 450, 750, 1050, 1350):
                 for cs in (None, 250):
@@ -294,8 +306,10 @@ class TestAgeFormAndSingleStrength(unittest.TestCase):
                         self.assertEqual(len(strengths), 1, (drug, tgt, strengths))
 
     def test_rules_are_draft_flagged(self):
-        self.assertTrue(load_rules()["age_form_rule"]["enabled"])
-        self.assertEqual(load_rules()["age_form_rule"]["tablet_if_age_greater_than"], 10)
+        r = load_rules()["age_form_rule"]
+        self.assertTrue(r["enabled"])
+        self.assertEqual(r["tablet_if_age_greater_than"], 10)
+        self.assertFalse(r["overrides_current_form"])
 
 
 class TestRecipeFormatting(unittest.TestCase):
@@ -306,75 +320,115 @@ class TestRecipeFormatting(unittest.TestCase):
         self.assertEqual(_fmt_recipe(((250.0, 3.0),)), "3 × 250 mg")
 
 
-class TestOneBottleAcrossSteps(unittest.TestCase):
-    def test_all_steps_use_the_same_strength(self):
-        rows = _rows("levetiracetam", [1050, 1200], age_years=11, current_unit="mL",
+class TestStrengthChangesOnlyWhenNeeded(unittest.TestCase):
+    """Dr. Barbour 2026-10-25 (#62/#66): no standard strength; per step, the strength
+    that fits the dose best with the fewest tablets. Changing strength between steps is
+    fine when the dose requires it (e.g. 1 x 750 mg -> 2 x 500 mg twice a day)."""
+
+    @staticmethod
+    def _used(rows):
+        return [{s for d in r["tablet"]["doses"] for s, _c in d["recipe"]} for r in rows if r["tablet"]]
+
+    def test_no_standard_strength_setting(self):
+        rules = load_rules()
+        self.assertNotIn("standard_tablet_strength", rules)
+        self.assertTrue(rules["strength_choice"]["per_step"])
+
+    def test_current_strength_kept_when_it_fits_as_well(self):
+        # Iris: 250 mg tablets fit 1125 and 1300 -> stays on 250 mg (no change needed).
+        rows = _rows("levetiracetam", [1125, 1300], current_unit="tablets", current_strength=250,
+                     absolute_max=3000, current_total_mg_per_day=1000, weight_kg=30)
+        self.assertEqual(self._used(rows), [{250.0}, {250.0}])
+
+    def test_strength_changes_when_the_dose_requires_it(self):
+        # On 750 mg tablets, 1300 mg/day is far from any 750 mg plan -> a different strength.
+        rows = _rows("levetiracetam", [1300], current_unit="tablets", current_strength=750,
                      absolute_max=3000, current_total_mg_per_day=1000)
-        used = {s for r in rows if r["tablet"] for d in r["tablet"]["doses"] for s, _c in d["recipe"]}
-        self.assertEqual(len(used), 1, used)
+        self.assertNotIn(750.0, self._used(rows)[0])
+        self.assertEqual(rows[0]["tablet"]["total_mg_per_day"], 1250)
+
+    def test_fewest_tablets_breaks_a_tie(self):
+        # Not on tablets: 1500 mg/day is exact with 750 x 1 or 500/250 combos -> 1 x 750 mg.
+        r = _rows("levetiracetam", [1500], current_unit="mg", absolute_max=3000,
+                  current_total_mg_per_day=1200, age_years=13)[0]
+        self.assertEqual(self._used([r]), [{750.0}])
+        self.assertEqual([c for d in r["tablet"]["doses"] for _s, c in d["recipe"]], [1.0, 1.0])
+
+    def test_returns_to_own_strength_when_it_fits_again(self):
+        rows = _rows("levetiracetam", [1300, 1600], current_unit="tablets", current_strength=750,
+                     absolute_max=3000, current_total_mg_per_day=1000, weight_kg=40)
+        self.assertEqual(self._used(rows)[1], {750.0})
 
 
-class TestBarbourHalfTabletComments(unittest.TestCase):
-    """Dr. Barbour's comments (2026-10-06): half tablets for valproic acid 500 mg / zonisamide 50 mg."""
+class TestCapsulesAndUnits(unittest.TestCase):
+    """Dr. Barbour 2026-10-25 (#60, ethosuximide): capsules are never split, and the
+    family wording names the unit (capsule vs tablet)."""
 
-    def _doses(self, drug, targets, cur, ab, wt):
-        rows = step_options(drug, targets, 2, formulations_for(drug), absolute_max=ab,
-                            current_total_mg_per_day=cur, weight_kg=wt, age_years=13)
-        return [[d["mg"] for d in r["tablet"]["doses"]] for r in rows]
+    def test_half_unit_override_removed(self):
+        self.assertNotIn("half_tablet_overrides", load_rules())
 
-    def test_valproate_week1_uneven_with_half_then_whole(self):
-        self.assertEqual(self._doses("valproic_acid", [2250, 2475], 2025, 3000, 45),
-                         [[1000, 1250], [1000, 1500]])
+    def test_capsules_never_halved(self):
+        for drug, tg, cur, ab in (("valproic_acid", [2250, 2475], 2025, 3000),
+                                  ("zonisamide", [225, 247.5], 202.5, 600),
+                                  ("ethosuximide", [1044, 1217.83], 1000, 1500)):
+            for r in step_options(drug, tg, 2, formulations_for(drug), absolute_max=ab,
+                                  current_total_mg_per_day=cur, age_years=13):
+                if r["tablet"] and r["unit_noun"] == "capsule":
+                    self.assertTrue(all(c % 1 == 0 for d in r["tablet"]["doses"]
+                                        for _s, c in d["recipe"]), (drug, r["tablet"]))
 
-    def test_zonisamide_week1_uneven_with_half_then_whole(self):
-        self.assertEqual(self._doses("zonisamide", [225, 247.5], 202.5, 600, 45),
-                         [[100, 125], [100, 150]])
+    def test_ethosuximide_is_worded_as_capsules(self):
+        rows = _rows("ethosuximide", [1044, 1217.83], current_unit="tablets", current_strength=250,
+                     absolute_max=1500, current_total_mg_per_day=1000, weight_kg=52.2)
+        txt = rows[-1]["family_tablet_text"]
+        self.assertIn("capsules", txt)
+        self.assertNotIn("tablet", txt)
 
-    def test_final_step_still_whole_tablets_only(self):
+    def test_final_step_still_whole_units_only(self):
         r = step_options("valproic_acid", [2250], 2, formulations_for("valproic_acid"),
                          absolute_max=3000, current_total_mg_per_day=2025, age_years=13)[0]
         self.assertTrue(all(c % 1 == 0 for d in r["tablet"]["doses"] for _s, c in d["recipe"]))
 
 
-class TestStandardTabletStrength(unittest.TestCase):
-    """Study team 2026-10-15: one tablet strength per medicine (levetiracetam 500 mg).
-    The family's own strength is kept when it fits; otherwise the standard, never
-    another best-fit strength."""
+class TestDecidedDoseOnly(unittest.TestCase):
+    """Dr. Barbour 2026-10-25: family message and summary show the decided dose (rounded
+    tablets / measurable liquid), not the exact ladder value."""
 
-    @staticmethod
-    def _used(rows):
-        return {s for r in rows if r["tablet"] for d in r["tablet"]["doses"] for s, _c in d["recipe"]}
+    def test_liquid_rounded_to_measurable_step(self):
+        r = _rows("ethosuximide", [1112.14], current_unit="mL", absolute_max=1500,
+                  current_total_mg_per_day=1000, weight_kg=41.7)[0]
+        self.assertEqual(r["liquid_ml_per_dose"], 11.1)
+        self.assertEqual(r["decided_mg_per_day"], 1110)
+        self.assertNotIn("1112.14", r["liquid_text"])
 
-    def test_setting_is_data_not_code(self):
-        self.assertEqual(load_rules()["standard_tablet_strength"]["levetiracetam"], 500)
+    def test_small_liquid_dose_rounded(self):
+        r = _rows("oxcarbazepine", [233.325], current_unit="mL", absolute_max=2400,
+                  current_total_mg_per_day=180, weight_kg=18.3)[0]
+        self.assertEqual(r["liquid_ml_per_dose"], 1.9)
+        self.assertEqual(r["family_liquid_text"], "114 mg (1.9 mL) twice a day")
 
-    def test_only_current_or_standard_strength_is_ever_suggested(self):
-        from engine_core import dose_ladder
-        for wt in (30, 40, 45, 50, 60, 70):
-            for cur in (600, 800, 1000, 1200, 1500, 2000):
-                up = dose_ladder.resolve_plan("levetiracetam", 13, wt, cur, n_up=2)
-                tg = [s["target_mg_per_day"] for s in (up or {}).get("next_up") or []]
-                for unit, cs in (("mg", None), ("tablets", 250), ("tablets", 750), ("tablets", 1000)):
-                    rows = _rows("levetiracetam", tg, current_unit=unit, current_strength=cs,
-                                 absolute_max=3000, age_years=13, weight_kg=wt,
-                                 current_total_mg_per_day=(up or {}).get("current_mg_per_day"))
-                    used = self._used(rows)
-                    self.assertTrue(used <= {500.0} | ({float(cs)} if cs else set()),
-                                    (wt, cur, unit, cs, used))
-                    self.assertLessEqual(len(used), 1, (wt, cur, unit, cs, used))
+    def test_rounded_liquid_never_above_absolute_max(self):
+        from engine_core.formulation import round_liquid
+        ml, tot = round_liquid(999, 2, 100, load_rules(), absolute_max=1000)
+        self.assertLessEqual(tot, 1000)
 
-    def test_current_strength_kept_when_it_fits(self):
-        rows = _rows("levetiracetam", [1800, 2100], current_unit="tablets", current_strength=750,
-                     absolute_max=3000, age_years=13, weight_kg=60, current_total_mg_per_day=1500)
-        self.assertEqual(self._used(rows), {750.0})
+    def test_family_tablet_wording_is_mg_then_count(self):
+        r = _rows("levetiracetam", [1000], current_unit="tablets", current_strength=500,
+                  absolute_max=3000, current_total_mg_per_day=750)[0]
+        self.assertEqual(r["family_tablet_text"], "500 mg (1 tablet) twice a day")
 
-    def test_switches_to_standard_when_current_does_not_fit(self):
-        rows = _rows("levetiracetam", [1350, 1500], current_unit="tablets", current_strength=750,
-                     absolute_max=3000, age_years=13, weight_kg=30, current_total_mg_per_day=1200)
-        self.assertEqual(self._used(rows), {500.0})
+    def test_uneven_choice_puts_larger_dose_at_night(self):
+        r = step_options("levetiracetam", [1500], 2, LEV, current_unit="tablets",
+                         current_strength=250, absolute_max=3000,
+                         current_total_mg_per_day=1000, split="uneven")[0]
+        a, b = (d["mg"] for d in r["tablet"]["doses"])
+        self.assertLess(a, b)
 
-    def test_not_on_tablets_gets_standard(self):
-        rows = _rows("levetiracetam", [1400, 1600], current_unit="mg", absolute_max=3000,
-                     age_years=13, weight_kg=40, current_total_mg_per_day=1200)
-        self.assertEqual(self._used(rows), {500.0})
-
+    def test_resplit_keeps_the_same_total(self):
+        from engine_core.formulation import resplit_tablets
+        r = resplit_tablets(1500, 2, 250, LEV, "uneven")
+        self.assertEqual(r["plan"]["total_mg_per_day"], 1500)
+        self.assertEqual(r["family_text"], "500 mg (2 tablets) in the morning and 1000 mg (4 tablets) at night")
+        t = resplit_tablets(1500, 2, 250, LEV, "tid")
+        self.assertEqual(t["freq"], 3)
+        self.assertEqual(t["plan"]["total_mg_per_day"], 1500)

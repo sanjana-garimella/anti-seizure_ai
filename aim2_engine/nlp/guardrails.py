@@ -78,10 +78,10 @@ def validate_message(text, recommendation, snapshot) -> GuardrailResult:
 
     safety = bool(getattr(recommendation, "safety_concern_flag", False))
     if safety:
-        # SAFETY (Kristen 2026-07): the family message is either withheld (None) OR the
-        # engine's OWN approved safety draft - NEVER arbitrary text. This keeps the
-        # guardrail's protective core: a model (or anyone) still cannot inject safety
-        # copy; only the physician-approved template passes.
+        # SAFETY (Dr. Barbour 2026-10-25, #51): the engine withholds the family message
+        # on any safety flag (draft_patient_message is None), so no generated text
+        # passes here. The equality check is kept so that, if an approved safety
+        # template is ever reinstated, a model still cannot inject its own safety copy.
         approved = (getattr(recommendation, "draft_patient_message", None) or "").strip()
         if text and text.strip() != approved:
             problems.append("Safety concern: only the engine's approved safety draft may "

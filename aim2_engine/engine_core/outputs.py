@@ -726,14 +726,18 @@ def build_clinical_summary(
         note.add(REC, f"Possible switch target: {humanize(decision.switch_target)}")
         # Dr. Barbour's week-by-week starting schedule for the new medicine (v9
         # '<Drug> Initiation' tabs) - display only, her cells verbatim; defers when
-        # the band is unclear or the tab doesn't apply. Taper of the old medicine is
-        # NOT shown: pending her answer (NEEDS_PI_SIGNOFF #69).
+        # the band is unclear or the tab doesn't apply. Then the taper of the old
+        # medicine (her template F + 2026-10-25 answer, #69), on a switch only.
         _sched = initiation.schedule_for(decision.switch_target, p.age_years, p.weight_kg,
-                                         p.concomitant_asms)
+                                         p.concomitant_asms, current_unit=m.dose_unit)
         note.add(REC, f"Starting schedule for {humanize(decision.switch_target)} "
                  "(Dr. Barbour's initiation tab, DRAFT):")
         for _l in initiation.schedule_lines(_sched):
             note.detail(REC, _l)
+        if decision.category == RecommendationCategory.SWITCH_MEDICATION:
+            for _l in initiation.taper_lines(m.medication, m.total_daily_dose, m.frequency_per_day,
+                                             m.dose_unit, m.concentration):
+                note.add(REC, _l)
     if decision.category.value == "switch_medication" and not decision.switch_target:
         note.add(REC, "Switch target: for the physician to choose (no chart-approved option). "
                  "A switch-candidate menu is a planned feature.")
@@ -755,9 +759,13 @@ def build_clinical_summary(
             _ladder_drug_key(m.medication), p.age_years, p.weight_kg, _b3_end,
             n_up=_b3_n, concomitant_asms=p.concomitant_asms)
         if _b3_plan and _b3_plan.get("next_up"):
-            _b3_tgt = _b3_plan["next_up"][-1].get("target_mg_per_day")
+            # Name the decided (rounded) end dose when it converts; else the rung count.
+            _b3_rows = _formulation_rows(snapshot, decision, _b3_plan)[1]
+            _b3_dec = (_b3_rows[-1].get("decided_mg_per_day") if _b3_rows else None)
             note.add(REC, f"Planned end dose (family-reported): {_b3_end:g} mg/day -> end "
-                     f"+{_b3_n} higher = ~{_b3_tgt:g} mg/day (DRAFT - clinician to confirm).")
+                     f"+{_b3_n} higher"
+                     + (f" = {_b3_dec:g} mg/day" if isinstance(_b3_dec, (int, float)) else "")
+                     + " (DRAFT - clinician to confirm).")
         else:
             note.add(REC, f"Planned end dose (family-reported): {_b3_end:g} mg/day -> end "
                      f"+{_b3_n} higher (reaches the maximum - clinician to set the exact dose).")
@@ -771,14 +779,17 @@ def build_clinical_summary(
         _up = _family_up_plan(snapshot, decision)
         _tg, _rows = _formulation_rows(snapshot, decision, _up)
         if _tg:
-            note.add(REC, "Next dose (Dr. Barbour's ladder): " + "; ".join(
-                f"step {i} {dose_ladder.dose_value_str(t, p.weight_kg, True)}"
-                for i, t in enumerate(_tg, start=1)))
+            # Dr. Barbour 2026-10-25: the summary shows only the DECIDED dose (the
+            # tablet or measurable liquid amount), not the exact ladder value. The
+            # ladder target stays in the structured titration schedule (audit).
+            note.add(REC, "Next dose (Dr. Barbour's ladder, as the family will give it):")
             _on_tabs = (m.dose_unit or "") == "tablets"
             for _r in _rows:
                 _pre = f"Step {_r['step']}: " if len(_rows) > 1 else ""
+                _shown = False
                 if _r["tablet_text"]:
                     note.detail(REC, f"{_pre}{_r['tablet_text']}")
+                    _shown = True
                 if _r["notes"]:              # one short line (e.g. "no tablet fits" + skip-ahead)
                     note.detail(REC, f"{_pre}" + " ".join(_r["notes"]))
                 if _r["liquid_text"]:
@@ -786,6 +797,9 @@ def build_clinical_summary(
                             if (_on_tabs and not _r["tablet_text"] and not _r.get("age_rule_form"))
                             else "liquid")
                     note.detail(REC, f"{_pre}{_lbl}: {_r['liquid_text']}")
+                    _shown = True
+                if not _shown and not _r["notes"]:
+                    note.detail(REC, f"{_pre}not converted - clinician to set the amount.")
             if any(_r["tablet_text"] or _r["liquid_text"] for _r in _rows):
                 note.footnote("Tablet/liquid amounts are a DRAFT conversion of the ladder dose "
                               "(Dr. Barbour's -10%/+30% rules, unverified); the clinician "
@@ -912,9 +926,13 @@ def _formulation_rows(snapshot: IntervalSnapshot, decision, up=None):
         return [], []
     m, p = snapshot.medication, snapshot.patient
     dk = _ladder_drug_key(m.medication)
+    # Level-3 family choice (#52): three times a day -> 3 doses per step; uneven ->
+    # smaller morning, larger night dose.
+    choice = getattr(decision, "dosing_choice", None)
+    freq = 3 if (choice == "tid" and m.frequency_per_day) else m.frequency_per_day
     try:
         rows = formulation.step_options(
-            dk, tg, m.frequency_per_day, formulation.formulations_for(dk),
+            dk, tg, freq, formulation.formulations_for(dk),
             current_unit=m.dose_unit,
             current_strength=(m.concentration if (m.dose_unit or "") == "tablets" else None),
             current_formulation=m.formulation,
@@ -922,102 +940,62 @@ def _formulation_rows(snapshot: IntervalSnapshot, decision, up=None):
             current_total_mg_per_day=up.get("current_mg_per_day"),
             weight_kg=p.weight_kg,
             effective_max=up.get("effective_max_mg_per_day"),
-            age_years=p.age_years)
+            age_years=p.age_years,
+            split=("uneven" if choice == "uneven" else None))
     except Exception:
         rows = []
     return tg, rows
 
 
-def _family_form_line(snapshot: IntervalSnapshot, decision, up=None) -> str:
-    """How much to give, in the product the clinician summary shows (tablet counts, or
-    mL for liquid) - built from the SAME rows (_formulation_rows), so the family draft
-    and the summary never name different strengths. '' when nothing converts; if only
-    some steps convert, the team confirms the rest. Display only; physician-reviewed."""
-    freq = snapshot.medication.frequency_per_day
+def _family_steps(snapshot: IntervalSnapshot, decision, up=None):
+    """The DECIDED dose for each increase step, worded for the family, from the SAME
+    rows as the clinician summary (Dr. Barbour 2026-10-25: show only the decided,
+    measurable dose - the tablet or liquid amount - never the exact ladder value).
+    Returns (step_texts, note) or None when any step has no decided dose (the
+    message then names no numbers and the team confirms them)."""
     _tg, rows = _formulation_rows(snapshot, decision, up)
-    if not rows:
-        return ""
-    texts = []
-    cur_str = (snapshot.medication.concentration
-               if (snapshot.medication.dose_unit or "") == "tablets" else None)
-    for r in rows:
-        if r.get("family_tablet_text"):
-            t = r["family_tablet_text"]
-            # The plan total can sit a little off the ladder dose (Dr. Barbour's -10%/+30%
-            # window): say what the tablets add up to so the family isn't shown two
-            # different daily totals, and flag a change of tablet strength.
-            tot = (r.get("tablet") or {}).get("total_mg_per_day")
-            if isinstance(tot, (int, float)) and abs(tot - r["target_mg_per_day"]) > 0.05:
-                t += f" = {tot:g} mg a day in total"
-            strengths = {st for d in ((r.get("tablet") or {}).get("doses") or [])
-                         for st, _c in d["recipe"]}
-            if (isinstance(cur_str, (int, float)) and strengths
-                    and all(abs(st - cur_str) > 1e-6 for st in strengths)):
-                t += f" (a different tablet from the {cur_str:g} mg your child takes now)"
-            texts.append(t)
-        elif r.get("liquid_ml_per_dose") is not None and r.get("liquid_mg_per_ml"):
-            texts.append(f"{r['liquid_ml_per_dose']:g} mL {_freq_word(freq) or 'per dose'} "
-                         f"({r['liquid_mg_per_ml']:g} mg/mL liquid)")
-        else:
-            texts.append(None)
-    if not any(texts):
-        return ""
-    if len(texts) == 1:
-        line = f"How much to give: {texts[0]}."
-    else:
-        ords = ["first", "second", "third"]
-        line = "How much to give: " + "; ".join(
-            f"{ords[i] if i < len(ords) else 'next'} step, {t}" for i, t in enumerate(texts) if t) + "."
-    if not all(texts):
-        line += " Your team will confirm the amounts for the other step(s)."
-    return line
-
-
-def _family_tablet_steps(snapshot: IntervalSnapshot, decision, up=None):
-    """Tablet wording for each increase step, from the SAME rows as the clinician
-    summary: [(text, total_mg_per_day), ...] plus a strength-change sentence. Only
-    when EVERY step converts to tablets (otherwise the message keeps the mg wording
-    and the 'How much to give' line). None when not all steps are tablets."""
-    _tg, rows = _formulation_rows(snapshot, decision, up)
-    if not rows or not all(r.get("family_tablet_text") and r.get("tablet") for r in rows):
+    if not rows or not all(r.get("decided_mg_per_day") is not None
+                           and (r.get("family_tablet_text") or r.get("family_liquid_text"))
+                           for r in rows):
         return None
-    steps = [(r["family_tablet_text"], r["tablet"]["total_mg_per_day"]) for r in rows]
-    strengths = {st for r in rows for d in r["tablet"]["doses"] for st, _c in d["recipe"]}
-    cur_str = (snapshot.medication.concentration
-               if (snapshot.medication.dose_unit or "") == "tablets" else None)
-    note = ""
-    if (isinstance(cur_str, (int, float)) and len(strengths) == 1
-            and all(abs(st - cur_str) > 1e-6 for st in strengths)):
-        note = (f" This uses {next(iter(strengths)):g} mg tablets, a different tablet from the "
-                f"{cur_str:g} mg tablets your child takes now.")
-    return steps, note
+    texts = [r.get("family_tablet_text") or r["family_liquid_text"] for r in rows]
+    m = snapshot.medication
+    cur_str = m.concentration if (m.dose_unit or "") == "tablets" else None
+    ords = ["first", "second", "third"]
+    notes = []
+    prev_st = cur_str
+    for i, r in enumerate(rows):
+        st, noun = r.get("strength_mg"), r.get("unit_noun") or "tablet"
+        if not r.get("family_tablet_text") or not isinstance(st, (int, float)):
+            continue
+        if isinstance(prev_st, (int, float)) and abs(prev_st - st) < 1e-6:
+            continue                                   # same unit as before: nothing to say
+        subj = "This" if len(rows) == 1 else f"The {ords[i] if i < len(ords) else 'next'} step"
+        if isinstance(cur_str, (int, float)) and abs(cur_str - st) > 1e-6:
+            notes.append(f"{subj} uses {st:g} mg {noun}s, a different {noun} from the "
+                         f"{cur_str:g} mg {noun}s your child takes now.")
+        else:
+            notes.append(f"{subj} uses {st:g} mg {noun}s.")
+        prev_st = st
+    note = (" " + " ".join(notes)) if notes else ""
+    return texts, note
 
 
-def _family_cap(snapshot: IntervalSnapshot, decision, up, ladder_top: float) -> float:
-    """The 'don't go higher than' number for the mg-worded plan. When the top step is
-    given as tablets on the 'How much to give' line (mixed liquid/tablet plans), name
-    what those tablets add up to - the same rule as the all-tablet wording (_tab), so
-    the family is never told a limit below the dose they are told to give. Otherwise
-    the ladder dose. Both are values from the SAME rows as the clinician summary."""
+def _resplit(snapshot: IntervalSnapshot, decision) -> Optional[str]:
+    """The current daily dose re-split the way the family chose at Level 3 (uneven or
+    three times a day), worded for the family - whole tablets of the child's own
+    strength, same total. None when it can't be computed (the team sets it)."""
+    m = snapshot.medication
+    if (m.dose_unit or "") != "tablets" or not m.frequency_per_day:
+        return None
+    dk = _ladder_drug_key(m.medication)
     try:
-        _tg, rows = _formulation_rows(snapshot, decision, up)
+        r = formulation.resplit_tablets(m.total_daily_dose, m.frequency_per_day, m.concentration,
+                                        formulation.formulations_for(dk),
+                                        getattr(decision, "dosing_choice", None))
     except Exception:
-        rows = []
-    n = len((up or {}).get("next_up") or [])
-    if rows and len(rows) == n:
-        top = rows[-1]
-        tot = (top.get("tablet") or {}).get("total_mg_per_day")
-        if top.get("family_tablet_text") and isinstance(tot, (int, float)):
-            return tot
-    return ladder_top
-
-
-def _tab(step) -> str:
-    """'2 tablets in the morning and 3 tablets at night (250 mg each, 1250 mg/day)'."""
-    text, tot = step
-    if text.endswith(")"):
-        return f"{text[:-1]}, {_mg(tot)})"
-    return f"{text} ({_mg(tot)})"
+        r = None
+    return r["family_text"] if r else None
 
 
 def _goal_dose(snapshot: IntervalSnapshot) -> Optional[float]:
@@ -1075,21 +1053,37 @@ def family_message_allowed_doses(snapshot: IntervalSnapshot, decision) -> set:
     plan = _family_up_plan(snapshot, decision)
     for s in (plan or {}).get("next_up", []) or []:
         add(s.get("target_mg_per_day"))
-    # Tablet strengths / liquid concentration + mL per dose printed by _family_form_line.
+    # Decided doses printed by _family_steps: per-dose mg, mL, strengths, totals.
     try:
         _tg, rows = _formulation_rows(snapshot, decision, plan)
     except Exception:
         rows = []
     for r in rows:
         for d in ((r.get("tablet") or {}).get("doses") or []):
+            keep(d["mg"])                       # per-dose mg ("500 mg (2 tablets)")
             for st, _c in d["recipe"]:
                 keep(st)
         tot = (r.get("tablet") or {}).get("total_mg_per_day")
         if isinstance(tot, (int, float)):
             keep(tot)
-        for k in ("liquid_ml_per_dose", "liquid_mg_per_ml"):
+        for k in ("liquid_ml_per_dose", "liquid_mg_per_ml", "liquid_total_mg_per_day"):
             if isinstance(r.get(k), (int, float)):
                 keep(r[k])
+        lt = r.get("liquid_total_mg_per_day")
+        _fq = 3 if (getattr(decision, "dosing_choice", None) == "tid" and freq) else freq
+        if isinstance(lt, (int, float)) and _fq:
+            keep(round(lt / _fq, 3))            # per-dose mg ("530 mg (5.3 mL)")
+    # Level-3 re-split of the current dose (D template, family's choice).
+    try:
+        m = snapshot.medication
+        if getattr(decision, "dosing_choice", None) in ("uneven", "tid") and (m.dose_unit or "") == "tablets":
+            rs = formulation.resplit_tablets(m.total_daily_dose, m.frequency_per_day, m.concentration,
+                                             formulation.formulations_for(_ladder_drug_key(m.medication)),
+                                             decision.dosing_choice)
+            for d in ((rs or {}).get("plan") or {}).get("doses", []):
+                keep(d["mg"])
+    except Exception:
+        pass
     return allowed
 
 
@@ -1098,26 +1092,11 @@ def build_patient_message(
     physician_name: str = "[physician name]",
 ) -> Optional[str]:
     if decision.safety_concern_flag:
-        # SAFETY drafts (Kristen 2026-07): the between-visit survey is retrospective,
-        # so instead of silence we emit a short DRAFT the physician approves before
-        # sending - reason-first, contact the clinic, no ER/911 copy. ONLY a rash says
-        # STOP; every other safety flag says KEEP GIVING (abrupt stop risks withdrawal
-        # seizures). Still a DRAFT, never auto-sent. NOTE: this REPLACES the prior
-        # spec-§11 "withhold entirely" rule - flagged for PI sign-off.
-        med = snapshot.medication.medication or "the medicine"
-        contact = "Please contact the clinic today, or as soon as possible."
-        flags = set(decision.urgent_flags or [])
-        if any("sjs" in f or "rash" in f for f in flags):
-            return (f"Thank you for telling us about your child. The rash you described "
-                    f"may be a reaction to {med}, so please stop giving it — no more doses. "
-                    f"{contact}\n\n- {physician_name}")
-        if decision.category == RecommendationCategory.SWITCH_MEDICATION:
-            return (f"Thank you for the update on your child. Because {med} does not seem to "
-                    f"be helping enough, we'd like to try a different medicine. Please keep "
-                    f"giving {med} for now, and contact the clinic today, or as soon as "
-                    f"possible, to go over the plan.\n\n- {physician_name}")
-        return (f"Thank you for telling us about your child. Please keep giving {med} as "
-                f"prescribed. {contact}\n\n- {physician_name}")
+        # SAFETY (Dr. Barbour, 2026-10-25, NEEDS_PI_SIGNOFF #51 RESOLVED): on any safety
+        # flag the family gets NO message from the engine - not even a short STOP /
+        # contact-the-clinic draft. The case goes to the physician for her urgent
+        # protocol, and she contacts the family herself.
+        return None
 
     m = snapshot.medication
     med = m.medication or "the medicine"
@@ -1131,12 +1110,15 @@ def build_patient_message(
 
     up = _family_up_plan(snapshot, decision)
     up_steps = (up or {}).get("next_up") or []
-    # Tablet counts for the steps (same plan as the clinician summary) - when every
-    # step converts, the step sentences name the tablets instead of mg/day.
+    # The DECIDED dose for each step (tablets or measurable liquid; same rows as the
+    # clinician summary). Dr. Barbour 2026-10-25: name only that dose (mg, with the
+    # tablet count or mL in brackets), never the exact ladder value, and no
+    # "don't go higher than" line (#67). If a step has no decided dose, the message
+    # names no numbers and the team confirms them.
     ts, tab_note = None, ""
     if up_steps and cat in (RecommendationCategory.ESCALATE, RecommendationCategory.HOLD):
         try:
-            _t = _family_tablet_steps(snapshot, decision, up)
+            _t = _family_steps(snapshot, decision, up)
         except Exception:
             _t = None
         if _t and len(_t[0]) == len(up_steps):
@@ -1148,24 +1130,9 @@ def build_patient_message(
         if decision.pace == "faster":                                   # B3
             tmpl = "B3"
             if ts and len(ts) >= 2:
-                plan = (f"give {_tab(ts[0])} for 3 days, then give {_tab(ts[1])} and stay at "
-                        f"this dose. Please don't go higher than {_mg(ts[1][1])} without hearing "
-                        f"from us")
+                plan = f"give {ts[0]} for 3 days, then give {ts[1]} and stay at this dose"
             elif ts:
-                plan = (f"give {_tab(ts[0])} and stay at this dose. Please don't go higher "
-                        f"than {_mg(ts[0][1])} without hearing from us")
-            elif len(up_steps) >= 2:
-                s1 = up_steps[0]["target_mg_per_day"]
-                s2 = up_steps[1]["target_mg_per_day"]
-                plan = (f"increase to {_dose_phrase(s1, freq)}, stay for 3 days, then increase "
-                        f"to {_dose_phrase(s2, freq)} and stay at this dose. Please don't go "
-                        f"higher than {_mg(_family_cap(snapshot, decision, up, s2))} "
-                        f"without hearing from us")
-            elif len(up_steps) == 1:
-                s1 = up_steps[0]["target_mg_per_day"]
-                plan = (f"increase to {_dose_phrase(s1, freq)} and stay at this dose. Please "
-                        f"don't go higher than {_mg(_family_cap(snapshot, decision, up, s1))} "
-                        f"without hearing from us")
+                plan = f"give {ts[0]} and stay at this dose"
             else:
                 plan = "your team will confirm the exact doses with you"
             body = (f"To help reduce the seizures, let's increase the {med} a little more quickly "
@@ -1175,18 +1142,8 @@ def build_patient_message(
             tmpl = "B2"
             if ts and len(ts) >= 2:
                 interval = _up_interval_label(snapshot)
-                plan = (f"First, give {_tab(ts[0])} for {interval}. Then, give {_tab(ts[1])} "
-                        f"and stay at this dose. Please don't go higher than {_mg(ts[1][1])} "
-                        f"without hearing from us")
-            elif len(up_steps) >= 2:
-                s1 = up_steps[0]["target_mg_per_day"]
-                s2 = up_steps[1]["target_mg_per_day"]
-                interval = _up_interval_label(snapshot)
-                plan = (f"First, increase to {_dose_phrase(s1, freq)} and stay there for "
-                        f"{interval}. Then, increase to {_dose_phrase(s2, freq)} and stay at "
-                        f"this dose. Please don't go higher than "
-                        f"{_mg(_family_cap(snapshot, decision, up, s2))} without hearing "
-                        f"from us")
+                plan = (f"First, give {ts[0]} for {interval}. Then, give {ts[1]} and stay at "
+                        f"this dose")
             else:
                 plan = ("increase in two steps toward the goal dose; your team will confirm "
                         "the exact doses and timing with you")
@@ -1194,16 +1151,12 @@ def build_patient_message(
         else:                                                           # B1
             tmpl = "B1"
             if ts:
-                plan = f"increase {med}: give {_tab(ts[0])}"
-            elif up_steps:
-                s1 = up_steps[0]["target_mg_per_day"]
-                plan = f"increase {med} to {_dose_phrase(s1, freq)}"
+                plan = f"increase {med}: give {ts[0]}"
             else:
                 plan = (f"increase {med} to the next step; your team will confirm the exact dose")
             # Kristen kb-edits (2026-07-28): concise - "To help with seizures, please
             # increase [medicine] to [dose]." (dropped "and stay at this dose" + the
-            # "contact the clinic" line). The mg/day + per-dose phrasing is retained as
-            # the clinician-ladder provenance anchor.
+            # "contact the clinic" line).
             body = f"To help with seizures, please {plan}.{tab_note}"
     elif cat == RecommendationCategory.SLOWER_UPTITRATION:               # C - slow the cadence
         # Kristen kb-edits: C is "increase every 2 weeks instead of every 1 week"
@@ -1217,13 +1170,24 @@ def build_patient_message(
     elif cat == RecommendationCategory.HOLD:
         if "after week 2" in steps_text or "weeks 1-2 stay" in steps_text:   # B5
             tmpl = "B5"
-            nxt = (f": give {_tab(ts[0])}" if ts
-                   else f" to {_dose_phrase(up_steps[0]['target_mg_per_day'], freq)}"
-                   if up_steps else "")
+            nxt = f": give {ts[0]}" if ts else ""
             body = ("Let's give your child time to settle before the next increase. Please "
                     "stay at the current dose"
                     + (f" of {_mg(cur)}" if cur is not None else "")
                     + f" for the next 2 weeks, then increase{nxt} and stay at this dose.{tab_note}")
+        elif getattr(decision, "dosing_choice", None) in ("uneven", "tid"):  # D (family's pick)
+            tmpl = "D"
+            rs = _resplit(snapshot, decision)
+            if decision.dosing_choice == "uneven":
+                how = (f"give {rs} — the same total each day" if rs else
+                       "give a smaller dose in the morning and a larger dose at night — the same "
+                       "total each day; your team will confirm the exact amounts with you")
+            else:
+                how = (f"give it three times a day instead of twice a day: {rs} — the same total "
+                       "each day" if rs else
+                       "give it in three smaller doses a day instead of twice a day — the same "
+                       "total each day; your team will confirm the exact amounts with you")
+            body = f"To help with side effects, as you chose, let's change how {med} is given: {how}."
         else:                                                            # hold / watch-and-wait
             tmpl = "HOLD"
             body = ("The side effects have been noticeable. They are often strongest right after "
@@ -1255,11 +1219,21 @@ def build_patient_message(
         # medicines that work in different ways give better seizure control with fewer
         # side effects." The specific second medicine + its dose are NOT named here
         # (physician-selected; not an engine-computed value).
-        body = (f"{med.capitalize()} does seem to be helping, so rather than stopping it, let's "
-                f"add a second medicine alongside it. Sometimes two medicines that work in "
-                f"different ways give better seizure control with fewer side effects. Your team "
-                f"will go over which medicine and the exact doses with you, and will be in touch. "
-                f"Please keep giving {med} as prescribed for now.")
+        if "lower dose" in steps_text:                                   # E1 + G (lower + add)
+            # Dr. Barbour 2026-10-25: Level 4 with ongoing seizures -> lower the dose and
+            # add a second medicine (her table); also the family's option 4 at Level 3.
+            # Wording from her template H option 4. The lower target is set by the physician.
+            body = (f"To help with side effects, let's lower the {med} dose to [lower dose — "
+                    f"physician to confirm] and add a second medicine alongside it. Sometimes two "
+                    f"medications, at lower doses each, is a better fit for both seizures and side "
+                    f"effects. Your team will go over which medicine and the exact doses with you, "
+                    f"and will be in touch.")
+        else:
+            body = (f"{med.capitalize()} does seem to be helping, so rather than stopping it, let's "
+                    f"add a second medicine alongside it. Sometimes two medicines that work in "
+                    f"different ways give better seizure control with fewer side effects. Your team "
+                    f"will go over which medicine and the exact doses with you, and will be in touch. "
+                    f"Please keep giving {med} as prescribed for now.")
 
     elif cat == RecommendationCategory.NO_CHANGE:
         if _still_titrating(snapshot):                                   # A1
@@ -1286,29 +1260,36 @@ def build_patient_message(
             body = ("Your care team will review your answers and follow up with any questions "
                     "before making changes.")
 
-    # Tablet / liquid amounts for the increase steps (same plan as the clinician summary).
-    if tmpl in ("B1", "B2", "B3", "B5") and up_steps and not ts:
-        _form = _family_form_line(snapshot, decision, up)
-        if _form:
-            body += "\n\n" + _form
-
-    # Dose-split option (Kristen template D): when the engine's dosing_note suggests
-    # changing HOW the dose is split (uneven AM/PM, or three-times-a-day), surface it
-    # as an option alongside the increase/hold. The specific AM/PM/TID amounts are NOT
-    # printed - the engine does not compute the split (physician-set / pending the
-    # family-choice survey question, NEEDS_PI_SIGNOFF #49). Only for increase/hold
-    # templates (not switch/add/lower/question).
-    if getattr(decision, "dosing_note", None) and tmpl in ("B1", "B2", "B3", "C", "HOLD"):
-        dn = decision.dosing_note.lower()
-        if "uneven" in dn:
-            split = ("giving a little less in the morning and a little more in the evening, or "
-                     "the other way around")
-        elif "tid" in dn or "three" in dn:
-            split = "splitting the dose into three smaller doses across the day"
-        else:
-            split = "changing how the daily doses are split across the day"
-        body += (f"\n\nTo help with side effects, your team may also consider {split} — the total "
-                 "each day would stay the same. They will confirm the exact amounts with you.")
+    # Level-3 options (Dr. Barbour 2026-10-25, #52; her template H wording). The
+    # FAMILY chooses. If they already chose in the survey, the plan above uses it
+    # (uneven / three-times-a-day doses, or the D template on a hold); if they have
+    # not, list the options the table cell offers so they can reply with a choice.
+    choice = getattr(decision, "dosing_choice", None)
+    opts = list(getattr(decision, "dosing_options", None) or [])
+    if tmpl in ("B1", "B2", "B3", "B5") and choice == "uneven" and ts:
+        body += ("\n\nAs you chose, the smaller dose is in the morning and the larger dose at "
+                 "night.")
+    elif tmpl in ("B1", "B2", "B3", "B5") and choice == "tid" and ts:
+        body += "\n\nAs you chose, the medicine is now given three times a day."
+    elif tmpl in ("B1", "B2", "B3", "B5", "C", "HOLD") and opts and not choice:
+        _opt_text = {
+            "uneven": ("a smaller dose in the morning and a larger dose at night, if the "
+                       "day-time side effects are the main concern"),
+            "tid": "giving the medicine in smaller doses three times a day instead of twice a day",
+            "wait": "watching and waiting, since sometimes the body only needs more time to adjust",
+            "add": "lowering the dose and adding a second medication",
+        }
+        listed = [_opt_text[o] for o in opts if o in _opt_text]
+        if listed:
+            body += ("\n\nWe have a few options to handle the side effects, in no particular order: "
+                     + "; ".join(f"({i}) {t}" for i, t in enumerate(listed, start=1))
+                     + ". Let us know which you would prefer - the total each day would stay "
+                     "the same unless we lower the dose.")
+    elif getattr(decision, "dosing_note", None) and not opts and tmpl in ("B1", "B2", "B3", "C", "HOLD"):
+        # Older path (no options list on the decision): keep the generic split option.
+        body += ("\n\nTo help with side effects, your team may also consider changing how the daily "
+                 "doses are split across the day - the total each day would stay the same. They "
+                 "will confirm the exact amounts with you.")
 
     # Adherence support tips (Barbour T9) - practical, non-clinical reminders.
     tips = ""

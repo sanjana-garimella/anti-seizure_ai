@@ -8,6 +8,9 @@ Engineering/build questions, code changes, model choices, UI/demo notes, and
 IRB/timeline status are tracked separately by the engineering team and
 don't need your time.
 
+*2026-10-25: your answers to my 2026-10-23 walkthrough questions are recorded in the last
+section ("2026-10-25 - your answers"), and the items they close are marked RESOLVED inline.*
+
 *Last reconciled 2026-08-05 against engine v0.3.0 (401 tests passing; validation
 κ = 0.976 MET; `verification/verify_all.py` PASS). Items 47–52 were added
 2026-07-28. No clinical item changed on 2026-08-05: that work was output-layer only
@@ -306,14 +309,14 @@ cross-checked against your authoritative markup
 50. **E1 lower-dose target stays bracketed** - your own E1 brackets `[lower dose]`, and the
     ladder only resolves upward, so the physician sets it. Confirmed acceptable.
 
-51. **SAFETY - still needs your call (your two documents disagree).** Your template doc (both
+51. **RESOLVED 2026-10-25 (you: no message at all) - built.** **SAFETY - still needs your call (your two documents disagree).** Your template doc (both
     versions, unchanged in the kb-edits) says safety cases *"stay withheld for your urgent
     protocol."* The engine today (per an earlier 2026-07 direction + the current unit tests)
     instead emits a short physician-approved STOP/keep-giving DRAFT, never auto-sent. Please
     confirm **(a)** withhold entirely on any safety flag, or **(b)** keep the approved draft;
     I'll align the code, tests, and `manual_check.py` to your answer.
 
-52. **NEW from your kb-edits - H is a family-choice flow for breakthrough + Level-3 side
+52. **RESOLVED 2026-10-25 (the family chooses) - built; wording for you to edit (see below).** **NEW from your kb-edits - H is a family-choice flow for breakthrough + Level-3 side
     effects.** You specified that for *any breakthrough seizure + Level 3 (medium, a lot) side
     effects*, the survey should offer five options (1 uneven, 2 TID, 3 watch-and-wait, 4 lower
     + add a second med, 5 switch) with a drop-down, and the family's pick drives the message
@@ -322,7 +325,7 @@ cross-checked against your authoritative markup
     watch-and-wait/hold message with the split shown as an option. Confirm the flow + bless the
     option wording.
 
-53. **NEW - F (switch) is a cross-taper plan you're still finalizing.** Your kb-edits replace
+53. **RESOLVED 2026-10-25 (taper from your template F, old medicine off at week 4) - built in the summary; one reading to confirm (see below).** **NEW - F (switch) is a cross-taper plan you're still finalizing.** Your kb-edits replace
     the generic switch note with a **week-by-week cross-taper table** (current ×0.75 → ×0.50 →
     ×0.25 while the new medicine climbs) and add *"I am working on a standard plan for this one,
     so we can talk more in person."* I kept the generic "we'll go over the plan" message for
@@ -382,40 +385,40 @@ headroom line no longer mentions switching.
 Built as DRAFT in `data/formulation_rules.json` (display only; no recommendation changes). Workbook for
 review: `kristen/tablet_dosing_logic_refinement.xlsx` (sheets "Round 1 comments", "Questions for you").
 
-60. **Are the half-tablet products really splittable?** You asked for 2 + 2.5 tablets then 2 + 3 for
+60. **ANSWERED 2026-10-25 (capsules are never split; use what is available in practice) - override removed; waiting for your updated sheet.** **Are the half-tablet products really splittable?** You asked for 2 + 2.5 tablets then 2 + 3 for
     valproic acid 500 mg and zonisamide 50 mg, and this is built (`half_tablet_overrides`). Our product
     list has valproate 500 mg only as a **delayed-release capsule** (no 500 mg tablet) and zonisamide 50 mg
     only as a **capsule**; both are normally swallowed whole, and your earlier rule #9 says ER/DR is never
     split. Confirm the exact products, add a 500 mg valproate tablet if one exists, or tell us to remove
     the override. (Also: 2250 mg at 45 kg is 50 mg/kg/day, your note says 45.)
-61. **Age rule vs. the form the family is on.** Built: over 10 y = tablets, 10 y and under = liquid
+61. **RESOLVED 2026-10-25 (keep the family's current form; the age rule is only for simulated cases) - built.** **Age rule vs. the form the family is on.** Built: over 10 y = tablets, 10 y and under = liquid
     (age 10 = liquid "for now"), and **age wins** over what the family reports (with a note). Confirm, or
     keep the current form. Also what to show when the preferred form has no product (no oral liquid listed
     for a young child; no tablet fits an older child).
-62. **One bottle per climb.** Built: one tablet strength across both steps (child's own strength if it fits
+62. **RESOLVED 2026-10-25 (no standard strength; best fit, fewest tablets) - built.** **One bottle per climb.** Built: one tablet strength across both steps (child's own strength if it fits
     as many steps as the best one; otherwise the closest single strength). When no single strength fits the
     -10%/+30% range, should we switch strength, skip ahead, or show liquid? (Currently: liquid is shown as a
     fallback, flagged "needs attention".)
-63. **Starting dose -> therapeutic dose schedules (data needed).** The examples now only cover children whose
+63. **RESOLVED 2026-10-25 (use the ladder's step increases below the therapeutic range) - already how the ladder works; no change.** **Starting dose -> therapeutic dose schedules (data needed).** The examples now only cover children whose
     current dose is already in the therapeutic window. Send the titration schedules from the initial starting
     dose to the minimum maintenance dose; until then the engine would still convert those steps if asked.
-64. **Oxcarbazepine ladder revision (data needed).** You noted the step increases are too small; the
+64. **RESOLVED 2026-10-25 (v9 oxcarbazepine revision confirmed as intended).** **Oxcarbazepine ladder revision (data needed).** You noted the step increases are too small; the
     oxcarbazepine rows in the workbook are marked provisional until you send revised values.
-65. **Smaller judgment calls** (current setting in brackets): widest morning/night split [30/70; 40/60?];
+65. **ANSWERED 2026-10-25 (follow your initiation-rule .md) - waiting for that file.** **Smaller judgment calls** (current setting in brackets): widest morning/night split [30/70; 40/60?];
     max tablets per dose [4]; larger dose at night for three-times-daily drugs [yes]; lamotrigine 2 mg / 5 mg
     chewable-dispersible tablets usable [yes]; default valproate product [first plain tablet/capsule line].
-66. **One tablet strength per medicine (study team, 2026-10-15).** Levetiracetam plans now use the
+66. **RESOLVED 2026-10-25 (no standard strength; tablet size may change when a dose needs it) - built.** **One tablet strength per medicine (study team, 2026-10-15).** Levetiracetam plans now use the
     family's current tablet when it fits every step, otherwise **500 mg tablets** - never another
     best-fit strength (previously 250, 500 or 750 mg depending on weight/dose). Set in
     `data/formulation_rules.json` -> `standard_tablet_strength`. Trade-off: a few steps that only a
     250 mg tablet could hit now show the liquid fallback instead. Confirm 500 mg, and whether other
     medicines should get a standard strength too.
-67. **Family message names the tablets (study team, 2026-10-15).** When every increase step converts
+67. **RESOLVED 2026-10-25 ("500 mg (1 tablet) twice a day"; no "don't go higher than") - built.** **Family message names the tablets (study team, 2026-10-15).** When every increase step converts
     to tablets, the family draft now says e.g. "give 2 tablets in the morning and 3 tablets at night
     (250 mg each, 1250 mg/day)", and "don't go higher than" uses the tablet total (inside the
     -10%/+30% window, never above the absolute max) instead of the ladder mg/day. Liquid / partial
     conversions keep the mg wording plus the "How much to give" line. Confirm the wording.
-68. **Survey changes from your 2026-10-15 list (built, DRAFT).** (a) Removed the increase / add /
+68. **RESOLVED 2026-10-25 (no - the preference questions stay removed) - no change.** **Survey changes from your 2026-10-15 list (built, DRAFT).** (a) Removed the increase / add /
     switch preference questions: Q12 "Do you have a preference about the medicine?", 12a ranking,
     12b strength, and the at-goal "continue increasing vs add another medication" question. The
     engine treats an unanswered Q12 as no strong preference, so rules R7 and R16 (family wants a
@@ -428,12 +431,12 @@ review: `kristen/tablet_dosing_logic_refinement.xlsx` (sheets "Round 1 comments"
     decision. Wording is a draft for you to edit (#52). (d) Fixed: the "Your preference" card checked a
     value that no option had, so it never appeared; the 1-week adjustment question now shows for
     still-titrating + Level 2/3.
-69. **Switch: stopping the old medicine (v9 email vs template F table).** Her template F table
+69. **RESOLVED 2026-10-25 (off at week 4; new medicine starts in week 1) - built in the summary.** **Switch: stopping the old medicine (v9 email vs template F table).** Her template F table
     (kb edits) tapers the old medicine x0.75 / x0.50 / x0.25 "and continue" while the new one reaches its
     goal by week 4; her 2026-10-23 email says decrease "until week 4 off". The new starting tabs take 3-14
     weeks to reach goal. NOT built: the switch summary shows only the new medicine's starting schedule.
     Questions in kristen/logic_tradeoffs_for_discussion.md section 14.
-70. **final_doses_titration_v9 loaded (2026-10-23).** data/dose_titration_ladder.json is now rebuilt from
+70. **CONFIRMED 2026-10-25 (all four v6->v9 changes intended) - data flags still open, see below.** **final_doses_titration_v9 loaded (2026-10-23).** data/dose_titration_ladder.json is now rebuilt from
     the sheet by data/_build_dose_ladder.py (verified to reproduce the v6 JSON exactly, apart from the two
     documented oxcarbazepine >=70 kg hand corrections); asm_rules.json rebuilt from it. The 10
     '<Drug> Initiation' tabs are in data/initiation_schedules.json (verbatim) and shown to the clinician
@@ -442,3 +445,98 @@ review: `kristen/tablet_dosing_logic_refinement.xlsx` (sheets "Round 1 comments"
     (zonisamide child step 1.5 > max 0.7; brivaracetam >=50 kg start above min maintenance). Open
     questions in kristen/logic_tradeoffs_for_discussion.md section 15. Also fixed: data-quality flags were
     matched by drug only and shown on every band of that drug; now band-specific.
+
+
+## 2026-10-25 - your answers (what I built, and what is still open)
+
+Everything below is still a DRAFT (`verified:false`) and still goes through physician review.
+Checks after these changes: 523 unit tests pass; validation κ = 0.976 (MET, unchanged, only J2
+differs); `verification/verify_all.py` PASS; `manual_check.py` 37/37; `holdout_test.py` and
+`creative_tests.py` now pass their safety-message checks, because the engine withholds the message.
+
+**Built**
+
+- **#51 Safety flag -> no family message.** On any safety flag the engine now gives no family draft
+  at all (no STOP / contact-the-clinic draft). The review page already shows "Family message
+  withheld - handle per urgent protocol".
+- **#69 Switching.** The doctor's summary now shows how to stop the old medicine under the new
+  medicine's starting schedule: week 1 current dose, week 2 ×0.75, week 3 ×0.50, week 4 ×0.25, then
+  off, with the new medicine starting in week 1. **Please confirm one reading:** you said "off at week
+  4". I built it as ×0.25 *during* week 4 and stopped after week 4 (your template F table has ×0.25 in
+  week 4). If you meant no medicine at all in week 4, I'll drop the ×0.25 week. The family message for
+  a switch is unchanged ("we'll go over the plan").
+- **#52 Level-3 side effects: the family chooses.** The survey uses your template H wording. It offers
+  uneven dosing, three times a day, and watch and wait for any medicine, in any phase (three times a
+  day is now offered while still increasing). It offers "lower the dose and add a second medication"
+  only with breakthrough seizures, and the engine acts on it only where your table cell lists it
+  (urgent / emergent L3). Their answer is now a structured field the tables read, not a free-text
+  note. If they chose uneven or three times a day, the plan is split that way. A hold is re-split
+  with the same total when whole tablets allow it; otherwise the team sets the amounts. If they
+  didn't choose, the draft lists the cell's options for them.
+- **Level 4 + urgent ongoing seizures -> lower the dose and add a second medicine,** straight from
+  your table. The family draft now says both (lower + add), using your option-4 wording; the lower
+  target stays "[lower dose - physician to confirm]". Behavioral side effects follow the same table
+  as every other side effect (they already did; I added a test).
+- **Decided dose only (rounding).** The family message and the doctor's summary show only the dose the
+  family will actually give: the tablet plan, or the liquid rounded to a measurable volume. They no
+  longer show the exact ladder value (e.g. 1112.14 mg/day becomes 1110 mg/day = 11.1 mL twice a day)
+  or the "% vs the ladder" figure. The exact ladder value stays in the structured schedule for the
+  audit trail. **To confirm:** I round liquid to the nearest **0.1 mL** per dose (still inside your
+  -10%/+30% window, never above the max). Tell me if you'd prefer a different step (e.g. 0.5 mL for
+  large volumes).
+- **#67 Tablet wording.** Each step now reads like "levetiracetam: give 500 mg (1 tablet) twice a
+  day", or "500 mg (2 tablets) in the morning and 750 mg (3 tablets) at night". Liquid reads "530 mg
+  (5.3 mL) twice a day". The "Please don't go higher than…" line is gone everywhere.
+- **Mixed liquid/tablet plans (Hazel).** Every step sentence names its own decided dose (the
+  liquid step in mL, the tablet step as tablets), so the ladder dose (1217.83) never appears.
+- **Ethosuximide 250 mg = capsule.** The wording comes from the product form now, so ethosuximide
+  (and any other capsule) says "capsules".
+- **#61 Tablets vs liquid.** The family's current form is kept. The age rule (over 10 = tablets) is
+  used only when the form isn't known, i.e. simulated cases. The new medicine's starting schedule
+  follows the same rule.
+- **#62 / #66 Tablet strength.** No standard strength any more. For each step I pick the strength whose
+  plan lands closest to the ladder dose. On a tie, the child's current tablet (or the one the previous
+  step used) wins, then the fewest tablets. One strength per step; the strength can change from step to
+  step when the dose needs it (e.g. 1 × 750 mg -> 2 × 500 mg twice a day), and the family message
+  says so. Your initiation-rule .md may refine this ordering once I have it.
+- **#60 Half units.** I removed the half-unit override for valproate 500 mg and zonisamide 50 mg.
+  Capsules are never split.
+- **Carbamazepine** is never offered as a new medication (it was already absent from the medicine
+  options; a switch target of carbamazepine now says so instead of "no schedule yet").
+- **Medicine-options questions** moved to a second page after the check-in. It appears only when the
+  decision is switch or add, and families can skip it.
+- **Already as you answered (no change):** breakthrough with no length -> assume urgent (F1);
+  near the max, the table's "if max before…" clause decides; levetiracetam blank tablet bands
+  (17.5-20 kg) say "use the liquid"; below the therapeutic range the ladder's step increases are used.
+
+**Waiting on files from you**
+
+- **Your initiation-rule .md** (tablet-choice examples, #65 settings: the -10%/+30% window on the goal
+  step, max 4 tablets per dose, the 30/70 vs 40/60 split). It isn't in my folder yet; the current
+  settings stay until I have it.
+- **Your updated v9 sheet**, which separates tablets from capsules (#60) and fixes brivaracetam ≥50 kg,
+  topiramate 11-12 kg, lamotrigine weight-vs-age / age 16, and the product lists (valproate plain
+  tablets, lamotrigine 50/100 mg chewables, topiramate 15 mg). My copy is still the 2026-10-23 one.
+  When it arrives I'll rebuild the ladder, starting schedules and asm_rules from it.
+
+**Still need your call**
+
+- **Zonisamide child step (v9 flag).** You wrote "the zonisamide steps look like 0.5 mg/kg/day". Do you
+  mean the 3.5 -> 5 mg/kg/day jump should be broken into 0.5 mg/kg/day steps (3.5, 4, 4.5, 5), or
+  that 1.5 is fine? I've left the sheet's values as they are until you say which.
+- **Draft wording for you to edit (#52).** The Level-3 messages now in the draft:
+  - *Uneven (chosen):* "To help with side effects, as you chose, let's change how [medicine] is given:
+    give [AM dose] in the morning and [PM dose] at night - the same total each day."
+  - *Three times a day (chosen):* "…give it three times a day instead of twice a day: [morning],
+    [afternoon] and [night] - the same total each day."
+  - *Not chosen yet:* "We have a few options to handle the side effects, in no particular order: (1) a
+    smaller dose in the morning and a larger dose at night…; (2) giving the medicine in smaller doses
+    three times a day…; (3) watching and waiting… Let us know which you would prefer."
+  - *Lower + add:* "To help with side effects, let's lower the [medicine] dose to [lower dose] and add
+    a second medicine alongside it. Sometimes two medications, at lower doses each, is a better fit for
+    both seizures and side effects. Your team will go over which medicine and the exact doses with you."
+  - *At goal (R12g, ongoing seizures + medium side effects):* the question still uses your 2026-06
+    wording ("…continue increasing the dose? Or … adding another medication…"). A shorter draft for
+    you to edit: "Your child is at the goal dose and still having some seizures, with side effects that
+    are noticeable but manageable. We could keep increasing [medicine] a little, or add a second
+    medicine that works in a different way. Which would you prefer?" I haven't wired it in yet.

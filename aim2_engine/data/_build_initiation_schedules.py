@@ -146,6 +146,22 @@ def main(argv):
         "source": f"clinician (Barbour {os.path.basename(src)}, '<Drug> Initiation' tabs; "
                   "built by data/_build_initiation_schedules.py)",
         "by_drug": by_drug,
+        # Stopping the OLD medicine during a switch (cross-taper). Dr. Barbour's template F
+        # table (kb edits): week 1 current dose, week 2 x0.75, week 3 x0.50, week 4 x0.25 of
+        # the current dose, each dose of the day; her 2026-10-25 answer (#69): the old
+        # medicine is OFF at week 4, and the new medicine starts in week 1 alongside it (on
+        # its own starting schedule above). My reading: x0.25 is given during week 4 and the
+        # old medicine stops after week 4 - FLAG FOR DR. BARBOUR to confirm.
+        "switch_taper": {
+            "verified": False,
+            "source": "clinician (Barbour template F, kb edits; answer 2026-10-25, NEEDS_PI_SIGNOFF #69)",
+            "old_medicine_multipliers_by_week": [1.0, 0.75, 0.5, 0.25],
+            "old_medicine_off_after_week": 4,
+            "new_medicine_starts_week": 1,
+            "not_started_as_new_medicine": {
+                "carbamazepine": "Dr. Barbour 2026-10-25: carbamazepine is never offered as a new medication."
+            },
+        },
     }
     if problems:
         print("\nrefusing to write: some band labels could not be read - fix the parser or the sheet")

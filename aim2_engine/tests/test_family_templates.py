@@ -89,23 +89,25 @@ class TestTemplateSelection(unittest.TestCase):
         self.assertIn("continue the same topiramate dose", m)
         self.assertIn("no change right now", m)
 
-    def test_B1_one_step_fills_ladder_dose(self):
+    def test_B1_one_step_fills_decided_dose(self):
+        # Dr. Barbour 2026-10-25: the decided dose (mg, with the mL or tablet count),
+        # here ladder 125 mg/day as liquid for a 7-year-old with no reported form.
         m = self._msg(RC.ESCALATE, "Make 1 dose increase; follow up 4 weeks")
-        self.assertIn("increase topiramate to 125 mg/day (about 62.5 mg twice a day)", m)
+        self.assertIn("increase topiramate: give 62.5 mg (2.5 mL) twice a day", m)
 
     def test_B2_two_steps_names_both_rungs_and_interval(self):
         m = self._msg(RC.ESCALATE, "Make 2 dose increases; follow up 4 weeks")
         self.assertIn("in two steps", m)
-        self.assertIn("125 mg/day", m)
-        self.assertIn("150 mg/day", m)
-        self.assertIn("stay there for 1 week", m)        # v9: topiramate interval is "Weekly"
+        self.assertIn("give 62.5 mg (2.5 mL) twice a day for 1 week", m)   # v9 interval "Weekly"
+        self.assertIn("give 75 mg (3 mL) twice a day and stay at this dose", m)
+        self.assertNotIn("go higher than", m)            # #67: no "don't go higher than" line
 
     def test_B3_faster_every_3_days(self):
         m = self._msg(RC.ESCALATE, "Quicken titration to every 3 days, end 2 dose increases higher",
                       pace="faster")
         self.assertIn("more quickly than usual", m)
         self.assertIn("every 3 days instead of every 7", m)      # Kristen's kb-edit wording
-        self.assertIn("stay for 3 days", m)
+        self.assertIn("twice a day for 3 days, then give", m)
 
     def test_C_slow_the_cadence(self):
         # Kristen kb-edits: C = slow the pace ("every 2 weeks instead of weekly"),
@@ -127,12 +129,35 @@ class TestTemplateSelection(unittest.TestCase):
         self.assertIn("for the next 2 weeks, then increase", m)
         self.assertIn("ordered some labs", m)            # labs add-on (kb-edits wording)
 
-    def test_D_split_option_appended_on_dosing_note(self):
-        # Template D as an OPTION on a hold, from the engine's dosing_note. No AM/PM
-        # mg is printed (engine does not compute the split).
-        m = self._msg(RC.HOLD, dosing="Consider uneven (unequal AM/PM) dosing within 30/70-40/60")
-        self.assertIn("less in the morning and a little more in the evening", m)
-        self.assertIn("the total each day would stay the same", m)
+    def test_L3_options_listed_when_family_has_not_chosen(self):
+        # Dr. Barbour 2026-10-25 (#52): the family chooses; when they have not yet, the
+        # draft lists the options the table cell offers (her template H wording).
+        d = Decision(category=RC.HOLD, followup_weeks=4, dosing_note="Level-3 options",
+                     dosing_options=["uneven", "tid", "wait"])
+        m = build_patient_message(BASE, d, physician_name="Dr. Barbour")
+        self.assertIn("We have a few options to handle the side effects", m)
+        self.assertIn("smaller dose in the morning and a larger dose at night", m)
+        self.assertIn("three times a day", m)
+        self.assertIn("watching and waiting", m)
+        self.assertNotIn("adding a second medication", m)   # not offered by this cell
+
+    def test_L3_family_choice_drives_the_hold_message(self):
+        tabs = _snap({"Q3": "no", "Q10a": "at_goal"})
+        tabs.medication.dose_unit, tabs.medication.concentration = "tablets", 25
+        tabs.medication.dose_amount = 2                     # 2 x 25 mg twice a day = 100 mg/day
+        for choice, words in (("uneven", "in the morning and"), ("tid", "three times a day")):
+            d = Decision(category=RC.HOLD, followup_weeks=4, dosing_options=["uneven", "tid", "wait"],
+                         dosing_choice=choice, dosing_note="Family chose")
+            m = build_patient_message(tabs, d, physician_name="Dr. Barbour")
+            self.assertIn("as you chose", m)
+            self.assertIn(words, m)
+            self.assertNotIn("We have a few options", m)
+
+    def test_lower_and_add_wording(self):
+        # Level 4 + ongoing seizures (her table): lower the dose AND add a second medicine.
+        m = self._msg(RC.ADD_MEDICATION, "Lower dose; add a second medication; follow up 4 weeks")
+        self.assertIn("lower the topiramate dose to [lower dose", m)
+        self.assertIn("add a second medicine", m)
 
     def test_E1_lower_dose_brackets_the_target(self):
         m = self._msg(RC.LOWER_DOSE, "Lower dose; follow up 4 weeks", labs=["CBC"])
@@ -193,11 +218,10 @@ class TestGuardrailOnEngineDrafts(unittest.TestCase):
         r = validate_message(rec.draft_patient_message, rec, sn)
         self.assertTrue(r.ok, r.problems)
 
-    def test_non_round_ladder_dose_passes_guardrail(self):
-        # Regression (2026-10-23 sweep): ethosuximide lands on non-round ladder rungs
-        # (v6: 1166.431 mg/day at 70 kg; v9: e.g. 621.411 at 23.3 kg). The message prints
-        # them with ':g' (6 significant digits); the allowed set must hold that printed
-        # form, or the engine's own draft is flagged as a fabricated dose.
+    def test_non_round_ladder_dose_is_rounded_and_passes_guardrail(self):
+        # Ethosuximide lands on non-round ladder rungs (v9: e.g. 621.411 at 23.3 kg).
+        # Dr. Barbour 2026-10-25: the family sees only the decided, measurable dose, so
+        # no 6-digit ladder value is printed; the draft still passes its guardrail.
         ans = {"Q3": "yes", "Q4": ["focal"], "Q5": 2, "Q5_unit": "per_week",
                "Q10a": "at_goal", "Q10b": "over_2_weeks",
                "seizure_episodes": [{"look": ["focal"], "duration": "1_3min",
@@ -205,13 +229,13 @@ class TestGuardrailOnEngineDrafts(unittest.TestCase):
         sn = _snap(ans, med="ethosuximide", age=8, wt=23.3, dose=250, freq=2)
         rec = run_engine(sn, asm_registry=REG, physician_name="Dr. Barbour")
         self.assertEqual(rec.category, "escalate")
-        printed = re.findall(r"(\d+\.\d+) mg/day", rec.draft_patient_message)
-        self.assertTrue(printed, "expected a non-round ladder dose in the draft")
-        r = validate_message(rec.draft_patient_message, rec, sn)
+        msg = rec.draft_patient_message
+        self.assertFalse(re.findall(r"\d+\.\d{2,} ?(?:mg|mL)", msg), msg)   # nothing like 621.41 mg
+        r = validate_message(msg, rec, sn)
         self.assertTrue(r.ok, r.problems)
-        # Integrity: a nearby number that is NOT the printed ladder value is still caught.
-        bump = f"{float(printed[0]) + 0.01:g}"
-        bad = rec.draft_patient_message.replace(f"{printed[0]} mg/day", f"{bump} mg/day")
+        # Integrity: a nearby number that is NOT the printed decided value is still caught.
+        mg = re.search(r"give (\d+(?:\.\d+)?) mg", msg).group(1)
+        bad = msg.replace(f"give {mg} mg", f"give {float(mg) + 0.01:g} mg", 1)
         self.assertFalse(validate_message(bad, rec, sn).ok)
 
     def test_guardrail_still_rejects_a_fabricated_dose(self):
@@ -255,21 +279,24 @@ class TestFamilyTabletLine(unittest.TestCase):
         # Every step converts -> the step sentence itself names the tablets (same rows
         # as the clinician summary) and the separate 'How much to give' line is dropped.
         msg, gr, rows = self._msg(12, "tablets", 250, dose=2)
-        tot = rows[0]["tablet"]["total_mg_per_day"]
-        self.assertIn("give " + rows[0]["family_tablet_text"][:-1] + f", {tot:g} mg/day)", msg)
-        self.assertIn("(250 mg each, 1250 mg/day)", msg)
+        self.assertIn("give " + rows[0]["family_tablet_text"], msg)
+        self.assertIn("500 mg (2 tablets) in the morning and 750 mg (3 tablets) at night", msg)
         self.assertNotIn("How much to give", msg)
+        self.assertNotIn("go higher than", msg)
         self.assertTrue(gr.ok, gr.problems)
 
-    def test_strength_change_is_stated_when_plan_switches_to_standard(self):
-        # 750 mg tablets don't fit -> the standard 500 mg tablet, and the family is told.
+    def test_strength_change_is_stated_when_the_dose_needs_another_tablet(self):
+        # 750 mg tablets don't fit the next dose -> the best-fitting strength (#62/#66),
+        # and the family is told it is a different tablet.
         msg, gr, rows = self._msg(12, "tablets", 750, dose=1)
-        self.assertIn("(500 mg each, 2000 mg/day)", msg)
-        self.assertIn("a different tablet from the 750 mg tablets your child takes now", msg)
+        st = rows[0]["strength_mg"]
+        self.assertNotEqual(st, 750)
+        self.assertIn(f"uses {st:g} mg tablets, a different tablet from the 750 mg tablets "
+                      "your child takes now", msg)
         self.assertTrue(gr.ok, gr.problems)
 
-    def test_cap_is_the_tablet_total_not_the_ladder_dose(self):
-        # Two steps: the 'don't go higher than' number is what the tablets add up to.
+    def test_no_upper_limit_line_and_interval_wording(self):
+        # #67 (Dr. Barbour 2026-10-25): no "don't go higher than" line.
         from engine_core.outputs import _formulation_rows
         pc = PatientContext(external_id="t", age_years=12, weight_kg=30)
         mc = MedicationContext(medication="levetiracetam", dose_amount=2, dose_unit="tablets",
@@ -279,14 +306,14 @@ class TestFamilyTabletLine(unittest.TestCase):
         d = Decision(RC.ESCALATE, guidance_steps="Make 2 dose increases")
         msg = build_patient_message(sn, d)
         rows = _formulation_rows(sn, d)[1]
-        last = rows[-1]["tablet"]["total_mg_per_day"]
-        self.assertIn(f"don't go higher than {last:g} mg/day", msg)
+        self.assertTrue(rows[-1]["tablet"])
+        self.assertNotIn("go higher than", msg)
         self.assertIn("for 1 week", msg)
         self.assertNotIn("Weekly", msg)
 
     def test_liquid_for_young_child(self):
         msg, gr, _rows = self._msg(8, "mL", 100, dose=5)
-        self.assertIn("mL twice a day (100 mg/mL liquid)", msg)
+        self.assertRegex(msg, r"give \d+(\.\d)? mg \(\d+(\.\d)? mL\) twice a day")
         self.assertTrue(gr.ok, gr.problems)
 
     def test_no_line_without_frequency(self):
@@ -300,11 +327,10 @@ class TestFamilyTabletLine(unittest.TestCase):
 
 
 class TestMixedLiquidTabletCap(unittest.TestCase):
-    """Mixed plan (step 1 liquid, step 2 tablets): the 'don't go higher than' number is
-    what the step-2 tablets add up to - same rule as the all-tablet wording - so the
-    family is never told a limit below the dose they are told to give."""
+    """Mixed plan (Hazel: step 1 liquid, step 2 capsules): Dr. Barbour 2026-10-25 - the
+    step sentence names the capsules (decided dose), not the ladder dose."""
 
-    def test_cap_matches_top_step_tablet_total(self):
+    def test_step_sentence_names_each_steps_decided_dose(self):
         from engine_core.outputs import _formulation_rows, _family_up_plan
         ans = {"Q3": "yes", "Q10a": "at_goal", "Q10c_time": "over_2_weeks", "Q5": 2,
                "Q5_unit": "per_week",
@@ -322,8 +348,9 @@ class TestMixedLiquidTabletCap(unittest.TestCase):
         ladder = rows[1]["target_mg_per_day"]
         self.assertNotAlmostEqual(tot, ladder, places=1)           # the case that diverged
         msg = rec.draft_patient_message
-        self.assertIn(f"don't go higher than {tot:g} mg/day", msg)
-        self.assertIn(f"= {tot:g} mg a day in total", msg)         # matches 'How much to give'
-        caps = [float(x) for x in re.findall(r"don't go higher than (\d+(?:\.\d+)?) mg/day", msg)]
-        self.assertTrue(caps and all(c >= tot for c in caps), caps)
+        self.assertIn("then give " + rows[1]["family_tablet_text"], msg.replace("Then, give", "then give"))
+        self.assertIn(rows[0]["family_liquid_text"], msg)
+        self.assertIn("capsules", msg)                              # ethosuximide 250 mg = capsule
+        self.assertNotIn(f"{ladder:g}", msg)                        # never the exact ladder dose
+        self.assertNotIn("go higher than", msg)
         self.assertTrue(validate_message(msg, rec, sn).ok)

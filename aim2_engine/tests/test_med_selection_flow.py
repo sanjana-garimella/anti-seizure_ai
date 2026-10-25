@@ -76,17 +76,21 @@ class TestSelectionHelpers(unittest.TestCase):
         self.assertTrue(co["med_nonadherence"])       # "stopped" -> poor adherence
         self.assertTrue(co["se_asian_han_chinese"])
 
-    def test_selection_card_is_in_survey(self):
-        # The card ships inside the between-visit survey (not a separate page).
+    def test_selection_questions_moved_off_the_survey(self):
+        # Dr. Barbour 2026-10-25: the medicine-options questions are on a second page that
+        # appears only when the decision is switch/add - not in the main survey.
         cards = clinic._survey_cards({"medication": "levetiracetam"})
-        self.assertIn("id=card-medsel", cards)
-        self.assertIn("name=medsel_interest", cards)
-        self.assertIn("name=medsel_interest", cards)
+        self.assertNotIn("id=card-medsel", cards)
+        self.assertNotIn("name=prefers_no_labs", cards)
+        page2 = clinic.medsel_questions_page("tok", 7, {"medication": "levetiracetam"})
+        self.assertIn("action='/s/tok/medsel'", page2)
+        self.assertIn("name=prefers_no_labs", page2)
+        self.assertIn("name=skip", page2)
 
-    def test_sex_asked_up_front_not_in_options_card(self):
-        # Sex is a normal survey field ("About your child"), not in the options card.
+    def test_sex_asked_up_front_not_in_options_page(self):
+        # Sex is a normal survey field ("About your child"), not on the options page.
         self.assertIn("name=sex", clinic._survey_cards({}))
-        self.assertNotIn("name=sex", clinic._medsel_survey_card({}))
+        self.assertNotIn("name=sex", clinic._medsel_detail_fields({}))
 
     def test_review_card_empty_without_selection(self):
         self.assertEqual(clinic.med_selection_review_html(None), "")
@@ -171,23 +175,54 @@ class TestInSurveyFlowDB(unittest.TestCase):
         d.update(extra)
         return _form(d)
 
-    def test_single_submit_shows_and_persists_options(self):
+    def _page2(self, **extra):
+        d = {"csrf": clinic.csrf_for(self.token), "sub": str(self._latest_sub()),
+             "prior_tried": ["levetiracetam"], "mood_difficulties": "yes",
+             "prefers_no_labs": "no", "behavioral_difficulties": "no",
+             "trouble_sleeping": "no", "migraines": "no", "se_asian_han_chinese": "no"}
+        d.update(extra)
+        return _form(d)
+
+    def test_switch_add_submit_shows_page2_questions_first(self):
         h = self._handler()
         h._do_submit(self.token, self._switch_survey_form())
         body = self.captured[-1]["body"]
-        self.assertIn("Your medication options", body)      # shown right after submit
-        sub = self._latest_sub()
-        ms = db.get_med_selection(sub)
-        self.assertIsNotNone(ms)                              # persisted from the one submit
+        self.assertIn("A few questions about medicine options", body)
+        self.assertNotIn("Your medication options", body)
+        self.assertIsNone(db.get_med_selection(self._latest_sub()))   # nothing computed yet
+
+    def test_page2_shows_and_persists_options(self):
+        h = self._handler()
+        h._do_submit(self.token, self._switch_survey_form())
+        h._do_medsel(self.token, self._page2())
+        body = self.captured[-1]["body"]
+        self.assertIn("Your medication options", body)
+        ms = db.get_med_selection(self._latest_sub())
+        self.assertIsNotNone(ms)
         ids = [o["id"] for o in ms["engine_result"]["options"]]
         self.assertNotIn("levetiracetam", ids)               # tried + mood-avoided
         self.assertNotIn("valproic_acid", ids)               # female > 10
         self.assertEqual(ids[0], "lamotrigine")              # favored, rank 1
         self.assertTrue(ms["engine_result"]["requires_physician_review"])
 
+    def test_page2_skip_records_nothing(self):
+        h = self._handler()
+        h._do_submit(self.token, self._switch_survey_form())
+        h._do_medsel(self.token, self._page2(skip="1"))
+        self.assertIn("Thank you", self.captured[-1]["body"])
+        self.assertIsNone(db.get_med_selection(self._latest_sub()))
+
+    def test_page2_rejects_another_links_submission(self):
+        h = self._handler()
+        h._do_submit(self.token, self._switch_survey_form())
+        other = db.create_instance(self.pid)["token"]
+        h._do_medsel(other, _form({"csrf": clinic.csrf_for(other), "sub": str(self._latest_sub())}))
+        self.assertEqual(self.captured[-1]["code"], 404)
+
     def test_ranking_after_options_persists(self):
         h = self._handler()
         h._do_submit(self.token, self._switch_survey_form())
+        h._do_medsel(self.token, self._page2())
         sub = self._latest_sub()
         ms = db.get_med_selection(sub)
         first_id = ms["engine_result"]["options"][0]["id"]

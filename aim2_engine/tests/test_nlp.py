@@ -129,14 +129,12 @@ class TestGenerators(unittest.TestCase):
         self.assertEqual(out, rec.draft_patient_message)
         self.assertIsNotNone(out)
 
-    def test_template_safety_returns_approved_stop_draft(self):
-        # Kristen 2026-07: safety cases now emit the engine's approved DRAFT (was None).
-        # A rash -> "stop" draft; still a physician-approved draft, never auto-sent.
+    def test_template_safety_withholds_message(self):
+        # Dr. Barbour 2026-10-25 (#51): a safety case gets NO family message at all.
         sn = snap({"Q3": "no", "Q9": ["rash"], "Q9a": "blisters"})
         rec = run_engine(sn)
         out = TemplateMessageGenerator().generate_patient_message(rec, sn)
-        self.assertIsNotNone(out)
-        self.assertIn("stop giving", out.lower())
+        self.assertIsNone(out)
 
     def test_guarded_no_model_uses_template(self):
         rec, sn = self._escalate_rec()
@@ -168,7 +166,7 @@ class TestGenerators(unittest.TestCase):
         rec = run_engine(sn)
         g = GuardedGenerator(model_callable=lambda p: calls.append(1) or "x")
         out = g.generate_patient_message(rec, sn)
-        self.assertIsNotNone(out)                             # emits the approved draft
+        self.assertIsNone(out)                                # message withheld (#51)
         self.assertEqual(g.last_source, "safety_template")
         self.assertEqual(calls, [])                           # model STILL never invoked
 

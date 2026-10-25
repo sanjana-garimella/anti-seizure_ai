@@ -148,6 +148,31 @@ class Decision:
     dosing_note: Optional[str] = None                # Barbour 2026-06-25: e.g. "consider uneven dosing" guidance
     guidance_steps: Optional[str] = None             # Barbour 2026-06-25 breakthrough tables: verbatim step list for the clinician
     urgency_tier: Optional[str] = None               # breakthrough urgency tier used (non_urgent|urgent|emergent)
+    dosing_options: List[str] = field(default_factory=list)   # Level-3 options the table cell offers (#52)
+    dosing_choice: Optional[str] = None              # the family's Level-3 pick, when it is one of dosing_options
+
+
+# Level-3 options (Dr. Barbour 2026-10-25, #52; wording from her template H).
+_DOSING_LABEL = {
+    "uneven": "uneven dosing (smaller morning dose, larger night dose; same total, within 30/70-40/60)",
+    "tid": "three-times-a-day dosing (same total)",
+    "wait": "watch and wait",
+    "add": "lower the dose and add a second medication",
+}
+
+
+def _dosing_plan(options, choice):
+    """(dosing_note, chosen) for a Level-3 cell. The FAMILY chooses among the options
+    the cell lists - any medicine, TID allowed while still increasing. A choice the
+    cell does not list is not acted on; it is shown to the clinician instead."""
+    opts = [o for o in (options or []) if o in _DOSING_LABEL]
+    offered = "; ".join(_DOSING_LABEL[o] for o in opts)
+    if choice in opts:
+        return (f"Family chose: {_DOSING_LABEL[choice]}. (Options offered: {offered}.)", choice)
+    if choice:
+        return (f"Family chose '{_DOSING_LABEL.get(choice, choice)}', which this table cell does not "
+                f"offer - clinician to discuss. Options here: {offered}.", None)
+    return (f"Level-3 options for the family to choose: {offered}.", None)
 
 
 def _fire(rationale, rule_id, description, status: PatientStatus, **inputs):
@@ -387,28 +412,39 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
                 med = (status.current_med or "").lower()
                 ns = default_no_seizures_table()
                 labs = ns.get("labs_by_drug", {}).get(med, []) if cell.get("labs") else []
-                dose_note = None
+                dose_note, d_opts, d_choice = None, [], None
                 if cell.get("dosing"):
-                    dose_note = ("Consider uneven (unequal AM/PM) dosing within 30/70-40/60."
-                                 if med in (ns.get("uneven_dosing_eligible") or [])
-                                 else "Consider TID (three-times-daily) dosing, or watchful waiting.")
+                    # Dr. Barbour 2026-10-25 (#52): the family picks from the cell's
+                    # options, for any medicine; TID is fine while still increasing.
+                    d_opts = list(cell.get("dosing_options") or ["uneven", "tid", "wait"])
+                    dose_note, d_choice = _dosing_plan(d_opts, status.side_effect_dosing_choice)
+                    if d_choice == "add" and not at_max:
+                        # Option 4 from the cell's own list: lower the dose + add a second med.
+                        category = RecommendationCategory.ADD_MEDICATION
+                        cat_token = "add_medication"
                 urgent_flags = list(status.urgent_safety)
                 if cell.get("urgent") and "breakthrough_emergent" not in urgent_flags:
                     urgent_flags.append("breakthrough_emergent")
                 _fire(rationale, "BT", "Breakthrough; action from Dr. Barbour's 2026-06-25 "
                       "breakthrough table (urgency x phase x side-effect level). DRAFT.",
                       status, tier=status.breakthrough_tier, phase=phase,
-                      side_effect_level=level, at_max=at_max, action=cat_token)
+                      side_effect_level=level, at_max=at_max, action=cat_token,
+                      dosing_choice=d_choice)
+                _steps = cell.get("steps")
+                if d_choice == "add" and category == RecommendationCategory.ADD_MEDICATION:
+                    _steps = ("Family chose option 4 of this cell's Level-3 options: lower dose; add a "
+                              f"second medication. (Cell: {cell.get('steps')})")
                 return D(category,
                          pace=cell.get("pace"),
                          switch_target=(status.can_switch_to if category == RecommendationCategory.SWITCH_MEDICATION else None),
                          lab_orders=labs, dosing_note=dose_note,
-                         guidance_steps=cell.get("steps"), urgency_tier=status.breakthrough_tier,
+                         dosing_options=d_opts, dosing_choice=d_choice,
+                         guidance_steps=_steps, urgency_tier=status.breakthrough_tier,
                          followup_weeks=cell.get("followup_weeks"),
                          safety_concern_flag=bool(cell.get("safety")),
                          urgent_flags=(urgent_flags if (cell.get("urgent") or cell.get("safety")) else []),
                          adherence_note=adherence_note, adherence_support=adherence_support,
-                         reason_summary=f"Breakthrough ({status.breakthrough_tier}, {phase}, L{level}): {cell.get('steps')}")
+                         reason_summary=f"Breakthrough ({status.breakthrough_tier}, {phase}, L{level}): {_steps}")
 
         # R5b NEW (Barbour 2026-06): the medicine is HELPING but its side effects
         # prevent further dose escalation while seizures continue -> ADD a second
@@ -556,23 +592,16 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
         action = actions[level] if 0 <= level < len(actions) else None
         med = (status.current_med or "").lower()
         labs = ns_table.get("labs_by_drug", {}).get(med, [])
-        uneven = med in (ns_table.get("uneven_dosing_eligible") or [])
         # Follow-up intervals (UPDATED 2026-06-25 sheet): L3 hold, L4 lower, and
         # L5 switch all follow up in 4 weeks across phases.
         hold_fu = ns_table.get("hold_followup_weeks_by_phase", {}).get(phase)
         lower_fu = ns_table.get("lower_followup_weeks")
         switch_fu = ns_table.get("switch_followup_weeks")
-        # L3 dosing switch: uneven dosing for eligible drugs; else watchful waiting,
-        # with TID offered ONLY at steady state. Barbour's v2 no-seizures cells list
-        # "uneven vs. wait" for titrating/holding (NO TID) and "uneven vs. TID vs.
-        # wait" only at steady state (PI-confirmed 2026-07-16). Eligible drugs use
-        # uneven dosing in all phases.
-        if uneven:
-            dose_note = "Consider uneven (unequal AM/PM) dosing within 30/70-40/60 - eligible medicine."
-        elif phase == "steady" and ns_table.get("tid_note_for_other_drugs"):
-            dose_note = "Consider TID (three-times-daily) dosing, or watchful waiting."
-        else:
-            dose_note = "Consider watchful waiting."
+        # L3 dosing (Dr. Barbour 2026-10-25, #52): the FAMILY chooses uneven / TID /
+        # wait, for ANY medicine and in every phase (TID may be offered while still
+        # increasing). Replaces the 2026-07-16 eligible-drug list + steady-only TID.
+        ns_opts = list(ns_table.get("l3_dosing_options") or ["uneven", "tid", "wait"])
+        dose_note, ns_choice = _dosing_plan(ns_opts, status.side_effect_dosing_choice)
         # Barbour 2026-06-25: in the adjustment-HOLDING period with medium-impact
         # side effects (L2/L3), ask the family whether side effects are easing as
         # the body adjusts. (None for other phases/levels -> no behavior change.)
@@ -592,6 +621,7 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
         if action == "hold":     # L3 "medium, a lot"
             return D(RecommendationCategory.HOLD, adherence_note=adherence_note,
                      lab_orders=labs, followup_weeks=hold_fu, dosing_note=dose_note,
+                     dosing_options=ns_opts, dosing_choice=ns_choice,
                      family_prompt=adj_prompt,
                      reason_summary="No seizures; medium-but-significant side effects (L3) -> hold the "
                      "current dose; follow up; order labs.")

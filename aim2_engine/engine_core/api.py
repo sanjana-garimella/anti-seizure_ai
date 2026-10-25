@@ -54,6 +54,8 @@ class Recommendation:
     # the firing rule tagged": taken from the decision when the path sets one, else
     # from the classifier. Which rule fired is in `rationale`.
     urgency_tier: Optional[str] = None
+    dosing_options: List[str] = field(default_factory=list)   # Level-3 options offered (#52)
+    dosing_choice: Optional[str] = None           # family's Level-3 pick, when offered
     sources: Optional[Dict[str, Any]] = None      # provenance: rules fired + every source the decision used
 
     # Convenience triage signals mirrored from categorization (the Django
@@ -166,6 +168,8 @@ def run_engine(
         followup_weeks=decision.followup_weeks,
         lab_orders=decision.lab_orders,
         dosing_note=decision.dosing_note,
+        dosing_options=list(getattr(decision, "dosing_options", []) or []),
+        dosing_choice=getattr(decision, "dosing_choice", None),
         guidance_steps=decision.guidance_steps,
         # The tier the recommendation was taken from, falling back to the
         # CLASSIFIER's tier. decision.urgency_tier is only set on the

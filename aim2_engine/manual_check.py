@@ -135,7 +135,9 @@ a = clinic.parse_answers({
 check("S11 weight 48 lb -> 21.8 kg", a["child_weight_kg"], 21.8)
 check("S12 'acting off' seizure type parsed", a.get("seizure_episodes", [{}])[0].get("look"), ["acting_off"])
 check("S13 triggers parsed", a.get("seizure_triggers"), ["lack_of_sleep", "fever_illness"])
-check("S14 med-preference ranking parsed", a.get("med_pref_rank"), ["add", "switch"])
+# Preference questions removed from the survey (2026-10-15) and confirmed by Dr. Barbour
+# 2026-10-25 (#68): stale fields from an old form are ignored.
+check("S14 removed med-preference ranking is ignored", a.get("med_pref_rank"), None)
 
 # --- Print report -----------------------------------------------------------
 print("\n  MANUAL CONFIRMATION — engine scenarios\n  " + "=" * 56)

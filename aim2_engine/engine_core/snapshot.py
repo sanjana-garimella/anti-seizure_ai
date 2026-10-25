@@ -170,6 +170,15 @@ def frequency_per_week(count: Optional[float], unit: Optional[str],
     return None
 
 
+_DOSING_CHOICES = ("uneven", "tid", "wait", "add")
+
+
+def _dosing_choice(v: Any) -> Optional[str]:
+    """Level-3 family choice token, or None (anything unrecognised is ignored)."""
+    t = str(v or "").strip().lower()
+    return t if t in _DOSING_CHOICES else None
+
+
 def per_dose_mg(amount: Optional[float], unit: Optional[str],
                 concentration: Optional[float]) -> Optional[float]:
     """Convert one reported dose to mg (pure unit arithmetic - no clinical value).
@@ -347,6 +356,12 @@ class IntervalSurvey:
     # their current titration plan (total mg/day). Used to compute "end +1/+2 increases
     # higher" for urgent/emergent titrating plans (see outputs._attach_ladder). Optional.
     planned_end_total_mg_per_day: Optional[float] = None
+    # Dr. Barbour 2026-10-25 (#52): at Level-3 side effects the FAMILY picks how to
+    # handle them, from the options the decision-table cell lists (her template H):
+    # "uneven" (smaller morning / larger night dose) | "tid" (three times a day) |
+    # "wait" (watch and wait) | "add" (lower the dose and add a second medication).
+    # A structured survey answer (not free text). None = not answered.
+    side_effect_dosing_choice: Optional[str] = None
     # Q11-Q13
     overall_change: Optional[OverallChange] = None    # Q11 - also read as "is the med helping" (T5)
     family_preference: FamilyPreference = FamilyPreference.NO_STRONG_PREFERENCE
@@ -475,6 +490,7 @@ def survey_from_answers(answers: Dict[str, Any]) -> IntervalSurvey:
         dose_limited_by_side_effects=_to_bool(answers.get("Q10d_dose_limited_by_se")),
         min_goal_unreachable_due_to_se=_to_bool(answers.get("Q10e_min_goal_unreachable_se")),
         planned_end_total_mg_per_day=_to_float(answers.get("Q10f_planned_end_mg_per_day")),
+        side_effect_dosing_choice=_dosing_choice(answers.get("Q10g_dosing_choice")),
         overall_change=_enum(_OVERALL, answers.get("Q11")),
         family_preference=_enum(_PREF, answers.get("Q12"), FamilyPreference.NO_STRONG_PREFERENCE),
         med_pref_rank=list(answers.get("med_pref_rank", []) or []),

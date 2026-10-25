@@ -61,9 +61,16 @@ def _in_band(band: Optional[Dict[str, Any]], age: Optional[float], weight: Optio
     return True
 
 
-def _prefer_tablets(age: Optional[float]) -> Optional[bool]:
-    """Same age rule as the tablet/liquid conversion (formulation_rules.json):
-    older than the cutoff -> tablets, else liquid. None when age is unknown."""
+def _prefer_tablets(age: Optional[float], current_unit: Optional[str] = None) -> Optional[bool]:
+    """Same form rule as the tablet/liquid conversion (formulation_rules.json): the
+    form the family already uses (Dr. Barbour 2026-10-25, #61); only when that is
+    unknown, the age rule (older than the cutoff -> tablets, else liquid). None
+    when neither is known."""
+    u = (current_unit or "").lower()
+    if u == "tablets":
+        return True
+    if u == "ml":
+        return False
     afr = (formulation.load_rules() or {}).get("age_form_rule") or {}
     if not afr.get("enabled") or age is None:
         return None
@@ -72,7 +79,8 @@ def _prefer_tablets(age: Optional[float]) -> Optional[bool]:
 
 def schedule_for(drug_key: Optional[str], age_years: Optional[float], weight_kg: Optional[float],
                  concomitant_asms: Optional[List[str]] = None,
-                 data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+                 data: Optional[Dict[str, Any]] = None,
+                 current_unit: Optional[str] = None) -> Dict[str, Any]:
     """{"drug", "available", "reason", "notes", "forms": [{form_title, kind, columns,
     band_label, cells, no_tablet}], "preferred_kind", "verified", "source"}.
     `available` is False (with a human-readable `reason`) whenever we defer."""
@@ -82,6 +90,10 @@ def schedule_for(drug_key: Optional[str], age_years: Optional[float], weight_kg:
                            "forms": [], "preferred_kind": None,
                            "verified": bool(data.get("verified", False)),
                            "source": data.get("source")}
+    never = ((data.get("switch_taper") or {}).get("not_started_as_new_medicine") or {}).get(drug)
+    if never:
+        out["reason"] = f"Not started as a new medicine ({never})"
+        return out
     tab = (data.get("by_drug") or {}).get(drug)
     if not tab:
         out["reason"] = "No starting schedule from Dr. Barbour for this medicine yet."
@@ -116,7 +128,7 @@ def schedule_for(drug_key: Optional[str], age_years: Optional[float], weight_kg:
                          f"(age {age_years if age_years is not None else '?'}, weight "
                          f"{weight_kg if weight_kg is not None else '?'} kg) - clinician to choose.")
         return out
-    pref = _prefer_tablets(age_years)
+    pref = _prefer_tablets(age_years, current_unit)
     if pref is not None:
         want = "solid" if pref else "liquid"
         out["preferred_kind"] = want
@@ -133,10 +145,57 @@ def schedule_lines(sched: Dict[str, Any], max_forms: int = 2) -> List[str]:
     for f in sched["forms"][:max_forms]:
         pairs = [f"{c}: {v}" for c, v in zip(f["columns"], f["cells"]) if v]
         title = f["form_title"] or "Starting dose"
-        tag = " (preferred by age)" if f["kind"] == sched.get("preferred_kind") else ""
+        tag = " (preferred)" if f["kind"] == sched.get("preferred_kind") else ""
         if f.get("no_tablet"):
             lines.append(f"{title} [{f['band_label']}]{tag}: no tablet schedule fits this band - "
                          "use the liquid.")
             continue
         lines.append(f"{title} [{f['band_label']}]{tag}: " + "; ".join(pairs))
     return lines
+
+
+def taper_lines(old_med: Optional[str], current_total_mg_per_day: Optional[float],
+                freq: Optional[int], dose_unit: Optional[str] = None,
+                concentration: Optional[float] = None,
+                data: Optional[Dict[str, Any]] = None) -> List[str]:
+    """Stopping the OLD medicine during a switch (Dr. Barbour's template F taper +
+    her 2026-10-25 answer, #69): week-by-week fraction of the current dose, then off.
+    The new medicine starts in week 1 alongside it. Display only, DRAFT. Amounts are
+    shown as tablets of the child's own strength only when they come out to whole or
+    half tablets, and as liquid rounded to the liquid step; otherwise mg only."""
+    data = data if data is not None else default()
+    tp = data.get("switch_taper") or {}
+    mults = tp.get("old_medicine_multipliers_by_week") or []
+    off = tp.get("old_medicine_off_after_week")
+    name = (old_med or "the current medicine").replace("_", " ")
+    tot = formulation._num(current_total_mg_per_day)
+    fq = formulation._num(freq)
+    if not mults or tot is None or not fq:
+        return [f"Stopping {name}: current dose or doses per day not known - clinician to set "
+                "the taper."]
+    fq = int(fq)
+    unit = (dose_unit or "").lower()
+    strength = formulation._num(concentration)
+    rules = formulation.load_rules() or {}
+    step = formulation._num((rules.get("liquid_rounding") or {}).get("ml_per_dose_step"))
+    how = {1: "once a day", 2: "twice a day"}.get(fq, f"{fq} times a day")
+    parts = []
+    for wk, mlt in enumerate(mults, start=1):
+        per = tot * float(mlt) / fq
+        txt = f"{round(per, 2):g} mg {how}"
+        if unit == "tablets" and strength:
+            n = per / strength
+            if abs(n * 2 - round(n * 2)) < 1e-6 and n > 0:
+                cnt = f"{n:g}".replace(".5", "½") if n % 1 else f"{int(n)}"
+                cnt = "½" if abs(n - 0.5) < 1e-6 else cnt
+                txt = f"{round(per, 2):g} mg ({cnt} × {strength:g} mg) {how}"
+            else:
+                txt += " (not a whole or half tablet - clinician to set the amount)"
+        elif unit == "ml" and strength and step:
+            ml = round(round(per / strength / step) * step, 6)
+            txt = f"{ml * strength:g} mg ({ml:g} mL) {how}"
+        label = "current dose" if abs(float(mlt) - 1.0) < 1e-9 else f"x{float(mlt):g}"
+        parts.append(f"week {wk} ({label}): {txt}")
+    tail = (f"; off after week {off}" if off else "")
+    return [f"Stopping {name} (Dr. Barbour's template F taper, DRAFT): " + "; ".join(parts) + tail
+            + f". Start the new medicine in week {tp.get('new_medicine_starts_week', 1)} alongside it."]

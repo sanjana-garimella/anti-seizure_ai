@@ -71,27 +71,26 @@ the physician and are never suppressed; the NLP layer is advisory and isolated f
 re-proved by `aim2_engine/verification/verify_all.py` (currently `RESULT: PASS` -
 0 FAIL on the ASM rules and the ladder; 0 must-catch red-team misses).
 
-**Open behavioral question (PI, not a rule change):** on a safety flag the engine today
-emits a short physician-approved STOP/contact-the-clinic **draft** rather than withholding
-the family message entirely. Human-in-the-loop is unaffected - nothing sends without
-physician approval - but the withhold-vs-draft choice is awaiting the PI's written call
-(`aim2_engine/NEEDS_PI_SIGNOFF.md` #51). Some older docs still describe the withhold
-behavior; #51 is the authority until it is decided.
+**Safety-flag family message - decided (Dr. Barbour, 2026-10-25):** on any safety flag
+the engine gives **no** family message at all; the physician handles the case per her
+urgent protocol (`aim2_engine/NEEDS_PI_SIGNOFF.md` #51, resolved). This matches the
+withhold behavior the older docs describe.
 
 **Gaps to close before real-patient use** (none block synthetic-data development):
 
-1. Tamper-evident (append-only / hash-chained) audit + a retention / legal-hold policy - the current SQLite log is mutable.
+1. Audit retention / legal-hold policy. (The audit log is already tamper-evident: each entry is
+   hash-chained to the one before, checked by `clinic_store.verify_audit_chain()`.)
 2. Encryption at rest for the local DB (or documented reliance on full-disk encryption).
-3. Change the default doctor password; add login rate-limiting; TLS if ever networked.
+3. TLS if ever networked. (Done: login rate-limiting, and a random one-time doctor password on
+   first run, printed once for me to change.)
 4. Real Cohen's κ on the PI's chart-reviewed cases (current κ is against synthetic picks).
 5. If any LLM feature (drafting / NER / open-world lookup) is enabled: bias/fairness evaluation across demographic groups, uncertainty communication, and a BAA-covered surface for PHI - never a public API.
 6. IRB + institutional security review; staff training on data handling, consent, and ethical AI use.
 7. Harden the engine against malformed input: the fuzz half of
    `aim2_engine/validation/holdout_test.py` now reports **0 crashes** over its ~4,000
-   malformed-input cases (re-run 2026-09-30; the held-out oracle half passes). It still
-   prints "safety message leaks" because that check expects the family message to be
-   WITHHELD on a safety flag, while the engine emits the STOP/contact-the-clinic draft -
-   this is open question #51 above, not a crash. Re-check before a real survey feeds it.
+   malformed-input cases (re-run 2026-10-25; the held-out oracle half passes) and 0
+   safety message leaks now that the engine withholds the family message on a safety
+   flag (#51). Re-check before a real survey feeds it.
 8. Git-ignored local files (database, keys, private validation data) are not under version
    control - back them up before large changes.
 

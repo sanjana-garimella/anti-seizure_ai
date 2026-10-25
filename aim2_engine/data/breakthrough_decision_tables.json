@@ -36,7 +36,12 @@
           "dosing": true,
           "labs": true,
           "followup_weeks": 4,
-          "steps": "Switch dosing (uneven/TID/wait); weeks 1-2 stay at current dose, after week 2 make 1 dose increase; follow up 4 weeks; order labs"
+          "steps": "Switch dosing (uneven/TID/wait); weeks 1-2 stay at current dose, after week 2 make 1 dose increase; follow up 4 weeks; order labs",
+          "dosing_options": [
+            "uneven",
+            "tid",
+            "wait"
+          ]
         },
         {
           "category": "add_medication",
@@ -71,7 +76,12 @@
           "dosing": true,
           "labs": true,
           "followup_weeks": 4,
-          "steps": "Switch dosing (uneven/TID/wait); weeks 1-2 stay, after week 2 make 1 dose increase; follow up 4 weeks; order labs"
+          "steps": "Switch dosing (uneven/TID/wait); weeks 1-2 stay, after week 2 make 1 dose increase; follow up 4 weeks; order labs",
+          "dosing_options": [
+            "uneven",
+            "tid",
+            "wait"
+          ]
         },
         {
           "category": "add_medication",
@@ -106,7 +116,12 @@
           "dosing": true,
           "labs": true,
           "followup_weeks": 4,
-          "steps": "Switch dosing (uneven/TID/wait); make 1 dose increase; follow up 4 weeks; order labs"
+          "steps": "Switch dosing (uneven/TID/wait); make 1 dose increase; follow up 4 weeks; order labs",
+          "dosing_options": [
+            "uneven",
+            "tid",
+            "wait"
+          ]
         },
         {
           "category": "add_medication",
@@ -150,7 +165,13 @@
           "labs": true,
           "at_max_category": "no_change",
           "followup_weeks": 4,
-          "steps": "Switch dosing (uneven/TID/wait/add a second medication); end 1 dose increase higher; follow up 4 weeks; order labs; if at max: no change"
+          "steps": "Switch dosing (uneven/TID/wait/add a second medication); end 1 dose increase higher; follow up 4 weeks; order labs; if at max: no change",
+          "dosing_options": [
+            "uneven",
+            "tid",
+            "wait",
+            "add"
+          ]
         },
         {
           "category": "add_medication",
@@ -189,7 +210,13 @@
           "labs": true,
           "at_max_category": "add_medication",
           "followup_weeks": 4,
-          "steps": "Switch dosing (uneven/TID/wait/add a second medication); make 2 dose increases; follow up 4 weeks; order labs; if max before 2: make 1 and stop at max; if max before 1: add a second medication"
+          "steps": "Switch dosing (uneven/TID/wait/add a second medication); make 2 dose increases; follow up 4 weeks; order labs; if max before 2: make 1 and stop at max; if max before 1: add a second medication",
+          "dosing_options": [
+            "uneven",
+            "tid",
+            "wait",
+            "add"
+          ]
         },
         {
           "category": "add_medication",
@@ -228,7 +255,13 @@
           "labs": true,
           "at_max_category": "add_medication",
           "followup_weeks": 4,
-          "steps": "Switch dosing (uneven/TID/wait/add a second medication); make 2 dose increases; follow up 4 weeks; order labs; if max before 2: add a second medication"
+          "steps": "Switch dosing (uneven/TID/wait/add a second medication); make 2 dose increases; follow up 4 weeks; order labs; if max before 2: add a second medication",
+          "dosing_options": [
+            "uneven",
+            "tid",
+            "wait",
+            "add"
+          ]
         },
         {
           "category": "add_medication",
@@ -276,7 +309,13 @@
           "urgent": true,
           "at_max_category": "add_medication",
           "followup_weeks": 4,
-          "steps": "Switch dosing (uneven/TID/wait/add a second medication); end 2 dose increases higher; follow up 4 weeks; order labs; if max before 2: make 1 and stop at max; if max before 1: add a second medication"
+          "steps": "Switch dosing (uneven/TID/wait/add a second medication); end 2 dose increases higher; follow up 4 weeks; order labs; if max before 2: make 1 and stop at max; if max before 1: add a second medication",
+          "dosing_options": [
+            "uneven",
+            "tid",
+            "wait",
+            "add"
+          ]
         },
         {
           "category": "add_medication",
@@ -321,7 +360,13 @@
           "urgent": true,
           "at_max_category": "add_medication",
           "followup_weeks": 4,
-          "steps": "If able to do 1 dose increase without exceeding max: switch dosing (uneven/TID/wait/add a second medication) and end 2 dose increases higher; if max before 2: keep dose same or add a second medication; follow up 4 weeks; order labs"
+          "steps": "If able to do 1 dose increase without exceeding max: switch dosing (uneven/TID/wait/add a second medication) and end 2 dose increases higher; if max before 2: keep dose same or add a second medication; follow up 4 weeks; order labs",
+          "dosing_options": [
+            "uneven",
+            "tid",
+            "wait",
+            "add"
+          ]
         },
         {
           "category": "add_medication",
@@ -366,7 +411,12 @@
           "urgent": true,
           "at_max_category": "add_medication",
           "followup_weeks": 4,
-          "steps": "If able to do 2 dose increases without exceeding max: switch dosing + end 2 increases higher (slow); if at max after 1-2: keep same or add a second medication; follow up 4 weeks; order labs"
+          "steps": "If able to do 2 dose increases without exceeding max: switch dosing + end 2 increases higher (slow); if at max after 1-2: keep same or add a second medication; follow up 4 weeks; order labs",
+          "dosing_options": [
+            "uneven",
+            "tid",
+            "wait"
+          ]
         },
         {
           "category": "add_medication",
@@ -383,5 +433,6 @@
         }
       ]
     }
-  }
+  },
+  "_dosing_options_doc": "Dr. Barbour 2026-10-25 (#52): for cells with dosing:true the FAMILY chooses among dosing_options (copied from the cell's own 'Switch dosing (...)' list): uneven = smaller morning / larger night dose, tid = three times a day, wait = watch and wait, add = lower the dose and add a second medication. Any medicine; TID allowed while still increasing. DRAFT."
 }

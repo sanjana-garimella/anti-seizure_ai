@@ -224,14 +224,15 @@ class TestSafety(unittest.TestCase):
         self.assertTrue(r.safety_concern_flag)
         self.assertIn("sjs_rash", r.urgent_flags)
 
-    def test_sjs_emits_approved_stop_draft(self):
-        # Kristen 2026-07: a rash safety case now emits the engine's approved STOP
-        # draft (was withheld/None). Still a physician-approved draft, never auto-sent;
-        # it must tell the family to STOP and to contact the clinic, with no ER/911 copy.
+    def test_safety_flag_withholds_family_message(self):
+        # Dr. Barbour 2026-10-25 (NEEDS_PI_SIGNOFF #51): on any safety flag the family
+        # gets no message at all - the physician handles it per her urgent protocol.
         r = run_engine(make_snapshot({"Q3": "no", "Q9": ["rash"], "Q9a": "blisters"}))
-        self.assertIsNotNone(r.draft_patient_message)
-        self.assertIn("stop giving", r.draft_patient_message.lower())
-        self.assertIn("contact the clinic", r.draft_patient_message.lower())
+        self.assertTrue(r.safety_concern_flag)
+        self.assertIsNone(r.draft_patient_message)
+        r2 = run_engine(make_snapshot({"Q3": "no", "urgent_safety": ["er_visit"]}))
+        self.assertTrue(r2.safety_concern_flag)
+        self.assertIsNone(r2.draft_patient_message)
 
     def test_urgent_safety_reported_passthrough(self):
         r = run_engine(make_snapshot({"Q3": "no", "urgent_safety": ["er_visit"]}))
@@ -649,3 +650,62 @@ class TestSeizureFrequencyLine(unittest.TestCase):
         r = run_engine(make_snapshot({"Q3": "yes", "Q10a": "still_increasing",
                                       "seizure_episodes": eps}))
         self.assertIn("number not given", r.clinical_summary)
+
+
+class TestLevel3FamilyChoice(unittest.TestCase):
+    """Dr. Barbour 2026-10-25 (#52): at Level 3 the FAMILY chooses among the options the
+    decision-table cell lists - uneven dosing for any medicine (not only four), TID even
+    while still increasing; 'lower + add' only where the cell lists it. Level 4 with
+    urgent ongoing seizures -> lower the dose and add a second medicine (her table);
+    behavioral side effects are not treated differently."""
+
+    NS = {"Q3": "no", "Q8": "yes", "Q9": ["sleepy"], "Q10b_impact": "medium_alot",
+          "Q10a": "still_increasing"}
+    URGENT = {"Q3": "yes", "Q4": ["focal"], "Q8": "yes", "Q9": ["sleepy"],
+              "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+              "seizure_episodes": [{"look": ["focal"], "duration": "1_3min",
+                                    "frequency_bucket": "weekly", "unresponsive": False}]}
+
+    def _run(self, ans, **kw):
+        return run_engine(make_snapshot(ans, **kw))
+
+    def test_seizure_free_L3_offers_all_three_for_any_medicine_while_titrating(self):
+        r = self._run(self.NS)                                  # levetiracetam, still increasing
+        self.assertEqual(r.category, "hold")
+        self.assertEqual(r.dosing_options, ["uneven", "tid", "wait"])
+        self.assertIsNone(r.dosing_choice)
+        self.assertIn("three times a day", r.draft_patient_message)
+
+    def test_seizure_free_L3_family_choice_is_recorded(self):
+        for ch in ("uneven", "tid", "wait"):
+            r = self._run(dict(self.NS, Q10g_dosing_choice=ch))
+            self.assertEqual(r.category, "hold", ch)            # the choice never changes the hold
+            self.assertEqual(r.dosing_choice, ch)
+            self.assertIn("Family chose", r.dosing_note)
+
+    def test_urgent_breakthrough_L3_add_choice_routes_to_add(self):
+        base = dict(self.URGENT, Q10b_impact="medium_alot")
+        r0 = self._run(base)
+        self.assertIn("add", r0.dosing_options)
+        r = self._run(dict(base, Q10g_dosing_choice="add"))
+        self.assertEqual(r.category, "add_medication")
+        self.assertEqual(r.dosing_choice, "add")
+        self.assertIn("lower the levetiracetam dose", r.draft_patient_message)
+
+    def test_add_choice_not_acted_on_where_the_cell_does_not_offer_it(self):
+        r = self._run(dict(self.NS, Q10g_dosing_choice="add"))
+        self.assertEqual(r.category, "hold")
+        self.assertIsNone(r.dosing_choice)
+        self.assertIn("does not offer", r.dosing_note)
+
+    def test_level4_with_urgent_seizures_lowers_and_adds(self):
+        r = self._run(dict(self.URGENT, Q10b_impact="big"))
+        self.assertEqual(r.category, "add_medication")
+        self.assertIn("Lower dose", r.guidance_steps)
+        self.assertIn("lower the levetiracetam dose", r.draft_patient_message)
+        self.assertIn("add a second medicine", r.draft_patient_message)
+
+    def test_behavioral_side_effect_follows_the_same_table(self):
+        a = self._run(dict(self.URGENT, Q10b_impact="big", Q9=["sleepy"]))
+        b = self._run(dict(self.URGENT, Q10b_impact="big", Q9=["mood"]))
+        self.assertEqual(a.category, b.category)

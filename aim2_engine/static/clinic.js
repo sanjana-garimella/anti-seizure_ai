@@ -236,39 +236,26 @@
       var medium = (impact2 === 'medium_tolerable' || impact2 === 'medium_alot');
       var titrMed = (goal === 'still_increasing' && medium);
       show('fs-pref-adjust', titrMed);
-      // Level 3: wait vs uneven vs three-times-a-day - only the options the engine
-      // would suggest (data-* from no_seizures_decision_table.json): uneven for the
-      // eligible medicines; otherwise TID at steady state or with seizures.
+      // Level 3 (Dr. Barbour 2026-10-25, #52): the family chooses. Uneven, three times
+      // a day and watch-and-wait for any medicine and any phase; "lower the dose and add
+      // a second medication" only with breakthrough seizures (only those table cells
+      // list it).
       var dz = byId('fs-dosing'), dosing = false;
       if (dz) {
-        var medNow = (q('med') && q('med').value) || dz.getAttribute('data-med') || '';
-        var elig = [];
-        try { elig = JSON.parse(dz.getAttribute('data-uneven') || '[]'); } catch (e) { elig = []; }
-        var uneven = elig.indexOf(medNow.toLowerCase()) >= 0;
-        var steady = goal === 'at_goal' && q('q10c_time') && q('q10c_time').value === 'over_2_weeks';
-        var tid = !uneven && !!dz.getAttribute('data-tid') && (steady || seizYes);
         var ds = q('q_dosing_choice');
-        if (ds) {
-          for (var o = 0; o < ds.options.length; o++) {
-            var kind = ds.options[o].getAttribute('data-opt');
-            var on = !kind || (kind === 'uneven' ? uneven : tid);
-            ds.options[o].hidden = !on; ds.options[o].disabled = !on;
-            if (!on && ds.options[o].selected) { ds.value = ''; }
-          }
+        var addEls = dz.querySelectorAll('[data-opt=add]');
+        for (var a2 = 0; a2 < addEls.length; a2++) {
+          addEls[a2].hidden = !seizYes;
+          if (addEls[a2].tagName === 'OPTION') { addEls[a2].disabled = !seizYes; }
         }
+        if (ds && !seizYes && ds.value === 'add') { ds.value = ''; }
         dosing = impact2 === 'medium_alot';
         show('fs-dosing', dosing);
         if (!dosing && ds) { ds.value = ''; }
       }
       show('card-pref', titrMed || dosing);
-      // medication-selection card: only when a switch/add is likely - at the goal
-      // dose with ongoing seizures, or Level 3+ side effects (Kristen 2026-10-15).
-      var lvl3plus = (impact2 === 'medium_alot' || impact2 === 'big' || impact2 === 'not_a_fit');
-      var medselLikely = (goal === 'at_goal' && seizYes) || (seYes && lvl3plus);
-      show('card-medsel', medselLikely);
-      if (!medselLikely && q('medsel_interest')) { q('medsel_interest').value = 'no'; }
-      // reveal the detail only if the family opts in
-      show('fs-medsel', medselLikely && q('medsel_interest') && q('medsel_interest').value === 'yes');
+      // (The medicine-options questions moved to a second page that appears only when
+      // the decision is switch/add - Dr. Barbour 2026-10-25.)
       // conflict clarifier: better overall + more seizures
       var c = byId('fs-conflict');
       if (c) {
@@ -276,7 +263,7 @@
         c.style.display = (bett && more) ? '' : 'none';
       }
     }
-    ['q1', 'med', 'adherence', 'seizures', 'se', 'impact', 'q10a', 'q10c_time', 'q11', 'q6', 'medsel_interest'].forEach(function (n) {
+    ['q1', 'med', 'adherence', 'seizures', 'se', 'impact', 'q10a', 'q10c_time', 'q11', 'q6'].forEach(function (n) {
       var e = q(n); if (e) { e.addEventListener('change', up); }
     });
     var boxes = document.querySelectorAll('[name=q9],[name=q4],[name=q2a]');

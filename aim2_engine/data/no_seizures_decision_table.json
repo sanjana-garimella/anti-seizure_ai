@@ -2,23 +2,93 @@
   "_README": "Seizure-free ('No Seizures') action grid from Dr. Barbour's 2026-06-25 feedback. DRAFT - verified:false, pending PI sign-off (see NEEDS_PI_SIGNOFF.md, '2026-06-25 No Seizures 6-level table'). Sources reconciled: the 6-level actions follow her three phase-specific BAROMETER SVGs (titrating / adjustment-holding / steady-state); the UPDATED no-seizures_decision_tables.xlsx (2026-06-25 latest) sets follow-up to 4 weeks for L3/L4/L5 across ALL phases (this supersedes the earlier barometer 'Holding = 2 weeks'). At L3, also offer a dosing switch: uneven dosing for eligible drugs, else TID. The engine consults this ONLY for seizure-free patients when the 6-level side-effect scale captured a level (side_effect_level 0-5); legacy 3-level inputs are unaffected. Phase is derived in categorize.py (still increasing -> titrating; at goal + on dose <2wk -> holding; at goal + >=2wk -> steady).",
   "verified": false,
   "source": "clinician (Barbour 2026-06-25)",
-  "_levels": ["L0 no side effects", "L1 small", "L2 medium-tolerable", "L3 medium-a-lot", "L4 big", "L5 not a fit"],
+  "_levels": [
+    "L0 no side effects",
+    "L1 small",
+    "L2 medium-tolerable",
+    "L3 medium-a-lot",
+    "L4 big",
+    "L5 not a fit"
+  ],
   "actions_by_phase_level": {
-    "titrating": ["continue", "continue", "slower", "hold", "lower", "switch"],
-    "holding":   ["no_change", "no_change", "no_change", "hold", "lower", "switch"],
-    "steady":    ["no_change", "no_change", "no_change", "hold", "lower", "switch"]
+    "titrating": [
+      "continue",
+      "continue",
+      "slower",
+      "hold",
+      "lower",
+      "switch"
+    ],
+    "holding": [
+      "no_change",
+      "no_change",
+      "no_change",
+      "hold",
+      "lower",
+      "switch"
+    ],
+    "steady": [
+      "no_change",
+      "no_change",
+      "no_change",
+      "hold",
+      "lower",
+      "switch"
+    ]
   },
-  "hold_followup_weeks_by_phase": {"titrating": 4, "holding": 4, "steady": 4},
+  "hold_followup_weeks_by_phase": {
+    "titrating": 4,
+    "holding": 4,
+    "steady": 4
+  },
   "lower_followup_weeks": 4,
   "switch_followup_weeks": 4,
   "tid_note_for_other_drugs": true,
+  "l3_dosing_options": [
+    "uneven",
+    "tid",
+    "wait"
+  ],
+  "_l3_dosing_options_doc": "Dr. Barbour 2026-10-25 (#52 RESOLVED): at Level 3 the FAMILY chooses. Uneven dosing is offered wherever the decision table lists it, for ANY medicine (not only the four in uneven_dosing_eligible), and three-times-a-day can be offered while still increasing. Seizure-free L3 cells list uneven / TID / wait in every phase. DRAFT.",
   "labs_by_drug": {
-    "valproic_acid": ["CBC", "CMP", "LFTs", "ammonia", "valproic acid level"],
-    "carbamazepine": ["CBC", "CMP", "LFTs", "carbamazepine level"],
-    "oxcarbazepine": ["CBC", "CMP", "LFTs", "oxcarbazepine level"],
-    "topiramate": ["CBC", "CMP", "topiramate level"],
-    "zonisamide": ["CBC", "CMP", "zonisamide level"],
-    "ethosuximide": ["ethosuximide level"]
+    "valproic_acid": [
+      "CBC",
+      "CMP",
+      "LFTs",
+      "ammonia",
+      "valproic acid level"
+    ],
+    "carbamazepine": [
+      "CBC",
+      "CMP",
+      "LFTs",
+      "carbamazepine level"
+    ],
+    "oxcarbazepine": [
+      "CBC",
+      "CMP",
+      "LFTs",
+      "oxcarbazepine level"
+    ],
+    "topiramate": [
+      "CBC",
+      "CMP",
+      "topiramate level"
+    ],
+    "zonisamide": [
+      "CBC",
+      "CMP",
+      "zonisamide level"
+    ],
+    "ethosuximide": [
+      "ethosuximide level"
+    ]
   },
-  "uneven_dosing_eligible": ["clobazam", "valproic_acid", "carbamazepine", "oxcarbazepine"]
+  "uneven_dosing_eligible": [
+    "clobazam",
+    "valproic_acid",
+    "carbamazepine",
+    "oxcarbazepine"
+  ],
+  "_uneven_dosing_eligible_doc": "Superseded 2026-10-25 (Dr. Barbour): no longer used to limit uneven dosing; kept for the record."
 }

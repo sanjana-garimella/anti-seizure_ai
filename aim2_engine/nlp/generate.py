@@ -83,10 +83,9 @@ class GuardedGenerator:
     def generate_patient_message(self, recommendation: Any, snapshot: Any,
                                  physician_name: str = "[physician name]"
                                  ) -> Optional[str]:
-        # 1) Safety: NEVER invoke the model. Emit only the engine's OWN approved safety
-        #    draft (physician approves before send); the model must never author safety
-        #    copy. (Kristen 2026-07: replaces withhold-entirely; the draft is None only
-        #    when the engine itself chose to withhold.)
+        # 1) Safety: NEVER invoke the model; return what the engine returned, which is
+        #    None (no family message) on every safety flag - Dr. Barbour 2026-10-25, #51.
+        #    The model must never author safety copy.
         if getattr(recommendation, "safety_concern_flag", False):
             self.last_source = "safety_template"
             self.last_validation = None

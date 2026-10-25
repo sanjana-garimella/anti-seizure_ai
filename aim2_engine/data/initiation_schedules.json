@@ -5385,5 +5385,20 @@
         }
       ]
     }
+  },
+  "switch_taper": {
+    "verified": false,
+    "source": "clinician (Barbour template F, kb edits; answer 2026-10-25, NEEDS_PI_SIGNOFF #69)",
+    "old_medicine_multipliers_by_week": [
+      1.0,
+      0.75,
+      0.5,
+      0.25
+    ],
+    "old_medicine_off_after_week": 4,
+    "new_medicine_starts_week": 1,
+    "not_started_as_new_medicine": {
+      "carbamazepine": "Dr. Barbour 2026-10-25: carbamazepine is never offered as a new medication."
+    }
   }
 }

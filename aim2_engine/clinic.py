@@ -1568,8 +1568,6 @@ def _survey_cards(patient):
   </div>
 </div>
 
-{_medsel_survey_card(p)}
-
 <div class=card><h2>Overall</h2>
   <label>11. Overall, how have your child's seizures changed on this medicine?<span class=req>*</span></label>
   <select name=q11 required>{opts([('','Choose'),('better','Better'),('about_same','About the same'),('worse','Worse'),('not_sure','Not sure')])}</select>
@@ -1723,41 +1721,44 @@ def _info_table_html(opt):
 
 
 def _dosing_choice_block(patient):
-    """Level-3 side effects: let the family say which change to HOW the dose is given
-    they'd prefer - the same options the engine suggests (decision.py L3 dosing note):
-    uneven AM/PM for the eligible medicines in no_seizures_decision_table.json, else
-    three-times-a-day (steady state, or with breakthrough seizures), and always
-    'wait'. clinic.js shows only the options that apply. Advisory only: the answer
-    goes to the clinician summary, never into the engine. DRAFT wording
-    (NEEDS_PI_SIGNOFF #52)."""
-    from engine_core.titration_config import default_no_seizures_table
-    ns = default_no_seizures_table() or {}
-    eligible = [str(m).lower() for m in (ns.get("uneven_dosing_eligible") or [])]
-    tid_ok = bool(ns.get("tid_note_for_other_drugs"))
-    med = str((patient or {}).get("medication") or "").lower()
+    """Level-3 side effects: the FAMILY chooses how to handle them (Dr. Barbour
+    2026-10-25, #52). Wording from her template H. Uneven, three-times-a-day and
+    watch-and-wait are offered for any medicine and in any phase (her decision-table
+    L3 cells list all three); 'lower the dose and add a second medication' only shows
+    with breakthrough seizures, because only those cells list it - and the engine acts
+    on it only where the matching cell does (decision.py _dosing_plan). The answer is
+    a structured survey field (Q10g_dosing_choice) the decision tables read."""
     return (
-        f"<div id=fs-dosing style='display:none' data-uneven='{html.escape(json.dumps(eligible))}' "
-        f"data-tid='{'1' if tid_ok else ''}' data-med='{html.escape(med)}'>"
-        "<p style='font-size:16px;line-height:1.6;color:#3a4654'>Side effects can sometimes ease "
-        "by changing how the medicine is given, while the total amount each day stays the same. "
-        "Which would you like to try? Your care team will decide with you.</p>"
+        "<div id=fs-dosing style='display:none'>"
+        "<p style='font-size:16px;line-height:1.6;color:#3a4654'>We have a few options to handle "
+        "side effects. Here are some options, in no particular order.</p>"
+        "<ul style='font-size:15px;line-height:1.6;color:#3a4654'>"
+        "<li><strong>Uneven dosing.</strong> Sometimes it is helpful to have a smaller dose in the "
+        "morning and larger dose in the night-time if you are concerned about the day-time side "
+        "effects.</li>"
+        "<li><strong>Three times a day.</strong> Sometimes it is helpful to give the medication in "
+        "smaller doses three times a day, instead of twice a day. This is not my favorite, because "
+        "three times a day is a lot to remember. It seems to be most helpful for reducing stomach "
+        "upset (when taking valproic acid and ethosuximide) or reducing dizziness (when taking "
+        "oxcarbazepine or carbamazepine).</li>"
+        "<li><strong>Watch and wait.</strong> Sometimes, giving the body more time to adjust is all "
+        "that is needed.</li>"
+        "<li data-opt=add><strong>Lower the dose and add a second medication.</strong> Sometimes two "
+        "medications, at lower doses each, is a better fit for both seizures and side effects.</li>"
+        "</ul>"
+        "<label>Which would you prefer?</label>"
         "<select name=q_dosing_choice>"
         "<option value=''>Choose</option>"
-        "<option value=wait>Wait and see - keep giving it the same way for now</option>"
-        "<option value=uneven data-opt=uneven>Give a little less in the morning and a little "
-        "more at night</option>"
-        "<option value=tid data-opt=tid>Split the daily amount into three smaller doses "
-        "(morning, afternoon and night)</option>"
+        "<option value=uneven>Uneven dosing</option>"
+        "<option value=tid>Three times a day dosing</option>"
+        "<option value=wait>Watch and wait</option>"
+        "<option value=add data-opt=add>Lower the dose and add a second medication</option>"
         "</select></div>")
 
 
-def _medsel_survey_card(patient):
-    """The medication-SELECTION questions, embedded as a card INSIDE the between-
-    visit survey (not a separate page). A lead-in Yes/No reveals the detail
-    (clinic.js: `fs-medsel`), so families only answer it if a change is on the
-    table. Age/sex/seizure-type/adherence are reused from the rest of the
-    check-in, so they are not re-asked here (sex/age live in the 'About your
-    child' card at the top of the survey)."""
+def _medsel_detail_fields(patient):
+    """The medication-SELECTION questions (Sheet 2). Age/sex/seizure-type/adherence
+    are reused from the check-in, so they are not re-asked here."""
     yn = lambda name: f"<select name={name}>{opts([('no', 'No'), ('yes', 'Yes')])}</select>"
     # Exclude the child's CURRENT medicine from the 'already tried' checklist -
     # they are on it, so it is not a "have you tried?" choice (and won't be
@@ -1767,7 +1768,7 @@ def _medsel_survey_card(patient):
     cur_note = (f"<p class=muted>Your child's current medicine "
                 f"({html.escape(cur_med.display_name)}) isn't listed here.</p>"
                 if cur_med else "")
-    detail = (
+    return (
         "<label>Has your child already tried any of these other seizure medicines? "
         "(check all that apply)</label>"
         f"{checks('prior_tried', _selection_med_checklist(exclude_id=cur_id))}"
@@ -1789,15 +1790,25 @@ def _medsel_survey_card(patient):
         f"{yn('se_asian_han_chinese')}"
         "<label>Does your child have any of these health conditions? (check all that apply)</label>"
         f"{checks('comorbid', _SELECTION_COMORBIDITIES)}")
-    return (
-        "<div class=card id=card-medsel><h2>Medicine options (if a change is considered)</h2>"
-        "<p class=muted>If your care team might switch or add a seizure medicine, a few quick "
-        "answers let us suggest the options most likely to suit your child. You can skip this if "
-        "it doesn't apply - your care team decides.</p>"
-        "<label>Would you like us to suggest medicine options in case a change comes up?</label>"
-        f"<select name=medsel_interest>{opts([('no', 'Not right now'), ('yes', 'Yes, suggest options')])}</select>"
-        f"<div id=fs-medsel style='display:none'>{detail}</div>"
-        "</div>")
+
+
+def medsel_questions_page(token, sub_id, patient):
+    """Second page of the check-in (Dr. Barbour 2026-10-25): the medicine-options
+    questions appear ONLY when the engine's decision is to switch or add a medicine
+    (phase2_applies), after the main check-in is saved. Families can skip it."""
+    csrf = csrf_for(token)
+    body = ("<div class=card><h2>A few questions about medicine options</h2>"
+            "<p class=lead>Thanks - your check-in is saved. Your care team may talk with you about "
+            "changing or adding a seizure medicine. A few quick answers let us suggest the options "
+            "most likely to suit your child. Your care team decides with you.</p></div>"
+            f"<form method=post action='/s/{html.escape(token)}/medsel'>"
+            f"<input type=hidden name=csrf value='{html.escape(csrf)}'>"
+            f"<input type=hidden name=sub value='{int(sub_id)}'>"
+            f"<div class=card id=card-medsel>{_medsel_detail_fields(patient)}</div>"
+            "<div class=card><button class='btn cta big' type=submit>Show me the options</button> "
+            "<button class=btn type=submit name=skip value=1>Skip for now</button></div>"
+            "</form>")
+    return page("Between-visit check-in", body, heading="Between-Visit Check-In")
 
 
 def _selection_attrs_from_form(patient, answers, f):
@@ -1886,7 +1897,7 @@ def _starting_schedule_html(drug_id, age, weight, conmeds):
     else:
         body = ""
         for f in s["forms"]:
-            pref = " <span class=muted>(preferred by age)</span>" if f["kind"] == s.get("preferred_kind") else ""
+            pref = " <span class=muted>(preferred)</span>" if f["kind"] == s.get("preferred_kind") else ""
             head = "".join(f"<th style='padding:2px 8px;text-align:left'>{html.escape(c or '')}</th>"
                            for c in f["columns"])
             cells = "".join(f"<td style='padding:2px 8px'>{html.escape(v or '')}</td>" for v in f["cells"])
@@ -1895,7 +1906,8 @@ def _starting_schedule_html(drug_id, age, weight, conmeds):
                      f"<div style='overflow-x:auto'><table style='border-collapse:collapse'>"
                      f"<tr>{head}</tr><tr>{cells}</tr></table></div>")
         body += ("<p class=notetag>&#9888; Dr. Barbour's starting schedule (DRAFT, unverified). "
-                 "Stopping the current medicine is not shown yet - pending her taper plan.</p>")
+                 "When switching, the current medicine is reduced week by week and stopped after "
+                 "week 4 while this one starts; your care team goes over the plan with you.</p>")
     return (f"<details style='margin:2px 0 8px'><summary>Starting schedule</summary>{body}</details>")
 
 
@@ -2088,9 +2100,13 @@ def parse_answers(f):
         except ValueError:
             pass
 
+    # Level-3 choice (Dr. Barbour 2026-10-25, #52): a structured answer the decision
+    # tables read; the summary shows it via the dosing note.
+    dc = one("q_dosing_choice").strip().lower()
+    if dc in ("uneven", "tid", "wait", "add"):
+        a["Q10g_dosing_choice"] = dc
     # Contextual preference answers (design): surface to the clinician.
-    for fld, tag in (("q_dosing_choice", "Level-3 dosing choice"),
-                     ("q_adjust", "1-week adjustment")):
+    for fld, tag in (("q_adjust", "1-week adjustment"),):
         v = one(fld).strip()
         if v:
             a["Q13"] = ((a.get("Q13") + "\n") if a.get("Q13") else "") + f"[{tag}] {v}"
@@ -2256,6 +2272,8 @@ class Handler(BaseHTTPRequestHandler):
             action = parts[1] if len(parts) > 1 else ""
             if action == "rank":
                 return self._do_med_rank(tok, f)
+            if action == "medsel":
+                return self._do_medsel(tok, f)
             return self._do_submit(tok, f)
         if not self._is_doctor():
             return self._send("", 303, location="/login")
@@ -2941,13 +2959,7 @@ class Handler(BaseHTTPRequestHandler):
         # answers and show them as the next step of the same check-in (DRAFT for
         # the neurologist). No separate questionnaire.
         if phase2_applies(rec.to_dict()):
-            attrs = _selection_attrs_from_form(patient, answers, f)
-            result = select_meds(attrs, SELECTION_RULESET)
-            db.save_med_selection(sub_id, patient["id"], attrs, result.to_dict())
-            db.audit("patient", "med_options",
-                     f"submission {sub_id} eligible {len(result.ranked_eligible)}"
-                     + (" (deferred)" if result.deferred else ""))
-            return self._send(med_options_result(token, sub_id, result.to_dict()))
+            return self._send(medsel_questions_page(token, sub_id, patient))
         body = ("<div class=card><h2>Thank you</h2><p>Your answers were sent to your care team, "
                 "who will review them.</p></div>")
         return self._send(page("Submitted", body))
@@ -2997,13 +3009,7 @@ class Handler(BaseHTTPRequestHandler):
         db.mark_submitted(inst["id"])
         db.audit("patient", "open_submit", f"study_id {study_id} priority {priority}")
         if phase2_applies(rec.to_dict()):
-            attrs = _selection_attrs_from_form(patient, answers, f)
-            result = select_meds(attrs, SELECTION_RULESET)
-            db.save_med_selection(sub_id, patient["id"], attrs, result.to_dict())
-            db.audit("patient", "med_options",
-                     f"submission {sub_id} eligible {len(result.ranked_eligible)}"
-                     + (" (deferred)" if result.deferred else ""))
-            return self._send(med_options_result(inst["token"], sub_id, result.to_dict()))
+            return self._send(medsel_questions_page(inst["token"], sub_id, patient))
         body = ("<div class=card><h2>Thank you</h2><p>Your answers were sent to your care team, "
                 "who will review them.</p></div>")
         return self._send(page("Submitted", body))
@@ -3022,6 +3028,48 @@ class Handler(BaseHTTPRequestHandler):
 
     # ---- patient: medication-selection ranking (options are shown right after
     # the survey submit; this records the family's 1st/2nd/3rd/avoid choices) ----
+    def _own_submission(self, inst, f):
+        """The submission named in the form, only if it belongs to this link's check-in."""
+        try:
+            sub_id = int((f.get("sub") or ["0"])[0] or 0)
+        except ValueError:
+            return None, None
+        b = db.get_submission_bundle(sub_id) if sub_id else None
+        if not b or b["submission"].get("instance_id") != inst["id"]:
+            return None, None
+        return sub_id, b
+
+    def _do_medsel(self, token, f):
+        """Page 2 of the check-in: the medicine-options answers -> rule-based options
+        (engine_core.med_selection), then the family's 1st/2nd/3rd/avoid page."""
+        inst = db.get_instance_by_token(token)
+        if not inst:
+            return self._send(page("Invalid link", "<div class=card>This link is not valid.</div>"), 404)
+        if not csrf_ok(token, (f.get("csrf") or [""])[0]):
+            return self._send(page("Error", "<div class=card>Bad request (CSRF).</div>"), 400)
+        sub_id, b = self._own_submission(inst, f)
+        if not sub_id:
+            return self._send(page("Not found", "<div class=card>No check-in to add to.</div>"), 404)
+        r = b.get("recommendation") or {}
+        if not phase2_applies({"category": r.get("category"),
+                               "safety_concern_flag": bool(r.get("safety_flag"))}):
+            # Page 2 exists only for a non-urgent switch/add decision.
+            return self._send(page("Not found", "<div class=card>No medicine options for this "
+                                   "check-in.</div>"), 404)
+        if (f.get("skip") or [""])[0]:
+            db.audit("patient", "med_options_skipped", f"submission {sub_id}")
+            body = ("<div class=card><h2>Thank you</h2><p>Your answers were sent to your care team, "
+                    "who will review them.</p></div>")
+            return self._send(page("Submitted", body))
+        patient = b["patient"] or db.get_patient(inst["patient_id"])
+        attrs = _selection_attrs_from_form(patient, b["submission"]["answers"], f)
+        result = select_meds(attrs, SELECTION_RULESET)
+        db.save_med_selection(sub_id, patient["id"], attrs, result.to_dict())
+        db.audit("patient", "med_options",
+                 f"submission {sub_id} eligible {len(result.ranked_eligible)}"
+                 + (" (deferred)" if result.deferred else ""))
+        return self._send(med_options_result(token, sub_id, result.to_dict()))
+
     def _do_med_rank(self, token, f):
         """Family submitted their 1st/2nd/3rd/avoid choices among the options."""
         inst = db.get_instance_by_token(token)
@@ -3029,8 +3077,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(page("Invalid link", "<div class=card>This link is not valid.</div>"), 404)
         if not csrf_ok(token, (f.get("csrf") or [""])[0]):
             return self._send(page("Error", "<div class=card>Bad request (CSRF).</div>"), 400)
-        sub_id = int((f.get("sub") or ["0"])[0] or 0)
-        ms = db.get_med_selection(sub_id)
+        sub_id, _b = self._own_submission(inst, f)     # must be this link's own check-in
+        ms = db.get_med_selection(sub_id) if sub_id else None
         if not ms:
             return self._send(page("Not found", "<div class=card>No options to record.</div>"), 404)
         ranking = {}

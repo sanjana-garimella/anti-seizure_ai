@@ -278,6 +278,7 @@ class PatientStatus:
     # (at goal, established). None when not derivable. Selects the no-seizures
     # action row + the L3 follow-up interval (Holding = 2 wks, else 4).
     phase: Optional[str] = None
+    side_effect_dosing_choice: Optional[str] = None   # family's Level-3 pick (#52): uneven|tid|wait|add
     # Barbour 2026-06-25: was a possible trigger (sleep/missed dose/fever/...)
     # present before ALL breakthrough seizures? (survey follow-up; advisory.)
     triggers_all_episodes: Optional[bool] = None
@@ -582,6 +583,7 @@ def categorize(snapshot: IntervalSnapshot, asm_rule: Optional[ASMRule] = None,
         side_effect_severity=severity,
         side_effect_level=IMPACT_TO_LEVEL.get(s.impact_scale),
         phase=phase,
+        side_effect_dosing_choice=getattr(s, "side_effect_dosing_choice", None),
         side_effects_present=present,
         adherence=s.adherence,
         provoked_by_nonadherence=provoked,

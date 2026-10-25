@@ -155,14 +155,16 @@ def best_tablet_split(target: float, freq: int, strengths: List[float],
                       allow_half: bool, rules: Dict[str, Any],
                       absolute_max: Optional[float],
                       must_exceed: Optional[float] = None,
-                      must_be_below: Optional[float] = None) -> Optional[Dict[str, Any]]:
+                      must_be_below: Optional[float] = None,
+                      require_uneven: bool = False) -> Optional[Dict[str, Any]]:
     """Closest dose plan for `target` mg/day over `freq` doses/day, inside the
     -10/+30% window, never above the absolute max. Ranking: closest total first
     (ties go UP), then whole tablets over halves, then even over uneven, then
     fewest units. `must_exceed`: an increase step must land strictly above the
     previous dose (never round an increase back to the dose already taken);
     `must_be_below`: a climb step must stay under the NEXT step's target (never
-    round a step past the one after it).
+    round a step past the one after it). `require_uneven`: only unequal splits
+    (the family chose uneven dosing at Level 3, #52).
     Dr. Barbour's worked example (flag #3/#4: 1300 mg/day target on
     250 mg tablets -> 500 mg morning + 750 mg night). None = no fit."""
     w = rules.get("window") or {}
@@ -183,6 +185,8 @@ def best_tablet_split(target: float, freq: int, strengths: List[float],
         for b in keys[i:]:
             if b > a and (not uneven.get("all_medications", False) or b / a > max_ratio + _EPS):
                 break
+            if require_uneven and b == a:
+                continue      # family chose uneven dosing: smaller morning, larger night
             for k in (range(0, 1) if b == a else range(1, freq)):
                 total = (freq - k) * a + k * b
                 if total < lo - _EPS or total > hi + _EPS:
@@ -237,8 +241,8 @@ def _over_eff(mg_day: float, effective_max: Optional[float]) -> str:
 def describe_tablets(plan: Dict[str, Any], freq: int,
                      weight_kg: Optional[float] = None,
                      effective_max: Optional[float] = None) -> str:
-    """Compact family-giving line: 'morning 1 × 250 mg, night 2 × 250 mg = 750 mg/day
-    (62.5 mg/kg/day, +25%)'."""
+    """Compact clinician line: 'morning 1 × 250 mg, night 2 × 250 mg = 750 mg/day
+    (62.5 mg/kg/day)'."""
     doses = plan["doses"]
     names = _slot_names(freq)
     if len({d["mg"] for d in doses}) == 1:
@@ -246,46 +250,124 @@ def describe_tablets(plan: Dict[str, Any], freq: int,
         body = f"{_fmt_recipe(doses[0]['recipe'])} {how}"
     else:
         body = ", ".join(f"{n} {_fmt_recipe(d['recipe'])}" for n, d in zip(names, doses))
-    dev = plan["deviation_pct"]
     tot = plan["total_mg_per_day"]
     w = _num(weight_kg)
-    bits = ([f"{round(tot / w, 1):g} mg/kg/day"] if w else []) + ([f"{dev:+.1f}%"] if abs(dev) >= 0.05 else [])
+    # Only the decided dose is shown (Dr. Barbour 2026-10-25) - no "% vs the exact
+    # ladder value"; deviation_pct stays in the structured plan.
+    bits = [f"{round(tot / w, 1):g} mg/kg/day"] if w else []
     extra = f" ({', '.join(bits)})" if bits else ""
     return f"{body} = {tot:g} mg/day{extra}" + _over_eff(tot, effective_max)
 
 
-def _tablet_count(c: float) -> str:
+def unit_noun(form: Optional[str]) -> str:
+    """What one unit is called for the family: capsule, film or tablet (from the
+    product form in asm_rules formulations_rxnorm; e.g. ethosuximide 250 mg is a
+    capsule - Dr. Barbour 2026-10-25)."""
+    f = (form or "").lower()
+    if "capsule" in f:
+        return "capsule"
+    if "film" in f:
+        return "film"
+    return "tablet"
+
+
+def _unit_count(c: float, noun: str = "tablet") -> str:
     whole = int(c)
     if c == 0.5:
-        return "½ tablet"
+        return f"½ {noun}"
     n = f"{whole}½" if c % 1 else f"{whole}"
-    return f"{n} tablet" if c == 1 else f"{n} tablets"
+    return f"{n} {noun}" if c == 1 else f"{n} {noun}s"
 
 
-def family_tablet_text(plan: Dict[str, Any], freq: int) -> str:
-    """Plain tablet counts for the family message: '2 tablets in the morning and
-    3 tablets at night (250 mg each)'. Same plan the clinician summary shows."""
+def _tablet_count(c: float) -> str:
+    return _unit_count(c, "tablet")
+
+
+def family_tablet_text(plan: Dict[str, Any], freq: int, noun: str = "tablet") -> str:
+    """Family wording, mg first with the unit count in brackets (Dr. Barbour
+    2026-10-25, #67): '500 mg (1 tablet) twice a day', or for an uneven split
+    '500 mg (2 tablets) in the morning and 750 mg (3 tablets) at night'. Same plan
+    the clinician summary shows."""
     doses = plan["doses"]
-    strengths = sorted({s for d in doses for s, _c in d["recipe"]}, reverse=True)
 
-    def _cnt(d):
-        merged: Dict[float, float] = {}
-        for s_, c in d["recipe"]:
-            merged[s_] = merged.get(s_, 0) + c
-        if len(merged) == 1:
-            return _tablet_count(next(iter(merged.values())))
-        return " + ".join(f"{_tablet_count(c)} of {s_:g} mg" for s_, c in sorted(merged.items(), reverse=True))
+    def _one(d):
+        n = sum(c for _s, c in d["recipe"])
+        return f"{d['mg']:g} mg ({_unit_count(n, noun)})"
 
     names = _slot_names(freq)
     if len({d["mg"] for d in doses}) == 1:
         how = "once a day" if freq == 1 else ("twice a day" if freq == 2 else f"{freq} times a day")
-        body = f"{_cnt(doses[0])} {how}"
-    else:
-        parts = [f"{_cnt(d)} in the {n}" if n != "night" else f"{_cnt(d)} at night"
-                 for n, d in zip(names, doses)]
-        body = ", ".join(parts[:-1]) + (" and " if len(parts) > 1 else "") + parts[-1]
-    each = f" ({strengths[0]:g} mg each)" if len(strengths) == 1 else ""
-    return body + each
+        return f"{_one(doses[0])} {how}"
+    parts = [f"{_one(d)} in the {n}" if n != "night" else f"{_one(d)} at night"
+             for n, d in zip(names, doses)]
+    return ", ".join(parts[:-1]) + (" and " if len(parts) > 1 else "") + parts[-1]
+
+
+def family_liquid_text(total_mg: float, ml_per_dose: float, freq: int) -> str:
+    """'530 mg (5.3 mL) twice a day' - the same mg-first pattern as tablets."""
+    how = {1: "once a day", 2: "twice a day"}.get(freq, f"{freq} times a day")
+    return f"{round(total_mg / freq, 3):g} mg ({ml_per_dose:g} mL) {how}"
+
+
+def round_liquid(target: float, freq: int, conc: float, rules: Dict[str, Any],
+                 absolute_max: Optional[float], must_exceed: Optional[float] = None
+                 ) -> Optional[Tuple[float, float]]:
+    """(mL per dose, mg/day) for the measurable liquid dose closest to `target`:
+    mL rounded to liquid_rounding.ml_per_dose_step, inside the -10/+30% window,
+    above `must_exceed`, never above the absolute max. None = no measurable fit."""
+    step = _num((rules.get("liquid_rounding") or {}).get("ml_per_dose_step"))
+    exact = target / freq / conc
+    if step is None:
+        return round(exact, 2), target
+    w = rules.get("window") or {}
+    lo = target * (1 + w.get("low_pct", -10) / 100.0)
+    hi = target * (1 + w.get("high_pct", 30) / 100.0)
+    if absolute_max is not None:
+        hi = min(hi, float(absolute_max))
+    base = round(exact / step)
+    best = None
+    for k in range(base - 3, base + 4):
+        ml = round(k * step, 6)
+        if ml <= 0:
+            continue
+        tot = round(ml * conc * freq, 3)
+        if tot < lo - _EPS or tot > hi + _EPS:
+            continue
+        if must_exceed is not None and tot <= must_exceed + _EPS:
+            continue
+        key = (abs(tot - target), 0 if tot >= target else 1)
+        if best is None or key < best[0]:
+            best = (key, ml, tot)
+    return (float(f"{best[1]:g}"), best[2]) if best else None
+
+
+def resplit_tablets(total_mg_per_day: float, freq: int, strength: float,
+                    formulations: List[Dict[str, Any]], how: str,
+                    rules: Optional[Dict[str, Any]] = None) -> Optional[Dict[str, Any]]:
+    """Same daily total, split differently (Level-3 family choice, #52): `how` is
+    "uneven" (smaller morning, larger night, within the 30/70-40/60 range) or "tid"
+    (three doses a day). Whole tablets of the child's current strength only, and the
+    total must stay exactly the same. None when no such split exists (the team then
+    sets the amounts)."""
+    rules = rules if rules is not None else load_rules()
+    tot, strength = _num(total_mg_per_day), _num(strength)
+    if not rules or tot is None or strength is None:
+        return None
+    line = next((ln for ln in solid_lines(formulations)
+                 if any(abs(s_ - strength) < _EPS for s_ in ln["strengths"])), None)
+    if line is None:
+        return None
+    n = 3 if how == "tid" else freq
+    if not n or (how == "uneven" and n < 2):
+        return None
+    exact = dict(rules, window={"low_pct": 0, "high_pct": 0})
+    plan = best_tablet_split(tot, n, [strength], False, exact, None,
+                             require_uneven=(how == "uneven"))
+    if plan is None or abs(plan["total_mg_per_day"] - tot) > _EPS:
+        return None
+    noun = unit_noun(line["form"])
+    return {"plan": plan, "freq": n, "unit_noun": noun,
+            "family_text": family_tablet_text(plan, n, noun)}
 
 
 # ---------------------------------------------------------------------------
@@ -301,9 +383,13 @@ def step_options(drug_key: str, targets: List[float], freq: Optional[int],
                  weight_kg: Optional[float] = None,
                  effective_max: Optional[float] = None,
                  rules: Optional[Dict[str, Any]] = None,
-                 age_years: Optional[float] = None) -> List[Dict[str, Any]]:
+                 age_years: Optional[float] = None,
+                 split: Optional[str] = None) -> List[Dict[str, Any]]:
     """For each ladder target (mg/day, in step order; the last is where the child
-    stays) return {target, tablet, tablet_text, liquid_text, notes}. Display only."""
+    stays) return the DECIDED dose for that step: tablets or a measurable liquid
+    volume. Tablets: the strength whose plan lands closest to the ladder dose; on a
+    tie the child's current strength (or the previous step's), then the fewest
+    tablets. One strength per step. Display only."""
     rules = rules if rules is not None else load_rules()
     if not rules or not targets:
         return []
@@ -324,11 +410,14 @@ def step_options(drug_key: str, targets: List[float], freq: Optional[int],
     form_notes: List[str] = []
     age_picks_liquid = False
 
-    # Age rule: older than the cutoff -> tablets, otherwise liquid (overrides the
-    # form the child is on). Falls back to the other form if no product exists.
+    # Age rule (Dr. Barbour 2026-10-25, #61): ONLY when the family's current form is
+    # unknown (simulated cases). Older than the cutoff -> tablets, otherwise liquid.
+    # A known form is always kept. Falls back to the other form if no product exists.
     afr = rules.get("age_form_rule") or {}
     age = _num(age_years)
-    if afr.get("enabled") and age is not None and afr.get("overrides_current_form", True):
+    form_known = on_tablets or on_liquid
+    if (afr.get("enabled") and age is not None
+            and (afr.get("overrides_current_form", False) or not form_known)):
         want_tab = age > float(afr.get("tablet_if_age_greater_than", 10)) + _EPS
         if want_tab and lines:
             show_tab, show_liq = True, False
@@ -341,97 +430,41 @@ def step_options(drug_key: str, targets: List[float], freq: Optional[int],
                               + ", but this medication has no usable "
                               + ("tablet" if want_tab else "oral liquid") + " product listed - "
                               "showing the other form; clinician to confirm.")
-        if on_tablets != want_tab and (on_tablets or on_liquid) and show_tab == want_tab:
+        if form_known and on_tablets != want_tab and show_tab == want_tab:
             form_notes.append(f"Age {age:g} y: showing "
                               + ("tablets" if want_tab else "liquid")
                               + f" per the age rule (family reports {'tablets' if on_tablets else 'liquid'}).")
 
-    ov = rules.get("half_tablet_overrides") or {}
-    ov_mg = [float(x) for x in (ov.get(drug_key) or []) if _num(x)]
-
-    def _half(halvable: bool, strength: float) -> bool:
-        """Halvable by product type, or explicitly cleared by the PI (half_tablet_overrides)."""
-        return bool(halvable) or any(abs(strength - m) < _EPS for m in ov_mg)
-
-    # Product lines to try. One tablet strength per plan when single_strength_per_plan
-    # is on: the child's own strength first, then each other single strength.
-    single = (rules.get("single_strength_per_plan") or {}).get("enabled", False)
-    cand: List[Tuple[str, List[float], bool]] = []
-    if single:
-        if on_tablets and current_strength and (rules.get("form_continuity") or {}).get("prefer_current_strength", True):
-            home = next((ln for ln in lines if any(abs(s_ - current_strength) < _EPS for s_ in ln["strengths"])), None)
-            if home:
-                cand.append((f"{current_strength:g} mg tablets (current)",
-                             [float(current_strength)],
-                             _half(home["halvable"], float(current_strength))))
-        for ln in lines:
-            for s_ in ln["strengths"]:
-                if any(len(c[1]) == 1 and abs(c[1][0] - s_) < _EPS and ln["form"] in c[0] for c in cand):
-                    continue
-                cand.append((f"{s_:g} mg {ln['form']}", [s_], _half(ln["halvable"], s_)))
-        # Standard strength for this drug: the only alternative to the child's own
-        # strength, so every plan for this medicine names the same tablet.
-        std = _num((rules.get("standard_tablet_strength") or {}).get(drug_key))
-        if std is not None and any(abs(s_ - std) < _EPS for ln in lines for s_ in ln["strengths"]):
-            cur_c = [c for c in cand if c[0].endswith("(current)")]
-            std_c = next(c for c in cand if not c[0].endswith("(current)")
-                         and abs(c[1][0] - std) < _EPS)
-            cand = cur_c + ([] if any(abs(c[1][0] - std) < _EPS for c in cur_c) else [std_c])
-    else:
-        if on_tablets and current_strength and (rules.get("form_continuity") or {}).get("prefer_current_strength", True):
-            home = next((ln for ln in lines if any(abs(s_ - current_strength) < _EPS for s_ in ln["strengths"])), None)
-            cand.append((f"{current_strength:g} mg tablets (current)", [float(current_strength)],
-                         bool(home and home["halvable"])))
-            if home:
-                cand.append((home["form"], home["strengths"], home["halvable"]))
-        cand += [(ln["form"], ln["strengths"], ln["halvable"]) for ln in lines
-                 if not any(c[1] == ln["strengths"] and c[0] == ln["form"] for c in cand)]
-
-    # One bottle for the whole climb: pick the single strength that fits the most steps
-    # (then closest totals, fewest halves, fewest tablets). The child's own strength wins
-    # if it fits as many steps as the best one.
-    if single and cand and show_tab and freq and len(cand) > 1:
-        def _sim(c):
-            label, strengths, halvable = c
-            prev, nofit, dev, halves, units = current_total_mg_per_day, 0, 0.0, 0, 0.0
-            for k, t in enumerate(targets):
-                t = _num(t)
-                if t is None or (absolute_max is not None and t > absolute_max + _EPS) \
-                        or (prev is not None and t <= prev + _EPS):
-                    continue
-                last = k == len(targets) - 1
-                nxt = None if last else _num(targets[k + 1])
-                pl = best_tablet_split(t, freq, strengths, half_ok and halvable and not last,
-                                       rules, absolute_max, must_exceed=prev, must_be_below=nxt)
-                if pl is None:
-                    nofit += 1
-                    prev = t
-                    continue
-                prev = pl["total_mg_per_day"]
-                dev += abs(pl["deviation_pct"])
-                halves += sum(_halves(d["recipe"]) for d in pl["doses"])
-                units += sum(_units(d["recipe"]) for d in pl["doses"])
-            return (nofit, round(dev, 3), halves, units)
-        scored = [(_sim(c), i, c) for i, c in enumerate(cand)]
-        best_s = min(scored, key=lambda x: (x[0], x[1]))
-        pick = best_s
-        if on_tablets:
-            cur = next((x for x in scored if x[2][0].endswith("(current)")), None)
-            if cur and cur[0][0] == best_s[0][0]:
-                pick = cur
-        cand = [pick[2]]
+    # Candidate strengths: one strength per step (Dr. Barbour 2026-10-25, #62/#66).
+    # (label, [strength], halvable, form, is_current), product-list order.
+    cand: List[Tuple[str, List[float], bool, str, bool]] = []
+    for ln in lines:
+        for s_ in ln["strengths"]:
+            if any(abs(c[1][0] - s_) < _EPS and unit_noun(c[3]) == unit_noun(ln["form"]) for c in cand):
+                continue   # same strength + same kind of unit on another line: keep the first
+            is_cur = bool(on_tablets and current_strength is not None
+                          and abs(s_ - current_strength) < _EPS)
+            label = f"{s_:g} mg {ln['form']}" + (" (current)" if is_cur else "")
+            cand.append((label, [s_], ln["halvable"], ln["form"], is_cur))
+    prefer_cur = (rules.get("strength_choice") or {}).get("prefer_current_strength_on_tie", True)
 
     out: List[Dict[str, Any]] = []
     n = len(targets)
     unlisted = (on_tablets and current_strength is not None and lines
                 and not any(abs(x - current_strength) < _EPS for ln in lines for x in ln["strengths"]))
     prev_tab = current_total_mg_per_day   # each step must go above the one before
+    # Strengths that need no change: the child's own, plus the one the previous step used.
+    own_strength = [(c[1][0], unit_noun(c[3])) for c in cand if c[4]]
+    keep_strength = list(own_strength)
     for idx, tgt in enumerate(targets, start=1):
         final = idx == n
         row: Dict[str, Any] = {"step": idx, "target_mg_per_day": tgt, "final": final,
                                "tablet": None, "tablet_text": None, "liquid_text": None,
-                               "family_tablet_text": None, "liquid_ml_per_dose": None,
-                               "liquid_mg_per_ml": None,
+                               "family_tablet_text": None, "family_liquid_text": None,
+                               "liquid_ml_per_dose": None, "liquid_mg_per_ml": None,
+                               "liquid_total_mg_per_day": None,
+                               "decided_mg_per_day": None, "unit_noun": None,
+                               "strength_mg": None,
                                "age_rule_form": age_picks_liquid,
                                "notes": []}
         if not freq:
@@ -456,41 +489,64 @@ def step_options(drug_key: str, targets: List[float], freq: Optional[int],
             continue
         if show_tab and cand:
             best = None
-            for label, strengths, halvable in cand:
-                nxt = None if final else _num(targets[idx])   # next step's target
-                plan = best_tablet_split(tgt, freq, strengths, half_ok and halvable and not final,
-                                         rules, absolute_max, must_exceed=prev_tab,
-                                         must_be_below=nxt)
+            nxt = None if final else _num(targets[idx])   # next step's target
+            for ci, (label, strengths, halvable, form, is_cur) in enumerate(cand):
+                plan = None
+                if split == "uneven" and freq > 1:
+                    plan = best_tablet_split(tgt, freq, strengths, half_ok and halvable and not final,
+                                             rules, absolute_max, must_exceed=prev_tab,
+                                             must_be_below=nxt, require_uneven=True)
+                if plan is None:
+                    plan = best_tablet_split(tgt, freq, strengths, half_ok and halvable and not final,
+                                             rules, absolute_max, must_exceed=prev_tab,
+                                             must_be_below=nxt)
                 if plan is None:
                     continue
-                if on_tablets and (not single or label.endswith("(current)")):
-                    best = (label, plan)      # first workable line in preference order
-                    break
-                key = (abs(plan["deviation_pct"]), 0 if plan["deviation_pct"] >= 0 else 1,
+                # Closest dose first (ties go up); on a tie stay on the strength the
+                # child is on (or the one the previous step moved to) - change tablet
+                # size only when the dose requires it (Dr. Barbour 2026-10-25); then
+                # fewest half tablets, then fewest tablets.
+                same = bool(prefer_cur and any(abs(strengths[0] - ks) < _EPS and unit_noun(form) == kn
+                                               for ks, kn in keep_strength))
+                key = (round(abs(plan["total_mg_per_day"] - tgt), 6),
+                       0 if plan["deviation_pct"] >= 0 else 1,
+                       0 if same else 1,
                        sum(_halves(d["recipe"]) for d in plan["doses"]),
-                       sum(_units(d["recipe"]) for d in plan["doses"]))
-                if best is None or len(best) < 3 or key < best[2]:
-                    best = (label, plan, key)
+                       sum(_units(d["recipe"]) for d in plan["doses"]), ci)
+                if best is None or key < best[0]:
+                    best = (key, label, plan, form, strengths[0])
             if best:
-                row["tablet"] = best[1]
-                prev_tab = best[1]["total_mg_per_day"]
-                row["family_tablet_text"] = family_tablet_text(best[1], freq)
-                row["tablet_text"] = (f"{best[0]}: "
-                                      f"{describe_tablets(best[1], freq, weight_kg, effective_max)}")
+                _k, label, plan, form, strength = best
+                keep_strength = own_strength + [(strength, unit_noun(form))]
+                noun = unit_noun(form)
+                row["tablet"] = plan
+                row["unit_noun"] = noun
+                row["strength_mg"] = strength
+                row["decided_mg_per_day"] = plan["total_mg_per_day"]
+                prev_tab = plan["total_mg_per_day"]
+                row["family_tablet_text"] = family_tablet_text(plan, freq, noun)
+                row["tablet_text"] = f"{label}: {describe_tablets(plan, freq, weight_kg, effective_max)}"
             else:
                 row["notes"].append("No tablet fits the acceptable range.")
         # No tablet fits -> still show the liquid so the clinician has an option.
         if conc and (show_liq or (show_tab and row["tablet"] is None)):
-            if row["tablet"] is None:
-                prev_tab = tgt
-            per_ml = tgt / freq / conc            # tgt already checked <= absolute max
-            how = {1: "once a day", 2: "twice a day"}.get(freq, f"{freq} times a day")
-            w_ = _num(weight_kg)
-            kg_ = f" ({round(tgt / w_, 1):g} mg/kg/day)" if w_ else ""
-            row["liquid_ml_per_dose"] = round(per_ml, 2)
-            row["liquid_mg_per_ml"] = conc
-            row["liquid_text"] = (f"{per_ml:.2f} mL {how} ({conc:g} mg/mL) = {tgt:g} mg/day{kg_}"
-                                  + _over_eff(tgt, effective_max))
+            liq = round_liquid(tgt, freq, conc, rules, absolute_max, must_exceed=prev_tab)
+            if liq is None:
+                row["notes"].append("No measurable liquid dose fits the acceptable range.")
+            else:
+                ml, tot = liq
+                if row["tablet"] is None:
+                    prev_tab = tot
+                    row["decided_mg_per_day"] = tot
+                how = {1: "once a day", 2: "twice a day"}.get(freq, f"{freq} times a day")
+                w_ = _num(weight_kg)
+                kg_ = f" ({round(tot / w_, 1):g} mg/kg/day)" if w_ else ""
+                row["liquid_ml_per_dose"] = ml
+                row["liquid_mg_per_ml"] = conc
+                row["liquid_total_mg_per_day"] = tot
+                row["family_liquid_text"] = family_liquid_text(tot, ml, freq)
+                row["liquid_text"] = (f"{ml:g} mL {how} ({conc:g} mg/mL) = {tot:g} mg/day{kg_}"
+                                      + _over_eff(tot, effective_max))
         out.append(row)
 
     # Flag #3: a climb step with no tablet fit -> offer doing both increases at once.
@@ -498,7 +554,7 @@ def step_options(drug_key: str, targets: List[float], freq: Optional[int],
         for row in out[:-1]:
             if show_tab and row["tablet"] is None and out[-1]["tablet"] is not None and freq:
                 row["notes"].append(f"Option: skip to step {n} "
-                                    f"({out[-1]['target_mg_per_day']:g} mg/day) in one move.")
+                                    f"({out[-1]['decided_mg_per_day']:g} mg/day) in one move.")
     if form_notes and out:
         out[0]["notes"] = form_notes + out[0]["notes"]
     if unlisted and out:

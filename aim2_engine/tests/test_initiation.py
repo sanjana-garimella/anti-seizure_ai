@@ -42,10 +42,34 @@ class TestScheduleLookup(unittest.TestCase):
         lines = " ".join(ini.schedule_lines(s))
         self.assertIn("no tablet schedule fits this band - use the liquid", lines)
 
-    def test_no_tab_defers(self):
+    def test_carbamazepine_never_started_as_new(self):
+        # Dr. Barbour 2026-10-25: carbamazepine is never offered as a new medication.
         s = ini.schedule_for("carbamazepine", 9, 30)
         self.assertFalse(s["available"])
+        self.assertIn("never offered as a new medication", s["reason"])
+
+    def test_no_tab_defers(self):
+        s = ini.schedule_for("ethosuximide_xr", 9, 30)
+        self.assertFalse(s["available"])
         self.assertIn("No starting schedule", s["reason"])
+
+    def test_switch_taper_off_after_week_4(self):
+        # #69: old medicine x1, x0.75, x0.50, x0.25 by week, off after week 4; the new
+        # medicine starts in week 1.
+        line = " ".join(ini.taper_lines("levetiracetam", 1000, 2, "tablets", 250))
+        for frag in ("week 1 (current dose): 500 mg (2 × 250 mg) twice a day",
+                     "week 2 (x0.75): 375 mg (1½ × 250 mg)", "week 3 (x0.5): 250 mg",
+                     "week 4 (x0.25): 125 mg (½ × 250 mg)", "off after week 4",
+                     "new medicine in week 1"):
+            self.assertIn(frag, line)
+
+    def test_switch_taper_needs_dose_and_frequency(self):
+        self.assertIn("clinician to set the taper",
+                      " ".join(ini.taper_lines("levetiracetam", None, 2)))
+
+    def test_form_follows_family_not_age(self):
+        s = ini.schedule_for("levetiracetam", 8, 35, current_unit="tablets")
+        self.assertEqual(s["preferred_kind"], "solid")
 
     def test_lamotrigine_with_valproate_defers(self):
         s = ini.schedule_for("lamotrigine", 9, 30, ["valproic_acid"])

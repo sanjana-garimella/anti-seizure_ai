@@ -156,14 +156,14 @@ After the decision is made:
 | `data/medication_selection_rules.json` | 9 ranked medicines + 21 favor/avoid rules from `kristen/Switching to a different medication.xlsx`, `verified:false` (kidney-stones rule encoded but inactive) |
 | `validation/harness.py` | Cohen's κ runner (+ weighted κ/PABAK/macro-F1 via metrics.py); default = gold set (κ = 0.976) |
 | `validation/metrics.py` | Stdlib metrics toolkit: weighted κ, PABAK, macro P/R/F1, safety sens/spec/FNR + Wilson CIs, Bland-Altman/ICC, bootstrap, Fisher, McNemar (self-test) |
-| `validation/holdout_test.py` | Held-out generalization (independent spec-oracle - passes) + stress/fuzz over ~4,000 malformed inputs. The fuzz half reports **0 crashes**, plus ~900 safety-flag-with-message cases (the latter is the current intended behavior per `NEEDS_PI_SIGNOFF.md` #51, i.e. a stale expectation) |
-| `validation/creative_tests.py` | Metamorphic/invariant properties + adversarial clinical traps + exact-boundary checks. Currently **13/14** - the one failure ("safety dominance … always flags **and withholds**") is the stale `#51` expectation |
+| `validation/holdout_test.py` | Held-out generalization (independent spec-oracle - passes) + stress/fuzz over ~4,000 malformed inputs. The fuzz half reports **0 crashes** and **0 safety message leaks** (the engine withholds the family message on a safety flag, `NEEDS_PI_SIGNOFF.md` #51, decided 2026-10-25) |
+| `validation/creative_tests.py` | Metamorphic/invariant properties + adversarial clinical traps + exact-boundary checks. Currently **14/14** |
 | `validation/confusion_analysis.py` | Safety-flag + recommendation confusion matrices vs the answer key. Fixed 2026-09-30 (reads the key from `validation/private/`) |
 | `validation/gold_cases.json` | Gold-standard labels (Dr. Barbour's picks on the 63 synthetic cases - not a held-out chart review) |
 | `verification/verify_all.py` | Independent proof suite: re-derives the ASM rules + ladder from source, runs red-team safety cases, writes `verification/artifacts/`. Currently **PASS** (0 FAIL; 19 + 2 WARN; 0 must-catch misses) |
 | `clinic.py` / `clinic_store.py` | Local stdlib web app (doctor queue, family check-in, review + approval) and its SQLite layer. JS-free by design under a strict CSP |
-| `manual_check.py` | One-command confirm of the recent changes (37 scenarios; **35/37** - the 2 failures are the old "rash → message withheld" assertion, pending #51) |
-| `tests/` | 478 offline unit tests across 25 files (stdlib only; transformer tests self-skip without torch) |
+| `manual_check.py` | One-command confirm of the recent changes (37 scenarios; **37/37**) |
+| `tests/` | 499 offline unit tests across 25 files (stdlib only; transformer tests self-skip without torch) |
 | `tools/regen_notes.py` | Refreshes the **cached** `/review` notes after an engine or output-format change (the page renders stored text, not a fresh run). Dry-run default; preserves the family draft; refuses to rewrite a row unless the rebuild reproduces the stored dose + category |
 | `tools/seed_demo_queue.py` | Shapes the demo queue: one submission per patient, 3-4 worked examples per category including emergent. Rows are produced by running the real engine, never hand-written |
 
@@ -179,11 +179,10 @@ After the decision is made:
 6. **No dose numbers without clinician data.** `build_titration_schedule()` returns `None` when `asm_rules.json` is empty, and the family message holds off on mg whenever the ladder or the planned-end dose is unavailable. `outputs.family_message_allowed_doses()` is the single source of the numbers a draft may contain - a fabricated dose is rejected by `nlp/guardrails`.
 7. **Safety flags always surface and are never suppressed.** The one documented exception - dropping the HLA-B*1502 screening advisory from a *no-change* clinician summary - is PI-directed and retained in the structured `safety_notes` (`NEEDS_PI_SIGNOFF.md` #45).
 
-> **Note on the safety-flag family message.** On a safety flag the engine currently
-> returns a short PI-supplied STOP/contact-the-clinic **draft** rather than
-> withholding the message. Physician approval is still mandatory. Whether to
-> withhold entirely instead is open at `NEEDS_PI_SIGNOFF.md` #51 - that item is the
-> authority until it is decided.
+> **Note on the safety-flag family message.** On any safety flag the engine gives
+> **no** family message (`draft_patient_message` is `None`); the physician handles
+> the case per her urgent protocol. Dr. Barbour decided this on 2026-10-25
+> (`NEEDS_PI_SIGNOFF.md` #51).
 
 ---
 
@@ -192,7 +191,7 @@ After the decision is made:
 ```bash
 cd aim2_engine
 
-# Run all tests  (expect: Ran 478 tests ... OK)
+# Run all tests  (expect: Ran 499 tests ... OK)
 python3 -m unittest discover -s tests
 
 # Run validation (Cohen's κ) - no-arg default = gold set, expect κ = 0.976, MET

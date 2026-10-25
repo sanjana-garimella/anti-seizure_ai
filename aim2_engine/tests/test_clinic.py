@@ -67,12 +67,17 @@ class TestParseAnswers(unittest.TestCase):
         }))
         self.assertIn("shorter but more often", a["Q13"])
 
-    def test_dosing_choice_captured_for_clinician(self):
+    def test_dosing_choice_is_a_structured_answer(self):
+        # Dr. Barbour 2026-10-25 (#52): the family's Level-3 pick is a structured field
+        # the decision tables read (not folded into free text).
         a = clinic.parse_answers(_form({
             "seizures": "no", "q10a": "at_goal", "impact": "medium_alot",
             "q_dosing_choice": "uneven",
         }))
-        self.assertIn("[Level-3 dosing choice] uneven", a["Q13"])
+        self.assertEqual(a["Q10g_dosing_choice"], "uneven")
+        self.assertNotIn("uneven", a.get("Q13") or "")
+        bad = clinic.parse_answers(_form({"seizures": "no", "q_dosing_choice": "whatever"}))
+        self.assertNotIn("Q10g_dosing_choice", bad)
 
     def test_preference_questions_removed(self):
         # Kristen 2026-10-15: no increase/add/switch preference questions in the survey;
@@ -86,13 +91,14 @@ class TestParseAnswers(unittest.TestCase):
         self.assertNotIn("med_pref_rank", a)
         self.assertNotIn("add_medication", a.get("Q13") or "")
 
-    def test_dosing_choice_options_come_from_the_engine_table(self):
-        from engine_core.titration_config import default_no_seizures_table
-        block = clinic._dosing_choice_block({"medication": "clobazam"})
-        for m in default_no_seizures_table()["uneven_dosing_eligible"]:
-            self.assertIn(m, block)
-        for v in ("value=wait", "value=uneven", "value=tid", "data-med='clobazam'"):
+    def test_dosing_choice_block_uses_template_H_options(self):
+        # Uneven / three times a day / watch and wait for any medicine; "lower the dose
+        # and add" is marked to show only with breakthrough seizures.
+        block = clinic._dosing_choice_block({"medication": "levetiracetam"})
+        for v in ("value=wait", "value=uneven", "value=tid", "value=add data-opt=add",
+                  "We have a few options to handle side effects"):
             self.assertIn(v, block)
+        self.assertNotIn("data-uneven", block)            # no eligible-drug list any more
         self.assertIn("id=fs-dosing", clinic._survey_cards({"medication": "clobazam"}))
 
 

@@ -57,6 +57,7 @@ Pass a dict keyed by question code to `survey_from_answers()` /
 | `Q10d_dose_limited_by_se` | side effects capped the dose | bool-ish |
 | `Q10e_min_goal_unreachable_se` | can't reach the minimum goal dose because of side effects | bool-ish |
 | `Q10f_planned_end_mg_per_day` | the child's **planned end / goal** total mg/day on the current schedule | number (drives the "+1 / +2 increases" plans and the goal dose named in the family message) |
+| `Q10g_dosing_choice` | the family's Level-3 side-effect choice (Dr. Barbour 2026-10-25, #52) | `uneven` \| `tid` \| `wait` \| `add`; the engine acts on it only when the matching decision-table cell offers that option |
 | `Q14_viral_illness` | recent viral illness | bool-ish |
 | `Q_sjs_risk_comeds` | on a known SJS-risk co-medication | bool-ish / list |
 | `seizure_duration` | single overall duration when no per-episode detail was captured | duration bucket (below) |
@@ -106,10 +107,9 @@ Recommendation.to_dict() -> {
                         interval_weeks_between_steps, steps:[...], note}
   clinical_summary:    str (EHR-ready; see "Clinical summary format" below)
   draft_patient_message: str | null
-                       On a safety flag the engine currently returns a short
-                       PI-supplied STOP/contact-the-clinic DRAFT, not null.
-                       (Withhold-vs-draft is open - NEEDS_PI_SIGNOFF.md #51 -
-                       so a consumer must handle null as well.)
+                       null on ANY safety flag - no family message at all
+                       (Dr. Barbour 2026-10-25, NEEDS_PI_SIGNOFF.md #51). Also
+                       carries dosing_options / dosing_choice (Level-3, #52).
   safety_concern_flag: bool
   rationale:           [ {rule, description, inputs}, ... ]
   requires_physician_review: true

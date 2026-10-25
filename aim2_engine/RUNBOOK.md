@@ -277,12 +277,11 @@ unit suite, and none affect the gold-set results):
   data: the answer key lives at
   `validation/private/INTERNAL_engine_answer_key_DO_NOT_SEND.csv`, but line 32
   looks for it at the project root.
-- `validation/holdout_test.py` - held-out half passes; the fuzz half reports 83
-  crashes on malformed input and 883 safety-flag-with-message cases (that
-  expectation predates the current `#51` behavior).
-- `validation/creative_tests.py` - 13/14; the one failure ("safety dominance …
-  always flags **and withholds**") is the same stale `#51` expectation.
-- `manual_check.py` - 35/37, again the old "rash → message withheld" assertion.
+- `validation/holdout_test.py` - held-out half passes; the fuzz half reports 0
+  crashes and 0 safety message leaks (#51 decided 2026-10-25: no family message on a
+  safety flag).
+- `validation/creative_tests.py` - 14/14.
+- `manual_check.py` - 37/37.
 
 Use `python3 -m unittest discover -s tests` and `verification/verify_all.py` as the
 health signal, not these.

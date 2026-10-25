@@ -22,10 +22,9 @@ into the Aim 1 platform or CareEvolution.
   ship empty; the populated files are transcribed from the PI's workbooks in
   `../kristen/` and every value is tagged `verified:false`.
 - **No authored safety copy.** The SJS/warning text is PI-supplied. Safety flags
-  always surface to the physician and are never suppressed. *(On a safety flag
-  the engine currently emits a short PI-supplied STOP/contact-the-clinic draft
-  rather than withholding the family message; the withhold-vs-draft choice is
-  open at `NEEDS_PI_SIGNOFF.md` #51.)*
+  always surface to the physician and are never suppressed. *(On any safety flag
+  the engine gives no family message at all - Dr. Barbour's decision,
+  2026-10-25, `NEEDS_PI_SIGNOFF.md` #51.)*
 - **Synthetic data only** until IRB + institutional security sign-off
   (see `../NON_NEGOTIABLE_RULES.md`).
 
@@ -159,13 +158,9 @@ suite, none affecting the engine's gold-set results):
   `validation/private/INTERNAL_engine_answer_key_DO_NOT_SEND.csv` but line 32 looks
   for it at the project root.
 - `validation/holdout_test.py` - the held-out oracle half passes; the fuzz half
-  reports 83 crashes on malformed input plus 883 safety-flag-with-message cases
-  (the latter is the current, intended `#51` behavior, so that expectation is
-  stale rather than a regression).
-- `validation/creative_tests.py` - 13/14 property/boundary checks pass; the one
-  failure ("safety dominance … always flags **and withholds**") is the same stale
-  `#51` expectation. In its informational adversarial-trap section, the
+  reports 0 crashes and 0 safety message leaks.
+- `validation/creative_tests.py` - 14/14 property/boundary checks pass. In its
+  informational adversarial-trap section, the
   carbamazepine + absence aggravation caution is unmet - see
   `../docs/CLINICAL_REVIEW.md` item 3.
-- `manual_check.py` - 35/37; the 2 failures are the old "rash → message withheld"
-  assertion, pending `NEEDS_PI_SIGNOFF.md` #51.
+- `manual_check.py` - 37/37.

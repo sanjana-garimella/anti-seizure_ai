@@ -16,38 +16,31 @@
     "never_exceed_absolute_max": true
   },
   "age_form_rule": {
-    "_doc": "PI instruction (2026-10-06): children OLDER than 10 years get tablets; age 10 and under get liquid ('10 liquid for now', study team; Dr. Barbour to confirm). Overrides form_continuity when age is known. If the preferred form has no usable product (no liquid listed, or no tablet fits), the other form is shown with a note. Age unknown -> form_continuity applies.",
+    "_doc": "Dr. Barbour 2026-10-25 (#61 RESOLVED): stay with the form the family already uses (tablets stay tablets, liquid stays liquid). The age cutoff (older than 10 y = tablets, 10 and under = liquid) is used ONLY when the current form is not known - i.e. when simulating patient cases. In practice a child may use tablets earlier. If the preferred form has no usable product, the other form is shown with a note.",
     "enabled": true,
     "tablet_if_age_greater_than": 10,
-    "overrides_current_form": true
+    "overrides_current_form": false
   },
-  "single_strength_per_plan": {
-    "_doc": "PI instruction (2026-10-06): one tablet strength per plan (e.g. only 500 mg or only 250 mg tablets), never mixed. The child's current strength is tried first; otherwise the closest-fitting single strength wins.",
-    "enabled": true
-  },
-  "standard_tablet_strength": {
-    "_doc": "Study team (2026-10-15): one tablet strength per medicine everywhere, instead of a per-child best fit (which picked 250, 500 or 750 mg levetiracetam depending on weight/dose). The family's CURRENT strength is kept when it fits every step as well as the standard does; otherwise the plan switches to this standard strength (never to another best-fit strength). If the standard does not fit a step either, the liquid fallback is shown as before. Drugs not listed keep the best-fit rule. Strength in mg, per drug key. DRAFT - FLAG FOR DR. BARBOUR (NEEDS_PI_SIGNOFF #66).",
-    "levetiracetam": 500
+  "strength_choice": {
+    "_doc": "Dr. Barbour 2026-10-25 (#62/#66 RESOLVED): there is no standard tablet strength. For each step, the strength is the one that fits that dose best with the fewest tablets in total; one strength per step. The strength may change between steps (e.g. 1 x 750 mg twice a day -> 2 x 500 mg twice a day). Ranking: closest total to the ladder dose (ties go up), then fewest half tablets, then fewest tablets, then the child's current strength. Her initiation-rule examples (file not yet received) may refine this - DRAFT.",
+    "per_step": true,
+    "one_strength_per_step": true,
+    "prefer_current_strength_on_tie": true
   },
   "form_continuity": {
-    "_doc": "Flag #3: 'If they are on tablets, continue tablets. If they are on liquid, continue liquid.' Prefer the tablet strength the child already has (her example: 'Use 250 mg tablets').",
+    "_doc": "Flag #3: 'If they are on tablets, continue tablets. If they are on liquid, continue liquid.' Reconfirmed by Dr. Barbour 2026-10-25 (#61): stay consistent with what the family already uses.",
     "keep_current_form": true,
     "prefer_current_strength": true
   },
   "uneven_dosing": {
     "_doc": "Flag #7: 'Allow uneven dosing for all the medications'. Flag #3 example: 1 tablet morning, 2 tablets night. Split kept within the 30/70 .. 40/60 range from the decision-table footnote; the larger dose goes at night (her examples).",
     "all_medications": true,
-    "min_share_of_total_for_bid": 0.30,
+    "min_share_of_total_for_bid": 0.3,
     "larger_dose_at_night": true
   },
   "half_tablets": {
-    "_doc": "Flag #3: '1/2 tablets if needed as a first step (ending on an even dose though)'. Halves only on a non-final climb step, only for plain (scored-type) tablets, never ER/DR (flag #9).",
+    "_doc": "Flag #3: '1/2 tablets if needed as a first step (ending on an even dose though)'. Halves only on a non-final climb step, only for plain (scored-type) tablets, never ER/DR (flag #9). Dr. Barbour 2026-10-25 (#60): capsules can never be split, so the earlier valproate 500 mg / zonisamide 50 mg half-unit override is removed; use the products available in practice (she is separating tablets and capsules in her sheet).",
     "allowed_on_climb_steps_only": true
-  },
-  "half_tablet_overrides": {
-    "_doc": "Dr. Barbour's comments on tablet_dosing_logic_refinement.xlsx (2026-10-06): valproic acid 500 mg and zonisamide 50 mg may be halved on a non-final climb step (e.g. 2 tablets morning + 2.5 tablets night for week 1, then 2 + 3). The product-type check (_halvable) would otherwise refuse these (valproate 500 mg is a delayed-release product; zonisamide 50 mg is a capsule, which are normally labelled swallow-whole). FLAG FOR DR. BARBOUR: confirm these exact products are splittable before sign-off. Strengths in mg, per drug key.",
-    "valproic_acid": [500],
-    "zonisamide": [50]
   },
   "combine_steps": {
     "_doc": "Flag #3: 'You can also try doing both dose step increases at once, instead of breaking it up into two steps.' Offered when a climb step has no tablet option in the window.",
@@ -63,7 +56,11 @@
     "valproic_acid": 50
   },
   "max_units_per_dose": {
-    "_doc": "Search bound for listing options (usability, not a clinical value): combinations of more tablets than this per dose are not listed.",
+    "_doc": "Search bound for listing options (usability, not a clinical value): combinations of more tablets than this per dose are not listed. Dr. Barbour 2026-10-25 (#65): settings to follow her initiation-rule examples (file not yet received).",
     "value": 4
+  },
+  "liquid_rounding": {
+    "_doc": "Dr. Barbour 2026-10-25: the family message and the doctor's summary show only the decided (measurable) dose, never the exact ladder value (e.g. 1112.14 mg/day or 1.94 mL). Liquid doses are rounded to this step per dose; the mg/day shown is what that volume gives. Stays inside the -10%/+30% window, above the previous dose, never above the absolute max. The 0.1 mL step is my DRAFT proposal - FLAG FOR DR. BARBOUR to confirm.",
+    "ml_per_dose_step": 0.1
   }
 }
