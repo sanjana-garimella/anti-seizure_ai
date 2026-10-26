@@ -1,5 +1,21 @@
 """Engine version - tagged so validation runs are reproducible (spec §9).
 
+0.4.3 - verified:true on the values already taken from her files in
+        kristen/: the v9 dose ladder except the three data-quality flags, the
+        decision tables, urgency cutoffs, medicine-ranking workbook, tablet
+        rules, and initiation tabs. The three ladder flags, titration cutoffs,
+        lamotrigine concomitant bands, the switch week-4 reading, and the
+        carbamazepine/oxcarbazepine aggravation note stay verified:false.
+        (Was 0.4.2.)
+0.4.2 - Case J2 matches Dr. Barbour's note: seizure-free, at goal,
+        levetiracetam, intolerable behavior or irritability offers switch
+        options instead of an automatic switch. Other intolerable cases still
+        switch. Carbamazepine and oxcarbazepine add an advisory note when the
+        reported type is absence or myoclonic; the category and the dose do
+        not change. (Was 0.4.1.)
+0.4.1 - Breakthrough level 0 with a captured duration follows the breakthrough
+        table. Non-urgent + steady + no side effects now escalates, which is
+        that cell. Level 0 with no duration is unchanged. (Was 0.4.0.)
 0.4.0 - Barbour 2026-10-25 answers: no family message on any safety flag (#51);
         Level-3 family choice (uneven / TID / wait / lower+add) read from each
         decision-table cell, for any medicine (#52); old-medicine taper on a switch
@@ -23,4 +39,4 @@
         adherence tips, recommendation reason. (Was 0.1.0.)
 """
 
-ENGINE_VERSION = "0.4.0"
+ENGINE_VERSION = "0.4.3"

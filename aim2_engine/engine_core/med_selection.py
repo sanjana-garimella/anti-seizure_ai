@@ -295,7 +295,7 @@ def select(patient_raw: Dict[str, Any],
                     "rule": rid, "effect": "avoid", "medications": fired_ids,
                     "description": rule.get("source_text", ""),
                     "question": rule.get("question", ""), "source": source,
-                    "verified": False})
+                    "verified": bool(rule.get("verified", False))})
             continue
 
         if not _matches(rule.get("when"), patient):
@@ -314,7 +314,7 @@ def select(patient_raw: Dict[str, Any],
                 "avoid": avo, "favor": fav,
                 "description": rule.get("source_text", ""),
                 "question": rule.get("question", ""), "source": source,
-                "verified": False})
+                "verified": bool(rule.get("verified", False))})
 
     avoided_set = set(avoided.keys())
     # Rank the survivors: favor-count desc, then base_rank asc (Sheet-1 preference).
@@ -330,7 +330,7 @@ def select(patient_raw: Dict[str, Any],
             "favor_rules": list(favored_rules.get(m.id, [])),
             "attributes": dict(m.attributes),
             "quick_summary": m.quick_summary,
-            "verified": False,
+            "verified": m.verified,
         })
 
     deferred = len(ranked) < top_n
@@ -350,9 +350,12 @@ def select(patient_raw: Dict[str, Any],
         "engine_version": ENGINE_VERSION,
         "ruleset_source": ruleset.provenance.get(
             "source_workbook", "medication_selection_rules.json"),
-        "status": ruleset.provenance.get("status", "DRAFT - verified:false"),
-        "verified": False,
-        "note": ("DRAFT medication-selection preference ranking - unverified, "
+        "status": ruleset.provenance.get("status", ""),
+        "verified": bool(ruleset.provenance.get("verified", False)),
+        "note": ("Medication-selection preference ranking from her workbook. "
+                 "The neurologist reviews before anything reaches the family."
+                 if ruleset.provenance.get("verified") else
+                 "DRAFT medication-selection preference ranking - unverified, "
                  "pending PI sign-off (NEEDS_PI_SIGNOFF #41). Neurologist reviews "
                  "before anything reaches the family."),
         "rules_fired": [r["rule"] for r in rationale],

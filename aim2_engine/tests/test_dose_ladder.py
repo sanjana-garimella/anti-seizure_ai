@@ -72,10 +72,15 @@ class TestDoseLadderResolver(unittest.TestCase):
         p = dl.resolve_plan("brivaracetam", 16, 60, 100, n_up=1)    # >=50 kg: flagged
         self.assertIsNotNone(p["data_quality_flag"])
 
-    def test_provenance_is_draft(self):
+    def test_addressed_band_is_verified(self):
         p = dl.resolve_plan("levetiracetam", 8, 26, 500, n_up=1)
+        self.assertTrue(p["verified"])
+        self.assertNotIn("verified:false", p["note"])
+
+    def test_flagged_band_stays_unverified(self):
+        p = dl.resolve_plan("zonisamide", 8, 25, 75, n_up=1)
         self.assertFalse(p["verified"])
-        self.assertIn("DRAFT", p["note"])
+        self.assertIn("verified:false", p["note"])
 
     # --- robustness: null / NaN / out-of-bounds must DEGRADE, never crash ---
     def test_none_weight_for_mg_per_kg_defers(self):
@@ -201,7 +206,13 @@ class TestKristenValidationFixes(unittest.TestCase):
 class TestLadderIntegration(unittest.TestCase):
     """End-to-end: build_titration_schedule attaches the explicit ladder."""
     def test_schedule_attaches_ladder_for_escalate(self):
-        from tests.test_engine import make_snapshot
+        # discovery runs with tests/ as the top level, so `tests` is not a package.
+        import importlib.util
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_engine.py")
+        spec = importlib.util.spec_from_file_location("aim2_test_engine_helpers", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        make_snapshot = mod.make_snapshot
         from engine_core.categorize import categorize
         from engine_core.decision import decide
         from engine_core.outputs import build_titration_schedule
@@ -220,7 +231,7 @@ class TestLadderIntegration(unittest.TestCase):
         self.assertIn("ladder", sched)
         L = sched["ladder"]
         self.assertTrue(L["next_up"], "ladder should give at least one next rung")
-        self.assertFalse(L["verified"])  # DRAFT until PI sign-off
+        self.assertTrue(L["verified"])  # levetiracetam band is on her confirmed sheet
 
 
 class TestConmedRestrictionAndCeiling(unittest.TestCase):
@@ -320,11 +331,11 @@ class TestClinicianReportExpectedDose(unittest.TestCase):
         rec = self._run(med="topiramate")
         for expected in ("Current dose:", "Typical range:", "Absolute max:"):
             self.assertIn(expected, rec.clinical_summary)
-        # NON_NEGOTIABLE_RULES.md §2: unverified dosing is never presented as
-        # authoritative. The tag is stated ONCE as a note-level footnote rather than
-        # repeated under every value, but it must be there whenever a range/max shows.
-        self.assertIn("DRAFT, unverified values from Dr. Barbour's dosing table",
+        # Provenance is stated once. Topiramate's band is on her confirmed sheet,
+        # so the footnote names the table and does not call the numbers unverified.
+        self.assertIn("Dose range and maximum are from Dr. Barbour's dosing table.",
                       rec.clinical_summary)
+        self.assertNotIn("unverified", rec.clinical_summary)
         # Order: current, then typical range, then absolute max.
         self.assertLess(rec.clinical_summary.index("Typical range:"),
                         rec.clinical_summary.index("Absolute max:"))

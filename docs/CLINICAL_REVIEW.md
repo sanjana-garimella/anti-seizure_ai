@@ -63,11 +63,9 @@ addressed (✅)** versus what is **ambiguous / unverified (⚠️ → moved to
    gabapentin) can aggravate **absence and myoclonic** seizures; lamotrigine can
    worsen **myoclonic** (Dravet especially). With the new absence/"acting-off"
    types, please confirm these aggravation flags fire.
-   *(2026-08-04: verified in code - only the **lamotrigine → myoclonic** caution
-   exists (`decision.py` + the lamotrigine `key_safety` note). There is **no**
-   carbamazepine/oxcarbazepine → absence/myoclonic aggravation flag. The
-   `medication_selection_rules.json` avoid-rules are the natural home for it, but
-   the rule must come from Dr. Barbour, not from us.)*
+   *(2026-10-26: CBZ/OXC with absence or myoclonic adds an advisory note.
+   Category and dose are unchanged. Those two drugs stay `verified:false`.
+   LTG myoclonic was already in her notes.)*
 
 4. **⚠️ "Absence ≥10/day = urgent."** At presentation, untreated childhood absence
    epilepsy commonly has many absences per day - flagging every such check-in as
@@ -87,8 +85,7 @@ addressed (✅)** versus what is **ambiguous / unverified (⚠️ → moved to
    her ceiling enforced.
    The family message names the same numbers (never any other number). Two
    remaining pieces: the "½ dose increase" half-step was **dropped** at her
-   direction (#49), and every ladder value is still `verified:false` pending her
-   sign-off (#6). *(The "+1/+2 higher" plans also need her to bless the new
+   direction (#49). Three ladder flags and the line check are still open (#6). *(The "+1/+2 higher" plans also need her to bless the new
    planned-end-dose survey question - #46; the field `Q10f_planned_end_mg_per_day`
    is already wired.)*
 
@@ -96,11 +93,8 @@ addressed (✅)** versus what is **ambiguous / unverified (⚠️ → moved to
    breakthrough scenario (seizures, *no* side effects → increase the dose) uses the
    legacy rules, not the new table's L0/L1 columns. Confirm the legacy output
    matches the table intent so behavior is consistent.
-   *(2026-08-04: still true, and now shown to produce two concrete
-   inconsistencies - an urgent breakthrough with **no** side effect continues while
-   the same case with a **small** side effect escalates, and an urgent + tolerable
-   side effect while titrating resolves differently through the legacy path than
-   through the 6-level table. Both are open at `NEEDS_PI_SIGNOFF.md` #40(a)/(b).)*
+   *(2026-10-26: level 0 or 1 enters the breakthrough table when duration is
+   captured. #40(a) and #40(b) are still open.)*
 
 8. **⚠️ Source-file sanity check.** The "emergent" decision sheet's row labels read
    "Breakthrough Seizure (urgent)" (likely a copy-paste), and the emergent

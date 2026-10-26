@@ -141,8 +141,8 @@ def main(argv):
                     "VERBATIM from Dr. Barbour's '<Drug> Initiation' tabs. Cells are text exactly as "
                     "she wrote them; '—' means no tablet schedule fits (use the liquid). The engine "
                     "only DISPLAYS these to the clinician; it never computes or changes a dose from "
-                    "them. DRAFT - verified:false, pending PI sign-off."),
-        "verified": False,
+                    "them. verified:true (her initiation tabs). The switch taper stays verified:false."),
+        "verified": True,
         "source": f"clinician (Barbour {os.path.basename(src)}, '<Drug> Initiation' tabs; "
                   "built by data/_build_initiation_schedules.py)",
         "by_drug": by_drug,

@@ -1,5 +1,5 @@
 {
-  "_README": "Medication-SELECTION rules for the switch/add-a-medication flow (WHICH drug to switch to or add). RULE-BASED ONLY (non-negotiable rule 2) - loaded by engine_core.med_selection; no ML/LLM in this path. Encodes Dr. Barbour's workbook 'Switching to a different medication.xlsx': Sheet 'Seizure med rank' = the ranked base preference + per-drug attributes/summaries shown to families; Sheet 'Rules' = the favor/avoid rules. Distinct from data/asm_rules.json (dosing/titration facts): this file is the selection preference set. Every value is DRAFT / verified:false pending PI sign-off. Keys starting with '_' are comments.",
+  "_README": "Medication-SELECTION rules for the switch/add-a-medication flow (WHICH drug to switch to or add). RULE-BASED ONLY (non-negotiable rule 2) - loaded by engine_core.med_selection; no ML/LLM in this path. Encodes Dr. Barbour's workbook 'Switching to a different medication.xlsx': Sheet 'Seizure med rank' = the ranked base preference + per-drug attributes/summaries shown to families; Sheet 'Rules' = the favor/avoid rules. Distinct from data/asm_rules.json (dosing/titration facts): this file is the selection preference set. verified:true - the ranks and rules are her workbook. Keys starting with '_' are comments.",
   "_provenance": {
     "source_workbook": "kristen/Switching to a different medication.xlsx",
     "sheets": {
@@ -8,7 +8,8 @@
       "simulation": "Simulated Data"
     },
     "encoded_on": "2026-07-28",
-    "status": "DRAFT - verified:false - pending PI sign-off (NEEDS_PI_SIGNOFF #41 medication-options rules)",
+    "verified": true,
+    "status": "verified - kristen/Switching to a different medication.xlsx",
     "authored_by": "Dr. Kristen Barbour (PI)",
     "note": "Selection is preference-ranking only; it never sets a dose. Titration numbers still come from data/asm_rules.json. Output is a DRAFT for neurologist review (human-in-the-loop, non-negotiable rule 2)."
   },
@@ -36,7 +37,7 @@
         "once_daily_option": "Yes"
       },
       "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 2",
-      "verified": false
+      "verified": true
     },
     {
       "id": "brivaracetam",
@@ -51,7 +52,7 @@
         "once_daily_option": "No"
       },
       "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 3",
-      "verified": false
+      "verified": true
     },
     {
       "id": "lacosamide",
@@ -66,7 +67,7 @@
         "once_daily_option": "Yes"
       },
       "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 4",
-      "verified": false
+      "verified": true
     },
     {
       "id": "oxcarbazepine",
@@ -81,7 +82,7 @@
         "once_daily_option": "Yes"
       },
       "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 5",
-      "verified": false
+      "verified": true
     },
     {
       "id": "clobazam",
@@ -96,7 +97,7 @@
         "once_daily_option": "No"
       },
       "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 6",
-      "verified": false
+      "verified": true
     },
     {
       "id": "levetiracetam",
@@ -111,7 +112,7 @@
         "once_daily_option": "Yes"
       },
       "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 7",
-      "verified": false
+      "verified": true
     },
     {
       "id": "zonisamide",
@@ -126,7 +127,7 @@
         "once_daily_option": "Yes"
       },
       "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 8",
-      "verified": false
+      "verified": true
     },
     {
       "id": "valproic_acid",
@@ -141,7 +142,7 @@
         "once_daily_option": "Yes"
       },
       "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 9",
-      "verified": false
+      "verified": true
     },
     {
       "id": "topiramate",
@@ -156,7 +157,7 @@
         "once_daily_option": "Yes"
       },
       "source": "kristen/Switching to a different medication.xlsx :: 'Seizure med rank' row 10",
-      "verified": false
+      "verified": true
     }
   ],
   "rules": [
@@ -190,7 +191,7 @@
       "source_text": "If a female older than age 10 years, then do not offer valproic acid or topiramate; and favor lamotrigine.",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B2"
     },
     {
@@ -212,7 +213,7 @@
       "source_text": "If they have single body jerk seizures, then favor lamotrigine, clobazam, and briviact; and don't offer oxcarbazepine or lacosamide. If they have staring seizures, favor lamotrigine and don't offer lacosamide.",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B3"
     },
     {
@@ -231,7 +232,7 @@
       "source_text": "If they have single body jerk seizures, then favor lamotrigine, clobazam, and briviact; and don't offer oxcarbazepine or lacosamide. If they have staring seizures, favor lamotrigine and don't offer lacosamide.",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B3"
     },
     {
@@ -249,7 +250,7 @@
       "source_text": "If they have poor medication adherence, don't offer lamotrigine or oxcarbazepine",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B4"
     },
     {
@@ -262,7 +263,7 @@
       "source_cell": "Rules!B7",
       "source_text": "Don't offer medications they have already tried",
       "active": true,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B7"
     },
     {
@@ -280,7 +281,7 @@
       "source_text": "If yes, then don't offer lamotrigine or oxcarbazepine.",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B8"
     },
     {
@@ -300,7 +301,7 @@
       "source_text": "If yes, then don't offer oxcarbazepine, zonisamide, valproic acid, and topiramate",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B9"
     },
     {
@@ -322,7 +323,7 @@
       "source_text": "Favor lamotrigine and oxcarbazepine. Don't offer Levetiracetam, zonisamide, topiramate",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B10"
     },
     {
@@ -345,7 +346,7 @@
       "source_text": "Favor oxcarbazepine, lamotrigine, and clobazam. Don't offer Levetiracetam, zonisamide, topiramate",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B11"
     },
     {
@@ -376,7 +377,7 @@
       "source_text": "Avoid briviact",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B12"
     },
     {
@@ -397,7 +398,7 @@
       "source_text": "Favor clobazam. Don't offer levetiracetam, zonisamide, or topiramate",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B15"
     },
     {
@@ -416,7 +417,7 @@
       "source_text": "Favor topiramate, valproic acid, zonisamide",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B16"
     },
     {
@@ -438,7 +439,7 @@
       "source_text": "Favor lamotrigine. Don't offer topiramate, zonisamide, Levetiracetam, briviact",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B17"
     },
     {
@@ -457,7 +458,7 @@
       "source_cell": "Rules!B18",
       "source_text": "Don't offer topiramate, zonisamide",
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B18"
     },
     {
@@ -474,7 +475,7 @@
       "source_text": "Don't offer valproic acid",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B19"
     },
     {
@@ -491,7 +492,7 @@
       "source_text": "Don't offer valproic acid",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B20"
     },
     {
@@ -508,7 +509,7 @@
       "source_text": "Don't offer valproic acid",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B21"
     },
     {
@@ -525,7 +526,7 @@
       "source_text": "Don't offer lacosamide",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B22"
     },
     {
@@ -542,7 +543,7 @@
       "source_text": "Don't offer valproic acid",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B23"
     },
     {
@@ -559,7 +560,7 @@
       "source_text": "Don't offer zonisamide",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B24"
     },
     {
@@ -576,7 +577,7 @@
       "source_text": "Don't offer oxcarbazepine",
       "active": true,
       "avoid_prior_tried": false,
-      "verified": false,
+      "verified": true,
       "source": "kristen/Switching to a different medication.xlsx :: 'Rules' Rules!B25"
     }
   ]

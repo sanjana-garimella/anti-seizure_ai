@@ -73,6 +73,12 @@ class TestRedFlags(unittest.TestCase):
     def test_terms_loaded(self):
         self.assertGreater(len(self.det.terms), 0)
 
+    def test_dotted_spaced_and_breathing_well_still_flag(self):
+        self.assertTrue(self.det.scan("she is no longer breathing well"))
+        self.assertTrue(self.det.scan("she has s.j.s per the ER"))
+        self.assertTrue(self.det.scan("b l i s t e r s forming on his mouth"))
+        self.assertEqual(self.det.scan("eating and sleeping normally"), [])
+
 
 class TestStructurer(unittest.TestCase):
     def setUp(self):
@@ -91,6 +97,29 @@ class TestStructurer(unittest.TestCase):
 
     def test_no_findings_on_empty(self):
         self.assertEqual(self.s.structure(""), [])
+
+    def test_negated_reassurance_keeps_only_the_drug(self):
+        f = self.s.structure(
+            "He has been eating and sleeping normally. No rash and no dizziness. "
+            "Still giving levetiracetam.")
+        fields = {(x.field, x.suggested_value) for x in f}
+        self.assertEqual(fields, {("drug_mention", "levetiracetam")})
+
+    def test_caregiver_paraphrases_map_to_the_same_symptoms(self):
+        cases = [
+            ("She can barely keep her eyes open after lunch.", "sleepiness"),
+            ("The room spins when he gets out of bed.", "dizziness"),
+            ("She snaps at everyone and cries more than usual.", "irritability"),
+            ("His stomach turns and he leaves most of the plate.", "nausea"),
+            ("He has been hitting and yelling at his sister.", "behavior"),
+            ("Red patches and open sores showed up on his cheeks.", "rash"),
+        ]
+        for text, symptom in cases:
+            fields = {(x.field, x.suggested_value) for x in self.s.structure(text)}
+            self.assertIn(("side_effect", symptom), fields, text)
+        seizure = self.s.structure("She went stiff and was not responding for a short time.")
+        self.assertIn(("seizure_mention", "seizure_reported"),
+                      {(x.field, x.suggested_value) for x in seizure})
 
 
 class TestDecisionPathUntouchedByFreeText(unittest.TestCase):

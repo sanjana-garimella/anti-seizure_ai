@@ -1,6 +1,6 @@
 # Aim 2 - Rules-Based Medication Assistant
 
-Deterministic, auditable decision-support engine for Aim 2 of the Pediatric
+Auditable decision-support engine for Aim 2 of the Pediatric
 Epilepsy AI Medication Assistant study (Kristen Barbour, MD). It reads a
 patient's structured between-visit survey + intake context and produces three
 clinician-facing **drafts**: an EHR-ready clinical summary, a medication
@@ -19,14 +19,46 @@ into the Aim 1 platform or CareEvolution.
   same output, with a machine-readable rationale.
 - **No invented clinical values.** Dose ranges, rates, ceilings, interactions,
   drug classes, and the switch/add ranking are clinician-supplied. Templates
-  ship empty; the populated files are transcribed from the PI's workbooks in
-  `../kristen/` and every value is tagged `verified:false`.
+  ship empty; the populated files are transcribed from Dr. Barbour's workbooks in
+  `../kristen/`. `verified` is per file. What is still unsigned is in
+  `NEEDS_PI_SIGNOFF.md`.
 - **No authored safety copy.** The SJS/warning text is PI-supplied. Safety flags
   always surface to the physician and are never suppressed. *(On any safety flag
   the engine gives no family message at all - Dr. Barbour's decision,
   2026-10-25, `NEEDS_PI_SIGNOFF.md` #51.)*
 - **Synthetic data only** until IRB + institutional security sign-off
   (see `../NON_NEGOTIABLE_RULES.md`).
+
+## Check-in flow
+
+```mermaid
+flowchart TD
+  q["Age, weight, medicine, times a day, dose"]
+  q --> sz["Seizures: how long, how many, more / same / fewer, triggers"]
+  q --> goal["Goal dose"]
+  goal --> tit["Still increasing: titrating"]
+  goal --> holding["At goal, under 2 weeks: holding"]
+  goal --> steady["At goal, 2 weeks or time not given: steady"]
+  q --> se["Side effects, impact 0 to 5"]
+  q --> form["Display: keep the reported pill or liquid. Unknown form uses tablets above age 10"]
+
+  sz --> decide["Decision"]
+  tit --> decide
+  holding --> decide
+  steady --> decide
+  se --> decide
+
+  decide -->|"seizure-free and level 3"| l3free["Uneven, TID, or watch and wait"]
+  decide -->|"breakthrough cell offers a dosing choice"| l3bt["Uneven, TID, watch and wait, or lower and add"]
+  decide -->|"add or switch, and no safety flag"| prefs["Already tried, avoid labs, mood, behaviour, night sleep, migraine, Southeast Asian or Han, health conditions"]
+  prefs --> top3["Top 3"]
+  top3 --> parent["Parent: 1st, 2nd, 3rd, or avoid"]
+  parent --> rank["Rank in the clinician summary"]
+
+  decide --> summary["Clinician summary"]
+  summary -->|"no safety flag"| draft["Family draft"]
+  summary -->|"safety flag"| none["No family message"]
+```
 
 ## Architecture
 
@@ -43,7 +75,7 @@ engine_core/         DETERMINISTIC decision path (no ML/NLP, no network)
   drug_identity.py     drug-name normalizer + same-family (annotation only)
   humanize.py          plain-language rendering of structured output
   titration_config.py  numeric thresholds loader
-  version.py           ENGINE_VERSION (currently 0.3.0)
+  version.py           ENGINE_VERSION (currently 0.4.3)
   api.py               run_engine(snapshot) -> Recommendation
 
 nlp/                 OPTIONAL layer, OUTSIDE the decision path (points A/B/D)
@@ -53,11 +85,11 @@ nlp/                 OPTIONAL layer, OUTSIDE the decision path (points A/B/D)
   guardrails.py        validates generated text (blocks fabrication/contradiction)
   (+ negation, context assertion, conformal/calibration, leakage-safe eval helpers)
 
-data/                clinician-supplied values (all verified:false) + blank templates
+data/                clinician-supplied values (verified per file) + blank templates
 validation/          Cohen's κ harness + metrics toolkit + gold cases
 verification/        independent proof suite (verify_all.py) + red-team safety
 clinician_verification/  the PI's ASM data workbook + draft rules + provenance
-tests/               401 offline unit tests, 22 files (stdlib only)
+tests/               offline unit tests (stdlib only; transformer tests skip without torch)
 tools/               maintenance scripts (dry-run by default, --apply to write)
   regen_notes.py       refresh the CACHED /review notes after an engine/format change
   seed_demo_queue.py   shape the demo queue (1 per patient, 3-4 per category)
@@ -77,7 +109,7 @@ and generation (D) only restates the engine's already-decided outputs. See the
 
 ```bash
 cd aim2_engine
-python3 -m unittest discover -s tests       # 401 tests, stdlib only
+python3 -m unittest discover -s tests       # full suite, stdlib only
 python3 validation/harness.py               # Cohen's κ over the 63 gold cases
 python3 verification/verify_all.py          # independent proof suite -> PASS
 ```
@@ -89,16 +121,16 @@ run on your infrastructure - see below.)
 
 ## Supplying clinician data (required before clinical use)
 
-All of these are **populated as DRAFT** today (transcribed from the PI's
-workbooks in `../kristen/`, every value `verified:false`) and need her
-verification - the blank `*.template.json` files remain as the schema reference.
+Populated from Dr. Barbour's workbooks in `../kristen/`. Blank `*.template.json`
+files are the schema. Open sign-off is `NEEDS_PI_SIGNOFF.md`.
 
-| File | What the PI verifies | Status |
+| File | Open | Status |
 |---|---|---|
-| `data/asm_rules.json` | Dose bands, ranges, ceilings, uptitration step/interval, safety/indication fields for the 11 ASMs | DRAFT - generated by `data/_build_asm_rules.py`; edit the builder, not the JSON |
-| `data/dose_titration_ladder.json` | The exact per-band dose rungs (from `final_doses_titration_v6.xlsx`) | DRAFT - 6 `data_quality_flags` recording suspected source copy-errors (lamotrigine ×2, carbamazepine ×2, oxcarbazepine, brivaracetam); `verify_ladder.py` raises 2 of them as WARNs |
-| `data/medication_selection_rules.json` | 9 ranked medicines + 21 Sheet-2 favor/avoid rules (from `Switching to a different medication.xlsx`) | DRAFT - one rule inactive (kidney stones, no intake field) |
-| `data/no_seizures_decision_table.json` · `data/breakthrough_decision_tables.json` · `data/breakthrough_urgency_thresholds.json` | Her action grids and per-seizure-type urgency cutoffs | DRAFT |
+| `data/asm_rules.json` | Dose bands for the 11 ASMs | Rebuilt from the v9 ladder. Edit `_build_asm_rules.py`, not the JSON. Drug-level false for LTG concomitant bands, the three ladder flags, and CBZ/OXC |
+| `data/dose_titration_ladder.json` | Per-band rungs (v9) | File `verified:true`. Three bands stay false (zonisamide ×2, brivaracetam ≥50 kg). Line check is #6 |
+| `data/medication_selection_rules.json` | 9 ranked medicines + favor/avoid rules | File `verified:true` from the workbook copy. #41(a)–(e) open. Kidney-stones rule is active |
+| `data/no_seizures_decision_table.json` · `data/breakthrough_decision_tables.json` · `data/breakthrough_urgency_thresholds.json` | Action grids and urgency cutoffs | File `verified:true`. Cell sign-off is #19 and #20 |
+| `data/titration_thresholds.json` · initiation `switch_taper` | Cutoffs; week-4 switch reading | `verified:false` |
 | `nlp/data/redflag_terms*.json` | Confirmed/expanded urgent free-text phrases | template + engine defaults; no PI-confirmed file yet |
 | Drug synonyms / classes | Brand/abbreviation synonyms; ATC + mechanism classes + the "family" definition | `data/drug_synonyms.template.json` and `data/drug_classes.template.json` only - no populated file yet; `drug_identity.py` runs on built-in defaults |
 
@@ -139,16 +171,17 @@ print(rec.category, rec.rationale)
 `validation/harness.py` reports concordance, **Cohen's κ (target ≥ 0.8)**,
 weighted κ / PABAK / macro-F1 with CIs, disagreements, and safety-concern counts,
 tagged with the engine version. The no-argument run defaults to the 63-case gold
-set and currently reports **concordance 0.9841 · κ = 0.9758 (MET)** with one
-expected divergence (J2) and 5 safety-concern outputs.
+set and currently reports **concordance 1.0 · κ = 1.0 (MET)** on 63/63
+(engine 0.4.3), weighted κ 1.0 with 10 deferrals excluded, 5 safety-concern
+outputs.
 
-The shipped labels are the PI's picks on **synthetic** cases - a self-consistency
-check, not clinical truth. Replace with her chart-review gold-standard coding for
-real validation (`NEEDS_PI_SIGNOFF.md`); the method is pre-registered in
-`../docs/VALIDATION_PLAN.md`.
+Labels are Dr. Barbour's picks on the synthetic set. Chart-review coding is
+in `../docs/VALIDATION_PLAN.md`.
 
 `verification/verify_all.py` is an independent second pass (rule/ladder proofs +
-red-team safety cases) and currently reports `RESULT: PASS`.
+red-team safety cases) and currently reports `RESULT: PASS`
+(2026-10-26: asm_rules 0 FAIL / 19 WARN, ladder 0 WARN / 17 INFO, red-team
+0 misses).
 
 **Known rough edges in the exploratory validation scripts** (not part of the unit
 suite, none affecting the engine's gold-set results):
@@ -160,7 +193,6 @@ suite, none affecting the engine's gold-set results):
 - `validation/holdout_test.py` - the held-out oracle half passes; the fuzz half
   reports 0 crashes and 0 safety message leaks.
 - `validation/creative_tests.py` - 14/14 property/boundary checks pass. In its
-  informational adversarial-trap section, the
-  carbamazepine + absence aggravation caution is unmet - see
-  `../docs/CLINICAL_REVIEW.md` item 3.
+  informational adversarial-trap section, carbamazepine + absence raises the
+  advisory note and does not change the category.
 - `manual_check.py` - 37/37.

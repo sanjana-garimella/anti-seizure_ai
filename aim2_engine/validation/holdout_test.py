@@ -122,7 +122,7 @@ def gen_breakthrough():
     for tier, (typ, dur, freq) in tier_inputs.items():
         assert oracle_tier(typ, dur, freq) == tier, (typ, dur, freq, oracle_tier(typ, dur, freq))
         for phase, (goal, ondose) in PHASES.items():
-            for lvl in range(2, 6):
+            for lvl in range(0, 6):
                 a = {"Q3": "yes", "Q4": [typ], "Q9": ["sleepiness"], "Q10b_impact": LEVEL_TOKEN[lvl],
                      "Q10a": goal, "Q11": "about_same",
                      "seizure_episodes": [{"look": [typ], "duration": dur, "frequency_bucket": freq}]}
@@ -157,7 +157,7 @@ def held_out():
     pred = [run_engine(s, asm_registry=REG).category for _, s in cat_cases]
     rep = M.evaluate_categorical(gold, pred, deferral_mode="class", n_boot=1000)
     mism = [(g, p) for g, p in zip(gold, pred) if g != p]
-    print(f"    categorical cases     : {len(gold)} (seizure-free + breakthrough L2-5)")
+    print(f"    categorical cases     : {len(gold)} (seizure-free + breakthrough L0-5)")
     print(f"    observed agreement    : {rep['observed_agreement']:.3f}")
     print(f"    Cohen's kappa         : {rep['cohens_kappa']:.3f}  95% CI {tuple(round(x,3) for x in rep['cohens_kappa_ci'])}")
     print(f"    macro F1              : {rep['macro_prf']['f1']:.3f}")

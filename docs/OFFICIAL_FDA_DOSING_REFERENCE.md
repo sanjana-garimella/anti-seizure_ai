@@ -2,7 +2,7 @@
 
 Date: 2026-06-23 · Source of "official" numbers: **FDA prescribing information via DailyMed** (fetched and read directly; URLs per drug). Pediatric = ages 2–17, weight-based where the label is.
 
-**Purpose:** side-by-side of the engine's DRAFT values (`aim2_engine/data/asm_rules.json`, all tagged `verified:false`) vs the FDA label, so Dr. Barbour can confirm/correct each. **No engine values were changed** - clinical sign-off is hers (NEEDS_PI_SIGNOFF.md). Where a number is not in the FDA label (off-label peds use), it is flagged as needing a literature/guideline source, not the label.
+**Purpose:** side-by-side of the 2026-06-23 engine values vs the FDA label. File-level `verified` changed on 2026-10-26; open cells are in `aim2_engine/NEEDS_PI_SIGNOFF.md`. This comparison was not regenerated. Where a number is not in the FDA label (off-label peds use), it needs a literature or guideline source, not the label.
 
 > **Read this first (added 2026-08-04).** This document reflects
 > `asm_rules.json` as of 2026-06-23. Since then the engine's **operative** dosing

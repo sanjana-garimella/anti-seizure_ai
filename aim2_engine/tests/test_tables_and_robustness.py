@@ -172,8 +172,6 @@ class TestBreakthroughTable(unittest.TestCase):
         for tier, phases in self.bt.items():
             for phase, rows in phases.items():
                 for level, cell in enumerate(rows):
-                    if level < 2:
-                        continue  # engine gates the table at level >= 2
                     d = decide(_bt_status(level, phase, tier, below_ceiling=True))
                     expected = _TOKEN_TO_CAT[cell["category"]]
                     self.assertEqual(
@@ -187,7 +185,7 @@ class TestBreakthroughTable(unittest.TestCase):
         for tier, phases in self.bt.items():
             for phase, rows in phases.items():
                 for level, cell in enumerate(rows):
-                    if level < 2 or not cell.get("at_max_category"):
+                    if not cell.get("at_max_category"):
                         continue
                     d = decide(_bt_status(level, phase, tier, below_ceiling=False))
                     expected = _TOKEN_TO_CAT[cell["at_max_category"]]
@@ -209,11 +207,17 @@ class TestBreakthroughTable(unittest.TestCase):
         d = decide(_bt_status(2, "titrating", "emergent"))
         self.assertIn("breakthrough_emergent", d.urgent_flags)
 
-    def test_level_0_does_not_fire_table(self):
-        # Level 0 ("no side effects") is still handled by the duration-aware
-        # legacy path (R8-R11), never the BT table.
+    def test_level_0_uses_table_only_with_duration(self):
+        # Level 0 is a row in the grid. With a captured duration the table
+        # decides (non-urgent titrating L0 is no change). Without duration the
+        # frequency-only path still applies.
         d = decide(_bt_status(0, "titrating", "non_urgent"))
-        self.assertFalse(any(r.get("rule") == "BT" for r in d.rationale))
+        self.assertTrue(any(r.get("rule") == "BT" for r in d.rationale))
+        self.assertEqual(d.category, RecommendationCategory.NO_CHANGE)
+        no_dur = _bt_status(0, "titrating", "non_urgent")
+        no_dur.duration_captured = False
+        d2 = decide(no_dur)
+        self.assertFalse(any(r.get("rule") == "BT" for r in d2.rationale))
 
     def test_level_1_fires_table_only_with_duration(self):
         # CHANGED 2026-07-08 (Kristen validation review, cases B1/B2/B3): a
@@ -227,6 +231,18 @@ class TestBreakthroughTable(unittest.TestCase):
         self.assertEqual(d.category, RecommendationCategory.NO_CHANGE)
 
         no_dur = _bt_status(1, "titrating", "non_urgent")
+        no_dur.duration_captured = False
+        d2 = decide(no_dur)
+        self.assertFalse(any(r.get("rule") == "BT" for r in d2.rationale))
+
+    def test_nonurgent_steady_l0_follows_table(self):
+        # Level 0 is a row in the breakthrough grid. Non-urgent + steady + no
+        # side effects is "escalate". Duration must be captured; without it the
+        # frequency-only path still applies.
+        d = decide(_bt_status(0, "steady", "non_urgent"))
+        self.assertTrue(any(r.get("rule") == "BT" for r in d.rationale))
+        self.assertEqual(d.category, RecommendationCategory.ESCALATE)
+        no_dur = _bt_status(0, "steady", "non_urgent")
         no_dur.duration_captured = False
         d2 = decide(no_dur)
         self.assertFalse(any(r.get("rule") == "BT" for r in d2.rationale))

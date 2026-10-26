@@ -2,7 +2,7 @@
   "artifact": "redflag_redteam_eval",
   "status": "DRAFT eval (pre-human triage; advisory only)",
   "n_cases": 20,
-  "misses": 3,
+  "misses": 0,
   "must_catch_misses": 0,
   "false_alarms": 0,
   "assertion_layer_available": true,
@@ -108,9 +108,11 @@
       "family": "negation",
       "should_flag": true,
       "must_catch": false,
-      "fired": false,
-      "status": "MISS",
-      "evidence": [],
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "not breathing"
+      ],
       "note": "leak: 'no longer breathing well' has no matching danger term"
     },
     {
@@ -155,9 +157,11 @@
       "family": "spacing",
       "should_flag": true,
       "must_catch": false,
-      "fired": false,
-      "status": "MISS",
-      "evidence": [],
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "SJS"
+      ],
       "note": "punctuated SJS"
     },
     {
@@ -165,9 +169,12 @@
       "family": "spacing",
       "should_flag": true,
       "must_catch": false,
-      "fired": false,
-      "status": "MISS",
-      "evidence": [],
+      "fired": true,
+      "status": "OK",
+      "evidence": [
+        "blister",
+        "blister+modifier"
+      ],
       "note": "spaced letters"
     },
     {

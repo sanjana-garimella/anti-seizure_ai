@@ -52,11 +52,11 @@ class TestDataIntegrity(unittest.TestCase):
             for mid in r.get("avoid", []) + r.get("favor", []):
                 self.assertIn(mid, valid, f"rule {r.get('id')} references unknown med {mid}")
 
-    def test_every_value_is_draft(self):
+    def test_workbook_values_are_verified(self):
         for m in self.rs.medications:
-            self.assertFalse(m.verified)
+            self.assertTrue(m.verified)
         for r in self.rs.rules:
-            self.assertFalse(r.get("verified", False))
+            self.assertTrue(r.get("verified", False))
 
     def test_kidney_stones_rule_active(self):
         # Rules!B18; the clinic survey now asks about kidney stones (2026-09-30).
@@ -258,10 +258,10 @@ class TestDraftPosture(unittest.TestCase):
         sel = select({"Age": 4, "Sex": "Female"})
         self.assertTrue(sel.requires_physician_review)
         self.assertTrue(sel.draft)
-        self.assertFalse(sel.sources.get("verified", True))
-        self.assertIn("DRAFT", sel.sources.get("status", ""))
+        self.assertTrue(sel.sources.get("verified", False))
+        self.assertIn("Switching to a different medication.xlsx", sel.sources.get("status", ""))
         for opt in sel.options:
-            self.assertFalse(opt["verified"])
+            self.assertTrue(opt["verified"])
 
     def test_rationale_traces_to_rules(self):
         sel = select({"Age": 13, "Sex": "Female", "Mood difficulties": "Yes"})

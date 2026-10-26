@@ -72,21 +72,31 @@ _LEXICON: Dict[str, List[Tuple[str, Optional[str]]]] = {
         # normally" (a REASSURANCE, the opposite meaning). Found via
         # validation/nlp_confusion_matrix.py: "eating and sleeping normally"
         # in a plain-negative test sentence was wrongly flagged as sleepiness.
-        (r"tired|drowsy|fatigue|lethargic|sleep(?!ing\s+(?:normally|well|fine|great|ok|okay))",
+        (r"tired|drowsy|fatigue|lethargic|"
+         r"sleep(?!ing\s+(?:normally|well|fine|great|ok|okay))|"
+         r"barely\s+keep\s+\w+\s+eyes?\s+open|"
+         r"can(?:not|'t)\s+keep\s+\w+\s+eyes?\s+open|"
+         r"hard\s+to\s+stay\s+awake|nodding\s+off|keeps?\s+falling\s+asleep",
          "sleepiness"),
-        (r"rash|hives|skin", "rash"),
-        (r"dizz|unsteady|balance|wobbl", "dizziness"),
-        (r"irritab|mood|angry|anger|cranky|emotional", "irritability"),
+        (r"rash|hives|skin|red\s+patches|open\s+sores", "rash"),
+        (r"dizz|unsteady|balance|wobbl|room\s+spins|head\s+spins|spinning|"
+         r"light-?headed|vertigo", "dizziness"),
+        (r"irritab|mood|angry|anger|cranky|emotional|snaps?\s+at|cries\s+more|"
+         r"short-tempered|lashing\s+out", "irritability"),
         # Same fix as above, for nausea: bare "eating" matched "eating ...
         # normally" (reassurance). Kept "appetite" bare (no observed false
         # positive for it yet) and added explicit loss-of-appetite phrasing
         # instead of the bare word.
         (r"nause|vomit|appetite|throw\w*\s*up|off.{0,15}food|not\s+eating|"
-         r"trouble\s+eating|won'?t\s+eat", "nausea"),
-        (r"behav|aggress|hyper|acting out", "behavior"),
+         r"trouble\s+eating|won'?t\s+eat|stomach\s+turns|queasy|upset\s+stomach|"
+         r"leaves\s+most\s+of\s+(?:his\s+|her\s+|the\s+)?plate", "nausea"),
+        (r"behav|aggress|hyper|acting out|\bhitting\b|yelling\s+at|\bbiting\b|\bkicking\b",
+         "behavior"),
     ],
     "seizure_mention": [
-        (r"seizure|convuls|staring|jerk|twitch|shaking|spell", "seizure_reported"),
+        (r"seizure|convuls|staring|jerk|twitch|shaking|spell|"
+         r"went\s+stiff|stiffened|was\s+not\s+responding|not\s+responding|unresponsive",
+         "seizure_reported"),
     ],
     "drug_mention": [(rf"\b{re.escape(n)}\b", None) for n in _DRUG_NAMES],
     "test_mention": [(rf"\b{re.escape(p)}\b", None) for p in _TEST_PHRASES],

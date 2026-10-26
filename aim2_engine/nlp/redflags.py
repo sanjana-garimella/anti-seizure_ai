@@ -106,6 +106,33 @@ def _seizure_threshold_minutes(path: Optional[str] = None) -> int:
         return _DEFAULT_SEIZURE_MIN_MINUTES
 
 
+def _surface_forms(text: str) -> str:
+    """Rewrite surface forms of terms already on the list, before matching.
+
+    Does not add a new danger category. "no longer breathing well" is the
+    existing "not breathing" phrase. "s.j.s" is the existing SJS token.
+    "b l i s t e r s" is the existing blister term. Escalate-only: this does
+    not suppress a negated danger word.
+    """
+    t = re.sub(
+        r"\b(?:no longer|is not|isn'?t|was not|wasn'?t)\s+breathing(?:\s+well)?\b",
+        "not breathing",
+        text,
+        flags=re.I,
+    )
+
+    def _collapse_dots(m: re.Match) -> str:
+        return re.sub(r"[^A-Za-z]", "", m.group(0)).upper()
+
+    t = re.sub(r"\b(?:[A-Za-z]\.){2,}[A-Za-z]\.?", _collapse_dots, t)
+
+    def _collapse_spaced(m: re.Match) -> str:
+        return re.sub(r"\s+", "", m.group(0))
+
+    t = re.sub(r"\b(?:[A-Za-z]\s+){4,}[A-Za-z]\b", _collapse_spaced, t)
+    return t
+
+
 def _phrase_pattern(phrase: str) -> re.Pattern:
     """Word-boundary pattern for an exact phrase, with light suffix tolerance
     so morphological variants match (peel -> peeling/peeled/peels; blister ->
@@ -187,6 +214,7 @@ class LexiconRedFlagDetector:
     def scan(self, text: str, source_question: Optional[str] = None) -> List[RedFlag]:
         if not text:
             return []
+        text = _surface_forms(text)
         low = text.lower()
         flags: List[RedFlag] = []
         seen = set()

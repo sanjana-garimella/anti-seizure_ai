@@ -1,6 +1,6 @@
 {
-  "_README": "Week-by-week STARTING schedules for a new medicine (add or switch), copied VERBATIM from Dr. Barbour's '<Drug> Initiation' tabs. Cells are text exactly as she wrote them; '—' means no tablet schedule fits (use the liquid). The engine only DISPLAYS these to the clinician; it never computes or changes a dose from them. DRAFT - verified:false, pending PI sign-off.",
-  "verified": false,
+  "_README": "Week-by-week STARTING schedules for a new medicine (add or switch), copied VERBATIM from Dr. Barbour's '<Drug> Initiation' tabs. Cells are text exactly as she wrote them; '—' means no tablet schedule fits (use the liquid). The engine only DISPLAYS these to the clinician; it never computes or changes a dose from them. verified:true (v9 tabs, confirmed 2026-10-25, #70). The switch taper below stays verified:false.",
+  "verified": true,
   "source": "clinician (Barbour final_doses_titration_v9.xlsx, '<Drug> Initiation' tabs; built by data/_build_initiation_schedules.py)",
   "by_drug": {
     "levetiracetam": {

@@ -63,8 +63,8 @@ goes to a public LLM.
 
 **Implemented today:** deterministic, auditable decision path (no ML/LLM/NLP in the
 recommendation; every output carries a rule-trace `rationale`; engine version tagged);
-no invented clinical values (dosing and the switch/add ranking are clinician-supplied,
-every value `verified:false`); safety copy is PI-supplied; safety flags always surface to
+no invented clinical values (dosing and the switch/add ranking are clinician-supplied;
+`verified` only where signed, `aim2_engine/NEEDS_PI_SIGNOFF.md`); safety copy is PI-supplied; safety flags always surface to
 the physician and are never suppressed; the NLP layer is advisory and isolated from
 `engine_core/`; no network / third-party calls in the default engine; every output carries
 `requires_physician_review = True`; synthetic data only, no PHI in the repo. Independently
@@ -83,7 +83,7 @@ withhold behavior the older docs describe.
 2. Encryption at rest for the local DB (or documented reliance on full-disk encryption).
 3. TLS if ever networked. (Done: login rate-limiting, and a random one-time doctor password on
    first run, printed once for me to change.)
-4. Real Cohen's κ on the PI's chart-reviewed cases (current κ is against synthetic picks).
+4. Chart-review κ. Current κ 1.0 is the synthetic set.
 5. If any LLM feature (drafting / NER / open-world lookup) is enabled: bias/fairness evaluation across demographic groups, uncertainty communication, and a BAA-covered surface for PHI - never a public API.
 6. IRB + institutional security review; staff training on data handling, consent, and ethical AI use.
 7. Harden the engine against malformed input: the fuzz half of

@@ -22,7 +22,7 @@ def _rows(drug, targets, **kw):
 
 class TestConversionRules(unittest.TestCase):
     def test_rules_are_draft(self):
-        self.assertFalse(load_rules().get("verified", True))
+        self.assertTrue(load_rules().get("verified", False))
 
     def test_barbour_worked_example(self):
         # Flags #3/#4: 30 kg, LEV 500 mg BID on 250 mg tablets -> 1300 mg/day is

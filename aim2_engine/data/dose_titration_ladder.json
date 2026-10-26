@@ -1,8 +1,8 @@
 {
-  "_README": "Per-drug/weight-band DOSE TITRATION LADDER transcribed VERBATIM from Dr. Barbour's final_doses_titration_v9.xlsx. DRAFT, verified:false, pending PI sign-off. Each band gives the explicit dose ladder: pre_maintenance_increments (below goal, cols Q-Y), min_maintenance_dose (col Z = the minimum maintenance / goal), up_increments (tolerated increases above goal, cols AA-AI up to effective_max), and high_increments_often_not_tolerated (cols AJ-AP; reaching these triggers the dagger labs in high_dose_labs_by_drug). The engine reads these EXPLICIT cells; it does NOT recompute doses. _helper_columns are the sheet's derivation columns, kept for provenance only. See data_quality_flags for cells Kristen must confirm (NOT auto-corrected here, per defer-on-ambiguity).",
-  "verified": false,
+  "_README": "Per-drug/weight-band DOSE TITRATION LADDER transcribed VERBATIM from Dr. Barbour's final_doses_titration_v9.xlsx. verified:true for bands she supplied (confirmed 2026-10-25, NEEDS_PI_SIGNOFF #70). Bands named in data_quality_flags stay verified:false. Each band gives the explicit dose ladder: pre_maintenance_increments (below goal, cols Q-Y), min_maintenance_dose (col Z = the minimum maintenance / goal), up_increments (tolerated increases above goal, cols AA-AI up to effective_max), and high_increments_often_not_tolerated (cols AJ-AP; reaching these triggers the dagger labs in high_dose_labs_by_drug). The engine reads these EXPLICIT cells; it does NOT recompute doses. _helper_columns are the sheet's derivation columns, kept for provenance only. See data_quality_flags for cells Kristen must confirm (NOT auto-corrected here, per defer-on-ambiguity).",
+  "verified": true,
   "source": "clinician (Barbour final_doses_titration_v9.xlsx, rebuilt by data/_build_dose_ladder.py)",
-  "provenance_note": "DRAFT - unverified; every dose is clinician-sourced and pending PI sign-off.",
+  "provenance_note": "Bands are hers (v9, confirmed 2026-10-25). A band in data_quality_flags is still unverified.",
   "conmed_restrictions_by_drug": {
     "lamotrigine": {
       "_source": "Asterisk footnote in final_doses_titration_v6.xlsx: 'LamoTRIgine* ... *For patients NOT receiving valproate and NOT receiving enzyme-inducing antiseizure medications.' Transcribed VERBATIM (routing metadata, not an invented clinical value).",
@@ -24,8 +24,8 @@
         "phenobarbital",
         "primidone"
       ],
-      "note": "These lamotrigine rungs apply ONLY to patients NOT on valproate and NOT on an enzyme-inducing ASM. For a patient on valproate (raises lamotrigine levels -> higher SJS/TEN risk) or an enzyme inducer, this ladder does NOT apply: suppress it and titrate with the much slower conmed-specific regimen (see asm_rules.json lamotrigine 'WITH valproate' / 'WITH enzyme inducer' bands). DRAFT - pending PI sign-off (NEEDS_PI_SIGNOFF.md).",
-      "verified": false
+      "note": "These lamotrigine rungs apply ONLY to patients NOT on valproate and NOT on an enzyme-inducing ASM. For a patient on valproate (raises lamotrigine levels -> higher SJS/TEN risk) or an enzyme inducer, this ladder does NOT apply: suppress it and titrate with the much slower conmed-specific regimen (see asm_rules.json lamotrigine 'WITH valproate' / 'WITH enzyme inducer' bands). The WITH-valproate and WITH-inducer bands are not on this sheet and stay unverified.",
+      "verified": true
     }
   },
   "high_dose_labs_by_drug": {

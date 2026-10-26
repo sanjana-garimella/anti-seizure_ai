@@ -22,9 +22,9 @@ reconciled to the sheet (split into the sheet's 3 age bands); the WITH-valproate
 and WITH-enzyme-inducer bands are PRESERVED from the draft unchanged (SJS/TEN
 safety logic the sheet does not cover).
 
-PROVENANCE: all dose NUMBERS remain DRAFT/unverified (verified:false) pending
-Dr. Barbour's line-by-line sign-off (NEEDS_PI_SIGNOFF.md). No value here is
-authoritative. NOTE for PI: the v6 sheet sets levetiracetam's effective max at
+PROVENANCE: dose bands copied from her v9 ladder are verified:true, except a
+band named in the ladder's data_quality_flags and the lamotrigine
+WITH-valproate / WITH-inducer bands (those are not on the sheet). NOTE for PI: the sheet sets levetiracetam's effective max at
 60 mg/kg/day; an earlier 2026-06 note had said 80 mg/kg/day. The sheet (source
 of truth) wins here (60); flagged for PI confirmation.
 
@@ -67,15 +67,22 @@ FACTS = {
         "sjs_risk": True,
         "requires_lab_monitoring": True,
         "labs": ["CBC", "LFTs", "sodium"],
+        # Advisory only (CLINICAL_REVIEW.md item 3, NEEDS_PI_SIGNOFF.md #18).
+        # Sets a safety note. Does not change the category or the dose.
+        "avoid_if_seizure_type": ["absence", "myoclonic"],
         "key_safety": "Serious rash (SJS/TEN), esp. with HLA-B*1502 (Southeast/East Asian "
-                      "ancestry). Hyponatremia; blood dyscrasias; enzyme inducer.",
+                      "ancestry). Hyponatremia; blood dyscrasias; enzyme inducer. "
+                      "May aggravate absence and myoclonic seizures.",
     },
     "oxcarbazepine": {
         # Kristen: do not switch trileptal -> tegretol (carbamazepine has more SE).
         "no_switch_targets": ["carbamazepine"],
         "sjs_risk": True,
+        # Same advisory caution as carbamazepine. Note only; category unchanged.
+        "avoid_if_seizure_type": ["absence", "myoclonic"],
         "key_safety": "Hyponatremia; rash with HLA-B*1502 cross-reactivity. Spreading/"
-                      "blistering rash -> stop + switch.",
+                      "blistering rash -> stop + switch. "
+                      "May aggravate absence and myoclonic seizures.",
     },
     "ethosuximide": {
         # Kristen: ethosuximide only treats staring-spell (absence) seizures.
@@ -198,7 +205,22 @@ def _make_contiguous(specs, is_kg):
     return specs
 
 
-def _band_from_ladder(lb, freq, source_tag, label_override=None, regimen_note=""):
+def _norm_label(s):
+    s = str(s or "").replace("–", "-").replace("≥", ">=").replace("≤", "<=")
+    return re.sub(r"\s+", " ", s).strip().lower()
+
+
+def _band_flagged(flags, drug, label):
+    lbl = _norm_label(label)
+    for f in flags or []:
+        if (str(f.get("drug", "")).lower() == str(drug).lower()
+                and lbl in {_norm_label(x) for x in str(f.get("band", "")).split(" / ")}):
+            return True
+    return False
+
+
+def _band_from_ladder(lb, freq, source_tag, label_override=None, regimen_note="",
+                      verified=True):
     """Convert one dose_titration_ladder band into an asm_rules DoseBand dict."""
     label = label_override or lb.get("band_label", "")
     lo, hi, is_kg_m = _parse_range(lb.get("maintenance_range", ""))
@@ -242,21 +264,23 @@ def _band_from_ladder(lb, freq, source_tag, label_override=None, regimen_note=""
             "standard_uptitration_interval_weeks": iv,
         })
     b.update({
-        "frequency_per_day": freq, "source": source_tag, "verified": False,
+        "frequency_per_day": freq, "source": source_tag, "verified": bool(verified),
         "initial_dose_cap_mg_per_day": _num(init_cap),
         "clinician_note": note,
     })
     return b
 
 
-def _reconciled_bands(drug, ladder_bands, draft_bands):
+def _reconciled_bands(drug, ladder_bands, draft_bands, flags=None):
     """Sheet-derived bands for `drug`. Lamotrigine keeps its WITH-valproate /
     WITH-enzyme-inducer bands from the draft (not covered by the sheet)."""
     freq = (draft_bands[0].get("frequency_per_day") if draft_bands else 2) or 2
     if drug != "lamotrigine":
         specs = []
         for lb in ladder_bands:
-            band = _band_from_ladder(lb, freq, SRC)
+            band = _band_from_ladder(
+                lb, freq, SRC,
+                verified=not _band_flagged(flags, drug, lb.get("band_label")))
             specs.append({"band": band, "edges": {k: band[k] for k in
                 ("min_age_years", "max_age_years", "min_weight_kg", "max_weight_kg")}})
         is_kg = any(s["edges"]["min_weight_kg"] is not None
@@ -269,6 +293,7 @@ def _reconciled_bands(drug, ladder_bands, draft_bands):
     for lb in ladder_bands:
         lbl = lb.get("band_label", "") + " - WITHOUT valproate and WITHOUT enzyme inducer"
         band = _band_from_ladder(lb, freq, SRC, label_override=lbl,
+            verified=not _band_flagged(flags, drug, lb.get("band_label")),
             regimen_note="Sheet footnote: applies ONLY to patients NOT on valproate "
                          "and NOT on an enzyme inducer.")
         specs.append({"band": band, "edges": {k: band[k] for k in
@@ -281,6 +306,7 @@ def _reconciled_bands(drug, ladder_bands, draft_bands):
         if ("with valproate" in lab or "with enzyme inducer" in lab
                 or "with an enzyme inducer" in lab):
             pb = json.loads(json.dumps(b))
+            pb["verified"] = False
             pb["clinician_note"] = ("PRESERVED (not in Barbour sheet; the sheet's ladder "
                 "covers only the no-valproate/no-inducer regimen). DRAFT conmed-dependent "
                 "SJS/TEN safety band. " + pb.get("clinician_note", "")).strip()
@@ -302,7 +328,9 @@ def build():
     with open(DRAFT) as fh:
         draft = json.load(fh)
     with open(LADDER) as fh:
-        ladder = json.load(fh).get("bands_by_drug", {})
+        ladder_doc = json.load(fh)
+    ladder = ladder_doc.get("bands_by_drug", {})
+    flags = ladder_doc.get("data_quality_flags") or []
 
     out = {
         "_README": (
@@ -312,8 +340,8 @@ def build():
             f"kristen/{SHEET}.xlsx): every initial/maintenance/max/"
             "increment number is derived from that ladder, so this file matches the sheet "
             "band-for-band and cannot silently drift. Rebuild with data/_build_asm_rules.py. "
-            "Dose NUMBERS remain DRAFT (verified:false) pending Dr. Barbour's line-by-line "
-            "sign-off (NEEDS_PI_SIGNOFF.md); no value here is authoritative. Drug FACTS "
+            "Dose bands from her v9 sheet are verified:true, except data_quality_flags and "
+            "the lamotrigine concomitant bands the sheet does not cover. Drug FACTS "
             "(treats_only, avoid_if_*, no_switch_targets, sjs_risk, conmed_dependent_titration) "
             "encode her written notes. CONVENTIONS: (1) dose_basis follows the sheet's "
             "maintenance unit; (2) each band's ceiling = its own sheet 'Max Absolute Dose' so "
@@ -329,13 +357,12 @@ def build():
             "reconciled_on": "2026-07-14",
             "reconciled_to": f"kristen/{SHEET}.xlsx == data/dose_titration_ladder.json",
             "drug_facts_source": "clinician_verification/asm_rules.draft.json (RxNorm+FDA PI) + Barbour 2026-06 review",
-            "status": "DRAFT - verified:false - pending PI sign-off (NEEDS_PI_SIGNOFF.md)",
+            "status": "v9 dose bands verified, except data_quality_flags and lamotrigine concomitant bands",
             "pi_flags": [
                 f"levetiracetam effective max: {SHEET} = 60 mg/kg/day; earlier 2026-06 note said 80. "
-                "Reconciled to the sheet (60); PI to confirm.",
-                "See dose_titration_ladder.json data_quality_flags for sheet cells still awaiting "
-                "PI confirmation (lamotrigine Z18/Z19 min-maintenance; oxcarbazepine >=70kg; "
-                "carbamazepine stray 'to' cell).",
+                "Reconciled to the sheet (60); still open.",
+                "See dose_titration_ladder.json data_quality_flags (zonisamide child step; "
+                "brivaracetam >=50 kg initial dose).",
             ],
         },
     }
@@ -345,14 +372,20 @@ def build():
             continue
         e = json.loads(json.dumps(entry))  # deep copy (keeps formulations, rxcui, etc.)
         if name in ladder:
-            e["dose_bands"] = _reconciled_bands(name, ladder[name], entry.get("dose_bands", []))
+            e["dose_bands"] = _reconciled_bands(
+                name, ladder[name], entry.get("dose_bands", []), flags)
         # else: no ladder entry -> keep draft bands (should not happen for the 11 study drugs)
 
         facts = FACTS.get(name, {})
         for k, v in facts.items():
             e[k] = v
         e.setdefault("in_study", True)
-        e["verified"] = False
+        bands = e.get("dose_bands") or []
+        # The absence/myoclonic caution on these two is not in her sheet.
+        if name in ("carbamazepine", "oxcarbazepine"):
+            e["verified"] = False
+        else:
+            e["verified"] = bool(bands) and all(b.get("verified") for b in bands)
         out[name] = e
 
     with open(OUT, "w") as fh:

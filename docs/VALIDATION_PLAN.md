@@ -68,21 +68,16 @@ cases**, not 5. For the categorical metrics, ensure the rare classes (especially
 *switch* / *add*) have enough support for stable macro-F1 (target ≳10–15 each), and
 expect wide kappa CIs until total N is in the low hundreds.
 
-## 6. Current status (honest) - re-run 2026-08-04, engine v0.3.0
+## 6. Current status - 2026-10-26, engine 0.4.3
 
-On the 63 synthetic gold cases (PI's picks - a self-consistency check, **not**
-clinical truth):
+Synthetic gold set, 63/63:
 
-- plain Cohen's κ **0.9758** (target ≥ 0.8, MET) · concordance **0.9841** · one
-  divergence (J2)
-- excluding the **10** deferrals, the **53** actionable cases agree at weighted
-  κ = **1.0**, 95% CI (1.0, 1.0) · PABAK 1.0 · macro-F1 1.0
-- **5** safety-concern outputs - far short of the ~60 true safety-positive cases
-  §5 says are needed to claim a ≤5% miss rate
+- Cohen's κ **1.0** (target ≥ 0.8, MET) · concordance **1.0**
+- weighted κ **1.0** with the 10 deferrals excluded · PABAK 1.0 · macro-F1 1.0
+- **5** safety-concern outputs. §5 still needs ~60 true safety-positive cases
+  before a ≤5% miss-rate claim
 
-A CI of (1.0, 1.0) at this N is an artifact of zero observed disagreement among
-the actionable cases, not evidence of certainty. The correct read is
-**"underpowered,"** not "validated."
+Zero disagreement at this N does not support a miss-rate claim.
 
 Next steps: (a) two-rater chart-review coding for a real reference + ceiling,
 (b) expand safety-positive cases toward the table above, (c) PI confirms the

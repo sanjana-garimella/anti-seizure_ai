@@ -11,16 +11,16 @@ concerns for the doctor. Together they draft three things for the doctor to revi
    switch), with the exact next doses from the clinician's dosing ladder, and
 3. a **family message** in plain language.
 
-Nothing reaches a family without a physician approving it. Every dose is tagged
-`verified:false` until the PI signs it off.
+Nothing reaches a family without a physician approving it. What is still
+unsigned is in [`aim2_engine/NEEDS_PI_SIGNOFF.md`](aim2_engine/NEEDS_PI_SIGNOFF.md).
 
 PI: Kristen Barbour, MD · Scripps Research. **Pre-IRB: synthetic data only.**
 
 > **Research prototype, not a medical device.** The study has not yet received IRB
 > approval, so no real patient data has been used; all patient data here is synthetic.
 > The software has not been cleared or approved by any regulator and must not be used
-> to make clinical decisions. Every dose and clinical value is a draft
-> (`verified:false`) pending physician sign-off.
+> to make clinical decisions. Clinical values are pending the sign-off in
+> `aim2_engine/NEEDS_PI_SIGNOFF.md`.
 
 ## Quickstart
 
@@ -63,12 +63,41 @@ family survey ──► rule engine (engine_core/) ──► summary + dose step
 The rule engine has the final say on anything clinical; the language models only
 inform the doctor. Details: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
+```mermaid
+flowchart TD
+  q["Age, weight, medicine, times a day, dose"]
+  q --> sz["Seizures: how long, how many, more / same / fewer, triggers"]
+  q --> goal["Goal dose"]
+  goal --> tit["Still increasing: titrating"]
+  goal --> holding["At goal, under 2 weeks: holding"]
+  goal --> steady["At goal, 2 weeks or time not given: steady"]
+  q --> se["Side effects, impact 0 to 5"]
+  q --> form["Display: keep the reported pill or liquid. Unknown form uses tablets above age 10"]
+
+  sz --> decide["Decision"]
+  tit --> decide
+  holding --> decide
+  steady --> decide
+  se --> decide
+
+  decide -->|"seizure-free and level 3"| l3free["Uneven, TID, or watch and wait"]
+  decide -->|"breakthrough cell offers a dosing choice"| l3bt["Uneven, TID, watch and wait, or lower and add"]
+  decide -->|"add or switch, and no safety flag"| prefs["Already tried, avoid labs, mood, behaviour, night sleep, migraine, Southeast Asian or Han, health conditions"]
+  prefs --> top3["Top 3"]
+  top3 --> parent["Parent: 1st, 2nd, 3rd, or avoid"]
+  parent --> rank["Rank in the clinician summary"]
+
+  decide --> summary["Clinician summary"]
+  summary -->|"no safety flag"| draft["Family draft"]
+  summary -->|"safety flag"| none["No family message"]
+```
+
 ## Where things live
 
 | Path | What |
 |---|---|
 | `aim2_engine/engine_core/` | The decision engine (rules, dose ladder, tablets/liquid, outputs) |
-| `aim2_engine/data/` | Clinical values as JSON, all `verified:false`; some are generated - edit the `_build_*.py` builder |
+| `aim2_engine/data/` | Clinical values as JSON, `verified` per file; generated files are edited in the `_build_*.py` builder |
 | `aim2_engine/nlp/` | Language models on free text (advisory only) + guardrails |
 | `aim2_engine/clinic.py` | Web app: doctor queue + family survey |
 | `aim2_engine/tests/` | Test suite - every rule change needs a test |

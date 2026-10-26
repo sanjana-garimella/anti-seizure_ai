@@ -10,8 +10,8 @@ HARD RULES (spec §11.1 + clinical-safety.md):
   * NO clinical numbers are defined in this module. Every dose comes from the
     JSON file. If the file/band is absent or a value is null, the resolver
     returns None and the caller falls back to its existing behavior (defer).
-  * The ladder is DRAFT (verified:false) - pending PI sign-off. Every resolved
-    plan carries `verified:false` + a DRAFT provenance note.
+  * Bands from her confirmed sheet carry verified:true. A band named in
+    data_quality_flags stays verified:false and keeps the DRAFT note.
   * The engine READS the explicit rungs; it never recomputes or interpolates a
     dose the clinician did not list.
 
@@ -239,6 +239,30 @@ def build_rungs(band: Dict[str, Any], weight_kg: Optional[float]) -> List[Dict[s
     return dedup
 
 
+def _norm_label(s: Any) -> str:
+    s = str(s or "").replace("–", "-").replace("≥", ">=").replace("≤", "<=")
+    return re.sub(r"\s+", " ", s).strip().lower()
+
+
+def quality_flag(ladder: Dict[str, Any], drug_key: Optional[str],
+                 band: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """The data_quality_flags row for this band, if her sheet still has an open cell."""
+    if not band:
+        return None
+    lbl = _norm_label(band.get("band_label"))
+    for f in (ladder.get("data_quality_flags") or []):
+        if (str(f.get("drug", "")).lower() == (drug_key or "").lower()
+                and lbl in {_norm_label(x) for x in str(f.get("band", "")).split(" / ")}):
+            return f
+    return None
+
+
+def _band_verified(ladder: Dict[str, Any], drug_key: Optional[str],
+                   band: Optional[Dict[str, Any]]) -> bool:
+    """True when the ladder file is her confirmed sheet and this band is not flagged."""
+    return bool(ladder.get("verified", False)) and quality_flag(ladder, drug_key, band) is None
+
+
 def reference_for(drug_key: str, age_years: Optional[float], weight_kg: Optional[float],
                   concomitant_asms: Optional[List[str]] = None,
                   ladder: Optional[Dict[str, Any]] = None) -> Optional[Dict[str, Any]]:
@@ -250,7 +274,7 @@ def reference_for(drug_key: str, age_years: Optional[float], weight_kg: Optional
       * {"conmed_suppressed": True, ...} - the ladder does not apply to this
         patient's concomitant meds (lamotrigine + valproate/enzyme inducer);
         the report should point to the conmed-specific regimen instead.
-    All values are clinician-supplied (DRAFT, verified:false); nothing invented."""
+    Values are hers. A flagged band stays unverified."""
     ladder = ladder if ladder is not None else default_ladder()
     if not ladder:
         return None
@@ -278,7 +302,7 @@ def reference_for(drug_key: str, age_years: Optional[float], weight_kg: Optional
         # can't drift): the clinician's increment amount + interval for this band.
         "step_raw": (band.get("dose_increase_amount") or {}).get("raw"),
         "interval": band.get("dose_increase_interval"),
-        "verified": bool(ladder.get("verified", False)),
+        "verified": _band_verified(ladder, drug_key, band),
     }
 
 
@@ -357,25 +381,19 @@ def resolve_plan(drug_key: str, age_years: Optional[float], weight_kg: Optional[
     if reaches_high:
         labs = ((ladder.get("high_dose_labs_by_drug") or {}).get((drug_key or "").lower()) or [])
 
-    # attach any data-quality flag for this band (transcription anomalies)
-    # Match the drug AND this band: a flag on one band must not show on every band
-    # of the drug. Labels are compared with -/–, >=/≥, <=/≤ unified; a flag may list
-    # several bands separated by " / ".
-    def _norm(s):
-        s = str(s or "").replace("–", "-").replace("≥", ">=").replace("≤", "<=")
-        return re.sub(r"\s+", " ", s).strip().lower()
-    dq = None
-    lbl = _norm(band.get("band_label"))
-    for f in (ladder.get("data_quality_flags") or []):
-        if (f.get("drug", "").lower() == (drug_key or "").lower()
-                and lbl in {_norm(x) for x in str(f.get("band", "")).split(" / ")}):
-            dq = f
-            break
+    # A flag on one band must not mark every band of that drug unverified.
+    dq = quality_flag(ladder, drug_key, band)
+    verified = _band_verified(ladder, drug_key, band)
 
     _src = re.search(r"final_doses_titration_v\d+", str(ladder.get("source") or ""))
-    note = (f"Exact rungs are clinician-supplied (Barbour {_src.group(0) if _src else 'dose ladder'}). "
-            "DRAFT - verified:false, pending PI sign-off (NEEDS_PI_SIGNOFF.md). "
-            "The engine reads the listed rungs; it does not interpolate.")
+    src_name = _src.group(0) if _src else "dose ladder"
+    if verified:
+        note = (f"Exact rungs are clinician-supplied (Barbour {src_name}). "
+                "The engine reads the listed rungs; it does not interpolate.")
+    else:
+        note = (f"Exact rungs are clinician-supplied (Barbour {src_name}). "
+                "DRAFT - verified:false, pending PI sign-off (NEEDS_PI_SIGNOFF.md). "
+                "The engine reads the listed rungs; it does not interpolate.")
     if reaches_high:
         note += (" Next increase enters the higher, often-less-tolerated range - order "
                  "the listed labs and review tolerability.")
@@ -403,7 +421,7 @@ def resolve_plan(drug_key: str, age_years: Optional[float], weight_kg: Optional[
         "rungs_above_absolute_max_dropped": rungs_over_max_dropped,
         "reaches_high_tier": reaches_high,
         "high_dose_labs": labs,
-        "verified": bool(ladder.get("verified", False)),
+        "verified": verified,
         "note": note,
         "data_quality_flag": (dq.get("issue") if dq else None),
     }

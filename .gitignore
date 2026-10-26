@@ -33,3 +33,5 @@ aim2_engine/_backups/
 # verification, EXCEPT DB backups (never commit a DB) and poster material (above).
 _archive/clinic_data_backups/
 
+# kristen_search.py index cache (rebuilt automatically)
+aim2_engine/.kristen_search_cache/

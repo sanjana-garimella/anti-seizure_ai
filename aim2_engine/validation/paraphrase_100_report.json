@@ -1,0 +1,69 @@
+{
+  "engine_version": "0.4.2",
+  "n_cases": 100,
+  "what_this_is": "Labels were fixed from the decision-table JSON (90 cases) or the written safety rule (10 probes) before run_engine. Caregiver sentences express that fact list. Lexicon F1 on the paraphrase slice is robustness to wording the word list does not contain. This is not chart-review validation.",
+  "engine_vs_table": {
+    "n": 90,
+    "concordance": 1.0,
+    "cohens_kappa": 1.0,
+    "cohens_kappa_ci": [
+      1.0,
+      1.0
+    ],
+    "n_excluded_deferrals": 0,
+    "weighted_kappa_linear": 1.0,
+    "macro_f1": 1.0,
+    "mismatches": []
+  },
+  "safety_probes": {
+    "n": 10,
+    "misses": [],
+    "safety_flag_misses": 0,
+    "family_message_leaks": 0
+  },
+  "properties": {
+    "landing_misses": 0,
+    "physician_review_misses": 0,
+    "family_message_leaks_on_safety": 0
+  },
+  "lexicon_vs_preassigned_facts": {
+    "overall": {
+      "n": 100,
+      "tp": 195,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "by_style": {
+      "lexical": {
+        "n": 50,
+        "tp": 127,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "paraphrase": {
+        "n": 44,
+        "tp": 62,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "negation": {
+        "n": 6,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    }
+  }
+}

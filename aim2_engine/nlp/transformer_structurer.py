@@ -101,17 +101,30 @@ _BIOBERT_PROFILE = ModelProfile(
     },
     refinement={
         "side_effect": [
-            (r"seizure|convuls|staring|jerk|twitch|shaking|spell|epilep", "seizure_mention"),
+            (r"seizure|convuls|staring|jerk|twitch|shaking|spell|epilep|"
+             r"went\s+stiff|stiffened|was\s+not\s+responding|not\s+responding|unresponsive",
+             "seizure_mention"),
             # See nlp/structurer.py for why bare "sleep"/"eating" were
             # narrowed - both matched reassuring "...normally" phrasing.
+            # Caregiver phrasings match the lexicon (eyes open, room spins,
+            # snaps at, stomach turns, hitting, red patches, went stiff).
             (r"tired|drowsy|fatigue|letharg|"
-             r"sleep(?!ing\s+(?:normally|well|fine|great|ok|okay))",       "sleepiness"),
-            (r"rash|hives|skin|blister",                                   "rash"),
-            (r"dizz|unsteady|balance|wobbl",                               "dizziness"),
-            (r"irritab|mood|angry|anger|cranky|emotional",                 "irritability"),
+             r"sleep(?!ing\s+(?:normally|well|fine|great|ok|okay))|"
+             r"barely\s+keep\s+\w+\s+eyes?\s+open|"
+             r"can(?:not|'t)\s+keep\s+\w+\s+eyes?\s+open|"
+             r"hard\s+to\s+stay\s+awake|nodding\s+off|keeps?\s+falling\s+asleep",
+             "sleepiness"),
+            (r"rash|hives|skin|blister|red\s+patches|open\s+sores",        "rash"),
+            (r"dizz|unsteady|balance|wobbl|room\s+spins|head\s+spins|"
+             r"spinning|light-?headed|vertigo",                            "dizziness"),
+            (r"irritab|mood|angry|anger|cranky|emotional|snaps?\s+at|"
+             r"cries\s+more|short-tempered|lashing\s+out",                 "irritability"),
             (r"nause|vomit|appetite|throw\w*\s*up|off.{0,15}food|"
-             r"not\s+eating|trouble\s+eating|won'?t\s+eat",                "nausea"),
-            (r"behav|aggress|hyper|acting out",                            "behavior"),
+             r"not\s+eating|trouble\s+eating|won'?t\s+eat|stomach\s+turns|"
+             r"queasy|upset\s+stomach|"
+             r"leaves\s+most\s+of\s+(?:his\s+|her\s+|the\s+)?plate",       "nausea"),
+            (r"behav|aggress|hyper|acting out|\bhitting\b|yelling\s+at|"
+             r"\bbiting\b|\bkicking\b",                                    "behavior"),
         ],
     },
     confidence_scale=0.9,
@@ -129,17 +142,27 @@ _CLINICALBERT_PROFILE = ModelProfile(
     },
     refinement={
         "side_effect": [
-            (r"seizure|convuls|staring|jerk|twitch|shaking|spell|epilep", "seizure_mention"),
-            # See nlp/structurer.py for why bare "sleep"/"eating" were
-            # narrowed - both matched reassuring "...normally" phrasing.
+            (r"seizure|convuls|staring|jerk|twitch|shaking|spell|epilep|"
+             r"went\s+stiff|stiffened|was\s+not\s+responding|not\s+responding|unresponsive",
+             "seizure_mention"),
+            # See nlp/structurer.py. Same caregiver phrasings as the lexicon.
             (r"tired|drowsy|fatigue|letharg|"
-             r"sleep(?!ing\s+(?:normally|well|fine|great|ok|okay))",       "sleepiness"),
-            (r"rash|hives|skin|blister",                                   "rash"),
-            (r"dizz|unsteady|balance|wobbl",                               "dizziness"),
-            (r"irritab|mood|angry|anger|cranky|emotional",                 "irritability"),
+             r"sleep(?!ing\s+(?:normally|well|fine|great|ok|okay))|"
+             r"barely\s+keep\s+\w+\s+eyes?\s+open|"
+             r"can(?:not|'t)\s+keep\s+\w+\s+eyes?\s+open|"
+             r"hard\s+to\s+stay\s+awake|nodding\s+off|keeps?\s+falling\s+asleep",
+             "sleepiness"),
+            (r"rash|hives|skin|blister|red\s+patches|open\s+sores",        "rash"),
+            (r"dizz|unsteady|balance|wobbl|room\s+spins|head\s+spins|"
+             r"spinning|light-?headed|vertigo",                            "dizziness"),
+            (r"irritab|mood|angry|anger|cranky|emotional|snaps?\s+at|"
+             r"cries\s+more|short-tempered|lashing\s+out",                 "irritability"),
             (r"nause|vomit|appetite|throw\w*\s*up|off.{0,15}food|"
-             r"not\s+eating|trouble\s+eating|won'?t\s+eat",                "nausea"),
-            (r"behav|aggress|hyper|acting out",                            "behavior"),
+             r"not\s+eating|trouble\s+eating|won'?t\s+eat|stomach\s+turns|"
+             r"queasy|upset\s+stomach|"
+             r"leaves\s+most\s+of\s+(?:his\s+|her\s+|the\s+)?plate",       "nausea"),
+            (r"behav|aggress|hyper|acting out|\bhitting\b|yelling\s+at|"
+             r"\bbiting\b|\bkicking\b",                                    "behavior"),
         ],
     },
     confidence_scale=0.85,
@@ -349,19 +372,25 @@ class TransformerStructurer:
                         # hallucinating "sleepiness" from "sleeping normally"
                         # after the lookahead fix, because span-only matching
                         # bypassed it).
-                        if pat.search(clause):
-                            final_value = refined_value
-                            matched_refinement = True
-                            if refined_value == "seizure_mention":
-                                final_field = "seizure_mention"
-                            break
+                        # Negation is judged at the matched word, not at the NER
+                        # span start. A span often starts at 0 (or includes the
+                        # cue, as in "No rash"), and is_negated treats offset 0
+                        # as not negated, so the denied word was kept.
+                        m = pat.search(clause)
+                        if not m or is_negated(text, offset + m.start()):
+                            continue
+                        final_value = refined_value
+                        matched_refinement = True
+                        if refined_value == "seizure_mention":
+                            final_field = "seizure_mention"
+                        break
                     if not matched_refinement:
                         # The model tagged this span as a broad symptom/sign
                         # entity, but it doesn't match any canonical category
-                        # we know how to surface. Rather than pass an
-                        # arbitrary raw word through as a "side_effect"
-                        # suggestion (e.g. "stable"/"happy"/"flag" from plain
-                        # reassurance text - found via
+                        # we know how to surface, or every match is negated.
+                        # Rather than pass an arbitrary raw word through as a
+                        # "side_effect" suggestion (e.g. "stable"/"happy"/"flag"
+                        # from plain reassurance text - found via
                         # validation/nlp_confusion_matrix.py on HUMADEX/d4data),
                         # drop it. Doesn't affect drug_mention/test_mention,
                         # which have no refinement entry and keep their raw
@@ -370,17 +399,8 @@ class TransformerStructurer:
 
                 if final_field == "drug_mention" and span.strip().lower() in _GENERIC_DRUG_TERMS:
                     continue  # generic word ("dose", "medicine"...), not an actual drug name
-
-                # Negation only makes sense for things that can be affirmed
-                # or denied (a symptom, a seizure) - NOT a drug/test NAME,
-                # which is a fact regardless of whether an effect tied to it
-                # is being denied. "no adverse effects with lacosamide"
-                # should still report the lacosamide mention. Found via
-                # validation/nlp_pubmed_eval.py on real PubMed abstracts.
-                abs_start = offset + int(ent.get("start") or 0)
-                if final_field in ("side_effect", "seizure_mention") and is_negated(text, abs_start):
-                    continue  # e.g. "denies any rash" - advisory suppression
-                              # only; point B's red-flag scan is unaffected
+                # A drug or test NAME is kept even in "no adverse effects with
+                # lacosamide". Symptom negation is handled at the match above.
 
                 confidence = min(raw_score * self._profile.confidence_scale, 1.0)
                 dedup_key = (final_field, final_value)
@@ -513,39 +533,24 @@ class GenericNERAdapter:
                 if field_name == "side_effect":
                     matched_refinement = False
                     for pat, refined_value in _SIDE_EFFECT_REFINEMENT:
-                        # CLAUSE only, not span: a context-dependent pattern
-                        # (e.g. the sleep(?!ing normally|well|...) negative
-                        # lookahead) can't see disambiguating words that got
-                        # truncated out of a short NER span ("sleeping" alone,
-                        # no trailing "normally") - checking span would let it
-                        # match on truncated text even though the full clause
-                        # correctly wouldn't. The clause always contains
-                        # whatever the span contains plus its real context,
-                        # so it's the only check needed. Found via
-                        # validation/nlp_confusion_matrix.py (HUMADEX still
-                        # hallucinating "sleepiness" from "sleeping normally"
-                        # after the lookahead fix, because span-only matching
-                        # bypassed it).
-                        if pat.search(clause):
-                            final_value = refined_value
-                            matched_refinement = True
-                            if refined_value == "seizure_mention":
-                                final_field = "seizure_mention"
-                            break
+                        # CLAUSE only, not the NER span. Negation uses the
+                        # matched word's offset: a span that starts at 0
+                        # ("No rash") used to skip is_negated entirely.
+                        m = pat.search(clause)
+                        if not m or is_negated(text, offset + m.start()):
+                            continue
+                        final_value = refined_value
+                        matched_refinement = True
+                        if refined_value == "seizure_mention":
+                            final_field = "seizure_mention"
+                        break
                     if not matched_refinement:
                         # See the matching comment in TransformerStructurer._run
-                        # above - drop uncanonicalized side_effect spans
-                        # instead of surfacing an arbitrary word.
+                        # above - drop uncanonicalized or negated side_effect
+                        # spans instead of surfacing an arbitrary word.
                         continue
 
                 if final_field == "drug_mention" and span.lower() in _GENERIC_DRUG_TERMS:
-                    continue
-
-                # See the matching comment in TransformerStructurer._run above:
-                # negation only applies to symptom/seizure findings, not
-                # drug/test names.
-                abs_start = offset + int(ent.get("start") or 0)
-                if final_field in ("side_effect", "seizure_mention") and is_negated(text, abs_start):
                     continue
 
                 key = (final_field, final_value)

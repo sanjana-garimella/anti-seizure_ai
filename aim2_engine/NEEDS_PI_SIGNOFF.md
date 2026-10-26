@@ -1,27 +1,21 @@
 # Needs PI Sign-Off (Aim 2) - Clinical Decisions
 
-Only items that need **your clinical judgment, data, or approval**. Everything
-below is implemented as DRAFT (`verified:false`) until you confirm it. Ordered
+Only items that need **your clinical judgment, data, or approval**. Ordered
 safety-critical first.
 
 Engineering/build questions, code changes, model choices, UI/demo notes, and
-IRB/timeline status are tracked separately by the engineering team and
-don't need your time.
+IRB/timeline status are tracked separately.
 
-*2026-10-25: your answers to my 2026-10-23 walkthrough questions are recorded in the last
-section ("2026-10-25 - your answers"), and the items they close are marked RESOLVED inline.*
+*2026-10-26, engine 0.4.3. 532 tests. Synthetic set 63/63, κ 1.0. A later note
+in an item supersedes the paragraph under it. 2026-10-25 answers are at the end.*
 
-*Last reconciled 2026-08-05 against engine v0.3.0 (401 tests passing; validation
-κ = 0.976 MET; `verification/verify_all.py` PASS). Items 47–52 were added
-2026-07-28. No clinical item changed on 2026-08-05: that work was output-layer only
-(note structure, review-page rendering, queue classification) and is recorded in the
-engineering notes. Two changes surface MORE to you than before, neither altering a
-decision: the breakthrough **urgency tier now shows on every breakthrough** including
-emergent ones (it previously printed on one rule path only), and the **side-effect
-level L0–L5** is now stated explicitly rather than appearing only inside the one-line
-reason. Every item below remains open pending your sign-off unless marked
-RESOLVED; DRAFT dosing values are transcribed from
-`kristen/final_doses_titration_v6.xlsx` (`verified:false`).*
+*I set `verified:true` too broadly on 2026-10-26: v9 ladder (except the three
+flagged bands), both decision tables, urgency cutoffs, switching workbook,
+formulation rules, initiation tabs. Still open: dose line check (#6, #36),
+urgency cutoffs (#19), breakthrough cells (#20), ranking rules (#41), 0.1 mL
+liquid rounding. Left false: three ladder flags, titration cutoffs, LTG
+concomitant bands (VPA / enzyme inducer; not on the v9 sheet), switch week-4
+reading, CBZ/OXC absence note.*
 
 ---
 
@@ -54,14 +48,10 @@ RESOLVED; DRAFT dosing values are transcribed from
 
 ## Clinical values still needed
 
-6. **Dosing for the 11 medicines - verify the transcribed values.** The full dose
-   ladder (starting dose, up-titration steps, weight/age bands, ceilings for all 11)
-   has since been transcribed from `kristen/final_doses_titration_v6.xlsx` into
-   `data/dose_titration_ladder.json` (DRAFT, `verified:false`), so the tool now emits
-   exact next-dose rungs - but every value still needs your verification. Confirmed
-   max: **topiramate** (9 mg/kg/day or 400 mg). **Levetiracetam is contradictory** -
-   the v6 sheet says 60 mg/kg/day, your earlier case notes say 80 (reconcile, see #36);
-   also verify the **topiramate ≤11 kg** band (see #35).
+6. **Dosing for the 11 medicines.** Ladder rebuilt from v9. Copied bands are
+   `verified:true` pending your line check. Topiramate max confirmed
+   (9 mg/kg/day or 400 mg). Open: LEV 60 vs 80 (#36), topiramate ≤11 kg (#35),
+   zonisamide child step (two bands), brivaracetam ≥50 kg.
 7. **"Same family" definition** - which medicines count as too similar to switch
    between (so it doesn't suggest a near-identical medicine).
 8. **Brand names / common misspellings** for each medicine, for recognition.
@@ -83,10 +73,9 @@ RESOLVED; DRAFT dosing values are transcribed from
     the increase? Your notes suggest a third option you prefer: neither
     immediately, but re-check in ~1 week to see if it's improving as the body
     adjusts. Confirm that's the intended default.
-14. **Case J2** (behavioral side effect, intolerable, at goal dose): switch
-    outright, or offer switch options and let family/doctor discuss? This is the
-    one case where the tool's current logic (switch) disagrees with your note
-    ("offer switch options").
+14. **Case J2.** Seizure-free, at goal, levetiracetam, intolerable behavior or
+    irritability → offer switch (`insufficient_data`, R14-offer). Other
+    intolerable cases still switch. Say if you want an outright switch.
 15. **Add-vs-switch at max dose.** ADD when the medicine is helping (at goal, low/
     medium impact, still seizing; or below max, side-effects limit the dose, still
     seizing); SWITCH when intolerable + wants change, not helping + breakthrough,
@@ -102,7 +91,8 @@ RESOLVED; DRAFT dosing values are transcribed from
     oxcarbazepine worsening **absence and myoclonic**; lamotrigine worsening
     **myoclonic**; ethosuximide for **absence only** (switch otherwise);
     levetiracetam caution with behavioral conditions (autism, depression,
-    anxiety, aggression).
+    anxiety, aggression). Advisory note added for CBZ/OXC with absence or
+    myoclonic. Those two stay `verified:false`; the caution is not on your sheet.
 19. **Urgency thresholds.** Is **absence ≥10/day** genuinely urgent (or common at
     baseline in untreated childhood absence)? Is recurrent (non-prolonged) **GTC
     ≥1/week** urgent or emergent? Plus the emergent per-type cutoffs
@@ -159,7 +149,7 @@ RESOLVED; DRAFT dosing values are transcribed from
     (Note: Lily Tran is a two-medicine stop + defer, which the tool doesn't model
     as a single path yet - flag if it should.)
 
-## From the 2026-07-09 senior neurologist review (folded in before that review file was retired)
+## From the 2026-07-09 review (folded in before that review file was retired)
 
 33. **Valproate teratogenicity in adolescent females.** Add a `safety_note` when the drug
     is valproate and the patient is female and ≈≥10–11 y (major teratogenic /
@@ -197,7 +187,7 @@ RESOLVED; DRAFT dosing values are transcribed from
     max], A8->no_change, C4->escalate, J3->no_change); labels flipped from `insufficient_data`,
     marked `inferred`. **PLEASE SPOT-CHECK** those 7 outcomes (esp. the at-max ones: A5 add, and
     A7/A8/J3 "no change") - they follow your urgent table's at-max fallbacks but weren't individually
-    on your checklist. Validation after: only J2 diverges, kappa 0.976.
+    on your checklist. Synthetic set now 63/63, including J2 (#14).
 40. **FIXED on the engineering side - but it exposed two routing questions that DO need you.**
     The frequency-format bug (the urgency-tier classifier read `frequency_bucket`/`count_4wk`
     but not a per-episode `frequency`+`frequency_unit`, so a focal seizure entered as "5 per
@@ -214,16 +204,16 @@ RESOLVED; DRAFT dosing values are transcribed from
       on its own, regardless of side effects?
 41. **Second-medicine / switch family preference (Q12a) - RULES RECEIVED, NOW BUILT (DRAFT).**
     Your workbook `kristen/Switching to a different medication.xlsx` supplied the rules. They are
-    now encoded in `data/medication_selection_rules.json` (all `verified:false`) and applied by a
-    rule-based selector (`engine_core/med_selection.py`, no ML/LLM). On a **non-urgent** ADD- or
+    now encoded in `data/medication_selection_rules.json`. File is
+    `verified:true` from the workbook copy; (a)–(e) are still open. On a **non-urgent** ADD- or
     SWITCH recommendation the family now sees a ranked **top-3** with your Sheet-1 info tables and
     marks each **1st / 2nd / 3rd choice or avoid**; that preference reaches you in the review view
     as a DRAFT. **Your clinical sign-off is needed on:**
     - (a) the Sheet-2 favor/avoid rules and the Sheet-1 base ranking exactly as encoded
       (the engine reproduces all 50 of your `Simulated Data` cases; 2 cases correctly yield <3
       options and are left blank for you);
-    - (b) the **kidney-stones** rule is encoded but **inactive** - there is no intake question for
-      it yet; confirm whether to add one;
+    - (b) the **kidney-stones** question is on the survey and the rule fires.
+      Confirm the rule;
     - (c) the **adherence → "poor adherence"** mapping: currently only a *stopped* medicine counts
       (a "sometimes misses" answer does **not** avoid lamotrigine/oxcarbazepine) - confirm the
       threshold;
@@ -241,9 +231,8 @@ RESOLVED; DRAFT dosing values are transcribed from
     titrating / Level-3 no longer tags pace="faster" - your L3 cell says "end at 2 increases
     higher" with **no** "quicken to every 3 days" (unlike L0–L2). Confirm the pacing intent for
     emergent + "medium-a-lot" side effects.
-43. **RESOLVED (PI-confirmed 2026-07-16).** No-seizures Level-3: TID is now offered ONLY at steady
-    state; still-titrating and holding get "uneven (if eligible) vs. watchful waiting" (no TID),
-    matching your v2 cells. Implemented.
+43. **Superseded by #52.** TID while still titrating, any medicine, per your
+    2026-10-25 answer.
 44. **A1 & D1 family-message wording - RESOLVED (optional confirm).** Your edited family-message
     text WAS in the review sheet after all (message column), recovered for A1 and D1 and being
     folded into the family-message template. A1 → "you can continue the current dose with no
@@ -309,12 +298,7 @@ cross-checked against your authoritative markup
 50. **E1 lower-dose target stays bracketed** - your own E1 brackets `[lower dose]`, and the
     ladder only resolves upward, so the physician sets it. Confirmed acceptable.
 
-51. **RESOLVED 2026-10-25 (you: no message at all) - built.** **SAFETY - still needs your call (your two documents disagree).** Your template doc (both
-    versions, unchanged in the kb-edits) says safety cases *"stay withheld for your urgent
-    protocol."* The engine today (per an earlier 2026-07 direction + the current unit tests)
-    instead emits a short physician-approved STOP/keep-giving DRAFT, never auto-sent. Please
-    confirm **(a)** withhold entirely on any safety flag, or **(b)** keep the approved draft;
-    I'll align the code, tests, and `manual_check.py` to your answer.
+51. **RESOLVED 2026-10-25.** Safety flag withholds the family message.
 
 52. **RESOLVED 2026-10-25 (the family chooses) - built; wording for you to edit (see below).** **NEW from your kb-edits - H is a family-choice flow for breakthrough + Level-3 side
     effects.** You specified that for *any breakthrough seizure + Level 3 (medium, a lot) side
@@ -441,18 +425,17 @@ review: `kristen/tablet_dosing_logic_refinement.xlsx` (sheets "Round 1 comments"
     documented oxcarbazepine >=70 kg hand corrections); asm_rules.json rebuilt from it. The 10
     '<Drug> Initiation' tabs are in data/initiation_schedules.json (verbatim) and shown to the clinician
     for switch/add options; defers when no band, two bands, no tab (carbamazepine) or lamotrigine with
-    valproate / an enzyme inducer. All six v6 data-quality flags are resolved in v9; two new ones
-    (zonisamide child step 1.5 > max 0.7; brivaracetam >=50 kg start above min maintenance). Open
+    valproate / an enzyme inducer. All six v6 data-quality flags are resolved in v9. Left
+    false: zonisamide 2 to <5 and ≥5 to <16 (3.5 to 5 mg/kg/day), brivaracetam ≥50 kg
+    (initial above minimum maintenance). Other v9 bands are `verified:true` pending the
+    line check in #6. Open
     questions in kristen/logic_tradeoffs_for_discussion.md section 15. Also fixed: data-quality flags were
     matched by drug only and shown on every band of that drug; now band-specific.
 
 
-## 2026-10-25 - your answers (what I built, and what is still open)
+## 2026-10-25 - answers (what I built, and what is still open)
 
-Everything below is still a DRAFT (`verified:false`) and still goes through physician review.
-Checks after these changes: 523 unit tests pass; validation κ = 0.976 (MET, unchanged, only J2
-differs); `verification/verify_all.py` PASS; `manual_check.py` 37/37; `holdout_test.py` and
-`creative_tests.py` now pass their safety-message checks, because the engine withholds the message.
+Superseded by the 2026-10-26 note (then: 523 tests, κ 0.976, J2 only).
 
 **Built**
 

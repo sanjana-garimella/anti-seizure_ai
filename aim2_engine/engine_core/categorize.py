@@ -285,6 +285,8 @@ class PatientStatus:
     # Barbour 2026-06-25: breakthrough urgency tier (non_urgent | urgent |
     # emergent | None). Coarse mapping; selects the breakthrough decision table.
     breakthrough_tier: Optional[str] = None
+    # Q9 tokens, lowercased. Used by the J2 path (levetiracetam behavior at goal).
+    side_effect_tokens: List[str] = field(default_factory=list)
 
 
 def _severity(snapshot: IntervalSnapshot) -> tuple[SideEffectSeverity, bool]:
@@ -636,4 +638,7 @@ def categorize(snapshot: IntervalSnapshot, asm_rule: Optional[ASMRule] = None,
         dose_limited_by_se=bool(s.dose_limited_by_side_effects),
         min_goal_unreachable_by_se=bool(s.min_goal_unreachable_due_to_se),
         wants_switch=(s.family_preference == FamilyPreference.TRY_DIFFERENT_MED),
+        side_effect_tokens=[str(x).strip().lower()
+                            for x in (s.side_effects_present or [])
+                            if str(x).strip()],
     )

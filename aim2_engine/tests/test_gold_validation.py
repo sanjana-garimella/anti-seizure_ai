@@ -4,7 +4,7 @@ test_gold_validation.py
 Guards the gold-standard validation set (Dr. Barbour's reviewed A1-J10 cases,
 validation/gold_cases.json). Asserts the harness still meets the proposal's
 Cohen's kappa target and that the only engine/gold divergence is the one we
-have flagged for the PI (J2). Regenerates the cases from the builder so the
+recorded on case J2. Regenerates the cases from the builder so the
 test fails loudly if the encoded set drifts from the builder.
 
 Run:  python -m unittest discover -s tests
@@ -53,8 +53,8 @@ class TestGoldValidation(unittest.TestCase):
     def test_only_flagged_divergence(self):
         rep = run_validation(self.cases, asm_registry=self.reg, verbose=False)
         diverging = {r["label"].split()[0] for r in rep["rejections"]}
-        # J2 is the documented PI question (LEV behavioral SE: switch vs offer options).
-        self.assertEqual(diverging, {"J2"}, rep["rejections"])
+        # J2 follows Dr. Barbour's note on that case (offer switch options).
+        self.assertEqual(diverging, set(), rep["rejections"])
 
     def test_safety_cases_flag_concern(self):
         # The blistering/spreading-rash + seizure-emergency cases must raise a

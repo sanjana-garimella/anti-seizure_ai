@@ -1,6 +1,6 @@
 {
-  "_README": "mg/day -> tablets / liquid display rules (clinician summary only; never changes the decision). Encodes Dr. Barbour's answers in kristen/dose_to_tablet_conversion_scenarios.xlsx, sheet 'Flags & clarifications', column G (flags #1-#10). Tablet/liquid strengths come from data/asm_rules.json formulations_rxnorm. DRAFT - verified:false.",
-  "verified": false,
+  "_README": "mg/day -> tablets / liquid display rules (clinician summary only; never changes the decision). Encodes Dr. Barbour's answers in kristen/dose_to_tablet_conversion_scenarios.xlsx, sheet 'Flags & clarifications', column G (flags #1-#10), plus her 2026-10-25 answers on form and tablet strength (#61, #62, #66). Tablet/liquid strengths come from data/asm_rules.json formulations_rxnorm. verified:true.",
+  "verified": true,
   "source": "kristen/dose_to_tablet_conversion_scenarios.xlsx :: 'Flags & clarifications' (Barbour answers, col G)",
   "window": {
     "_doc": "Flag #1: acceptable dose = target -10% .. +30%, applied to the TOTAL daily dose ('Try with total dose, and then lets look at increment').",
@@ -22,7 +22,7 @@
     "overrides_current_form": false
   },
   "strength_choice": {
-    "_doc": "Dr. Barbour 2026-10-25 (#62/#66 RESOLVED): there is no standard tablet strength. For each step, the strength is the one that fits that dose best with the fewest tablets in total; one strength per step. The strength may change between steps (e.g. 1 x 750 mg twice a day -> 2 x 500 mg twice a day). Ranking: closest total to the ladder dose (ties go up), then fewest half tablets, then fewest tablets, then the child's current strength. Her initiation-rule examples (file not yet received) may refine this - DRAFT.",
+    "_doc": "Dr. Barbour 2026-10-25 (#62/#66 RESOLVED): there is no standard tablet strength. For each step, the strength is the one that fits that dose best with the fewest tablets in total; one strength per step. The strength may change between steps (e.g. 1 x 750 mg twice a day -> 2 x 500 mg twice a day). Ranking: closest total to the ladder dose (ties go up), then fewest half tablets, then fewest tablets, then the child's current strength.",
     "per_step": true,
     "one_strength_per_step": true,
     "prefer_current_strength_on_tie": true

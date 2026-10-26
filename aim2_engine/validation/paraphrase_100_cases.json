@@ -1,0 +1,6469 @@
+{
+  "_README": "Labels were fixed from the decision-table JSON (90 cases) or the written safety rule (10 probes) before run_engine. Caregiver sentences express that fact list. Lexicon F1 on the paraphrase slice is robustness to wording the word list does not contain. This is not chart-review validation.",
+  "n_cases": 100,
+  "cases": [
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 0,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "no_impact",
+        "Q11": "better"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": false,
+      "case_id": "P001",
+      "wording_style": "negation",
+      "free_text": "He has been eating and sleeping normally. No rash and no dizziness. Still giving levetiracetam.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 0,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 1,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ]
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": false,
+      "case_id": "P002",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 1,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 2,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ]
+      },
+      "gold_category": "slower_uptitration",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": false,
+      "case_id": "P003",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "slower_uptitration",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 2,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 3,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ]
+      },
+      "gold_category": "hold",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": false,
+      "case_id": "P004",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "hold",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 3,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 4,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ]
+      },
+      "gold_category": "lower_dose",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": false,
+      "case_id": "P005",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "lower_dose",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 4,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 5,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": false,
+      "case_id": "P006",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 5,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 0,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": false,
+      "case_id": "P007",
+      "wording_style": "negation",
+      "free_text": "He has been eating and sleeping normally. No rash and no dizziness. Still giving levetiracetam.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 0,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 1,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": false,
+      "case_id": "P008",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 1,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 2,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": false,
+      "case_id": "P009",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 2,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 3,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "hold",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": false,
+      "case_id": "P010",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "hold",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 3,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 4,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "lower_dose",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": false,
+      "case_id": "P011",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "lower_dose",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 4,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 5,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": false,
+      "case_id": "P012",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 5,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 0,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": false,
+      "case_id": "P013",
+      "wording_style": "negation",
+      "free_text": "He has been eating and sleeping normally. No rash and no dizziness. Still giving levetiracetam.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 0,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 1,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": false,
+      "case_id": "P014",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 1,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 2,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": false,
+      "case_id": "P015",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 2,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 3,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "hold",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": false,
+      "case_id": "P016",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "hold",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 3,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 4,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "lower_dose",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": false,
+      "case_id": "P017",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "lower_dose",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 4,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 5,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": false,
+      "case_id": "P018",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 5,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 0,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "no_impact",
+        "Q11": "better"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": false,
+      "case_id": "P019",
+      "wording_style": "negation",
+      "free_text": "He has been eating and sleeping normally. No rash and no dizziness. Still giving levetiracetam.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 0,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 1,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ]
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": false,
+      "case_id": "P020",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 1,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 2,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ]
+      },
+      "gold_category": "slower_uptitration",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": false,
+      "case_id": "P021",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "slower_uptitration",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 2,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 3,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ]
+      },
+      "gold_category": "hold",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": false,
+      "case_id": "P022",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "hold",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 3,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 4,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ]
+      },
+      "gold_category": "lower_dose",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": false,
+      "case_id": "P023",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "lower_dose",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 4,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "titrating",
+      "level": 5,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": false,
+      "case_id": "P024",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 5,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 0,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": false,
+      "case_id": "P025",
+      "wording_style": "negation",
+      "free_text": "He has been eating and sleeping normally. No rash and no dizziness. Still giving levetiracetam.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 0,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 1,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": false,
+      "case_id": "P026",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 1,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 2,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": false,
+      "case_id": "P027",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 2,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 3,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "hold",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": false,
+      "case_id": "P028",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "hold",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 3,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 4,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "lower_dose",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": false,
+      "case_id": "P029",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "lower_dose",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 4,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "holding",
+      "level": 5,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10c_time": "under_2_weeks"
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": false,
+      "case_id": "P030",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 5,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 0,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": false,
+      "case_id": "P031",
+      "wording_style": "negation",
+      "free_text": "He has been eating and sleeping normally. No rash and no dizziness. Still giving levetiracetam.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 0,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 1,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": false,
+      "case_id": "P032",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 1,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 2,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": false,
+      "case_id": "P033",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 2,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 3,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "hold",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": false,
+      "case_id": "P034",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "hold",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 3,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 4,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "lower_dose",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": false,
+      "case_id": "P035",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "lower_dose",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 4,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "no_seizures",
+      "phase": "steady",
+      "level": 5,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 40,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q10a": "at_goal",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10c_time": "over_2_weeks"
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": false,
+      "case_id": "P036",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "NS",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 5,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 0,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": true,
+      "case_id": "P037",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 0,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 1,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": true,
+      "case_id": "P038",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 1,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 2,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": true,
+      "case_id": "P039",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 2,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 3,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "hold",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": true,
+      "case_id": "P040",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "hold",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 3,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 4,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "add_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": true,
+      "case_id": "P041",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "add_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 4,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 5,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": true,
+      "case_id": "P042",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 5,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 0,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "no_change",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": true,
+      "case_id": "P043",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "no_change",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 0,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 1,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": true,
+      "case_id": "P044",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 1,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 2,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": true,
+      "case_id": "P045",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 2,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 3,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "hold",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": true,
+      "case_id": "P046",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "hold",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 3,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 4,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "add_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": true,
+      "case_id": "P047",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "add_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 4,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 5,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": true,
+      "case_id": "P048",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 5,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 0,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": true,
+      "case_id": "P049",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 0,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 1,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": true,
+      "case_id": "P050",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 1,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 2,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": true,
+      "case_id": "P051",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 2,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 3,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": true,
+      "case_id": "P052",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 3,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 4,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "add_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": true,
+      "case_id": "P053",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "add_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 4,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 5,
+      "tier": "non_urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "under_20s",
+            "frequency_bucket": "monthly"
+          }
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": true,
+      "case_id": "P054",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 5,
+        "tier": "non_urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 0,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": true,
+      "case_id": "P055",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 0,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 1,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": true,
+      "case_id": "P056",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 1,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 2,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": true,
+      "case_id": "P057",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 2,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 3,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": true,
+      "case_id": "P058",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 3,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 4,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "add_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": true,
+      "case_id": "P059",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "add_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 4,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 5,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": true,
+      "case_id": "P060",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 5,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 0,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": true,
+      "case_id": "P061",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 0,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 1,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": true,
+      "case_id": "P062",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 1,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 2,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": true,
+      "case_id": "P063",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 2,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 3,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": true,
+      "case_id": "P064",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 3,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 4,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "add_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": true,
+      "case_id": "P065",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "add_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 4,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 5,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": true,
+      "case_id": "P066",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 5,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 0,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": true,
+      "case_id": "P067",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 0,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 1,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": true,
+      "case_id": "P068",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 1,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 2,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": true,
+      "case_id": "P069",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 2,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 3,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": true,
+      "case_id": "P070",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 3,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 4,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "add_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": true,
+      "case_id": "P071",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "add_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 4,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 5,
+      "tier": "urgent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "3_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": true,
+      "case_id": "P072",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 5,
+        "tier": "urgent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 0,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": true,
+      "case_id": "P073",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 0,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 1,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": true,
+      "case_id": "P074",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 1,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 2,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": true,
+      "case_id": "P075",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 2,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 3,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": true,
+      "case_id": "P076",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 3,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 4,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "add_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": true,
+      "case_id": "P077",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "add_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 4,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "titrating",
+      "level": 5,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": true,
+      "case_id": "P078",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "BT",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": 5,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 0,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": true,
+      "case_id": "P079",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 0,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 1,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": true,
+      "case_id": "P080",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 1,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 2,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": true,
+      "case_id": "P081",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 2,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 3,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": true,
+      "case_id": "P082",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 3,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 4,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "add_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": true,
+      "case_id": "P083",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "add_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 4,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "holding",
+      "level": 5,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10c_time": "under_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": true,
+      "case_id": "P084",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "BT",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "holding",
+        "level": 5,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 0,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "no_impact",
+        "Q11": "better",
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": null,
+      "breakthrough": true,
+      "case_id": "P085",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 0,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 1,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "small",
+        "Q11": "better",
+        "Q9": [
+          "sleepiness"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "sleepiness",
+      "breakthrough": true,
+      "case_id": "P086",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been drowsy and tired since the last visit. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 1,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "sleepiness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 2,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_tolerable",
+        "Q11": "better",
+        "Q9": [
+          "dizziness"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "dizziness",
+      "breakthrough": true,
+      "case_id": "P087",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. The room spins when he gets out of bed. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 2,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "dizziness"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 3,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "medium_alot",
+        "Q11": "better",
+        "Q9": [
+          "irritability"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "irritability",
+      "breakthrough": true,
+      "case_id": "P088",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. She has been irritable and cranky in the afternoons. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 3,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "irritability"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 4,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "big",
+        "Q11": "better",
+        "Q9": [
+          "nausea"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "add_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "nausea",
+      "breakthrough": true,
+      "case_id": "P089",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. His stomach turns and he leaves most of the plate. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ],
+      "engine_category": "add_medication",
+      "engine_rule": "BT",
+      "safety_flag": false,
+      "family_message_present": true,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 4,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "nausea"
+        ]
+      ]
+    },
+    {
+      "kind": "breakthrough",
+      "phase": "steady",
+      "level": 5,
+      "tier": "emergent",
+      "age_years": 8,
+      "weight_kg": 30,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "at_goal",
+        "Q10b_impact": "not_a_fit",
+        "Q11": "better",
+        "Q9": [
+          "behavior"
+        ],
+        "Q10c_time": "over_2_weeks",
+        "Q4": [
+          "focal"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "focal"
+            ],
+            "duration": "over_5min",
+            "frequency_bucket": "weekly"
+          }
+        ]
+      },
+      "gold_category": "switch_medication",
+      "label_source": "decision table JSON, read before run_engine",
+      "expect_safety": false,
+      "symptom": "behavior",
+      "breakthrough": true,
+      "case_id": "P090",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He has been aggressive and hyper at school. She had a seizure yesterday.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "BT",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "steady",
+        "level": 5,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ],
+        [
+          "side_effect",
+          "behavior"
+        ]
+      ]
+    },
+    {
+      "kind": "safety_rash",
+      "phase": null,
+      "level": null,
+      "tier": null,
+      "age_years": 8,
+      "weight_kg": 28,
+      "drug": "lamotrigine",
+      "dose_amount": 25,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      },
+      "gold_category": "switch_medication",
+      "label_source": "R0 spec: blistering rash -> stop and switch, withhold the family message",
+      "expect_safety": true,
+      "symptom": "rash",
+      "breakthrough": false,
+      "case_id": "P091",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. Red patches and open sores showed up on his cheeks.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "rash"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "R0",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": null,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "rash"
+        ]
+      ]
+    },
+    {
+      "kind": "safety_rash",
+      "phase": null,
+      "level": null,
+      "tier": null,
+      "age_years": 9,
+      "weight_kg": 28,
+      "drug": "lamotrigine",
+      "dose_amount": 25,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      },
+      "gold_category": "switch_medication",
+      "label_source": "R0 spec: blistering rash -> stop and switch, withhold the family message",
+      "expect_safety": true,
+      "symptom": "rash",
+      "breakthrough": false,
+      "case_id": "P092",
+      "wording_style": "lexical",
+      "free_text": "Still giving lamotrigine twice a day. He broke out in a rash with blisters.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "lamotrigine"
+        ],
+        [
+          "side_effect",
+          "rash"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "R0",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": null,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "lamotrigine"
+        ],
+        [
+          "side_effect",
+          "rash"
+        ]
+      ]
+    },
+    {
+      "kind": "safety_rash",
+      "phase": null,
+      "level": null,
+      "tier": null,
+      "age_years": 10,
+      "weight_kg": 28,
+      "drug": "lamotrigine",
+      "dose_amount": 25,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      },
+      "gold_category": "switch_medication",
+      "label_source": "R0 spec: blistering rash -> stop and switch, withhold the family message",
+      "expect_safety": true,
+      "symptom": "rash",
+      "breakthrough": false,
+      "case_id": "P093",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. Red patches and open sores showed up on his cheeks.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "rash"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "R0",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": null,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "rash"
+        ]
+      ]
+    },
+    {
+      "kind": "safety_rash",
+      "phase": null,
+      "level": null,
+      "tier": null,
+      "age_years": 11,
+      "weight_kg": 28,
+      "drug": "lamotrigine",
+      "dose_amount": 25,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      },
+      "gold_category": "switch_medication",
+      "label_source": "R0 spec: blistering rash -> stop and switch, withhold the family message",
+      "expect_safety": true,
+      "symptom": "rash",
+      "breakthrough": false,
+      "case_id": "P094",
+      "wording_style": "lexical",
+      "free_text": "Still giving lamotrigine twice a day. He broke out in a rash with blisters.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "lamotrigine"
+        ],
+        [
+          "side_effect",
+          "rash"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "R0",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": null,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "lamotrigine"
+        ],
+        [
+          "side_effect",
+          "rash"
+        ]
+      ]
+    },
+    {
+      "kind": "safety_rash",
+      "phase": null,
+      "level": null,
+      "tier": null,
+      "age_years": 12,
+      "weight_kg": 28,
+      "drug": "lamotrigine",
+      "dose_amount": 25,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      },
+      "gold_category": "switch_medication",
+      "label_source": "R0 spec: blistering rash -> stop and switch, withhold the family message",
+      "expect_safety": true,
+      "symptom": "rash",
+      "breakthrough": false,
+      "case_id": "P095",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. Red patches and open sores showed up on his cheeks.",
+      "gold_entities": [
+        [
+          "side_effect",
+          "rash"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "R0",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": null,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "side_effect",
+          "rash"
+        ]
+      ]
+    },
+    {
+      "kind": "safety_rash",
+      "phase": null,
+      "level": null,
+      "tier": null,
+      "age_years": 13,
+      "weight_kg": 28,
+      "drug": "lamotrigine",
+      "dose_amount": 25,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "no",
+        "Q9": [
+          "rash"
+        ],
+        "Q9a": "blisters",
+        "Q10a": "still_increasing",
+        "Q11": "better"
+      },
+      "gold_category": "switch_medication",
+      "label_source": "R0 spec: blistering rash -> stop and switch, withhold the family message",
+      "expect_safety": true,
+      "symptom": "rash",
+      "breakthrough": false,
+      "case_id": "P096",
+      "wording_style": "lexical",
+      "free_text": "Still giving lamotrigine twice a day. He broke out in a rash with blisters.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "lamotrigine"
+        ],
+        [
+          "side_effect",
+          "rash"
+        ]
+      ],
+      "engine_category": "switch_medication",
+      "engine_rule": "R0",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": null,
+        "tier": null
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "lamotrigine"
+        ],
+        [
+          "side_effect",
+          "rash"
+        ]
+      ]
+    },
+    {
+      "kind": "safety_prolonged",
+      "phase": null,
+      "level": null,
+      "tier": null,
+      "age_years": 9,
+      "weight_kg": 32,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q11": "better",
+        "Q4": [
+          "whole_body"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "whole_body"
+            ],
+            "duration": "over_3min",
+            "frequency": 1,
+            "frequency_unit": "per_week"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "R0b spec: whole-body over 3 min while the medicine is helping -> escalate, withhold the family message",
+      "expect_safety": true,
+      "symptom": null,
+      "breakthrough": true,
+      "prolonged": true,
+      "case_id": "P097",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "R0b",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": null,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "safety_prolonged",
+      "phase": null,
+      "level": null,
+      "tier": null,
+      "age_years": 9,
+      "weight_kg": 32,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q11": "better",
+        "Q4": [
+          "whole_body"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "whole_body"
+            ],
+            "duration": "over_3min",
+            "frequency": 1,
+            "frequency_unit": "per_week"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "R0b spec: whole-body over 3 min while the medicine is helping -> escalate, withhold the family message",
+      "expect_safety": true,
+      "symptom": null,
+      "breakthrough": true,
+      "prolonged": true,
+      "case_id": "P098",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He had a whole body shaking seizure for several minutes.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "R0b",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": null,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "safety_prolonged",
+      "phase": null,
+      "level": null,
+      "tier": null,
+      "age_years": 9,
+      "weight_kg": 32,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q11": "better",
+        "Q4": [
+          "whole_body"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "whole_body"
+            ],
+            "duration": "over_3min",
+            "frequency": 1,
+            "frequency_unit": "per_week"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "R0b spec: whole-body over 3 min while the medicine is helping -> escalate, withhold the family message",
+      "expect_safety": true,
+      "symptom": null,
+      "breakthrough": true,
+      "prolonged": true,
+      "case_id": "P099",
+      "wording_style": "paraphrase",
+      "free_text": "Still giving the medicine twice a day. She went stiff and was not responding for a short time.",
+      "gold_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "R0b",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": null,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    },
+    {
+      "kind": "safety_prolonged",
+      "phase": null,
+      "level": null,
+      "tier": null,
+      "age_years": 9,
+      "weight_kg": 32,
+      "drug": "levetiracetam",
+      "dose_amount": 250,
+      "answers": {
+        "Q2": "almost_never",
+        "Q3": "yes",
+        "Q10a": "still_increasing",
+        "Q11": "better",
+        "Q4": [
+          "whole_body"
+        ],
+        "seizure_episodes": [
+          {
+            "look": [
+              "whole_body"
+            ],
+            "duration": "over_3min",
+            "frequency": 1,
+            "frequency_unit": "per_week"
+          }
+        ]
+      },
+      "gold_category": "escalate",
+      "label_source": "R0b spec: whole-body over 3 min while the medicine is helping -> escalate, withhold the family message",
+      "expect_safety": true,
+      "symptom": null,
+      "breakthrough": true,
+      "prolonged": true,
+      "case_id": "P100",
+      "wording_style": "lexical",
+      "free_text": "Still giving levetiracetam twice a day. He had a whole body shaking seizure for several minutes.",
+      "gold_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ],
+      "engine_category": "escalate",
+      "engine_rule": "R0b",
+      "safety_flag": true,
+      "family_message_present": false,
+      "requires_physician_review": true,
+      "landed": {
+        "phase": "titrating",
+        "level": null,
+        "tier": "emergent"
+      },
+      "lexicon_entities": [
+        [
+          "drug_mention",
+          "levetiracetam"
+        ],
+        [
+          "seizure_mention",
+          "seizure_reported"
+        ]
+      ]
+    }
+  ]
+}

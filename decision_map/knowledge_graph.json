@@ -482,7 +482,7 @@
       "label": "No-Seizures table",
       "type": "table",
       "layer": 4,
-      "detail": "Action by phase x level when seizure-free. verified=False",
+      "detail": "Action by phase x level when seizure-free. verified=True",
       "x": 1500,
       "y": -138.0
     },
@@ -491,7 +491,7 @@
       "label": "Breakthrough · non-urgent",
       "type": "table",
       "layer": 4,
-      "detail": "titrating: stay | stay | stay | hold | add med | switch\nholding: stay | increase | increase | hold | add med | switch\nsteady: increase | increase | increase | increase | add med | switch\nverified=False",
+      "detail": "titrating: stay | stay | stay | hold | add med | switch\nholding: stay | increase | increase | hold | add med | switch\nsteady: increase | increase | increase | increase | add med | switch\nverified=True",
       "x": 1500,
       "y": -92.0
     },
@@ -500,7 +500,7 @@
       "label": "Breakthrough · urgent",
       "type": "table",
       "layer": 4,
-      "detail": "titrating: increase | increase | increase | increase | add med | switch\nholding: increase | increase | increase | increase | add med | switch\nsteady: increase | increase | increase | increase | add med | switch\nverified=False",
+      "detail": "titrating: increase | increase | increase | increase | add med | switch\nholding: increase | increase | increase | increase | add med | switch\nsteady: increase | increase | increase | increase | add med | switch\nverified=True",
       "x": 1500,
       "y": -46.0
     },
@@ -509,7 +509,7 @@
       "label": "Breakthrough · emergent",
       "type": "table",
       "layer": 4,
-      "detail": "titrating: increase | increase | increase | increase | add med | switch\nholding: increase | increase | increase | increase | add med | switch\nsteady: increase | increase | increase | increase | add med | switch\nverified=False",
+      "detail": "titrating: increase | increase | increase | increase | add med | switch\nholding: increase | increase | increase | increase | add med | switch\nsteady: increase | increase | increase | increase | add med | switch\nverified=True",
       "x": 1500,
       "y": 0.0
     },
@@ -518,7 +518,7 @@
       "label": "Urgency thresholds",
       "type": "table",
       "layer": 4,
-      "detail": "Per seizure-type duration/frequency cutoffs -> breakthrough tier. verified=False",
+      "detail": "Per seizure-type duration/frequency cutoffs -> breakthrough tier. verified=True",
       "x": 1500,
       "y": 46.0
     },
@@ -644,7 +644,7 @@
       "label": "Oxcarbazepine",
       "type": "drug",
       "layer": 4,
-      "detail": "Oxcarbazepine (Trileptal)\nSJS risk: True\nHyponatremia; rash with HLA-B*1502 cross-reactivity. Spreading/blistering rash -> stop + switch.",
+      "detail": "Oxcarbazepine (Trileptal)\nSJS risk: True\nHyponatremia; rash with HLA-B*1502 cross-reactivity. Spreading/blistering rash -> stop + switch. May aggravate absence and myoclonic seizures.",
       "x": 1800,
       "y": -115.0
     },
@@ -725,7 +725,7 @@
       "label": "Carbamazepine",
       "type": "drug",
       "layer": 4,
-      "detail": "Carbamazepine (Tegretol)\nSJS risk: True\nSerious rash (SJS/TEN), esp. with HLA-B*1502 (Southeast/East Asian ancestry). Hyponatremia; blood dyscrasias; enzyme inducer.",
+      "detail": "Carbamazepine (Tegretol)\nSJS risk: True\nSerious rash (SJS/TEN), esp. with HLA-B*1502 (Southeast/East Asian ancestry). Hyponatremia; blood dyscrasias; enzyme inducer. May aggravate absence and myoclonic seizures.",
       "x": 1800,
       "y": -69.0
     },
@@ -1618,19 +1618,13 @@
     },
     {
       "source": "tbl_bt_non_urgent",
-      "target": "cat_add_medication",
-      "rel": "yields",
-      "minor": false
-    },
-    {
-      "source": "tbl_bt_non_urgent",
-      "target": "cat_switch_medication",
-      "rel": "yields",
-      "minor": false
-    },
-    {
-      "source": "tbl_bt_non_urgent",
       "target": "cat_no_change",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "cat_escalate",
       "rel": "yields",
       "minor": false
     },
@@ -1642,7 +1636,13 @@
     },
     {
       "source": "tbl_bt_non_urgent",
-      "target": "cat_escalate",
+      "target": "cat_switch_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "cat_add_medication",
       "rel": "yields",
       "minor": false
     },
@@ -1708,13 +1708,13 @@
     },
     {
       "source": "tbl_bt_urgent",
-      "target": "cat_no_change",
+      "target": "cat_switch_medication",
       "rel": "yields",
       "minor": false
     },
     {
       "source": "tbl_bt_urgent",
-      "target": "cat_switch_medication",
+      "target": "cat_escalate",
       "rel": "yields",
       "minor": false
     },
@@ -1726,7 +1726,7 @@
     },
     {
       "source": "tbl_bt_urgent",
-      "target": "cat_escalate",
+      "target": "cat_no_change",
       "rel": "yields",
       "minor": false
     },
@@ -1798,13 +1798,13 @@
     },
     {
       "source": "tbl_bt_emergent",
-      "target": "cat_add_medication",
+      "target": "cat_escalate",
       "rel": "yields",
       "minor": false
     },
     {
       "source": "tbl_bt_emergent",
-      "target": "cat_escalate",
+      "target": "cat_add_medication",
       "rel": "yields",
       "minor": false
     },

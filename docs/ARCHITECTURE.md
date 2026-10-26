@@ -32,8 +32,8 @@ the folder is a git repository (consolidated to one commit on 2026-10-23); the
 
 ```
 Clinician-supplied dosing tables          Between-visit survey answers
-(data/asm_rules.json - 11 DRAFT drugs,    (§7 question codes, from Aim 1 platform)
- verified:false, pending PI sign-off)
+(data/asm_rules.json, verified per file;    (§7 question codes, from Aim 1 platform)
+ open items in NEEDS_PI_SIGNOFF.md)
           │                                           │
           ▼                                           ▼
   engine_core/asm_rules.py             engine_core/snapshot.py
@@ -144,26 +144,26 @@ After the decision is made:
 | `engine_core/titration_config.py` | Loader for the numeric thresholds + urgency config |
 | `engine_core/formulation.py` | Converts ladder doses to tablet counts or liquid mL (age rule, one tablet strength, -10%/+30% window, never above the absolute max); rules in `data/formulation_rules.json` |
 | `engine_core/initiation.py` | Week-by-week starting schedule for a switch/add medicine from the PI's v9 "Initiation" tabs (`data/initiation_schedules.json`); defers on no band, two bands, or a missing tab |
-| `engine_core/version.py` | `ENGINE_VERSION` (currently `0.3.0`) |
+| `engine_core/version.py` | `ENGINE_VERSION` (currently `0.4.3`) |
 | `engine_core/asm_rules.py` | `ASMRule` dataclass + JSON loader |
-| `data/asm_rules.json` | **Clinician-supplied dosing** - 11 DRAFT drugs (`verified:false`), built by `_build_asm_rules.py`, pending PI sign-off |
+| `data/asm_rules.json` | Clinician-supplied dosing, 11 drugs, built by `_build_asm_rules.py`. Drug-level `verified` is false for LTG concomitant bands, the three ladder flags, and CBZ/OXC |
 | `data/asm_rules.template.json` | Blank template for the PI to fill |
 | `data/titration_thresholds.json` | Numeric thresholds referenced by rules |
-| `data/no_seizures_decision_table.json` | **Barbour 2026-06-25** seizure-free action grid (phase × side-effect level), `verified:false` |
-| `data/breakthrough_decision_tables.json` | **Barbour 2026-06-25** breakthrough tables (non_urgent/urgent/emergent × phase × level), `verified:false` |
-| `data/breakthrough_urgency_thresholds.json` | **Barbour 2026-06-25** per-seizure-type urgency cutoffs (duration s + frequency) |
-| `data/dose_titration_ladder.json` | The exact per-band dose rungs from `kristen/final_doses_titration_v9.xlsx`, built by `_build_dose_ladder.py`, `verified:false`; `data_quality_flags` mark suspected source copy-errors (band-specific) |
-| `data/medication_selection_rules.json` | 9 ranked medicines + 21 favor/avoid rules from `kristen/Switching to a different medication.xlsx`, `verified:false` (kidney-stones rule encoded but inactive) |
-| `validation/harness.py` | Cohen's κ runner (+ weighted κ/PABAK/macro-F1 via metrics.py); default = gold set (κ = 0.976) |
+| `data/no_seizures_decision_table.json` | Seizure-free action grid (phase × side-effect level). File `verified:true` |
+| `data/breakthrough_decision_tables.json` | Breakthrough tables (urgency × phase × level). File `verified:true`; cell sign-off is #20 |
+| `data/breakthrough_urgency_thresholds.json` | Per-seizure-type urgency cutoffs. File `verified:true`; meaning of the cutoffs is #19 |
+| `data/dose_titration_ladder.json` | Per-band rungs from `kristen/final_doses_titration_v9.xlsx`. File `verified:true`; three `data_quality_flags` stay false |
+| `data/medication_selection_rules.json` | Ranked medicines + favor/avoid rules from `kristen/Switching to a different medication.xlsx`. File `verified:true`; #41(a)–(e) open. Kidney-stones rule is active |
+| `validation/harness.py` | Cohen's κ runner (+ weighted κ/PABAK/macro-F1 via metrics.py); default = gold set (κ = 1.0, 63/63) |
 | `validation/metrics.py` | Stdlib metrics toolkit: weighted κ, PABAK, macro P/R/F1, safety sens/spec/FNR + Wilson CIs, Bland-Altman/ICC, bootstrap, Fisher, McNemar (self-test) |
 | `validation/holdout_test.py` | Held-out generalization (independent spec-oracle - passes) + stress/fuzz over ~4,000 malformed inputs. The fuzz half reports **0 crashes** and **0 safety message leaks** (the engine withholds the family message on a safety flag, `NEEDS_PI_SIGNOFF.md` #51, decided 2026-10-25) |
 | `validation/creative_tests.py` | Metamorphic/invariant properties + adversarial clinical traps + exact-boundary checks. Currently **14/14** |
 | `validation/confusion_analysis.py` | Safety-flag + recommendation confusion matrices vs the answer key. Fixed 2026-09-30 (reads the key from `validation/private/`) |
-| `validation/gold_cases.json` | Gold-standard labels (Dr. Barbour's picks on the 63 synthetic cases - not a held-out chart review) |
-| `verification/verify_all.py` | Independent proof suite: re-derives the ASM rules + ladder from source, runs red-team safety cases, writes `verification/artifacts/`. Currently **PASS** (0 FAIL; 19 + 2 WARN; 0 must-catch misses) |
+| `validation/gold_cases.json` | Dr. Barbour's labels on the 63 synthetic cases |
+| `verification/verify_all.py` | Independent proof suite: re-derives the ASM rules + ladder from source, runs red-team safety cases, writes `verification/artifacts/`. Re-run 2026-10-26: **PASS** (asm_rules 0 FAIL / 19 WARN; ladder 0 FAIL / 0 WARN / 17 INFO; red-team 0 misses, 0 false alarms) |
 | `clinic.py` / `clinic_store.py` | Local stdlib web app (doctor queue, family check-in, review + approval) and its SQLite layer. JS-free by design under a strict CSP |
 | `manual_check.py` | One-command confirm of the recent changes (37 scenarios; **37/37**) |
-| `tests/` | 499 offline unit tests across 25 files (stdlib only; transformer tests self-skip without torch) |
+| `tests/` | 532 offline unit tests (stdlib only; transformer tests self-skip without torch) |
 | `tools/regen_notes.py` | Refreshes the **cached** `/review` notes after an engine or output-format change (the page renders stored text, not a fresh run). Dry-run default; preserves the family draft; refuses to rewrite a row unless the rebuild reproduces the stored dose + category |
 | `tools/seed_demo_queue.py` | Shapes the demo queue: one submission per patient, 3-4 worked examples per category including emergent. Rows are produced by running the real engine, never hand-written |
 
@@ -191,10 +191,10 @@ After the decision is made:
 ```bash
 cd aim2_engine
 
-# Run all tests  (expect: Ran 499 tests ... OK)
+# Run all tests  (expect: Ran 532 tests ... OK)
 python3 -m unittest discover -s tests
 
-# Run validation (Cohen's κ) - no-arg default = gold set, expect κ = 0.976, MET
+# Run validation (Cohen's κ) - no-arg default = gold set, expect κ = 1.0, MET
 python3 validation/harness.py
 
 # Run the independent proof suite  (expect: RESULT: PASS)
@@ -215,12 +215,43 @@ rule-based decision path is in `NEUROSYMBOLIC_RATIONALE.md`.
 
 See `../aim2_engine/NEEDS_PI_SIGNOFF.md` for the full checklist. Short version:
 
-1. PI verifies/corrects the 11 DRAFT drugs in `data/asm_rules.json` (all
-   `verified:false`). Use `OFFICIAL_FDA_DOSING_REFERENCE.md` (FDA-label
+1. She signs the open items in `../aim2_engine/NEEDS_PI_SIGNOFF.md` (#6, #19,
+   #20, #41). Use `OFFICIAL_FDA_DOSING_REFERENCE.md` (FDA-label
    numbers + the DRAFT-vs-label discrepancies) as the worksheet.
-2. Replace provisional validation labels with real chart-review gold standard.
+2. Chart-review labels. Current κ 1.0 is the synthetic set.
 3. IRB + institutional security sign-off before any real patient data.
 4. Aim 1 integration: map real survey submissions → `IntervalSnapshot` (contract in `DATA_CONTRACT.md`).
+
+## Check-in flow
+
+```mermaid
+flowchart TD
+  q["Age, weight, medicine, times a day, dose"]
+  q --> sz["Seizures: how long, how many, more / same / fewer, triggers"]
+  q --> goal["Goal dose"]
+  goal --> tit["Still increasing: titrating"]
+  goal --> holding["At goal, under 2 weeks: holding"]
+  goal --> steady["At goal, 2 weeks or time not given: steady"]
+  q --> se["Side effects, impact 0 to 5"]
+  q --> form["Display: keep the reported pill or liquid. Unknown form uses tablets above age 10"]
+
+  sz --> decide["Decision"]
+  tit --> decide
+  holding --> decide
+  steady --> decide
+  se --> decide
+
+  decide -->|"seizure-free and level 3"| l3free["Uneven, TID, or watch and wait"]
+  decide -->|"breakthrough cell offers a dosing choice"| l3bt["Uneven, TID, watch and wait, or lower and add"]
+  decide -->|"add or switch, and no safety flag"| prefs["Already tried, avoid labs, mood, behaviour, night sleep, migraine, Southeast Asian or Han, health conditions"]
+  prefs --> top3["Top 3"]
+  top3 --> parent["Parent: 1st, 2nd, 3rd, or avoid"]
+  parent --> rank["Rank in the clinician summary"]
+
+  decide --> summary["Clinician summary"]
+  summary -->|"no safety flag"| draft["Family draft"]
+  summary -->|"safety flag"| none["No family message"]
+```
 
 ## How one check-in is processed
 

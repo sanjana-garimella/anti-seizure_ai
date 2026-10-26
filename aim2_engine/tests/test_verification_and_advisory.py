@@ -117,11 +117,18 @@ class TestRedTeam(unittest.TestCase):
         self.assertEqual(summary["must_catch_misses"], 0,
                          "a must-catch danger phrase was missed")
 
-    def test_suite_actually_probes_leaks(self):
-        # The suite is only useful if it still contains failing (leak) cases to
-        # track; assert it reports the known non-fatal hardening targets.
+    def test_former_leaks_now_flag(self):
         summary = RT.run(RT.LexiconRedFlagDetector())
-        self.assertGreater(summary["misses"], 0)
+        self.assertEqual(summary["misses"], 0, summary["results"])
+        self.assertEqual(summary["false_alarms"], 0, summary["results"])
+        by_text = {r["text"]: r for r in summary["results"]}
+        for text in (
+            "she is no longer breathing well",
+            "she has s.j.s per the ER",
+            "b l i s t e r s forming on his mouth",
+        ):
+            self.assertEqual(by_text[text]["status"], "OK", by_text[text])
+            self.assertTrue(by_text[text]["fired"], by_text[text])
 
 
 if __name__ == "__main__":

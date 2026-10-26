@@ -555,8 +555,11 @@ def build_clinical_summary(
             # that leaves the app. So it moves to a single note-level footnote
             # instead of repeating under every value (the same "say it once"
             # principle already applied to the /review page's draft badges).
-            note.footnote("Dose range and maximum are DRAFT, unverified values from "
-                          "Dr. Barbour's dosing table; the clinician confirms them.")
+            if ref.get("verified"):
+                note.footnote("Dose range and maximum are from Dr. Barbour's dosing table.")
+            else:
+                note.footnote("Dose range and maximum are DRAFT, unverified values from "
+                              "Dr. Barbour's dosing table; the clinician confirms them.")
         # #9 headroom cue: is a switch premature? Show whether the current dose
         # still has room to climb toward the usual effective max, or is at/above
         # it (escalation nearly exhausted -> a switch or add-on is reasonable).

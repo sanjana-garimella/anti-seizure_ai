@@ -188,8 +188,10 @@ def _safety_notes(status: PatientStatus) -> List[str]:
             f"maximum for this child ({status.ceiling_mg_per_day:g} mg/day). Verify the entry; the "
             "engine will not increase further.")
     if status.seiztype_contraindication:
-        notes.append(f"{status.current_med}: relative contraindication for the reported "
-                     "seizure type (e.g. lamotrigine may worsen myoclonic seizures).")
+        kinds = [c for c in (status.seizure_classes or []) if c not in ("unknown", "other")]
+        kind = ", ".join(kinds) if kinds else "the reported seizure type"
+        notes.append(f"{status.current_med}: relative contraindication for {kind} "
+                     f"(this medicine may worsen {kind} seizures).")
     if status.behavioral_contraindication:
         notes.append(f"{status.current_med}: caution with this patient's behavioral "
                      "comorbidity (e.g. levetiracetam and irritability/aggression).")
@@ -350,16 +352,16 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
     if status.seizure_control == SeizureControl.BREAKTHROUGH:
         # ===== BT: Barbour breakthrough decision tables =====================
         # Routes breakthrough by (urgency tier x phase x side-effect level) using
-        # Dr. Barbour's reconciled table. DRAFT, verified:false - pending PI
-        # sign-off (NEEDS_PI_SIGNOFF.md). Acute emergencies are handled above by
+        # Dr. Barbour's breakthrough workbooks. Acute emergencies are handled above by
         # R0b, so the emergent table here applies to non-whole-body prolonged
         # seizures.
         #
         # Two ways in (either is sufficient):
-        #  (1) LEVEL route - the 6-level side-effect scale captured a level >= 1
-        #      (level 1 additionally requires captured seizure DURATION; without it
-        #      we keep the R12 defer-on-ambiguity behavior). Unchanged since the
-        #      2026-07-08 review (cases B1/B2).
+        #  (1) LEVEL route - the 6-level side-effect scale captured a level, 0
+        #      through 5 (the table file's own grid). Level 0 and level 1 require
+        #      a captured seizure DURATION; without it, level 0 stays on the
+        #      frequency-only urgent assumption (R8) and level 1 stays on the
+        #      R12 defer (cases B1/B2). Level 2 and above do not need duration.
         #  (2) TIER route - ADDED 2026-07-16 (Kristen v2 review, cases B3/B4/B5).
         #      Reaches the SAME table for legacy-encoded / no-side-effect
         #      breakthrough so her urgency tiers drive the plan even without the
@@ -376,7 +378,7 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
         bt = default_breakthrough_tables().get("tables", {})
         _bt_dose_limited_addon = (status.med_helping and status.dose_limited_by_se
                                   and status.below_ceiling is not False)
-        _bt_level_route = (status.side_effect_level is not None and status.side_effect_level >= 1
+        _bt_level_route = (status.side_effect_level is not None
                            and (status.side_effect_level >= 2 or status.duration_captured))
         _bt_sev_ok = status.side_effect_severity in (SideEffectSeverity.NONE,
                                                      SideEffectSeverity.MANAGEABLE_UNWANTED)
@@ -426,7 +428,7 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
                 if cell.get("urgent") and "breakthrough_emergent" not in urgent_flags:
                     urgent_flags.append("breakthrough_emergent")
                 _fire(rationale, "BT", "Breakthrough; action from Dr. Barbour's 2026-06-25 "
-                      "breakthrough table (urgency x phase x side-effect level). DRAFT.",
+                      "breakthrough table (urgency x phase x side-effect level).",
                       status, tier=status.breakthrough_tier, phase=phase,
                       side_effect_level=level, at_max=at_max, action=cat_token,
                       dosing_choice=d_choice)
@@ -607,7 +609,7 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
         # the body adjusts. (None for other phases/levels -> no behavior change.)
         adj_prompt = ADJUSTMENT_PROMPT_HOLDING_MEDIUM if (phase == "holding" and level in (2, 3)) else None
         _fire(rationale, "NS", "Seizure-free; action taken from Dr. Barbour's 2026-06-25 "
-              "No-Seizures table by phase x side-effect level (DRAFT, verified:false).",
+              "No-Seizures table by phase x side-effect level.",
               status, side_effect_level=level, phase=phase, action=action)
 
         if action == "switch":   # L5 "not a fit"
@@ -647,8 +649,25 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
         return D(RecommendationCategory.INSUFFICIENT_DATA,
                  reason_summary="No-Seizures table had no action for this phase/level -> physician review.")
 
-    # intolerable side effects -> switch
+    # intolerable side effects -> switch, except J2.
+    # Dr. Barbour's note on gold case J2: seizure-free, at goal, levetiracetam,
+    # intolerable behavior or irritability -> offer switch options and let the
+    # physician discuss them. Other intolerable cases (a different medicine, a
+    # different side effect, still titrating, or still seizing) stay on R14.
+    _LEV_BEHAVIOR = {"behavior", "behavior_change", "irritability", "aggression", "mood"}
     if status.side_effect_severity == SideEffectSeverity.INTOLERABLE:
+        reported = set(status.side_effect_tokens or [])
+        if (not status.seizure_activity and status.at_goal
+                and (status.current_med or "").lower() == "levetiracetam"
+                and reported & _LEV_BEHAVIOR):
+            _fire(rationale, "R14-offer",
+                  "Seizure-free, at goal, levetiracetam, intolerable behavior or irritability. "
+                  "Offer switch options for the physician to discuss (Dr. Barbour's note on case J2). "
+                  "This is not an automatic switch.",
+                  status, side_effects=sorted(reported))
+            return D(RecommendationCategory.INSUFFICIENT_DATA,
+                     reason_summary="Seizure-free + intolerable levetiracetam behavior at goal "
+                     "-> offer switch options (physician).")
         _fire(rationale, "R14", "Seizure-free but intolerable side effects - switch.", status,
               side_effect_severity=status.side_effect_severity.value)
         return D(RecommendationCategory.SWITCH_MEDICATION, switch_target=status.can_switch_to,

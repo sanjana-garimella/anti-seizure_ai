@@ -7,8 +7,8 @@ switch) from data/initiation_schedules.json (her '<Drug> Initiation' tabs, v9).
 Display only: returns her cells verbatim for the clinician; never computes, rounds
 or changes a dose, and never feeds the decision. Defers (returns no schedule, with
 a reason) whenever the band is unclear, the drug has no tab, or the tab says it
-does not apply (lamotrigine with valproate / an enzyme inducer). DRAFT,
-verified:false until she signs off.
+does not apply (lamotrigine with valproate / an enzyme inducer). The tabs are
+verified. The switch taper in the same file stays verified:false.
 """
 from __future__ import annotations
 

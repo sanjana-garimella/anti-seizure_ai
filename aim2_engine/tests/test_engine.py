@@ -14,6 +14,7 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from engine_core.asm_rules import load_asm_rules
 from engine_core import (
     run_engine, snapshot_from_interval, survey_from_answers,
     PatientContext, MedicationContext, PhysicianContingency,
@@ -214,6 +215,53 @@ class TestDecisionRules(unittest.TestCase):
         r = run_engine(make_snapshot({"Q3": "no"}))
         self.assertIn(r.category, [c.value for c in RecommendationCategory])
         self.assertTrue(r.rationale and "rule" in r.rationale[-1])
+
+
+class TestJ2AndAggravationNote(unittest.TestCase):
+    def test_j2_offers_switch_options(self):
+        # Gold J2: seizure-free, at goal, levetiracetam, intolerable behavior.
+        # Her note says offer switch options, not an automatic switch.
+        r = run_engine(make_snapshot({
+            "Q2": "almost_never", "Q3": "no", "Q10a": "at_goal",
+            "Q9": ["behavior_change", "irritability"],
+            "Q10b_impact": "big_wants_change",
+        }))
+        self.assertEqual(r.category, "insufficient_data")
+        self.assertIn("R14-offer", [step["rule"] for step in r.rationale])
+
+    def test_other_intolerable_cases_still_switch(self):
+        # F1: intolerable dizziness at goal is still a switch. The J2 exception
+        # is levetiracetam behavior only.
+        p = PatientContext(external_id="F1", age_years=12, weight_kg=45)
+        m = MedicationContext(medication="lamotrigine", dose_amount=250, dose_unit="mg",
+                              frequency_per_day=2, time_on_medication="4_12_weeks")
+        c = PhysicianContingency(can_switch_to="levetiracetam")
+        snap = snapshot_from_interval(p, m, c, {
+            "Q2": "almost_never", "Q3": "no", "Q10a": "at_goal",
+            "Q9": ["dizziness"], "Q10b_impact": "big_wants_change",
+        })
+        r = run_engine(snap)
+        self.assertEqual(r.category, "switch_medication")
+        self.assertIn("R14", [step["rule"] for step in r.rationale])
+
+    def test_carbamazepine_absence_adds_a_note_only(self):
+        reg = load_asm_rules(os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            "data", "asm_rules.json"))
+        p = PatientContext(external_id="cbz", age_years=8, weight_kg=25)
+        m = MedicationContext(medication="carbamazepine", dose_amount=200, dose_unit="mg",
+                              frequency_per_day=2)
+        c = PhysicianContingency(can_switch_to="levetiracetam")
+        snap = snapshot_from_interval(p, m, c, {
+            "Q3": "yes", "Q4": ["brief_staring"], "Q10a": "at_goal", "Q11": "worse",
+            "seizure_episodes": [{"look": ["brief_staring"], "duration": "under_20s",
+                                  "frequency_bucket": "daily"}],
+        })
+        r = run_engine(snap, asm_registry=reg)
+        note = " ".join(r.safety_notes).lower()
+        self.assertIn("absence", note)
+        self.assertIn("worsen", note)
+        self.assertNotEqual(r.category, "insufficient_data")
 
 
 class TestSafety(unittest.TestCase):
@@ -498,6 +546,18 @@ class TestBarbour202606(unittest.TestCase):
                                       "Q11": "better", "seizure_episodes": eps}))
         self.assertTrue(r.safety_concern_flag)
         self.assertIn("whole_body_over_3min", r.urgent_flags)
+
+    def test_nonurgent_steady_no_side_effects_escalates(self):
+        # Table cell: non-urgent, steady, level 0 -> escalate. The survey answer
+        # "no impact" is level 0, and the duration is captured.
+        eps = [{"look": ["focal"], "duration": "under_20s", "frequency_bucket": "monthly"}]
+        r = run_engine(make_snapshot({
+            "Q3": "yes", "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+            "Q10b_impact": "no_impact", "Q11": "better", "Q4": ["focal"],
+            "seizure_episodes": eps,
+        }))
+        self.assertEqual(r.category, "escalate")
+        self.assertTrue(any(step.get("rule") == "BT" for step in r.rationale))
 
     def test_whole_body_under_1min_titrating_is_fine(self):
         eps = [{"look": ["whole_body"], "duration": "under_1min", "frequency": 5,

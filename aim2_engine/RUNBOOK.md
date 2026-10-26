@@ -18,7 +18,7 @@ cd aim2_engine
 
 # 1. Unit tests
 python3 -m unittest discover -s tests
-#    you should see:  Ran 401 tests ... OK
+#    you should see:  Ran 532 tests ... OK
 #    (transformer tests self-skip if transformers/torch aren't installed - expected,
 #     and they print a "TransformerStructurer unavailable" line. Not a failure.)
 
@@ -30,14 +30,13 @@ python3 validation/_build_gold_cases.py   # you should see: wrote 63 cases -> ..
 python3 validation/harness.py
 #    The no-argument run now DEFAULTS to the gold set (gold_cases.json) and
 #    auto-loads data/asm_rules.json, so you should see:
-#      cases 63 · concordance 0.9841 · Cohen's kappa 0.9758 ... MET
-#    and ONE expected disagreement (J2) - documented in NEEDS_PI_SIGNOFF.md, not a bug.
+#      cases 63 · concordance 1.0 · Cohen's kappa 1.0 ... MET
 #    (Explicit form still works: python3 validation/harness.py validation/gold_cases.json --asm data/asm_rules.json)
 
 # 4. Independent proof suite (rule + ladder proofs, red-team safety cases)
 python3 verification/verify_all.py
 #    you should see:  RESULT: PASS
-#      asm_rules 0 FAIL / 19 WARN · ladder 0 FAIL / 2 WARN · red-team must-catch = 0
+#      asm_rules 0 FAIL / 19 WARN · ladder 0 FAIL / 0 WARN / 17 INFO · red-team 0 misses, 0 false alarms
 #    WARNs are hardening/PI-review targets, not breakage. Artifacts land in
 #    verification/artifacts/.
 ```
@@ -225,7 +224,7 @@ so this can't silently pass anymore.)
 
 **Want the legacy 12-case proposal set?**
 As of the 2026-06 harness fix, the no-argument run DEFAULTS to the gold set
-(63 cases, κ = 0.976, MET) and auto-loads `data/asm_rules.json` - that's the
+(63 cases, κ = 1.0, MET) and auto-loads `data/asm_rules.json` - that's the
 canonical check. The 12 legacy proposal cases, whose labels predate Dr. Barbour's
 2026-06 rules, are still reachable explicitly (note the `validation/` prefix):
 
@@ -237,10 +236,9 @@ python3 validation/harness.py validation/simulated_cases.json --no-asm
 A low κ there is not a regression: those labels describe the pre-2026-06 rules.
 It is a self-consistency check only.
 
-**The harness reports the J2 disagreement.**
-Expected and documented (intolerable behavioral side effect on levetiracetam:
-the engine switches; Kristen's box was "offer switch options"). See
-`NEEDS_PI_SIGNOFF.md` **item 14**. *Any other* disagreement is worth investigating.
+**The harness reports a disagreement.**
+J2 now agrees (offer switch, `NEEDS_PI_SIGNOFF.md` #14). Any disagreement is
+worth investigating.
 
 **Titration schedule says "unavailable" / no dose numbers.**
 No clinician dosing data loaded, or the patient's age/weight matches no dose

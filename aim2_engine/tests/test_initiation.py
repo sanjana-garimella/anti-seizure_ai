@@ -24,7 +24,8 @@ _WB = os.path.join(os.path.dirname(_ROOT), "kristen", "final_doses_titration_v9.
 
 class TestScheduleLookup(unittest.TestCase):
     def test_data_is_draft(self):
-        self.assertFalse(ini.default().get("verified", True))
+        self.assertTrue(ini.default().get("verified", False))
+        self.assertFalse(ini.default().get("switch_taper", {}).get("verified", True))
 
     def test_cells_are_verbatim_and_tablets_preferred_over_10(self):
         s = ini.schedule_for("levetiracetam", 12, 35)
