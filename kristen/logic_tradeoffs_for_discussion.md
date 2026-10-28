@@ -1,11 +1,12 @@
 # How the tool decides: key areas and trade-offs (for discussion with Dr. Barbour)
 
-DRAFT, 2026-10-23. Synthetic data only. Nothing here changes a dose decision until you sign off;
-every output stays a draft for physician review.
+DRAFT, 2026-10-23 (revised 2026-10-28). Synthetic data only. Nothing here changes a dose
+decision until you sign off; every output stays a draft for physician review.
 
 Each section says **what the tool does today**, **why** (your earlier instruction where there is
 one), the **trade-off**, and the **question for you**. Sign-off item numbers refer to
-`aim2_engine/NEEDS_PI_SIGNOFF.md`.
+`aim2_engine/NEEDS_PI_SIGNOFF.md`. For add / switch / starting schedules (paths, ranking,
+initiation tabs), see also [`kristen/add_start_medication_logic.md`](add_start_medication_logic.md).
 
 ---
 
@@ -160,21 +161,27 @@ R7/R15/R16 come back in some form, e.g. a single yes/no "Would you like to talk 
 
 ## 8. When to show the "medicine options" questions
 
-**Today:** the questions in the survey (other medicines tried, ancestry, health conditions) show
-only when a switch or add is **likely**: at the goal dose with ongoing seizures, or side effects at
-Level 3 or higher. The actual medicine suggestions appear **after** the survey only when the tool's
-decision is a non-urgent switch or add.
+**Today:** page 1 of the check-in no longer asks medicine-option questions. **Page 2** appears
+**only after** page 1 is submitted, when the rule-based decision is **switch** or **add** and
+there is **no safety flag**. Page 2 asks medicines already tried (the current medicine is hidden
+and always counted as tried), avoid medicines that need blood tests, mood and behavior, trouble
+sleeping, migraines, Southeast Asian or Han Chinese ancestry, and the health-condition checklist.
+The family can skip page 2; you then see the decision without ranked options. The top three
+medicines are ranked only after page 2 (or skipped).
+
+**Why:** your 2026-10-25 answer — show these questions only when the decision table says
+switch/add, without copying the tables onto page 1.
 
 **Trade-off**
-- The study team asked to show these questions "only if in the decision table". To do that
-  exactly, the survey would have to work out the decision before the family finishes. That means
-  copying the decision tables into the survey page (two copies that can drift apart), or asking
-  these questions on a second page after submission (one more step for the family).
-- Today's rule of thumb sometimes shows the questions when the decision won't be switch/add, and
-  vice versa.
+- Families who titrate, hold, or escalate never see page 2, even if page-1 answers once looked
+  "switch/add likely". That avoids extra questions and wrong options, at the cost of a second
+  step when switch/add applies.
+- When the draft asks "keep increasing or add a second medicine?" (R12g), page 2 still does
+  **not** appear unless the decision is already add.
 
-**Questions:** Is the rule of thumb acceptable, or should these questions move to a second page
-that appears only when the decision is switch/add?
+**Questions:** Should page 2 also show for R12g so options are ready if the family picks add? Are
+the page-2 questions right for an **add** as well as a switch? (More in
+`add_start_medication_logic.md`, sections 4 and 5.)
 
 ---
 
@@ -256,21 +263,34 @@ decide.)
 
 ## 14. Switching: stopping the old medicine (#69)
 
-**Today:** when the decision is a switch, the doctor's view shows your week-by-week starting
-schedule for the new medicine. It does **not** yet show how to stop the old one, because your two
-documents differ:
+**Today:** when the decision is a **switch**, the doctor's summary on the review page shows:
 
-| | Template F table (kb edits) | Your email, 2026-10-23 |
-|---|---|---|
-| Old medicine | week 1 current dose, then ×0.75, ×0.50, ×0.25 "**and continue**" | decrease "until **week 4 off**" |
-| New medicine | starting → increasing → **goal dose by week 4** | follow its own starting tab (3 to 14 weeks) |
+- Your week-by-week **starting schedule** for each ranked new-medicine option (v9 initiation tab
+  when a single band applies).
+- **Stopping the old medicine** (display only, DRAFT): week 1 at the **current** total daily
+  dose, then ×0.75, ×0.50, and ×0.25 of that total, **off after week 4**; the **new medicine
+  starts in week 1 alongside** (your 2026-10-25 answer, template F, #69). Amounts use the child's
+  tablet strength or liquid rounding when that yields whole or half tablets or a rounded mL step;
+  otherwise the line stays in mg with a note for you to set the amount.
 
-**Questions:**
-1. Is the old medicine off at week 4, or does it stay at ×0.25 until you say stop?
-2. Are the weekly steps ×0.75 / ×0.50 / ×0.25 of the current dose?
-3. Does the new medicine start in week 1 at the same time (cross-taper)? Most starting tabs take
-   longer than 4 weeks to reach the goal dose (lamotrigine 8 to 14 weeks). Should the old medicine
-   stay at a low dose until the new one reaches its goal?
+On an **add**, the current medicine stays at its dose; there is no taper block.
+
+**Fixed 2026-10-28:** the child's **current medicine** counts when checking whether a starting tab
+applies (add and switch). Example: lamotrigine while the child is still on valproate → no standard
+tab, clinician to set starting doses. Details: `add_start_medication_logic.md` section 0.
+
+**Trade-off:** the taper ends at week 4, but most initiation tabs take longer than four weeks to
+reach the goal dose. Template F's table also had the new medicine at goal by week 4; the tool
+follows each medicine's own tab for the **new** medicine and your email for **stopping** the old
+one.
+
+**Questions (confirm, not "build from scratch"):**
+1. Off at week 4 vs stay at ×0.25 until you say stop — the tool uses **off after week 4** today.
+2. On a switch **from valproate** to lamotrigine: start lamotrigine in week 1 on the
+   with-valproate schedule, or wait until valproate is off (after week 4) and then use the
+   standard tab?
+3. Should the old medicine stay at a low dose until the **new** medicine reaches its goal, even
+   when that is past week 4?
 
 ---
 
@@ -305,7 +325,8 @@ confirm:
 
 ## 16. Data we still need from you
 
-- How to stop the old medicine when switching (section 14).
+- Confirm switch taper timing vs starting-tab length (section 14; taper is built as DRAFT).
+- Add-specific medicine pairing and ranking (section 5 of `add_start_medication_logic.md`).
 - Titration schedules from the **starting dose to the minimum therapeutic dose** for children
   already on a medicine but below its therapeutic range (#63). Your v9 starting tabs cover new
   medicines; tell us if they should also be used for this.

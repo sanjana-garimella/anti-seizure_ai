@@ -31,6 +31,7 @@ hidden.
 3. **Answer open questions.** Decisions waiting for the PI:
    - [`aim2_engine/NEEDS_PI_SIGNOFF.md`](../aim2_engine/NEEDS_PI_SIGNOFF.md): every open item, numbered (#51, #60–70, ...)
    - [`kristen/logic_tradeoffs_for_discussion.md`](../kristen/logic_tradeoffs_for_discussion.md): how the tool decides, with the trade-offs
+   - [`kristen/add_start_medication_logic.md`](../kristen/add_start_medication_logic.md): add, switch, and starting-schedule logic (2026-10-28)
    - [`kristen/questions_round_2.md`](../kristen/questions_round_2.md): the current question list
 4. **Check the numbers.** [`docs/OFFICIAL_FDA_DOSING_REFERENCE.md`](OFFICIAL_FDA_DOSING_REFERENCE.md)
    compares the tool's draft doses with the FDA labels. The per-medicine workbook is

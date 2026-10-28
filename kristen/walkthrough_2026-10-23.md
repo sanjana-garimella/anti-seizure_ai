@@ -128,12 +128,12 @@ preferred by age, plus tablets).
 
 - The schedule is copied from your initiation tabs. It defers when there is no weight band,
   two bands match, there is no tab (carbamazepine), or lamotrigine is taken with valproate or
-  an enzyme inducer.
-- **Not built:** tapering the old medicine. Your template F table tapers ×0.75 / ×0.50 / ×0.25
-  while the new one reaches its goal by week 4, but your 2026-10-23 email says "until week 4 off",
-  and the starting tabs take 3-14 weeks to reach goal.
+  an enzyme inducer — **including the current medicine** on add or switch (2026-10-28).
+- **Built (DRAFT, #69):** on a switch, the doctor's summary also shows stopping the old medicine
+  (week 1 current dose, then ×0.75 / ×0.50 / ×0.25, off after week 4; new medicine starts week 1).
 
-**Ask:** how to stop the old medicine (section 14 of `logic_tradeoffs_for_discussion.md`, #69).
+**Ask:** confirm taper timing vs long starting tabs (section 14 of `logic_tradeoffs_for_discussion.md`;
+lamotrigine after valproate: `add_start_medication_logic.md` section 0).
 
 ## 7. Survey changes - live (#68)
 
@@ -141,8 +141,8 @@ Open the family check-in survey from the login page and click through:
 
 1. The increase / add / switch preference questions (Q12, 12a, 12b, and the at-goal
    "continue increasing vs add" question) are gone.
-2. The medicine-options card appears only when a switch or add is likely: at the goal dose
-   with ongoing seizures, or side effects at Level 3 or higher.
+2. Medicine-option questions moved to **page 2**, only after submit, when the decision is
+   switch or add (no safety flag) — not a page-1 "likely" rule anymore.
 3. Answer side effects at **Level 3**: the new question offers wait / uneven AM-PM /
    three-times-a-day, showing only the options the engine suggests. The answer goes to the
    clinician summary only and never changes the decision.
