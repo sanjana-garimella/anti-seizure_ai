@@ -77,6 +77,20 @@ def _prefer_tablets(age: Optional[float], current_unit: Optional[str] = None) ->
     return age > float(afr.get("tablet_if_age_greater_than", 10))
 
 
+def comeds_while_starting(concomitant_asms: Optional[List[str]],
+                          current_medication: Optional[str]) -> List[str]:
+    """Seizure medicines the child is on WHILE the new one starts: the ones the family
+    listed plus the current medicine. On an add the current medicine stays on; on a
+    switch it overlaps the new one through the 4-week taper (new medicine starts in
+    week 1). So both count for the starting-schedule checks - e.g. lamotrigine
+    started on top of valproate needs the slower with-valproate regimen (2026-10-28)."""
+    out = [str(c) for c in (concomitant_asms or []) if c]
+    cur = str(current_medication or "").strip()
+    if cur and cur.lower() not in (c.lower() for c in out):
+        out.append(cur)
+    return out
+
+
 def schedule_for(drug_key: Optional[str], age_years: Optional[float], weight_kg: Optional[float],
                  concomitant_asms: Optional[List[str]] = None,
                  data: Optional[Dict[str, Any]] = None,

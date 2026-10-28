@@ -523,3 +523,40 @@ Superseded by the 2026-10-26 note (then: 523 tests, κ 0.976, J2 only).
     you to edit: "Your child is at the goal dose and still having some seizures, with side effects that
     are noticeable but manageable. We could keep increasing [medicine] a little, or add a second
     medicine that works in a different way. Which would you prefer?" I haven't wired it in yet.
+
+## 2026-10-28 - uneven and three-times-a-day doses the family already gives
+
+**Built (draft, for you to check)**
+
+- **Survey (Q1a).** After "Times per day", the check-in now asks "Is it the same amount each time?".
+  If the answer is no, the family enters one amount per dose (Morning / Night, Morning / Afternoon /
+  Night, or four slots for 4 a day). The live mg box adds them up (e.g. 500 mg + 750 mg = 1250 mg
+  total per day). A blank dose box is required on the page; if one still arrives empty, the total is
+  "not computable" and the summary says so, as with a missing tablet strength.
+- **Summary.** The current dose line now shows the split: "1250 mg/day (41.7 mg/kg/day) (given as
+  500 mg morning, 750 mg night)".
+- **Level-3 choice already in place.** If the child already takes the medicine three times a day and
+  the family picks three times a day (or already gives uneven doses and picks uneven), there is
+  nothing to change. I don't act on that pick. It goes to you as "clinician to discuss", the family
+  draft keeps the watch-and-wait / hold message, and its option list leaves out what they already
+  do. The survey also hides that option.
+- **Wording.** "Three times a day instead of twice a day" now uses the child's real schedule (e.g.
+  "instead of once a day").
+
+**Need your call**
+
+- **Keep the family's uneven split on increases?** When a family already gives uneven doses, I
+  currently plan the next increase steps as uneven too (same 30/70-40/60 range, larger dose at
+  night), and fall back to equal doses only when no uneven split of whole tablets fits. Setting:
+  `uneven_dosing.keep_family_split_on_increase` in `data/formulation_rules.json`. Display only; the
+  dose decision is unchanged. Should I keep this, or always go back to equal doses?
+- **Uneven liquid.** For a liquid, the next steps are still equal doses (the liquid rounding only
+  splits evenly). Is that fine, or should liquid steps also keep the family's split?
+- **Fixed: the current medicine counts when a new one starts (add and switch).** Before, the
+  starting-schedule check for lamotrigine ignored the child's current medicine, so a child on
+  valproate saw the standard lamotrigine schedule when lamotrigine was suggested as an add or a
+  switch. Now the current medicine counts (it stays on for an add and overlaps the 4-week taper on
+  a switch), and the tool defers the starting doses to you. **To confirm:** on a switch from
+  valproate, should lamotrigine wait until valproate is off (after week 4), or start in week 1 on
+  the with-valproate regimen? Details and the rest of the add/start questions:
+  `kristen/add_start_medication_logic.md`.
