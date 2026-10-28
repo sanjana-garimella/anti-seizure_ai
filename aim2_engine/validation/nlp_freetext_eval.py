@@ -95,7 +95,8 @@ def structure(text: str) -> Tuple[Set[Tuple[str, str]], Dict[Tuple[str, str], fl
 
 
 def run(write: bool = True) -> Dict:
-    data = json.load(open(_GOLD))
+    with open(_GOLD) as fh:
+        data = json.load(fh)
     items = data["items"]
     gold_docs = [set(tuple(x) for x in it["findings"]) for it in items]
     pred_docs, cal_scores, cal_labels = [], [], []

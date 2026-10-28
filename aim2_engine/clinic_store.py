@@ -20,8 +20,9 @@ import json
 import os
 import secrets
 import sqlite3
+from contextlib import contextmanager
 from datetime import datetime
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Iterator
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(_HERE, "clinic_data")
@@ -32,12 +33,20 @@ def _now() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
-def _conn() -> sqlite3.Connection:
+@contextmanager
+def _conn() -> Iterator[sqlite3.Connection]:
+    """`with _conn() as c:` commits on success, rolls back on error, and closes.
+    A bare sqlite3.Connection used as a context manager only commits; the handle
+    stayed open until garbage collection (ResourceWarning under -W error)."""
     os.makedirs(DATA_DIR, exist_ok=True)
     c = sqlite3.connect(DB_PATH)
-    c.row_factory = sqlite3.Row
-    c.execute("PRAGMA foreign_keys = ON")
-    return c
+    try:
+        c.row_factory = sqlite3.Row
+        c.execute("PRAGMA foreign_keys = ON")
+        with c:
+            yield c
+    finally:
+        c.close()
 
 
 SCHEMA = """

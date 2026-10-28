@@ -11,11 +11,16 @@ category plus a machine-readable `rationale` (which rule fired, which inputs),
 a `pace` (faster/standard/slower) where relevant, a recommended `followup`, and
 `safety_notes` - all for the physician to audit and approve.
 
-Rules are a flat, ordered list (first match wins) so the PI can add/reorder/edit
-without touching control flow.
+Rules are evaluated in a fixed order in `decide()` (first match wins) and each
+firing is recorded by rule id in `rationale`. The clinical VALUES are data the
+PI edits without a code change: dose bands (asm_rules.json), thresholds
+(titration_thresholds.json), the no-seizures table and the breakthrough tables.
+The rule ORDER and the guards around each rule are Python in this file; changing
+them is a code change with a test.
 
 Categories (spec §5/§9):
-    ESCALATE | SLOWER_UPTITRATION | SWITCH_MEDICATION | NO_CHANGE | INSUFFICIENT_DATA
+    ESCALATE | SLOWER_UPTITRATION | SWITCH_MEDICATION | ADD_MEDICATION |
+    LOWER_DOSE | HOLD | NO_CHANGE | INSUFFICIENT_DATA
 A "faster" increase is ESCALATE with pace="faster"; "continue the current plan"
 is reported as NO_CHANGE (no new change) - see PROJECT_LOG open question #1.
 """
@@ -80,40 +85,13 @@ ADJUSTMENT_PROMPT_HOLDING_MEDIUM = (
 )
 
 
-def _change_kind(status: PatientStatus) -> "RecommendationCategory":
-    """Barbour 2026-06: when a CHANGE is indicated, decide ADD-a-second-med vs
-    SWITCH (stop & start new), from her two lists. SWITCH takes precedence
-    (stronger signal); ADD only when the medicine is HELPING. Returns
-    SWITCH_MEDICATION, ADD_MEDICATION, or INSUFFICIENT_DATA when neither list is
-    clearly met (defer rather than guess)."""
-    med_or_big = status.side_effect_severity in (
-        SideEffectSeverity.MANAGEABLE_UNWANTED, SideEffectSeverity.INTOLERABLE)
-    big = status.side_effect_severity == SideEffectSeverity.INTOLERABLE
-    seizing = status.seizure_activity
-
-    # ---- SWITCH (stop current, start new) ----
-    if med_or_big and status.wants_switch:
-        return RecommendationCategory.SWITCH_MEDICATION
-    if (not status.med_helping) and seizing:
-        return RecommendationCategory.SWITCH_MEDICATION
-    if (not status.med_helping) and med_or_big:
-        return RecommendationCategory.SWITCH_MEDICATION
-    if status.min_goal_unreachable_by_se:
-        return RecommendationCategory.SWITCH_MEDICATION
-
-    # ---- ADD (combination) - only when the medicine is helping ----
-    if status.med_helping and seizing:
-        low_or_med = status.side_effect_severity in (
-            SideEffectSeverity.NONE, SideEffectSeverity.MANAGEABLE_UNWANTED)
-        if status.at_goal and low_or_med:
-            return RecommendationCategory.ADD_MEDICATION
-        if status.dose_limited_by_se and (status.below_ceiling is not False):
-            return RecommendationCategory.ADD_MEDICATION
-
-    # big impact, helping, no other signal -> default to switch (intolerable -> change)
-    if big:
-        return RecommendationCategory.SWITCH_MEDICATION
-    return RecommendationCategory.INSUFFICIENT_DATA
+def _min_weeks(sw: Dict[str, Any], key: str) -> float:
+    """Minimum-trial threshold from titration_thresholds.json. A missing value
+    disables the rule; an explicit 0 means the rule applies at any duration."""
+    v = sw.get(key)
+    if isinstance(v, bool) or not isinstance(v, (int, float)) or v < 0:
+        return float("inf")
+    return float(v)
 
 
 class RecommendationCategory(Enum):
@@ -236,14 +214,14 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
     # Barbour T13 (H3,H4): urgent flag AND a titration suggestion by helpfulness.
     if status.seizure_emergency:
         helpful = status.overall_helpful
-        if helpful == "worse" and (status.weeks_on_med or 0) >= (sw.get("worse_min_weeks") or 1e9):
+        if helpful == "worse" and (status.weeks_on_med or 0) >= _min_weeks(sw, "worse_min_weeks"):
             _fire(rationale, "R0b-sw", "Prolonged/repeated seizures and the medicine is making "
                   "things worse after the minimum trial - urgent review; consider switching.",
                   status, weeks_on_med=status.weeks_on_med, overall=helpful)
             return D(RecommendationCategory.SWITCH_MEDICATION, safety_concern_flag=True,
                      urgent_flags=status.urgent_safety, switch_target=status.can_switch_to,
                      reason_summary="Urgent: prolonged/repeated seizures; med not helping -> switch.")
-        if helpful in ("about_the_same", "same") and (status.weeks_on_med or 0) >= (sw.get("unchanged_min_weeks") or 1e9):
+        if helpful in ("about_the_same", "same") and (status.weeks_on_med or 0) >= _min_weeks(sw, "unchanged_min_weeks"):
             _fire(rationale, "R0b-sw2", "Prolonged/repeated seizures and the medicine has not "
                   "helped after the minimum trial - urgent review; consider switching.",
                   status, weeks_on_med=status.weeks_on_med, overall=helpful)

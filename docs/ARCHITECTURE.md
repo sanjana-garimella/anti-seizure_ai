@@ -163,7 +163,7 @@ After the decision is made:
 | `verification/verify_all.py` | Independent proof suite: re-derives the ASM rules + ladder from source, runs red-team safety cases, writes `verification/artifacts/`. Re-run 2026-10-26: **PASS** (asm_rules 0 FAIL / 19 WARN; ladder 0 FAIL / 0 WARN / 17 INFO; red-team 0 misses, 0 false alarms) |
 | `clinic.py` / `clinic_store.py` | Local stdlib web app (doctor queue, family check-in, review + approval) and its SQLite layer. JS-free by design under a strict CSP |
 | `manual_check.py` | One-command confirm of the recent changes (37 scenarios; **37/37**) |
-| `tests/` | 532 offline unit tests (stdlib only; transformer tests self-skip without torch) |
+| `tests/` | 521 tracked offline unit tests (stdlib only; transformer tests self-skip without torch) |
 | `tools/regen_notes.py` | Refreshes the **cached** `/review` notes after an engine or output-format change (the page renders stored text, not a fresh run). Dry-run default; preserves the family draft; refuses to rewrite a row unless the rebuild reproduces the stored dose + category |
 | `tools/seed_demo_queue.py` | Shapes the demo queue: one submission per patient, 3-4 worked examples per category including emergent. Rows are produced by running the real engine, never hand-written |
 
@@ -191,7 +191,7 @@ After the decision is made:
 ```bash
 cd aim2_engine
 
-# Run all tests  (expect: Ran 532 tests ... OK)
+# Run all tests  (expect on a clean checkout: Ran 521 tests ... OK)
 python3 -m unittest discover -s tests
 
 # Run validation (Cohen's κ) - no-arg default = gold set, expect κ = 1.0, MET
@@ -207,7 +207,8 @@ python3 demo.py
 See `../aim2_engine/RUNBOOK.md` for the full quickstart and the clinician app. The
 FDA-label dosing comparison lives in `OFFICIAL_FDA_DOSING_REFERENCE.md`; the
 pre-registered evaluation method is in `VALIDATION_PLAN.md`; the rationale for the
-rule-based decision path is in `NEUROSYMBOLIC_RATIONALE.md`.
+rule-based decision path is in `NEUROSYMBOLIC_RATIONALE.md`; related work and the
+inspectable-LLM proposal are in `RELATED_WORK.md`.
 
 ---
 

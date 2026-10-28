@@ -54,6 +54,7 @@ import os
 import random
 import re
 import sys
+import tempfile
 import time
 from collections import Counter
 
@@ -186,16 +187,27 @@ def decode_spans(label_ids, offsets):
 # ---------------------------------------------------------------------------
 # Train + evaluate one model
 # ---------------------------------------------------------------------------
+# Commits recorded 2026-10-26. A model passed on the command line needs an entry here.
+_MODEL_REVISIONS = {
+    "distilbert-base-uncased": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+    "emilyalsentzer/Bio_ClinicalBERT": "d5892b39a4adaed74b92212a44081509db72f87b",
+}
+
+
 def train_and_eval(model_name: str, train_data, val_data, epochs: int, batch_size: int = 16):
     import torch
     from transformers import (AutoTokenizer, AutoModelForTokenClassification,
                                TrainingArguments, Trainer, DataCollatorForTokenClassification)
 
-    print(f"\n  --- fine-tuning {model_name} ---")
+    revision = _MODEL_REVISIONS.get(model_name)
+    if not revision:
+        raise SystemExit(f"{model_name} has no pinned revision")
+    print(f"\n  --- fine-tuning {model_name} @ {revision[:12]} ---")
     t0 = time.perf_counter()
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(model_name, revision=revision)
     model = AutoModelForTokenClassification.from_pretrained(
-        model_name, num_labels=len(LABELS), id2label=ID2LABEL, label2id=LABEL2ID)
+        model_name, revision=revision, num_labels=len(LABELS),
+        id2label=ID2LABEL, label2id=LABEL2ID)
 
     def to_features(data):
         feats = [encode_example(tokenizer, text, spans) for text, spans in data]
@@ -217,19 +229,20 @@ def train_and_eval(model_name: str, train_data, val_data, epochs: int, batch_siz
             return self.feats[i]
 
     collator = DataCollatorForTokenClassification(tokenizer)
-    args = TrainingArguments(
-        output_dir=f"/tmp/nlp_finetune_{model_name.replace('/', '_')}",
-        num_train_epochs=epochs,
-        per_device_train_batch_size=batch_size,
-        per_device_eval_batch_size=batch_size,
-        logging_steps=50,
-        save_strategy="no",
-        report_to=[],
-        disable_tqdm=False,
-    )
-    trainer = Trainer(model=model, args=args, train_dataset=_DS(train_feats),
-                       data_collator=collator)
-    trainer.train()
+    with tempfile.TemporaryDirectory(prefix="nlp_finetune_") as output_dir:
+        args = TrainingArguments(
+            output_dir=output_dir,
+            num_train_epochs=epochs,
+            per_device_train_batch_size=batch_size,
+            per_device_eval_batch_size=batch_size,
+            logging_steps=50,
+            save_strategy="no",
+            report_to=[],
+            disable_tqdm=False,
+        )
+        trainer = Trainer(model=model, args=args, train_dataset=_DS(train_feats),
+                           data_collator=collator)
+        trainer.train()
     train_seconds = time.perf_counter() - t0
 
     # ---- evaluate: decode predicted spans, compare to gold spans (exact match) ----

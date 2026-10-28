@@ -11,16 +11,14 @@ concerns for the doctor. Together they draft three things for the doctor to revi
    switch), with the exact next doses from the clinician's dosing ladder, and
 3. a **family message** in plain language.
 
-Nothing reaches a family without a physician approving it. What is still
-unsigned is in [`aim2_engine/NEEDS_PI_SIGNOFF.md`](aim2_engine/NEEDS_PI_SIGNOFF.md).
+Nothing reaches a family without a physician approving it.
 
 PI: Kristen Barbour, MD · Scripps Research. **Pre-IRB: synthetic data only.**
 
 > **Research prototype, not a medical device.** The study has not yet received IRB
 > approval, so no real patient data has been used; all patient data here is synthetic.
 > The software has not been cleared or approved by any regulator and must not be used
-> to make clinical decisions. Clinical values are pending the sign-off in
-> `aim2_engine/NEEDS_PI_SIGNOFF.md`.
+> to make clinical decisions. Clinical values are pending PI sign-off.
 
 ## Quickstart
 
@@ -109,8 +107,8 @@ flowchart TD
 - [For clinicians: how to review and send changes](docs/FOR_CLINICIANS.md)
 - [Contributing: making a change safely](docs/CONTRIBUTING.md)
 - [Architecture](docs/ARCHITECTURE.md) · [Data contract for the Aim 1 platform](aim2_engine/DATA_CONTRACT.md) · [Runbook](aim2_engine/RUNBOOK.md)
-- [Current status and open items](aim2_engine/STATUS.md) · [Questions waiting for the PI](aim2_engine/NEEDS_PI_SIGNOFF.md)
 - [Roadmap: hybrid retrieval over the clinical sources (proposed)](docs/ROADMAP.md)
+- [Related work, and the inspectable LLM proposal](docs/RELATED_WORK.md)
 
 ## License
 

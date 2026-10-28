@@ -5,5 +5,6 @@ This product is licensed under the Apache License, Version 2.0 (see LICENSE).
 
 Research prototype. All patient data in this repository is synthetic. This
 software is not a medical device, has not been cleared or approved by any
-regulator, and must not be used to make clinical decisions. Every dose and
-clinical value is a draft (verified:false) pending physician sign-off.
+regulator, and must not be used to make clinical decisions. Clinical values
+are pending the sign-off in aim2_engine/NEEDS_PI_SIGNOFF.md. `verified` is
+per file.

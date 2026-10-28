@@ -18,7 +18,7 @@ cd aim2_engine
 
 # 1. Unit tests
 python3 -m unittest discover -s tests
-#    you should see:  Ran 532 tests ... OK
+#    on a clean checkout:  Ran 521 tests ... OK
 #    (transformer tests self-skip if transformers/torch aren't installed - expected,
 #     and they print a "TransformerStructurer unavailable" line. Not a failure.)
 

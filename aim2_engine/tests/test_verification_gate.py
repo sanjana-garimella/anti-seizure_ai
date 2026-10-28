@@ -13,6 +13,9 @@ fails, prompting you to update the pin (a good failure).
 Signature = (property, drug). Update KNOWN_* only with a deliberate PI-reviewed
 change.
 """
+import json
+import os
+import tempfile
 import unittest
 
 from verification import verify_all
@@ -59,6 +62,29 @@ class TestVerificationGate(unittest.TestCase):
         # ladder defect is pending PI fix. Assert the structure, not the value.
         self.assertIn("ok", self.res)
         self.assertIsInstance(self.res["ok"], bool)
+
+    def test_unsigned_report_includes_nested_flags(self):
+        unsigned = self.res["clinical_signoff"]["verified_false"]
+        self.assertGreater(unsigned.get("asm_rules.json", 0), 0)
+        self.assertGreater(unsigned.get("titration_thresholds.json", 0), 0)
+
+    def test_signoff_report_does_not_hide_unmarked_or_bad_json(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            docs = {
+                "nested_false.json": {"rules": [{"verified": False}]},
+                "nested_true.json": {"rules": [{"verified": True}]},
+                "unmarked.json": {"rules": []},
+            }
+            for name, doc in docs.items():
+                with open(os.path.join(tmp, name), "w") as fh:
+                    json.dump(doc, fh)
+            with open(os.path.join(tmp, "bad.json"), "w") as fh:
+                fh.write("{")
+
+            status = verify_all.clinical_signoff_status(tmp)
+            self.assertEqual(status["verified_false"], {"nested_false.json": 1})
+            self.assertEqual(status["unmarked"], ["unmarked.json"])
+            self.assertEqual(status["unreadable"], ["bad.json"])
 
 
 if __name__ == "__main__":

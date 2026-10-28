@@ -1,6 +1,6 @@
 """
 End-to-end tests for the IN-SURVEY medication-selection flow (switch / add):
-  * phase2_applies gating (non-urgent switch/add only);
+  * phase2_applies gating (switch/add with no safety flag);
   * _carried_over reuse of already-asked answers (no re-asking);
   * the selection card renders inside the survey (JS-free);
   * submitting the ONE survey computes + shows the top-3 and persists it;
@@ -59,7 +59,7 @@ class TestCurrentMedExclusion(unittest.TestCase):
 
 
 class TestSelectionHelpers(unittest.TestCase):
-    def test_phase2_applies_only_nonurgent_switch_add(self):
+    def test_phase2_applies_only_safe_switch_add(self):
         self.assertTrue(clinic.phase2_applies({"category": "switch_medication", "safety_concern_flag": False}))
         self.assertTrue(clinic.phase2_applies({"category": "add_medication", "safety_concern_flag": False}))
         self.assertFalse(clinic.phase2_applies({"category": "switch_medication", "safety_concern_flag": True}))

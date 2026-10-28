@@ -206,6 +206,17 @@ class TestGuardrailOnEngineDrafts(unittest.TestCase):
         self._check(RC.NO_CHANGE, "Continue titration on schedule")   # A1 (carries no dose number)
         self._check(RC.NO_CHANGE, "")                                 # A2, current dose
 
+    def test_hold_lower_add_drafts_pass(self):
+        # These three categories now have contradiction lists; the engine's own
+        # wording ("then increase", "rather than stopping it") must not trip them.
+        self._check(RC.HOLD, "")                                      # HOLD watch-and-wait
+        self._check(RC.HOLD, "Weeks 1-2 stay at the current dose; after week 2 make 1 dose increase")  # B5
+        self._check(RC.LOWER_DOSE, "Lower dose")                      # E1
+        self._check(RC.ADD_MEDICATION, "Add a second medication")     # G
+        self._check(RC.ADD_MEDICATION, "Lower dose and add a second medication")  # E1 + G
+        self._check(RC.SWITCH_MEDICATION, "")                         # F
+        self._check(RC.SLOWER_UPTITRATION, "")                        # C
+
     def test_realistic_pipeline_draft_passes(self):
         # Full engine over a real urgent breakthrough -> faster escalation w/ ladder dose.
         ans = {"Q3": "yes", "Q4": ["focal"], "Q5": 3, "Q5_unit": "per_week", "Q6": "more",

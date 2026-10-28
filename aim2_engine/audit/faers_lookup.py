@@ -28,6 +28,14 @@ log = logging.getLogger(__name__)
 
 _BASE = "https://api.fda.gov/drug/event.json"
 
+
+def _open_https(req, timeout):
+    url = req.full_url if isinstance(req, urllib.request.Request) else req
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme != "https" or not parsed.netloc:
+        raise ValueError("refusing non-https URL")
+    return urllib.request.urlopen(req, timeout=timeout)  # nosec B310
+
 # Map our internal drug names to openFDA brand/generic search terms
 _DRUG_SEARCH_TERMS: Dict[str, str] = {
     "levetiracetam":  "levetiracetam",
@@ -74,7 +82,7 @@ def get_faers_reaction_summary(
     try:
         req = urllib.request.Request(
             url, headers={"User-Agent": "aim2-engine/0.2 (research; no-PHI)"})
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        with _open_https(req, timeout) as resp:
             data = json.loads(resp.read().decode("utf-8"))
         results = data.get("results", [])
         total   = data.get("meta", {}).get("results", {}).get("total", 0)
@@ -113,7 +121,7 @@ def get_faers_serious_outcomes(
     try:
         req = urllib.request.Request(
             url, headers={"User-Agent": "aim2-engine/0.2 (research; no-PHI)"})
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        with _open_https(req, timeout) as resp:
             data = json.loads(resp.read().decode("utf-8"))
         return {
             "drug":    drug_name,

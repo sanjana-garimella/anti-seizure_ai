@@ -51,8 +51,10 @@ question / decision ──► rule engine (decides) ──► rationale: rule ID
       meetings, with the correct source passages. Measure retrieval recall@k and
       citation accuracy before adding any generation.
 - [ ] Ship the "Why?" panel and the conflict finder first (no LLM needed).
-- [ ] Only then try LLM phrasing, on an approved enterprise model, with
-      `guardrails.py` and physician review unchanged.
+- [ ] Only then try LLM phrasing, as the inspectable LLM in `RELATED_WORK.md`:
+      fact-only prompt, a citation on each sentence, guardrail result, and the
+      diff against the template. Approved local model. `guardrails.py` and
+      physician review unchanged.
 
 **Guardrails that stay fixed**
 

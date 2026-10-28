@@ -7,7 +7,9 @@ topiramate, zonisamide, brivaracetam, ethosuximide, lacosamide,
 carbamazepine), AND mentioning seizures/epilepsy AND adverse
 effects/dose-adjustment/titration/discontinuation language. Caches the
 results locally as JSON for validation/nlp_pubmed_eval.py to run the point-A
-structurers against.
+structurers against. The cache stays on this machine. Publisher copyright can
+cover abstract text, so validation/data/asm_pubmed_cases.json is gitignored
+and is not part of the Apache release. A new checkout re-runs this script.
 
 WHY A SEPARATE LOCAL SCRIPT: pulling hundreds-to-thousands of abstracts
 through a chat-mediated article-search tool doesn't work - individual tool
@@ -78,12 +80,19 @@ def _sleep_for_rate_limit():
     time.sleep(0.11 if os.environ.get("NCBI_API_KEY") else 0.35)
 
 
+def _open_https(url, timeout):
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme != "https" or not parsed.netloc:
+        raise ValueError("refusing non-https URL")
+    return urllib.request.urlopen(url, timeout=timeout)  # nosec B310
+
+
 def _get(url, params, retries=3):
     qs = urllib.parse.urlencode(params)
     full = f"{url}?{qs}"
     for attempt in range(retries):
         try:
-            with urllib.request.urlopen(full, timeout=30) as resp:
+            with _open_https(full, 30) as resp:
                 return resp.read()
         except (urllib.error.URLError, urllib.error.HTTPError) as exc:
             if attempt == retries - 1:

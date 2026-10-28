@@ -56,6 +56,19 @@ _REFRESH = ("category", "safety_flag", "recognized", "urgent_flags_json",
             "rationale_json", "clinical_summary", "titration_json",
             "switch_target", "engine_version", "sources_json",
             "urgency_tier", "dose_exceeds_max", "reason_summary")
+_ALLOWED_COLUMNS = set(_REFRESH) | {"draft_message"}
+_UPDATE_SQL = (
+    "UPDATE recommendations SET category=?, safety_flag=?, recognized=?, "
+    "urgent_flags_json=?, rationale_json=?, clinical_summary=?, titration_json=?, "
+    "switch_target=?, engine_version=?, sources_json=?, urgency_tier=?, "
+    "dose_exceeds_max=?, reason_summary=? WHERE id=?"
+)
+_UPDATE_SQL_WITH_DRAFT = (
+    "UPDATE recommendations SET category=?, safety_flag=?, recognized=?, "
+    "urgent_flags_json=?, rationale_json=?, clinical_summary=?, titration_json=?, "
+    "switch_target=?, engine_version=?, sources_json=?, urgency_tier=?, "
+    "dose_exceeds_max=?, reason_summary=?, draft_message=? WHERE id=?"
+)
 
 
 def _stored_total_mg_per_day(summary):
@@ -164,8 +177,10 @@ def main() -> int:
         if args.with_drafts:
             vals["draft_message"] = rec.to_dict().get("draft_patient_message")
             cols.append("draft_message")
-        c.execute(f"UPDATE recommendations SET {','.join(k + '=?' for k in cols)} WHERE id=?",
-                  [vals[k] for k in cols] + [r["rid"]])
+        if any(col not in _ALLOWED_COLUMNS for col in cols):
+            raise RuntimeError("refresh columns left the allowlist")
+        sql = _UPDATE_SQL_WITH_DRAFT if args.with_drafts else _UPDATE_SQL
+        c.execute(sql, [vals[k] for k in cols] + [r["rid"]])
         done.append((r["rid"], patient["external_id"]))
     c.commit()
 

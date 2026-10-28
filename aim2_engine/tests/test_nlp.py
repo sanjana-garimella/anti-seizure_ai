@@ -9,6 +9,7 @@ Run:  python -m unittest discover -s tests
 
 import os
 import sys
+import types
 import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -217,8 +218,14 @@ class TestGuardrails(unittest.TestCase):
 
     def test_rejects_missing_disclaimer(self):
         rec, sn = self._escalate_rec()
-        # No draft / physician-review / care-team marker anywhere -> rejected.
+        # No draft / physician-review marker anywhere -> rejected.
         r = validate_message("Please increase the medicine to 1000 mg now.", rec, sn)
+        self.assertFalse(r.ok)
+
+    def test_care_team_alone_is_not_a_review_notice(self):
+        rec, sn = self._escalate_rec()
+        r = validate_message(
+            "Your care team may increase the medicine to 1000 mg.", rec, sn)
         self.assertFalse(r.ok)
 
     def test_accepts_valid(self):
@@ -240,6 +247,68 @@ class TestGuardrails(unittest.TestCase):
         rec = run_engine(sn)
         r = validate_message("We will increase the dose. Draft for review.", rec, sn)
         self.assertFalse(r.ok)
+
+    # -- every category has a contradiction list (hold / lower_dose / add_medication
+    #    were missing, so "increase and switch" passed under category hold) --------
+    def _stub(self, category):
+        return types.SimpleNamespace(category=category, safety_concern_flag=False,
+                                     titration_schedule=None, draft_patient_message=None)
+
+    def test_every_category_has_contradictions(self):
+        from engine_core.decision import RecommendationCategory
+        from nlp.guardrails import _CONTRADICTIONS
+        for cat in RecommendationCategory:
+            self.assertTrue(_CONTRADICTIONS.get(cat.value), f"no contradictions for {cat.value}")
+
+    def test_every_listed_contradiction_is_rejected(self):
+        from nlp.guardrails import _CONTRADICTIONS
+        _, sn = self._escalate_rec()
+        for category, phrases in _CONTRADICTIONS.items():
+            for phrase in phrases:
+                text = f"Please {phrase}. Draft for physician review."
+                with self.subTest(category=category, phrase=phrase):
+                    self.assertFalse(
+                        validate_message(text, self._stub(category), sn).ok)
+
+    def test_hold_rejects_increase_and_switch(self):
+        _, sn = self._escalate_rec()
+        bad = "Please increase the dose and switch to a different medicine. Draft for review."
+        self.assertFalse(validate_message(bad, self._stub("hold"), sn).ok)
+        increase_only = "Please increase the dose. Draft for review."
+        self.assertFalse(validate_message(increase_only, self._stub("hold"), sn).ok)
+        stop_variant = "Stop taking it. Draft for physician review."
+        self.assertFalse(validate_message(stop_variant, self._stub("hold"), sn).ok)
+        ok = "Let's keep the current dose and give the body time to settle. Draft for review."
+        self.assertTrue(validate_message(ok, self._stub("hold"), sn).ok)
+
+    def test_lower_dose_rejects_increase_and_switch(self):
+        _, sn = self._escalate_rec()
+        bad = "Please increase the dose and switch to a different medicine. Draft for review."
+        self.assertFalse(validate_message(bad, self._stub("lower_dose"), sn).ok)
+        add_variant = "Add another medication. Draft for review."
+        self.assertFalse(validate_message(add_variant, self._stub("lower_dose"), sn).ok)
+        ok = "To help with side effects, let's lower the dose. Draft for review."
+        self.assertTrue(validate_message(ok, self._stub("lower_dose"), sn).ok)
+
+    def test_add_medication_rejects_increase_and_switch(self):
+        _, sn = self._escalate_rec()
+        bad = "Please increase the dose and switch to a different medicine. Draft for review."
+        self.assertFalse(validate_message(bad, self._stub("add_medication"), sn).ok)
+        ok = "Let's add a second medicine alongside it. Draft for review."
+        self.assertTrue(validate_message(ok, self._stub("add_medication"), sn).ok)
+
+    def test_rejects_invented_number_spelled_out_unit(self):
+        rec, sn = self._escalate_rec()
+        for unit in ("milligrams", "milligram", "milliliters", "millilitres"):
+            r = validate_message(f"Give 9999 {unit}. Draft for physician review.", rec, sn)
+            self.assertFalse(r.ok, unit)
+
+    def test_comma_separated_allowed_dose_passes(self):
+        rec, sn = self._escalate_rec()
+        r = validate_message(
+            "Your care team may increase to 1,000 milligrams. Draft for review.",
+            rec, sn)
+        self.assertTrue(r.ok, r.problems)
 
 
 if __name__ == "__main__":

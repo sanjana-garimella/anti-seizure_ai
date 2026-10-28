@@ -21,16 +21,49 @@ from dataclasses import dataclass, field
 from typing import List, Any, Set
 
 # Phrases that would contradict a given category if they appear in family text.
+# Every RecommendationCategory has an entry. The phrases are checked against the
+# engine's own drafts in tests/test_family_templates.py, so a phrase the template
+# legitimately uses (HOLD B5 says "then increase"; template G says "rather than
+# stopping it") must not be listed for that category.
+_ADD_PHRASES = [
+    "add a second medicine", "add a second medication",
+    "add another medicine", "add another medication",
+    "start a second medicine", "start a second medication",
+]
+_STOP_PHRASES = [
+    "stop the medicine", "stop taking it", "stop taking the medicine",
+    "discontinue it", "discontinue the medicine",
+]
+_SWITCH_PHRASES = [
+    "switch", "different medicine", "different medication",
+    "change to another medicine", "change to another medication",
+]
+_INCREASE_PHRASES = ["increase the dose", "raise the dose", "go up on the dose"]
+_LOWER_PHRASES = ["lower the dose", "reduce the dose", "decrease the dose"]
+_KEEP_PHRASES = ["keep the dose the same", "stay at the same dose"]
 _CONTRADICTIONS = {
-    "no_change": ["increase", "switch", "different medicine", "different medication",
-                  "lower the dose", "stop the"],
-    "escalate": ["switch", "different medicine", "different medication", "stop the medicine"],
-    "slower_uptitration": ["switch to a different", "stop the medicine"],
-    "switch_medication": ["increase the dose", "keep the dose the same"],
-    "insufficient_data": ["increase", "switch", "lower the dose"],
+    "no_change": _INCREASE_PHRASES + _LOWER_PHRASES + _STOP_PHRASES
+                 + _SWITCH_PHRASES + _ADD_PHRASES,
+    "escalate": _LOWER_PHRASES + _STOP_PHRASES + _SWITCH_PHRASES + _ADD_PHRASES,
+    "slower_uptitration": _LOWER_PHRASES + _STOP_PHRASES
+                          + _SWITCH_PHRASES + _ADD_PHRASES,
+    "hold": _INCREASE_PHRASES + _LOWER_PHRASES + _STOP_PHRASES
+            + _SWITCH_PHRASES + _ADD_PHRASES,
+    "lower_dose": _INCREASE_PHRASES + _KEEP_PHRASES + _STOP_PHRASES
+                  + _SWITCH_PHRASES + _ADD_PHRASES,
+    "add_medication": _INCREASE_PHRASES + _STOP_PHRASES + _SWITCH_PHRASES,
+    "switch_medication": _INCREASE_PHRASES + _LOWER_PHRASES
+                         + _KEEP_PHRASES + _ADD_PHRASES,
+    "insufficient_data": _INCREASE_PHRASES + _LOWER_PHRASES
+                         + _STOP_PHRASES + _SWITCH_PHRASES + _ADD_PHRASES,
 }
 
-_DISCLAIMER_MARKERS = ("draft", "physician review", "care team")
+# Dose number followed by a unit, abbreviated or spelled out ("900 milligrams").
+_DOSE_NUMBER_RE = re.compile(
+    r"(?<![\d.,])((?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s*"
+    r"(?:mg|ml|milligrams?|millilit(?:er|re)s?)\b")
+
+_DISCLAIMER_MARKERS = ("draft", "physician review")
 
 
 @dataclass
@@ -96,8 +129,9 @@ def validate_message(text, recommendation, snapshot) -> GuardrailResult:
 
     # 1) No invented dose numbers.
     allowed = _allowed_numbers(recommendation, snapshot)
-    for num in re.findall(r"(\d+(?:\.\d+)?)\s*(?:mg|ml)\b", low):
-        if not any(abs(float(num) - a) < 1e-6 for a in allowed):
+    for num in _DOSE_NUMBER_RE.findall(low):
+        parsed = float(num.replace(",", ""))
+        if not any(abs(parsed - a) < 1e-6 for a in allowed):
             problems.append(f"Mentions dose number '{num}' not present in the "
                             f"engine's structured output (possible fabrication).")
 

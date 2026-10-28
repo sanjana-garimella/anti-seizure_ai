@@ -130,7 +130,10 @@ class TestQueueTriageColumns(unittest.TestCase):
     def test_columns_exist_after_init(self):
         import sqlite3
         c = sqlite3.connect(db.DB_PATH)
-        cols = [r[1] for r in c.execute("pragma table_info(recommendations)")]
+        try:
+            cols = [r[1] for r in c.execute("pragma table_info(recommendations)")]
+        finally:
+            c.close()
         self.assertIn("urgency_tier", cols)
         self.assertIn("dose_exceeds_max", cols)
 

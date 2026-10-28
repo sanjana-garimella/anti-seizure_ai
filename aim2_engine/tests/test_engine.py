@@ -15,6 +15,7 @@ import unittest
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from engine_core.asm_rules import load_asm_rules
+from engine_core.decision import _min_weeks
 from engine_core import (
     run_engine, snapshot_from_interval, survey_from_answers,
     PatientContext, MedicationContext, PhysicianContingency,
@@ -22,6 +23,16 @@ from engine_core import (
     RecommendationCategory, Adherence, SideEffectSeverity, DoseGoalStatus,
     FamilyPreference, RashSeverity,
 )
+
+
+class TestThresholdParsing(unittest.TestCase):
+    def test_zero_is_a_real_threshold(self):
+        self.assertEqual(_min_weeks({"minimum": 0}, "minimum"), 0.0)
+
+    def test_missing_or_malformed_threshold_disables_rule(self):
+        for value in (None, True, "2", -1):
+            self.assertEqual(
+                _min_weeks({"minimum": value}, "minimum"), float("inf"))
 
 
 def make_snapshot(answers, med=None, cont=None, age=8, weight=30):

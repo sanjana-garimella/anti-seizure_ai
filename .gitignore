@@ -12,6 +12,8 @@ aim2_engine/data/drug_classes.json
 aim2_engine/data/redflag_terms.json
 # Private validation material — engine answer key must never be committed/sent (S1)
 aim2_engine/validation/private/
+# PubMed abstract cache. Local eval only. Publisher copyright can cover the text.
+aim2_engine/validation/data/asm_pubmed_cases.json
 INTERNAL_engine_answer_key_DO_NOT_SEND.csv
 # Poster material is local only - never in git (owner's choice, 2026-10-23)
 /poster/

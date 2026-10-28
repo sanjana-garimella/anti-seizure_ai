@@ -1,5 +1,5 @@
 {
-  "engine_version": "0.4.2",
+  "engine_version": "0.4.3",
   "n_cases": 100,
   "what_this_is": "Labels were fixed from the decision-table JSON (90 cases) or the written safety rule (10 probes) before run_engine. Caregiver sentences express that fact list. Lexicon F1 on the paraphrase slice is robustness to wording the word list does not contain. This is not chart-review validation.",
   "engine_vs_table": {

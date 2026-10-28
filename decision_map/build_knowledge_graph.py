@@ -33,7 +33,10 @@ _VAL = os.path.join(HERE, "..", "aim2_engine", "validation")
 
 
 def _load(path, default=None):
-    return json.load(open(path)) if os.path.isfile(path) else (default or {})
+    if not os.path.isfile(path):
+        return default or {}
+    with open(path) as fh:
+        return json.load(fh)
 
 
 ASM = _load(os.path.join(_DATA, "asm_rules.json"))

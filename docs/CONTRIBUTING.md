@@ -10,13 +10,13 @@ Read the ground rules in [`NON_NEGOTIABLE_RULES.md`](../NON_NEGOTIABLE_RULES.md)
 | `python3 tools/seed_demo_queue.py --apply` | Fill the review queue with the synthetic demo patients (dry run without `--apply`) | |
 | `python3 tools/regen_notes.py --apply --with-drafts` | Rebuild saved notes and drafts after an engine change | |
 | `python3 tools/reset_doctor_pw.py` | Reset the `doctor` password (you type it, nothing is printed) | |
-| `python3 -m unittest discover -s tests` | Full test suite | `Ran 532 tests ... OK` |
+| `python3 -m unittest discover -s tests` | Full tracked test suite | `Ran 521 tests ... OK` |
 | `python3 validation/harness.py` | Agreement against gold cases (Cohen's κ) | `κ = 1.0, MET` |
 | `python3 verification/verify_all.py` | Independent proof of the rule tables and safety net | `RESULT: PASS` |
 | `python3 validation/holdout_test.py` | Fresh cases scored against the decision tables + fuzz test | Held-out: PASS, stress/fuzz: PASS (0 safety message leaks). |
 | `python3 demo.py` | Command-line demo of the engine | |
 
-All four checks (tests, κ, verify_all, holdout) should be green before a change is merged.
+All four checks (tests, κ, verify_all, holdout) should be green before a change is merged. `.github/workflows/engine-checks.yml` runs them, plus a Bandit static scan, on every push and pull request. The scan fails on a new medium or high finding. Issues already in the tree are in `.github/bandit-baseline.json`. `asm_rules.json` is generated in that job because it is not in git.
 
 ## Making a change
 

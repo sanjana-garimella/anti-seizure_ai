@@ -76,8 +76,11 @@ def load_rows(n: int, seed: int):
     except ImportError:
         print("  `datasets` not installed. Run: pip3 install --user datasets")
         sys.exit(1)
-    ds = load_dataset("ade-benchmark-corpus/ade_corpus_v2",
-                       "Ade_corpus_v2_drug_ade_relation")["train"]
+    ds = load_dataset(
+        "ade-benchmark-corpus/ade_corpus_v2",
+        "Ade_corpus_v2_drug_ade_relation",
+        revision="4ba01c71687dd7c996597042449448ea312126cf",
+    )["train"]
     idx = list(range(len(ds)))
     random.Random(seed).shuffle(idx)
     rows = [ds[i] for i in idx[:n]]

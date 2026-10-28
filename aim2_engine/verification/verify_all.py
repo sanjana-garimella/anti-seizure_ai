@@ -70,8 +70,54 @@ def run_all(write: bool = True) -> dict:
         "rules": rules_summary,
         "ladder": ladder_summary,
         "redteam": redteam_summary,
+        "clinical_signoff": clinical_signoff_status(),
         "ok": not hard_fail,
     }
+
+
+def clinical_signoff_status(data_dir: str = None) -> dict:
+    """Report false, absent, and unreadable verification metadata.
+
+    Verification markers may be file-level or nested on drugs/rules/bands.
+    This is report-only: machine consistency and clinical sign-off are separate.
+    """
+    import glob
+    import json
+    data_dir = data_dir or _DATA
+    out = {"verified_false": {}, "unmarked": [], "unreadable": []}
+
+    def count_verified(value) -> tuple:
+        if isinstance(value, dict):
+            markers = false_markers = 0
+            for key, child in value.items():
+                if key == "verified":
+                    markers += 1
+                    false_markers += int(child is False)
+                nested_markers, nested_false = count_verified(child)
+                markers += nested_markers
+                false_markers += nested_false
+            return markers, false_markers
+        if isinstance(value, list):
+            totals = [count_verified(child) for child in value]
+            return sum(x[0] for x in totals), sum(x[1] for x in totals)
+        return 0, 0
+
+    for path in sorted(glob.glob(os.path.join(data_dir, "*.json"))):
+        if path.endswith(".template.json"):
+            continue
+        name = os.path.basename(path)
+        try:
+            with open(path) as fh:
+                doc = json.load(fh)
+        except (OSError, json.JSONDecodeError):
+            out["unreadable"].append(name)
+            continue
+        markers, false_markers = count_verified(doc)
+        if not markers:
+            out["unmarked"].append(name)
+        elif false_markers:
+            out["verified_false"][name] = false_markers
+    return out
 
 
 def main() -> int:
@@ -97,6 +143,18 @@ def main() -> int:
           f"(must-catch={t['must_catch_misses']}) / {t['false_alarms']} false-alarms")
     print(f"    artifacts -> {os.path.relpath(_ART)}/")
     print(f"  RESULT: {'PASS' if res['ok'] else 'FAIL (hard defect - PI review)'}")
+    signoff = res["clinical_signoff"]
+    print("  PASS/FAIL covers internal consistency only. Clinical sign-off is separate:")
+    unsigned = signoff["verified_false"]
+    if unsigned:
+        details = ", ".join(f"{name} ({count})" for name, count in unsigned.items())
+        print(f"    verified:false -> {details}  (open items: NEEDS_PI_SIGNOFF.md)")
+    if signoff["unmarked"]:
+        print(f"    no verified marker -> {', '.join(signoff['unmarked'])}")
+    if signoff["unreadable"]:
+        print(f"    unreadable JSON -> {', '.join(signoff['unreadable'])}")
+    if not any(signoff.values()):
+        print("    no verified:false, unmarked, or unreadable clinical JSON found")
     print("#" * 74)
     return 0 if res["ok"] else 1
 

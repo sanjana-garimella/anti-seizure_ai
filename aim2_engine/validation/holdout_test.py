@@ -272,3 +272,4 @@ if __name__ == "__main__":
     st = stress()
     print("\n  " + "=" * 58)
     print(f"  HELD-OUT: {'PASS' if ho else 'SEE MISMATCHES'}   |   STRESS/FUZZ: {'PASS' if st else 'FAILURES ABOVE'}")
+    sys.exit(0 if ho and st else 1)

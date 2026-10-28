@@ -1,8 +1,9 @@
 """
 validation/nlp_pubmed_eval.py
 --------------------------------
-Runs the point-A structurers against the real, ASM-specific PubMed corpus
-built by fetch_asm_pubmed_cases.py. Read that script's docstring first - in
+Runs the point-A structurers against a local PubMed cache built by
+fetch_asm_pubmed_cases.py. That cache is gitignored. Read that script's
+docstring first - in
 short: this is real, externally-authored, on-topic (your 11 ASMs) text, but
 it has NO gold annotation, so this script can only report RECALL-style
 proxies, not precision/F1:

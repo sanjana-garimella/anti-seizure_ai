@@ -174,8 +174,10 @@ def _run_nlp_audit(answers: dict, patient_id: str, session_id: str) -> None:
             else:
                 digest = hashlib.sha256(text.encode("utf-8", "replace")).hexdigest()
                 logged_text = f"[redacted sha256:{digest} len:{len(text)}]"
+            # Record the parser that actually ran (HUMADEX by default; the lexicon
+            # only on fallback). This was hardcoded to "lexicon".
             pa.log_parse(session_id=session_id, patient_id=patient_id,
-                         model_name="lexicon", source_question=q,
+                         model_name=getattr(s, "model_name", "lexicon"), source_question=q,
                          input_text=logged_text, findings=findings, processing_ms=ms)
     except Exception:   # noqa: BLE001
         pass  # audit failure must never block submission
@@ -264,7 +266,10 @@ def _kappa(pred, gold):
 
 def _load_json(path, default):
     try:
-        return json.load(open(path)) if os.path.isfile(path) else default
+        if not os.path.isfile(path):
+            return default
+        with open(path) as fh:
+            return json.load(fh)
     except (json.JSONDecodeError, OSError):
         return default
 
@@ -1671,10 +1676,9 @@ def _selection_med_checklist(exclude_id=None):
 
 
 def phase2_applies(rec_dict):
-    """Show the family the medication-options step ONLY for a non-urgent
-    switch/add recommendation. Urgent/safety cases are withheld and handled per
-    protocol (non-negotiable rule 2: nothing reaches a family without the
-    physician, and a safety concern blocks the family message)."""
+    """Show medication options only for switch/add when no safety flag is set.
+    This gate does not inspect the queue urgency tier; safety_concern_flag is
+    the explicit condition that withholds the family-facing path."""
     return (rec_dict.get("category") in ("switch_medication", "add_medication")
             and not rec_dict.get("safety_concern_flag"))
 
@@ -2955,7 +2959,7 @@ class Handler(BaseHTTPRequestHandler):
                        session_id=f"sub_{sub_id}")
         # Log full recommendation to MongoDB for traceability (pattern: log_safety_check)
         _log_recommendation_audit(rec, patient, session_id=f"sub_{sub_id}")
-        # Non-urgent switch/add -> compute the drug options from THIS submission's
+        # Switch/add with no safety flag -> compute options from THIS submission's
         # answers and show them as the next step of the same check-in (DRAFT for
         # the neurologist). No separate questionnaire.
         if phase2_applies(rec.to_dict()):
@@ -2996,8 +3000,17 @@ class Handler(BaseHTTPRequestHandler):
         snap = build_family_snapshot(patient, f, answers)
         rec = run_engine(snap, asm_registry=current_asm(),
                          drug_classifier=CLASSIFIER, physician_name="your care team")
+        # Same two prose fields as _do_submit (Q13 and the "other side effect" box);
+        # this path used to scan Q13 only.
+        rf_cats = []
         rf = current_redflag()
-        rf_cats = sorted({fl.category for fl in rf.scan(answers["Q13"])}) if rf and answers.get("Q13") else []
+        if rf:
+            cats = set()
+            for fld in ("Q13", "Q9_other"):
+                txt = answers.get(fld)
+                if txt:
+                    cats.update(fl.category for fl in rf.scan(txt))
+            rf_cats = sorted(cats)
         priority, reasons = triage(rec, rf_cats)
         fr = _formulation_reason(f)
         if fr:
@@ -3053,7 +3066,7 @@ class Handler(BaseHTTPRequestHandler):
         r = b.get("recommendation") or {}
         if not phase2_applies({"category": r.get("category"),
                                "safety_concern_flag": bool(r.get("safety_flag"))}):
-            # Page 2 exists only for a non-urgent switch/add decision.
+            # Page 2 exists only for switch/add with no safety flag.
             return self._send(page("Not found", "<div class=card>No medicine options for this "
                                    "check-in.</div>"), 404)
         if (f.get("skip") or [""])[0]:

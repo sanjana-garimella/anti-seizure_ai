@@ -3,7 +3,7 @@
     "seed": 20260708,
     "n_notes": 1200,
     "n_engine_cases": 1000,
-    "engine_version": "0.3.0",
+    "engine_version": "0.4.3",
     "caveat": "SYNTHETIC, non-PHI, diagnostic only. Advisory NLP layers never touch engine_core. Red-flag SCORE is a simulated stand-in for a future scored classifier; conformal.py is designed to wrap such a classifier. NOT a clinical gold standard (NEEDS_PI_SIGNOFF.md)."
   },
   "extraction": {
@@ -108,14 +108,14 @@
       },
       "biobert": {
         "n_notes": 1200,
-        "micro_precision": 0.9961,
-        "micro_recall": 0.3921,
-        "micro_f1": 0.5627,
-        "macro_f1": 0.6127,
-        "exact_match_accuracy": 0.2208,
+        "micro_precision": 1.0,
+        "micro_recall": 0.4001,
+        "micro_f1": 0.5715,
+        "macro_f1": 0.6253,
+        "exact_match_accuracy": 0.2275,
         "safety_recall": {
           "side_effect:rash": 0.6183,
-          "seizure_mention": 0.8143
+          "seizure_mention": 0.8259
         },
         "rash_recall_stratified": {
           "ordinary_phrasing": 0.5369,
@@ -148,59 +148,59 @@
           },
           "seizure_mention": {
             "precision": 1.0,
-            "recall": 0.8143,
-            "f1": 0.8977,
-            "tp": 421,
+            "recall": 0.8259,
+            "f1": 0.9047,
+            "tp": 427,
             "fp": 0,
-            "fn": 96
+            "fn": 90
           },
           "side_effect:behavior": {
             "precision": 1.0,
-            "recall": 0.5333,
-            "f1": 0.6957,
-            "tp": 48,
+            "recall": 0.5556,
+            "f1": 0.7143,
+            "tp": 50,
             "fp": 0,
-            "fn": 42
+            "fn": 40
           },
           "side_effect:dizziness": {
             "precision": 1.0,
-            "recall": 0.1727,
-            "f1": 0.2945,
-            "tp": 43,
+            "recall": 0.1888,
+            "f1": 0.3176,
+            "tp": 47,
             "fp": 0,
-            "fn": 206
+            "fn": 202
           },
           "side_effect:irritability": {
             "precision": 1.0,
-            "recall": 0.43,
-            "f1": 0.6014,
-            "tp": 89,
+            "recall": 0.4493,
+            "f1": 0.62,
+            "tp": 93,
             "fp": 0,
-            "fn": 118
+            "fn": 114
           },
           "side_effect:nausea": {
             "precision": 1.0,
-            "recall": 0.3858,
-            "f1": 0.5568,
-            "tp": 98,
+            "recall": 0.378,
+            "f1": 0.5486,
+            "tp": 96,
             "fp": 0,
-            "fn": 156
+            "fn": 158
           },
           "side_effect:rash": {
-            "precision": 0.9829,
+            "precision": 1.0,
             "recall": 0.6183,
-            "f1": 0.7591,
+            "f1": 0.7641,
             "tp": 230,
-            "fp": 4,
+            "fp": 0,
             "fn": 142
           },
           "side_effect:sleepiness": {
             "precision": 1.0,
-            "recall": 0.3189,
-            "f1": 0.4836,
-            "tp": 103,
+            "recall": 0.3406,
+            "f1": 0.5081,
+            "tp": 110,
             "fp": 0,
-            "fn": 220
+            "fn": 213
           },
           "test_mention": {
             "precision": NaN,
@@ -307,11 +307,11 @@
       },
       "clinical_bert": {
         "n_notes": 1200,
-        "micro_precision": 0.9868,
-        "micro_recall": 0.7371,
-        "micro_f1": 0.8438,
-        "macro_f1": 0.795,
-        "exact_match_accuracy": 0.5258,
+        "micro_precision": 0.9934,
+        "micro_recall": 0.7386,
+        "micro_f1": 0.8472,
+        "macro_f1": 0.8002,
+        "exact_match_accuracy": 0.5292,
         "safety_recall": {
           "side_effect:rash": 0.6183,
           "seizure_mention": 0.9594
@@ -355,42 +355,42 @@
           },
           "side_effect:behavior": {
             "precision": 1.0,
-            "recall": 0.5889,
-            "f1": 0.7413,
-            "tp": 53,
+            "recall": 0.6222,
+            "f1": 0.7671,
+            "tp": 56,
             "fp": 0,
-            "fn": 37
+            "fn": 34
           },
           "side_effect:dizziness": {
             "precision": 1.0,
-            "recall": 0.494,
-            "f1": 0.6613,
-            "tp": 123,
+            "recall": 0.502,
+            "f1": 0.6684,
+            "tp": 125,
             "fp": 0,
-            "fn": 126
+            "fn": 124
           },
           "side_effect:irritability": {
             "precision": 1.0,
-            "recall": 0.5266,
-            "f1": 0.6899,
-            "tp": 109,
+            "recall": 0.5556,
+            "f1": 0.7143,
+            "tp": 115,
             "fp": 0,
-            "fn": 98
+            "fn": 92
           },
           "side_effect:nausea": {
-            "precision": 0.9907,
-            "recall": 0.4173,
-            "f1": 0.5873,
-            "tp": 106,
-            "fp": 1,
-            "fn": 148
+            "precision": 1.0,
+            "recall": 0.3898,
+            "f1": 0.5609,
+            "tp": 99,
+            "fp": 0,
+            "fn": 155
           },
           "side_effect:rash": {
-            "precision": 0.9504,
+            "precision": 1.0,
             "recall": 0.6183,
-            "f1": 0.7492,
+            "f1": 0.7641,
             "tp": 230,
-            "fp": 12,
+            "fp": 0,
             "fn": 142
           },
           "side_effect:sleepiness": {
@@ -506,18 +506,18 @@
       },
       "humadex_english_medical_ner": {
         "n_notes": 1200,
-        "micro_precision": 0.9564,
-        "micro_recall": 0.7496,
-        "micro_f1": 0.8405,
-        "macro_f1": 0.8111,
-        "exact_match_accuracy": 0.5017,
+        "micro_precision": 0.9604,
+        "micro_recall": 0.7565,
+        "micro_f1": 0.8463,
+        "macro_f1": 0.8209,
+        "exact_match_accuracy": 0.51,
         "safety_recall": {
-          "side_effect:rash": 0.621,
+          "side_effect:rash": 0.6183,
           "seizure_mention": 0.9594
         },
         "rash_recall_stratified": {
           "ordinary_phrasing": 0.5369,
-          "sjs_phrasing": 0.6467,
+          "sjs_phrasing": 0.6413,
           "ordinary_n": 149,
           "sjs_n": 184
         },
@@ -554,27 +554,27 @@
           },
           "side_effect:behavior": {
             "precision": 1.0,
-            "recall": 0.8333,
-            "f1": 0.9091,
-            "tp": 75,
+            "recall": 0.8778,
+            "f1": 0.9349,
+            "tp": 79,
             "fp": 0,
-            "fn": 15
+            "fn": 11
           },
           "side_effect:dizziness": {
             "precision": 1.0,
-            "recall": 0.4337,
-            "f1": 0.605,
-            "tp": 108,
+            "recall": 0.4699,
+            "f1": 0.6393,
+            "tp": 117,
             "fp": 0,
-            "fn": 141
+            "fn": 132
           },
           "side_effect:irritability": {
             "precision": 1.0,
-            "recall": 0.7053,
-            "f1": 0.8272,
-            "tp": 146,
+            "recall": 0.7343,
+            "f1": 0.8468,
+            "tp": 152,
             "fp": 0,
-            "fn": 61
+            "fn": 55
           },
           "side_effect:nausea": {
             "precision": 1.0,
@@ -585,12 +585,12 @@
             "fn": 153
           },
           "side_effect:rash": {
-            "precision": 0.9665,
-            "recall": 0.621,
-            "f1": 0.7561,
-            "tp": 231,
-            "fp": 8,
-            "fn": 141
+            "precision": 1.0,
+            "recall": 0.6183,
+            "f1": 0.7641,
+            "tp": 230,
+            "fp": 0,
+            "fn": 142
           },
           "side_effect:sleepiness": {
             "precision": 1.0,
@@ -705,11 +705,11 @@
       },
       "d4data_biomedical_ner_all": {
         "n_notes": 1200,
-        "micro_precision": 0.8546,
-        "micro_recall": 0.6322,
-        "micro_f1": 0.7268,
-        "macro_f1": 0.6959,
-        "exact_match_accuracy": 0.3358,
+        "micro_precision": 0.857,
+        "micro_recall": 0.633,
+        "micro_f1": 0.7281,
+        "macro_f1": 0.7005,
+        "exact_match_accuracy": 0.3308,
         "safety_recall": {
           "side_effect:rash": 0.6183,
           "seizure_mention": 0.9594
@@ -753,42 +753,42 @@
           },
           "side_effect:behavior": {
             "precision": 1.0,
-            "recall": 0.5889,
-            "f1": 0.7413,
-            "tp": 53,
+            "recall": 0.6333,
+            "f1": 0.7755,
+            "tp": 57,
             "fp": 0,
-            "fn": 37
+            "fn": 33
           },
           "side_effect:dizziness": {
             "precision": 1.0,
-            "recall": 0.4257,
-            "f1": 0.5972,
-            "tp": 106,
+            "recall": 0.4337,
+            "f1": 0.605,
+            "tp": 108,
             "fp": 0,
-            "fn": 143
+            "fn": 141
           },
           "side_effect:irritability": {
             "precision": 1.0,
-            "recall": 0.4203,
-            "f1": 0.5918,
-            "tp": 87,
+            "recall": 0.4444,
+            "f1": 0.6154,
+            "tp": 92,
             "fp": 0,
-            "fn": 120
+            "fn": 115
           },
           "side_effect:nausea": {
-            "precision": 0.9924,
-            "recall": 0.5157,
-            "f1": 0.6788,
-            "tp": 131,
-            "fp": 1,
-            "fn": 123
+            "precision": 1.0,
+            "recall": 0.4803,
+            "f1": 0.6489,
+            "tp": 122,
+            "fp": 0,
+            "fn": 132
           },
           "side_effect:rash": {
-            "precision": 0.9829,
+            "precision": 1.0,
             "recall": 0.6183,
-            "f1": 0.7591,
+            "f1": 0.7641,
             "tp": 230,
-            "fp": 4,
+            "fp": 0,
             "fn": 142
           },
           "side_effect:sleepiness": {
@@ -811,11 +811,11 @@
       },
       "d4data_biomedical_ner_all+sent": {
         "n_notes": 1200,
-        "micro_precision": 0.9007,
-        "micro_recall": 0.8408,
-        "micro_f1": 0.8697,
-        "macro_f1": 0.8658,
-        "exact_match_accuracy": 0.5767,
+        "micro_precision": 0.8982,
+        "micro_recall": 0.818,
+        "micro_f1": 0.8562,
+        "macro_f1": 0.8509,
+        "exact_match_accuracy": 0.5375,
         "safety_recall": {
           "side_effect:rash": 1.0,
           "seizure_mention": 0.9594
@@ -870,11 +870,11 @@
           },
           "side_effect:nausea": {
             "precision": 1.0,
-            "recall": 1.0,
-            "f1": 1.0,
-            "tp": 254,
+            "recall": 0.7638,
+            "f1": 0.8661,
+            "tp": 194,
             "fp": 0,
-            "fn": 0
+            "fn": 60
           },
           "side_effect:rash": {
             "precision": 1.0,
@@ -1049,14 +1049,14 @@
   },
   "engine_fuzz": {
     "n_cases": 1000,
-    "engine_version": "0.3.0",
+    "engine_version": "0.4.3",
     "exceptions": 0,
     "exception_samples": [],
     "nondeterministic": 0,
     "category_distribution": {
       "no_change": 418,
-      "switch_medication": 261,
-      "insufficient_data": 188,
+      "switch_medication": 259,
+      "insufficient_data": 190,
       "slower_uptitration": 81,
       "escalate": 52
     },

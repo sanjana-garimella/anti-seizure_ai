@@ -1,0 +1,35 @@
+name: Engine checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: aim2_engine
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Static scan
+        run: |
+          python3 -m pip install --disable-pip-version-check bandit==1.9.4
+          python3 -m bandit -r . -ll -b ../.github/bandit-baseline.json
+      - name: Build asm_rules.json
+        run: python3 data/_build_asm_rules.py
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests
+      - name: Gold harness
+        run: python3 validation/harness.py
+      - name: Proof suite
+        run: python3 verification/verify_all.py
+      - name: Holdout
+        run: python3 validation/holdout_test.py
