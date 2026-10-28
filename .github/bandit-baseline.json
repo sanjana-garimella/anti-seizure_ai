@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2026-10-28T05:34:16Z",
+  "generated_at": "2026-10-28T20:04:58Z",
   "metrics": {
     "./audit/__init__.py": {
       "CONFIDENCE.HIGH": 0,
@@ -50,7 +50,7 @@
       "SEVERITY.LOW": 5,
       "SEVERITY.MEDIUM": 2,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 2894,
+      "loc": 2938,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -167,7 +167,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 124,
+      "loc": 219,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -219,7 +219,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 470,
+      "loc": 486,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -232,7 +232,7 @@
       "SEVERITY.LOW": 1,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 513,
+      "loc": 536,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -271,7 +271,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 478,
+      "loc": 480,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -297,7 +297,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 179,
+      "loc": 191,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -323,7 +323,7 @@
       "SEVERITY.LOW": 1,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 988,
+      "loc": 1015,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -336,7 +336,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 356,
+      "loc": 390,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -492,7 +492,7 @@
       "SEVERITY.LOW": 1,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 96,
+      "loc": 109,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -700,7 +700,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 551,
+      "loc": 604,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -713,7 +713,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 284,
+      "loc": 289,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -765,7 +765,20 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 105,
+      "loc": 144,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "./tests/test_kristen_search.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 248,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -817,7 +830,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 231,
+      "loc": 244,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -912,6 +925,19 @@
       "nosec": 0,
       "skipped_tests": 0
     },
+    "./tests/test_uneven_dosing.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 105,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
     "./tests/test_verification_and_advisory.py": {
       "CONFIDENCE.HIGH": 1,
       "CONFIDENCE.LOW": 0,
@@ -947,7 +973,20 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 45,
+      "loc": 64,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "./tools/kristen_search.py": {
+      "CONFIDENCE.HIGH": 5,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 3,
+      "SEVERITY.MEDIUM": 2,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 839,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1350,7 +1389,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 116,
+      "loc": 132,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -1381,22 +1420,22 @@
       "skipped_tests": 0
     },
     "_totals": {
-      "CONFIDENCE.HIGH": 49,
+      "CONFIDENCE.HIGH": 54,
       "CONFIDENCE.LOW": 2,
       "CONFIDENCE.MEDIUM": 3,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 46,
-      "SEVERITY.MEDIUM": 8,
+      "SEVERITY.LOW": 49,
+      "SEVERITY.MEDIUM": 10,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 23554,
+      "loc": 25157,
       "nosec": 0,
       "skipped_tests": 2
     }
   },
   "results": [
     {
-      "code": "1401     sex_v = str(p.get(\"sex\") or \"\").strip().lower()\n1402     return f\"\"\"\n1403 <div id=progress></div>\n1404 <div style=\"margin-bottom:22px\">\n1405   <div style=\"font-size:12px;font-weight:700;letter-spacing:.12em;color:#647084;text-transform:uppercase\">Between-visit check-in</div>\n1406   <h1 style=\"margin:8px 0 0;font-size:30px;line-height:1.15;font-weight:700;letter-spacing:-.01em;color:#16191c\">How has your child been doing?</h1>\n1407   <p style=\"margin:12px 0 0;font-size:17px;line-height:1.6;color:#3a4654\">Complete the following questions to send an update to your medical team.</p>\n1408   <div class=intro-meta>\n1409     <span>About 2-3 minutes</span>\n1410     <span>Goes only to your care team</span>\n1411     <span>Optional questions can be skipped</span>\n1412   </div>\n1413 </div>\n1414 <div class=card><h2>About your child</h2>\n1415   <div class=row>\n1416     <div><label class=muted>Child's age (years)</label><input type=number step=any min=0 max=25 inputmode=decimal name=child_age value='{html.escape(age_v)}' placeholder=\"for example, 7\"></div>\n1417     <div><label class=muted>Child's sex</label><select name=sex>{opts([('', 'Prefer not to say'), ('female', 'Female'), ('male', 'Male')], sex_v)}</select></div>\n1418     <div><label class=muted>Child's weight (lb)</label><input type=number step=any min=0 inputmode=decimal name=child_weight_lb value='{html.escape(weight_lb_v)}' placeholder=\"for example, 48\"></div>\n1419   </div>\n1420   <p class=muted style='margin-top:6px'>Helps your care team review the dose. Weight in pounds (lb); we convert it for the record.</p>\n1421 </div>\n1422 <div class=card><h2>The medicine &amp; dose</h2>\n1423   <label>1. Is your child still taking their seizure medicine at the prescribed dose?</label>\n1424   <select name=q1>{opts([('same','Yes, the same as prescribed'),('changed','The dose has changed'),('stopped','They have stopped taking it')], 'same')}</select>\n1425   <div id=fs-q1change class=subq>\n1426   <label>If the dose changed or they stopped, what changed?</label>\n1427   <input type=text name=q1_change placeholder=\"for example, we lowered it because of sleepiness\"></div>\n1428 \n1429   <label>The medicine and dose your child is taking now</label>\n1430   <div class=row>\n1431     <div><label class=muted>Medicine<span class=req>*</span></label><select name=med required>{opts(_MED_OPTS, med_sel)}</select></div>\n1432     <div><label class=muted>How is it given?</label><select name=unit>{opts([('mL','Liquid from a bottle'),('tablets','Tablet or pill'),('mg','Milligrams (mg)')], unit_v)}</select></div>\n1433   </div>\n1434   <div id=fs-medother class=subq><label class=muted>If you chose Other, type the medicine name</label><input type=text name=med_other value='{html.escape(med_other_v)}'></div>\n1435   <div class=row>\n1436     <div id=strengthbox><label class=muted id=strengthlbl>Strength of one tablet (mg)</label>\n1437       <select name=strength id=strength_sel data-selected='{html.escape(strength_v)}'><option value=''>Choose the strength</option></select>\n1438       <div id=fs-strength-other class=subq style='display:none'><label class=muted>Type the strength (mg per tablet)</label><input type=number step=any min=0 inputmode=decimal name=strength_other value='' placeholder=\"how many mg in one tablet\"></div>\n1439       <span class=muted id=strength_hint></span></div>\n1440     <div id=concbox><label class=muted>Strength of the liquid</label>\n1441       <select name=conc_mgml id=conc_sel data-selected='{html.escape(conc_mg_v)}'><option value=''>Choose the strength</option></select>\n1442       <div id=fs-conc-other class=subq style='display:none'><label class=muted>Strength on the bottle (mg/mL)</label>\n1443         <div style='display:flex;align-items:center;gap:8px'>\n1444           <input type=number step=any min=0 inputmode=decimal name=conc_mg value='{html.escape(conc_mg_v)}' placeholder=\"100\" style='max-width:84px' aria-label=\"milligrams on the bottle label\">\n1445           <span class=muted>mg /</span>\n1446           <input type=number step=any min=0 inputmode=decimal name=conc_ml value='{html.escape(conc_ml_v)}' placeholder=\"5\" style='max-width:84px' aria-label=\"millilitres on the bottle label\">\n1447           <span class=muted>mL</span>\n1448         </div>\n1449         <span class=muted>for example, the label says 100 mg/5 mL</span></div></div>\n1450     <div><label class=muted>Amount each time <span id=amtunit class=muted></span></label>\n1451       <select id=amt_mg_sel style='display:none'><option value=''>Choose the amount</option></select>\n1452       <input type=number step=any min=0 inputmode=decimal name=amt value='{html.escape(amt_v)}' data-selected='{html.escape(amt_v)}'></div>\n1453     <div><label class=muted>Times per day</label><select name=freq>{opts([('1','1'),('2','2'),('3','3'),('4','4')], freq_v)}</select></div>\n1454   </div>\n1455   <div class=dosecalc id=dosebox><span class=dc-eyebrow>In milligrams, that is</span><strong id=mgout aria-live=polite>Fill in the amount and times per day above.</strong></div>\n1456 \n1457   <label>2. In the past week, how often did your child miss a dose?</label>\n1458   <select name=adherence>{opts([('almost_never','Almost never misses a dose'),('sometimes','Sometimes misses a dose'),('stopped','Stopped taking it')], 'almost_never')}</select>\n1459   <fieldset id=fs-missed><legend>If they missed doses, what was the main reason? (check any)</legend>\n1460     {checks('q2a',[('cost_or_insurance','Cost or insurance'),('side_effects','Side effects'),('hard_to_remember','Hard to remember to take it'),('child_refuses','Child refuses to take it'),('ran_out','Ran out of medication'),('other','Other')])}\n1461     <div id=fs-q2aother class=subq><label class=muted>If you chose Other, please describe</label><input type=text name=q2a_other placeholder=\"the main reason doses were missed\"></div>\n1462   </fieldset>\n1463 </div>\n1464 \n1465 <div class=card><h2>Seizures</h2>\n1466   <label>3. Since your last update, has your child had any seizures?</label>\n1467   <select name=seizures>{opts([('no','No'),('yes','Yes')], 'no')}</select>\n1468   <fieldset id=fs-seiz><legend>If yes</legend>\n1469     <label>4. What did the seizure(s) look like? (check all that apply)</label>\n1470     <p class=muted>If your child has more than one kind of seizure, check all that apply.</p>\n1471     <div class=checks>\n1472     {\"\".join(\n1473       f\"<label><input type=checkbox name=q4 value={tok}><span>{cbl}</span></label>\"\n1474       f\"<div id=fs-seizd-{tok} class=subq style='display:none'>\"\n1475       f\"<label>How often are the {hum} happening?</label>\"\n1476       f\"<select name=freq_{tok}>{opts(_FREQ_BUCKET_OPTS)}</select>\"\n1477       f\"<label>How long do they usually last?</label>\"\n1478       f\"<select name=dur_{tok}>{opts(_DUR_OPTS)}</select>\"\n1479       f\"<label class=muted>If you can, about how many of these in the past 4 weeks? (optional)</label>\"\n1480       f\"<input type=number min=0 step=1 inputmode=numeric name=count_{tok} placeholder='e.g., 12'>\"\n1481       + (f\"<label>During these, is your child unresponsive (cannot be woken or does not respond)?</label>\"\n1482          f\"<select name=unresp_{tok}>{opts(_UNRESP_OPTS)}</select>\"\n1483          if tok not in ('brief_staring', 'sudden_jerks') else \"\")\n1484       + \"</div>\"\n1485       for tok, cbl, hum in [\n1486         ('brief_staring', 'Brief staring or pauses', 'brief staring spells'),\n1487         ('sudden_jerks', 'Quick jerks', 'quick jerks'),\n1488         ('whole_body', 'Whole-body shaking or stiffening', 'whole-body shaking or stiffening'),\n1489         ('focal', 'One part of the body shaking or twitching', 'shaking or twitching in one part of the body'),\n1490         ('acting_off', 'Acting off or not responding appropriately, without shaking or stiffening', 'times acting off or not responding appropriately')])}\n1491       <label><input type=checkbox name=q4 value=not_sure><span>Not sure</span></label>\n1492       <div id=fs-seizd-not_sure class=subq style='display:none'><label class=muted>Describe what it looked like, in your own words</label><input type=text name=q_seizure_note placeholder=\"for example, eyes rolling up, a sudden fall, staring and unresponsive\"></div>\n1493     </div>\n1494     <label>6. Compared with your last visit, the seizures are:</label>\n1495     <select name=q6>{opts([('','Choose'),('fewer','Fewer'),('about_same','About the same'),('more','More frequent'),('new_type','A new type has appeared')])}</select>\n1496     <label>7. When the seizure happened, had your child been taking their medicine as usual in the two days before it?</label>\n1497     <select name=q7>{opts([('','Choose'),('yes','Yes'),('no','No')])}</select>\n1498     <label>Prior to these recent seizures, were there any possible triggers? (check all that apply)</label>\n1499     {checks('q_triggers',[('lack_of_sleep','Unusual lack of sleep the day before'),('missed_dose','Missed a dose of medication in the 2 days before a seizure'),('fever_illness','Fever or illness'),('other','Other')])}\n1500     <label class=muted>If you chose Other, please describe</label>\n1501     <input type=text name=q_triggers_other placeholder=\"the possible trigger\">\n1502     <label>If there were triggers, was one of them present before <strong>all</strong> of the breakthrough seizures?</label>\n1503     <select name=q_triggers_all>{opts([('','Choose / not applicable'),('yes','Yes'),('no','No'),('not_sure','Not sure')])}</select>\n1504     <label>Additional note for doctor (optional)</label>\n1505     <input type=text name=q_seizure_doctor_note placeholder=\"anything about the seizures you want the doctor to know\">\n1506   </fieldset>\n1507 </div>\n1508 \n1509 <div class=card id=card-dosegoal><h2>Dose goal</h2>\n1510   <p class=muted>The \"goal dose\" is the target dose your care team is working toward.</p>\n1511   <label>7. Are you still increasing the medicine toward a goal dose, or have you reached the goal dose?</label>\n1512   <select name=q10a>{opts([('','Choose'),('still_increasing','Still increasing toward the goal dose'),('at_goal','At the goal dose'),('not_sure','Not sure')])}</select>\n1513   <div id=fs-atgoal class=subq>\n1514     <label>Has your child been on this goal dose for more than 2 weeks?</label>\n1515     <select name=q10c_time>{opts([('','Choose'),('over_2_weeks','Yes'),('under_2_weeks','No')])}</select>\n1516     <label>How is it going on this dose?</label>\n1517     <textarea name=q10c_note rows=2 placeholder=\"how your child is doing now that they have reached the goal dose\"></textarea>\n1518   </div>\n1519   <div id=fs-plannedend>\n1520   <label>What total daily dose is your child working up to on the current plan (the goal dose)? Optional &mdash; enter the total milligrams per day if you know it.</label>\n1521   <input type=number name=q10f_planned_end_mg min=0 step=1 placeholder=\"e.g. 1500 (mg per day)\">\n1522   </div>\n1523 </div>\n1524 \n1525 <div class=card><h2>Side effects</h2>\n1526   <label>8. Is your child having any side effects from the past two weeks?</label>\n1527   <select name=se>{opts([('no','No'),('yes','Yes')], 'no')}</select>\n1528   <fieldset id=fs-se><legend>If yes</legend>\n1529     <label>9. Which ones? (check any)</label>\n1530     <div class=checks>\n1531       <label><input type=checkbox name=q9 value=sleepiness><span>Sleepiness or tiredness</span></label>\n1532       <label><input type=checkbox name=q9 value=irritability><span>Irritability or mood changes</span></label>\n1533       <label><input type=checkbox name=q9 value=behavior><span>Behavior changes</span></label>\n1534       <label><input type=checkbox name=q9 value=acting_confused><span>Acting confused or \"off\"</span></label>\n1535       <label><input type=checkbox name=q9 value=dizziness><span>Dizziness or unsteadiness</span></label>\n1536       <label><input type=checkbox name=q9 value=rash><span>Rash</span></label>\n1537       <div id=fs-rash style='display:none;margin-top:10px;background:#fdeceb;border:1px solid #f3b7b2;border-radius:8px;padding:14px 16px'>\n1538         <label style='color:#8a2018;margin-top:0'>How significant is the rash?</label>\n1539         <select name=q9a>{opts([('','Choose'),('small','It is a small rash'),('large','It is a large rash'),('blisters','It is causing blisters')])}</select>\n1540         <!-- Serious-rash (Stevens-Johnson) workup follow-ups, T11/R4 (Barbour\n1541              case H6). Previously computed in engine_core but never asked here -\n1542              southeast_asian_ancestry / concomitant meds / recent viral illness\n1543              always defaulted to unknown, so this logic could never fire on a\n1544              real submission. Asked whenever Rash is checked (not gated to\n1545              \"small\" specifically) since it's simplest and harmless for the\n1546              large/blister cases too (those are already handled by the\n1547              hard-stop urgent rule regardless of these answers). -->\n1548         <label style='color:#8a2018;margin-top:10px'>Is your child of Southeast or East Asian ancestry? (relevant for rash risk with certain medicines)</label>\n1549         <select name=q_ancestry>{opts([('','Prefer not to say / not sure'),('yes','Yes'),('no','No')])}</select>\n1550         <label style='color:#8a2018;margin-top:10px'>Besides this seizure medicine, is your child on any OTHER seizure medications? (check any - helps check for interactions)</label>\n1551         {checks('q_other_asms', [(m, m.replace('_',' ').title()) for m in MEDS])}\n1552         <label style='color:#8a2018;margin-top:10px'>Is your child currently on any of these? (check any - these are specifically linked to serious rash reactions)</label>\n1553         {checks('q_sjs_risk_comeds', [('antibiotic','An antibiotic (including a sulfa drug, penicillin/amoxicillin, or a cephalosporin)'),('nsaid','Ibuprofen or another NSAID pain reliever'),('allopurinol','Allopurinol (a gout medication)')])}\n1554         <label style='color:#8a2018;margin-top:10px'>Any other regular medications not listed above? List them, separated by commas.</label>\n1555         <input type=text name=q_other_meds_text placeholder=\"e.g. melatonin, an inhaler\">\n1556         <label style='color:#8a2018;margin-top:10px'>Has your child had a cold, fever, or other viral illness in the past few weeks?</label>\n1557         <select name=q_viral_illness>{opts([('','Not sure'),('yes','Yes'),('no','No')])}</select>\n1558       </div>\n1559       <label><input type=checkbox name=q9 value=nausea><span>Nausea or appetite change</span></label>\n1560       <label><input type=checkbox name=q9 value=other><span>Other</span></label>\n1561       <div id=fs-q9other class=subq style='display:none'><label class=muted>If you chose Other, please describe the side effect</label><input type=text name=q9_other placeholder=\"for example, headaches, stomach aches\"></div>\n1562     </div>\n1563     <label>10. Children can have more side effects right after a dose increase. After about 5 to 10 days on a new dose, how much are the side effects affecting your child's day?</label>\n1564     <select name=impact>{opts(_IMPACT_OPTS)}</select>\n1565   </fieldset>\n1566 </div>\n1567 \n1568 <div class=card id=card-pref style='display:none'><h2>A few more questions</h2>\n1569   {_dosing_choice_block(p)}\n1570   <div id=fs-pref-adjust style='display:none'>\n1571     <p style='font-size:16px;line-height:1.6;color:#3a4654'>Side effects can be the most pronounced immediately after a dose increase and improve as the body adjusts to the medicine. From your observations, do you think your child is showing an adjustment to the medication after being on a stable dose for 1 week, and side effects are manageable after this 1 week adjustment period?</p>\n1572     <select name=q_adjust>{opts([('','Choose'),('manageable','Yes, side effects are manageable'),('too_much','No, side effects are having too much of an impact on daily life and I would prefer avoiding more dose increases')])}</select>\n1573   </div>\n1574 </div>\n1575 \n1576 <div class=card><h2>Overall</h2>\n1577   <label>11. Overall, how have your child's seizures changed on this medicine?<span class=req>*</span></label>\n1578   <select name=q11 required>{opts([('','Choose'),('better','Better'),('about_same','About the same'),('worse','Worse'),('not_sure','Not sure')])}</select>\n1579   <div id=fs-conflict class=subq style='display:none'><label class=muted>You said things are <strong>better overall</strong> but also <strong>more frequent</strong> seizures - can you tell us a little more so the team understands?</label><input type=text name=q_conflict placeholder=\"for example, shorter but more often\"></div>\n1580   <label>12. Anything else you would like the care team to know? (optional)</label>\n1581   <textarea name=q13 rows=3></textarea>\n1582   <button class='btn cta big' type=submit>Send to my care team</button>\n1583   <p class=muted style='text-align:center;margin-top:10px'>Your care team reviews every answer before anything is decided.</p>\n1584 </div>\"\"\"\n1585 \n",
+      "code": "1422     sex_v = str(p.get(\"sex\") or \"\").strip().lower()\n1423     return f\"\"\"\n1424 <div id=progress></div>\n1425 <div style=\"margin-bottom:22px\">\n1426   <div style=\"font-size:12px;font-weight:700;letter-spacing:.12em;color:#647084;text-transform:uppercase\">Between-visit check-in</div>\n1427   <h1 style=\"margin:8px 0 0;font-size:30px;line-height:1.15;font-weight:700;letter-spacing:-.01em;color:#16191c\">How has your child been doing?</h1>\n1428   <p style=\"margin:12px 0 0;font-size:17px;line-height:1.6;color:#3a4654\">Complete the following questions to send an update to your medical team.</p>\n1429   <div class=intro-meta>\n1430     <span>About 2-3 minutes</span>\n1431     <span>Goes only to your care team</span>\n1432     <span>Optional questions can be skipped</span>\n1433   </div>\n1434 </div>\n1435 <div class=card><h2>About your child</h2>\n1436   <div class=row>\n1437     <div><label class=muted>Child's age (years)</label><input type=number step=any min=0 max=25 inputmode=decimal name=child_age value='{html.escape(age_v)}' placeholder=\"for example, 7\"></div>\n1438     <div><label class=muted>Child's sex</label><select name=sex>{opts([('', 'Prefer not to say'), ('female', 'Female'), ('male', 'Male')], sex_v)}</select></div>\n1439     <div><label class=muted>Child's weight (lb)</label><input type=number step=any min=0 inputmode=decimal name=child_weight_lb value='{html.escape(weight_lb_v)}' placeholder=\"for example, 48\"></div>\n1440   </div>\n1441   <p class=muted style='margin-top:6px'>Helps your care team review the dose. Weight in pounds (lb); we convert it for the record.</p>\n1442 </div>\n1443 <div class=card><h2>The medicine &amp; dose</h2>\n1444   <label>1. Is your child still taking their seizure medicine at the prescribed dose?</label>\n1445   <select name=q1>{opts([('same','Yes, the same as prescribed'),('changed','The dose has changed'),('stopped','They have stopped taking it')], 'same')}</select>\n1446   <div id=fs-q1change class=subq>\n1447   <label>If the dose changed or they stopped, what changed?</label>\n1448   <input type=text name=q1_change placeholder=\"for example, we lowered it because of sleepiness\"></div>\n1449 \n1450   <label>The medicine and dose your child is taking now</label>\n1451   <div class=row>\n1452     <div><label class=muted>Medicine<span class=req>*</span></label><select name=med required>{opts(_MED_OPTS, med_sel)}</select></div>\n1453     <div><label class=muted>How is it given?</label><select name=unit>{opts([('mL','Liquid from a bottle'),('tablets','Tablet or pill'),('mg','Milligrams (mg)')], unit_v)}</select></div>\n1454   </div>\n1455   <div id=fs-medother class=subq><label class=muted>If you chose Other, type the medicine name</label><input type=text name=med_other value='{html.escape(med_other_v)}'></div>\n1456   <div class=row>\n1457     <div id=strengthbox><label class=muted id=strengthlbl>Strength of one tablet (mg)</label>\n1458       <select name=strength id=strength_sel data-selected='{html.escape(strength_v)}'><option value=''>Choose the strength</option></select>\n1459       <div id=fs-strength-other class=subq style='display:none'><label class=muted>Type the strength (mg per tablet)</label><input type=number step=any min=0 inputmode=decimal name=strength_other value='' placeholder=\"how many mg in one tablet\"></div>\n1460       <span class=muted id=strength_hint></span></div>\n1461     <div id=concbox><label class=muted>Strength of the liquid</label>\n1462       <select name=conc_mgml id=conc_sel data-selected='{html.escape(conc_mg_v)}'><option value=''>Choose the strength</option></select>\n1463       <div id=fs-conc-other class=subq style='display:none'><label class=muted>Strength on the bottle (mg/mL)</label>\n1464         <div style='display:flex;align-items:center;gap:8px'>\n1465           <input type=number step=any min=0 inputmode=decimal name=conc_mg value='{html.escape(conc_mg_v)}' placeholder=\"100\" style='max-width:84px' aria-label=\"milligrams on the bottle label\">\n1466           <span class=muted>mg /</span>\n1467           <input type=number step=any min=0 inputmode=decimal name=conc_ml value='{html.escape(conc_ml_v)}' placeholder=\"5\" style='max-width:84px' aria-label=\"millilitres on the bottle label\">\n1468           <span class=muted>mL</span>\n1469         </div>\n1470         <span class=muted>for example, the label says 100 mg/5 mL</span></div></div>\n1471     <div id=amtbox><label class=muted>Amount each time <span id=amtunit class=muted></span></label>\n1472       <select id=amt_mg_sel style='display:none'><option value=''>Choose the amount</option></select>\n1473       <input type=number step=any min=0 inputmode=decimal name=amt value='{html.escape(amt_v)}' data-selected='{html.escape(amt_v)}'></div>\n1474     <div><label class=muted>Times per day</label><select name=freq>{opts([('1','1'),('2','2'),('3','3'),('4','4')], freq_v)}</select></div>\n1475   </div>\n1476   <div id=fs-sameeach class=subq>\n1477     <label class=muted>Is it the same amount each time?</label>\n1478     <select name=same_each>{opts([('yes', 'Yes, the same amount each time'), ('no', 'No, the amount is different at different times of day')], 'yes')}</select>\n1479     <div id=fs-splitamts style='display:none'>\n1480       <p class=muted style='margin:6px 0'>How much at each dose <span class=splitunit></span></p>\n1481       <div class=row>\n1482         <div data-slot=1><label class=muted>Morning</label><input type=number step=any min=0 inputmode=decimal name=amt_1></div>\n1483         <div data-slot=2><label class=muted>Night</label><input type=number step=any min=0 inputmode=decimal name=amt_2></div>\n1484         <div data-slot=3><label class=muted>Night</label><input type=number step=any min=0 inputmode=decimal name=amt_3></div>\n1485         <div data-slot=4><label class=muted>Night</label><input type=number step=any min=0 inputmode=decimal name=amt_4></div>\n1486       </div>\n1487     </div>\n1488   </div>\n1489   <div class=dosecalc id=dosebox><span class=dc-eyebrow>In milligrams, that is</span><strong id=mgout aria-live=polite>Fill in the amount and times per day above.</strong></div>\n1490 \n1491   <label>2. In the past week, how often did your child miss a dose?</label>\n1492   <select name=adherence>{opts([('almost_never','Almost never misses a dose'),('sometimes','Sometimes misses a dose'),('stopped','Stopped taking it')], 'almost_never')}</select>\n1493   <fieldset id=fs-missed><legend>If they missed doses, what was the main reason? (check any)</legend>\n1494     {checks('q2a',[('cost_or_insurance','Cost or insurance'),('side_effects','Side effects'),('hard_to_remember','Hard to remember to take it'),('child_refuses','Child refuses to take it'),('ran_out','Ran out of medication'),('other','Other')])}\n1495     <div id=fs-q2aother class=subq><label class=muted>If you chose Other, please describe</label><input type=text name=q2a_other placeholder=\"the main reason doses were missed\"></div>\n1496   </fieldset>\n1497 </div>\n1498 \n1499 <div class=card><h2>Seizures</h2>\n1500   <label>3. Since your last update, has your child had any seizures?</label>\n1501   <select name=seizures>{opts([('no','No'),('yes','Yes')], 'no')}</select>\n1502   <fieldset id=fs-seiz><legend>If yes</legend>\n1503     <label>4. What did the seizure(s) look like? (check all that apply)</label>\n1504     <p class=muted>If your child has more than one kind of seizure, check all that apply.</p>\n1505     <div class=checks>\n1506     {\"\".join(\n1507       f\"<label><input type=checkbox name=q4 value={tok}><span>{cbl}</span></label>\"\n1508       f\"<div id=fs-seizd-{tok} class=subq style='display:none'>\"\n1509       f\"<label>How often are the {hum} happening?</label>\"\n1510       f\"<select name=freq_{tok}>{opts(_FREQ_BUCKET_OPTS)}</select>\"\n1511       f\"<label>How long do they usually last?</label>\"\n1512       f\"<select name=dur_{tok}>{opts(_DUR_OPTS)}</select>\"\n1513       f\"<label class=muted>If you can, about how many of these in the past 4 weeks? (optional)</label>\"\n1514       f\"<input type=number min=0 step=1 inputmode=numeric name=count_{tok} placeholder='e.g., 12'>\"\n1515       + (f\"<label>During these, is your child unresponsive (cannot be woken or does not respond)?</label>\"\n1516          f\"<select name=unresp_{tok}>{opts(_UNRESP_OPTS)}</select>\"\n1517          if tok not in ('brief_staring', 'sudden_jerks') else \"\")\n1518       + \"</div>\"\n1519       for tok, cbl, hum in [\n1520         ('brief_staring', 'Brief staring or pauses', 'brief staring spells'),\n1521         ('sudden_jerks', 'Quick jerks', 'quick jerks'),\n1522         ('whole_body', 'Whole-body shaking or stiffening', 'whole-body shaking or stiffening'),\n1523         ('focal', 'One part of the body shaking or twitching', 'shaking or twitching in one part of the body'),\n1524         ('acting_off', 'Acting off or not responding appropriately, without shaking or stiffening', 'times acting off or not responding appropriately')])}\n1525       <label><input type=checkbox name=q4 value=not_sure><span>Not sure</span></label>\n1526       <div id=fs-seizd-not_sure class=subq style='display:none'><label class=muted>Describe what it looked like, in your own words</label><input type=text name=q_seizure_note placeholder=\"for example, eyes rolling up, a sudden fall, staring and unresponsive\"></div>\n1527     </div>\n1528     <label>6. Compared with your last visit, the seizures are:</label>\n1529     <select name=q6>{opts([('','Choose'),('fewer','Fewer'),('about_same','About the same'),('more','More frequent'),('new_type','A new type has appeared')])}</select>\n1530     <label>7. When the seizure happened, had your child been taking their medicine as usual in the two days before it?</label>\n1531     <select name=q7>{opts([('','Choose'),('yes','Yes'),('no','No')])}</select>\n1532     <label>Prior to these recent seizures, were there any possible triggers? (check all that apply)</label>\n1533     {checks('q_triggers',[('lack_of_sleep','Unusual lack of sleep the day before'),('missed_dose','Missed a dose of medication in the 2 days before a seizure'),('fever_illness','Fever or illness'),('other','Other')])}\n1534     <label class=muted>If you chose Other, please describe</label>\n1535     <input type=text name=q_triggers_other placeholder=\"the possible trigger\">\n1536     <label>If there were triggers, was one of them present before <strong>all</strong> of the breakthrough seizures?</label>\n1537     <select name=q_triggers_all>{opts([('','Choose / not applicable'),('yes','Yes'),('no','No'),('not_sure','Not sure')])}</select>\n1538     <label>Additional note for doctor (optional)</label>\n1539     <input type=text name=q_seizure_doctor_note placeholder=\"anything about the seizures you want the doctor to know\">\n1540   </fieldset>\n1541 </div>\n1542 \n1543 <div class=card id=card-dosegoal><h2>Dose goal</h2>\n1544   <p class=muted>The \"goal dose\" is the target dose your care team is working toward.</p>\n1545   <label>7. Are you still increasing the medicine toward a goal dose, or have you reached the goal dose?</label>\n1546   <select name=q10a>{opts([('','Choose'),('still_increasing','Still increasing toward the goal dose'),('at_goal','At the goal dose'),('not_sure','Not sure')])}</select>\n1547   <div id=fs-atgoal class=subq>\n1548     <label>Has your child been on this goal dose for more than 2 weeks?</label>\n1549     <select name=q10c_time>{opts([('','Choose'),('over_2_weeks','Yes'),('under_2_weeks','No')])}</select>\n1550     <label>How is it going on this dose?</label>\n1551     <textarea name=q10c_note rows=2 placeholder=\"how your child is doing now that they have reached the goal dose\"></textarea>\n1552   </div>\n1553   <div id=fs-plannedend>\n1554   <label>What total daily dose is your child working up to on the current plan (the goal dose)? Optional &mdash; enter the total milligrams per day if you know it.</label>\n1555   <input type=number name=q10f_planned_end_mg min=0 step=1 placeholder=\"e.g. 1500 (mg per day)\">\n1556   </div>\n1557 </div>\n1558 \n1559 <div class=card><h2>Side effects</h2>\n1560   <label>8. Is your child having any side effects from the past two weeks?</label>\n1561   <select name=se>{opts([('no','No'),('yes','Yes')], 'no')}</select>\n1562   <fieldset id=fs-se><legend>If yes</legend>\n1563     <label>9. Which ones? (check any)</label>\n1564     <div class=checks>\n1565       <label><input type=checkbox name=q9 value=sleepiness><span>Sleepiness or tiredness</span></label>\n1566       <label><input type=checkbox name=q9 value=irritability><span>Irritability or mood changes</span></label>\n1567       <label><input type=checkbox name=q9 value=behavior><span>Behavior changes</span></label>\n1568       <label><input type=checkbox name=q9 value=acting_confused><span>Acting confused or \"off\"</span></label>\n1569       <label><input type=checkbox name=q9 value=dizziness><span>Dizziness or unsteadiness</span></label>\n1570       <label><input type=checkbox name=q9 value=rash><span>Rash</span></label>\n1571       <div id=fs-rash style='display:none;margin-top:10px;background:#fdeceb;border:1px solid #f3b7b2;border-radius:8px;padding:14px 16px'>\n1572         <label style='color:#8a2018;margin-top:0'>How significant is the rash?</label>\n1573         <select name=q9a>{opts([('','Choose'),('small','It is a small rash'),('large','It is a large rash'),('blisters','It is causing blisters')])}</select>\n1574         <!-- Serious-rash (Stevens-Johnson) workup follow-ups, T11/R4 (Barbour\n1575              case H6). Previously computed in engine_core but never asked here -\n1576              southeast_asian_ancestry / concomitant meds / recent viral illness\n1577              always defaulted to unknown, so this logic could never fire on a\n1578              real submission. Asked whenever Rash is checked (not gated to\n1579              \"small\" specifically) since it's simplest and harmless for the\n1580              large/blister cases too (those are already handled by the\n1581              hard-stop urgent rule regardless of these answers). -->\n1582         <label style='color:#8a2018;margin-top:10px'>Is your child of Southeast or East Asian ancestry? (relevant for rash risk with certain medicines)</label>\n1583         <select name=q_ancestry>{opts([('','Prefer not to say / not sure'),('yes','Yes'),('no','No')])}</select>\n1584         <label style='color:#8a2018;margin-top:10px'>Besides this seizure medicine, is your child on any OTHER seizure medications? (check any - helps check for interactions)</label>\n1585         {checks('q_other_asms', [(m, m.replace('_',' ').title()) for m in MEDS])}\n1586         <label style='color:#8a2018;margin-top:10px'>Is your child currently on any of these? (check any - these are specifically linked to serious rash reactions)</label>\n1587         {checks('q_sjs_risk_comeds', [('antibiotic','An antibiotic (including a sulfa drug, penicillin/amoxicillin, or a cephalosporin)'),('nsaid','Ibuprofen or another NSAID pain reliever'),('allopurinol','Allopurinol (a gout medication)')])}\n1588         <label style='color:#8a2018;margin-top:10px'>Any other regular medications not listed above? List them, separated by commas.</label>\n1589         <input type=text name=q_other_meds_text placeholder=\"e.g. melatonin, an inhaler\">\n1590         <label style='color:#8a2018;margin-top:10px'>Has your child had a cold, fever, or other viral illness in the past few weeks?</label>\n1591         <select name=q_viral_illness>{opts([('','Not sure'),('yes','Yes'),('no','No')])}</select>\n1592       </div>\n1593       <label><input type=checkbox name=q9 value=nausea><span>Nausea or appetite change</span></label>\n1594       <label><input type=checkbox name=q9 value=other><span>Other</span></label>\n1595       <div id=fs-q9other class=subq style='display:none'><label class=muted>If you chose Other, please describe the side effect</label><input type=text name=q9_other placeholder=\"for example, headaches, stomach aches\"></div>\n1596     </div>\n1597     <label>10. Children can have more side effects right after a dose increase. After about 5 to 10 days on a new dose, how much are the side effects affecting your child's day?</label>\n1598     <select name=impact>{opts(_IMPACT_OPTS)}</select>\n1599   </fieldset>\n1600 </div>\n1601 \n1602 <div class=card id=card-pref style='display:none'><h2>A few more questions</h2>\n1603   {_dosing_choice_block(p)}\n1604   <div id=fs-pref-adjust style='display:none'>\n1605     <p style='font-size:16px;line-height:1.6;color:#3a4654'>Side effects can be the most pronounced immediately after a dose increase and improve as the body adjusts to the medicine. From your observations, do you think your child is showing an adjustment to the medication after being on a stable dose for 1 week, and side effects are manageable after this 1 week adjustment period?</p>\n1606     <select name=q_adjust>{opts([('','Choose'),('manageable','Yes, side effects are manageable'),('too_much','No, side effects are having too much of an impact on daily life and I would prefer avoiding more dose increases')])}</select>\n1607   </div>\n1608 </div>\n1609 \n1610 <div class=card><h2>Overall</h2>\n1611   <label>11. Overall, how have your child's seizures changed on this medicine?<span class=req>*</span></label>\n1612   <select name=q11 required>{opts([('','Choose'),('better','Better'),('about_same','About the same'),('worse','Worse'),('not_sure','Not sure')])}</select>\n1613   <div id=fs-conflict class=subq style='display:none'><label class=muted>You said things are <strong>better overall</strong> but also <strong>more frequent</strong> seizures - can you tell us a little more so the team understands?</label><input type=text name=q_conflict placeholder=\"for example, shorter but more often\"></div>\n1614   <label>12. Anything else you would like the care team to know? (optional)</label>\n1615   <textarea name=q13 rows=3></textarea>\n1616   <button class='btn cta big' type=submit>Send to my care team</button>\n1617   <p class=muted style='text-align:center;margin-top:10px'>Your care team reviews every answer before anything is decided.</p>\n1618 </div>\"\"\"\n1619 \n",
       "col_offset": 15,
       "end_col_offset": 136,
       "filename": "./clinic.py",
@@ -1407,29 +1446,8 @@
       },
       "issue_severity": "MEDIUM",
       "issue_text": "Possible SQL injection vector through string-based query construction.",
-      "line_number": 1402,
+      "line_number": 1423,
       "line_range": [
-        1402,
-        1403,
-        1404,
-        1405,
-        1406,
-        1407,
-        1408,
-        1409,
-        1410,
-        1411,
-        1412,
-        1413,
-        1414,
-        1415,
-        1416,
-        1417,
-        1418,
-        1419,
-        1420,
-        1421,
-        1422,
         1423,
         1424,
         1425,
@@ -1591,14 +1609,48 @@
         1581,
         1582,
         1583,
-        1584
+        1584,
+        1585,
+        1586,
+        1587,
+        1588,
+        1589,
+        1590,
+        1591,
+        1592,
+        1593,
+        1594,
+        1595,
+        1596,
+        1597,
+        1598,
+        1599,
+        1600,
+        1601,
+        1602,
+        1603,
+        1604,
+        1605,
+        1606,
+        1607,
+        1608,
+        1609,
+        1610,
+        1611,
+        1612,
+        1613,
+        1614,
+        1615,
+        1616,
+        1617,
+        1618
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html",
       "test_id": "B608",
       "test_name": "hardcoded_sql_expressions"
     },
     {
-      "code": "3258         add_dosing = (\n3259             f\"<div class=refcard><div style='font-weight:700'>Add / edit dosing</div>\"\n3260             f\"<form method=post action='/settings/asm' style='margin-top:12px'>\"\n3261             f\"<input type=hidden name=csrf value='{html.escape(self._doc_csrf())}'>\"\n3262             f\"<div class=row><div><label>Medicine</label><select name=med>{med_opts}</select></div>\"\n3263             f\"<div><label>Age from (yr)</label><input type=number step=0.1 name=age_min></div>\"\n3264             f\"<div><label>Age to (yr)</label><input type=number step=0.1 name=age_max></div></div>\"\n3265             f\"<div class=row><div><label>Max dose (mg/day)</label><input type=number step=any name=max_dose></div>\"\n3266             f\"<div><label>Increase step (mg)</label><input type=number step=any name=step></div>\"\n3267             f\"<div><label>Every (weeks)</label><input type=number name=interval></div></div>\"\n3268             f\"<p></p><button class='btn sm' type=submit>Save dosing (DRAFT)</button></form></div>\")\n3269 \n",
+      "code": "3309         add_dosing = (\n3310             f\"<div class=refcard><div style='font-weight:700'>Add / edit dosing</div>\"\n3311             f\"<form method=post action='/settings/asm' style='margin-top:12px'>\"\n3312             f\"<input type=hidden name=csrf value='{html.escape(self._doc_csrf())}'>\"\n3313             f\"<div class=row><div><label>Medicine</label><select name=med>{med_opts}</select></div>\"\n3314             f\"<div><label>Age from (yr)</label><input type=number step=0.1 name=age_min></div>\"\n3315             f\"<div><label>Age to (yr)</label><input type=number step=0.1 name=age_max></div></div>\"\n3316             f\"<div class=row><div><label>Max dose (mg/day)</label><input type=number step=any name=max_dose></div>\"\n3317             f\"<div><label>Increase step (mg)</label><input type=number step=any name=step></div>\"\n3318             f\"<div><label>Every (weeks)</label><input type=number name=interval></div></div>\"\n3319             f\"<p></p><button class='btn sm' type=submit>Save dosing (DRAFT)</button></form></div>\")\n3320 \n",
       "col_offset": 14,
       "end_col_offset": 50,
       "filename": "./clinic.py",
@@ -1609,18 +1661,18 @@
       },
       "issue_severity": "MEDIUM",
       "issue_text": "Possible SQL injection vector through string-based query construction.",
-      "line_number": 3259,
+      "line_number": 3310,
       "line_range": [
-        3259,
-        3260,
-        3261,
-        3262,
-        3263,
-        3264,
-        3265,
-        3266,
-        3267,
-        3268
+        3310,
+        3311,
+        3312,
+        3313,
+        3314,
+        3315,
+        3316,
+        3317,
+        3318,
+        3319
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html",
       "test_id": "B608",
@@ -1721,6 +1773,46 @@
       "line_number": 79,
       "line_range": [
         79
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b313-b320-xml-bad-elementtree",
+      "test_id": "B314",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "110     try:\n111         return ET.fromstring(z.read(name))\n112     except KeyError:\n",
+      "col_offset": 15,
+      "end_col_offset": 42,
+      "filename": "./tools/kristen_search.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 20,
+        "link": "https://cwe.mitre.org/data/definitions/20.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Using xml.etree.ElementTree.fromstring to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.etree.ElementTree.fromstring with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called",
+      "line_number": 111,
+      "line_range": [
+        111
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b313-b320-xml-bad-elementtree",
+      "test_id": "B314",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "572     try:\n573         root = ET.parse(path).getroot()\n574     except ET.ParseError:\n",
+      "col_offset": 15,
+      "end_col_offset": 29,
+      "filename": "./tools/kristen_search.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 20,
+        "link": "https://cwe.mitre.org/data/definitions/20.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Using xml.etree.ElementTree.parse to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.etree.ElementTree.parse with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called",
+      "line_number": 573,
+      "line_range": [
+        573
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b313-b320-xml-bad-elementtree",
       "test_id": "B314",
