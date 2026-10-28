@@ -153,6 +153,12 @@ class TestTemplateSelection(unittest.TestCase):
             self.assertIn(words, m)
             self.assertNotIn("We have a few options", m)
 
+    def test_medicine_name_is_readable(self):
+        sn = _snap({"Q3": "no", "Q10a": "at_goal"}, med="valproic_acid", age=10, wt=32, dose=500)
+        m = build_patient_message(sn, Decision(category=RC.LOWER_DOSE, followup_weeks=4))
+        self.assertIn("valproic acid", m)
+        self.assertNotIn("valproic_acid", m)
+
     def test_lower_and_add_wording(self):
         # Level 4 + ongoing seizures (her table): lower the dose AND add a second medicine.
         m = self._msg(RC.ADD_MEDICATION, "Lower dose; add a second medication; follow up 4 weeks")

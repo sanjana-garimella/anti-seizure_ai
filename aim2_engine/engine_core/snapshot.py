@@ -268,6 +268,12 @@ class MedicationContext:
     # Drives the switch-when-not-helpful timing and the lamotrigine small-rash
     # workup (Kristen review, themes T5/T11). A bucket label, not a threshold.
     time_on_medication: Optional[str] = None
+    # Uneven or three-times-a-day doses the family ALREADY gives (Q1a "same amount
+    # each time?" = no): one amount per dose, in dose_unit, in day order (morning
+    # first, night last). None = the same amount each time (dose_amount). A list
+    # that does not match frequency_per_day, or holds a non-number, makes the total
+    # not computable - the engine then defers instead of guessing.
+    dose_amounts: Optional[List[float]] = None
 
     def __post_init__(self):
         # Defensive: the medication name is used in string ops throughout
@@ -276,14 +282,50 @@ class MedicationContext:
         if self.medication is not None and not isinstance(self.medication, str):
             self.medication = str(self.medication)
 
+    def _split(self):
+        """("none" | "ok" | "bad", amounts) for the reported per-dose amounts."""
+        a = self.dose_amounts
+        if a is None or (isinstance(a, (list, tuple)) and len(a) == 0):
+            return "none", None
+        if not isinstance(a, (list, tuple)):
+            return "bad", None
+        if not all(isinstance(x, (int, float)) and not isinstance(x, bool) and x > 0 for x in a):
+            return "bad", None
+        f = self.frequency_per_day
+        if not isinstance(f, (int, float)) or isinstance(f, bool) or len(a) != f:
+            return "bad", None
+        return "ok", [float(x) for x in a]
+
+    @property
+    def is_uneven(self) -> bool:
+        """True when the family reported different amounts at different doses."""
+        state, a = self._split()
+        return state == "ok" and len(set(a)) > 1
+
+    def per_dose_mg_list(self) -> Optional[List[float]]:
+        """mg for each dose of the day (morning first) when the family reported an
+        uneven split and every dose converts to mg; else None."""
+        state, a = self._split()
+        if state != "ok" or len(set(a)) < 2:
+            return None
+        mgs = [per_dose_mg(x, self.dose_unit, self.concentration) for x in a]
+        return None if any(v is None for v in mgs) else mgs
+
     @property
     def total_daily_dose(self) -> Optional[float]:
         """Reported total daily dose (mg) when computable; else None.
 
         This only echoes what the family reported (amount x frequency, or
-        amount x concentration x frequency for liquids). It introduces no
-        clinical value of its own.
+        amount x concentration x frequency for liquids, or the sum of the
+        per-dose amounts for an uneven split). It introduces no clinical value
+        of its own.
         """
+        state, a = self._split()
+        if state == "bad":
+            return None                     # ambiguous split -> not computable (defer)
+        if state == "ok":
+            mgs = [per_dose_mg(x, self.dose_unit, self.concentration) for x in a]
+            return None if any(v is None for v in mgs) else sum(mgs)
         if (self.dose_amount is None or not self.frequency_per_day
                 or not isinstance(self.frequency_per_day, (int, float))):
             return None

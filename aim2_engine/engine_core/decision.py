@@ -139,18 +139,40 @@ _DOSING_LABEL = {
 }
 
 
-def _dosing_plan(options, choice):
+_ALREADY = {"tid": "already takes it three or more times a day",
+            "uneven": "already takes different amounts at different doses"}
+
+
+def _dosing_plan(options, choice, current=()):
     """(dosing_note, chosen) for a Level-3 cell. The FAMILY chooses among the options
     the cell lists - any medicine, TID allowed while still increasing. A choice the
-    cell does not list is not acted on; it is shown to the clinician instead."""
+    cell does not list is not acted on; it is shown to the clinician instead. So is a
+    choice that is already in place (`current`, from Q1a: the child already takes it
+    three times a day, or already in uneven doses) - there is nothing to change, so
+    the clinician decides (defer on ambiguity, 2026-10-28)."""
     opts = [o for o in (options or []) if o in _DOSING_LABEL]
     offered = "; ".join(_DOSING_LABEL[o] for o in opts)
+    if choice in opts and choice in (current or ()):
+        return (f"Family chose {_DOSING_LABEL[choice]}, but the child {_ALREADY[choice]} - "
+                f"clinician to discuss. Options here: {offered}.", None)
     if choice in opts:
         return (f"Family chose: {_DOSING_LABEL[choice]}. (Options offered: {offered}.)", choice)
     if choice:
         return (f"Family chose '{_DOSING_LABEL.get(choice, choice)}', which this table cell does not "
                 f"offer - clinician to discuss. Options here: {offered}.", None)
     return (f"Level-3 options for the family to choose: {offered}.", None)
+
+
+def _labs_wording(text, labs):
+    """Drop an "order labs" clause from a reason line when no labs are listed for this
+    medicine (e.g. levetiracetam), so the line never promises labs that the summary
+    does not order (2026-10-28). The verbatim table steps (guidance_steps) are kept."""
+    if not text or labs:
+        return text
+    import re
+    out = re.sub(r";\s*order labs(?=\s*(;|\.|$))", "", text)
+    out = re.sub(r"(^|(?<=: ))order labs;\s*", "", out)
+    return out
 
 
 def _fire(rationale, rule_id, description, status: PatientStatus, **inputs):
@@ -397,7 +419,8 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
                     # Dr. Barbour 2026-10-25 (#52): the family picks from the cell's
                     # options, for any medicine; TID is fine while still increasing.
                     d_opts = list(cell.get("dosing_options") or ["uneven", "tid", "wait"])
-                    dose_note, d_choice = _dosing_plan(d_opts, status.side_effect_dosing_choice)
+                    dose_note, d_choice = _dosing_plan(d_opts, status.side_effect_dosing_choice,
+                                                     status.current_dosing)
                     if d_choice == "add" and not at_max:
                         # Option 4 from the cell's own list: lower the dose + add a second med.
                         category = RecommendationCategory.ADD_MEDICATION
@@ -424,7 +447,8 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
                          safety_concern_flag=bool(cell.get("safety")),
                          urgent_flags=(urgent_flags if (cell.get("urgent") or cell.get("safety")) else []),
                          adherence_note=adherence_note, adherence_support=adherence_support,
-                         reason_summary=f"Breakthrough ({status.breakthrough_tier}, {phase}, L{level}): {_steps}")
+                         reason_summary=(f"Breakthrough ({status.breakthrough_tier}, {phase}, L{level}): "
+                                         f"{_labs_wording(_steps, labs)}"))
 
         # R5b NEW (Barbour 2026-06): the medicine is HELPING but its side effects
         # prevent further dose escalation while seizures continue -> ADD a second
@@ -581,7 +605,8 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
         # wait, for ANY medicine and in every phase (TID may be offered while still
         # increasing). Replaces the 2026-07-16 eligible-drug list + steady-only TID.
         ns_opts = list(ns_table.get("l3_dosing_options") or ["uneven", "tid", "wait"])
-        dose_note, ns_choice = _dosing_plan(ns_opts, status.side_effect_dosing_choice)
+        dose_note, ns_choice = _dosing_plan(ns_opts, status.side_effect_dosing_choice,
+                                             status.current_dosing)
         # Barbour 2026-06-25: in the adjustment-HOLDING period with medium-impact
         # side effects (L2/L3), ask the family whether side effects are easing as
         # the body adjusts. (None for other phases/levels -> no behavior change.)
@@ -597,14 +622,16 @@ def decide(status: PatientStatus, cfg: Optional[Thresholds] = None) -> Decision:
         if action == "lower":    # L4 "big impact"
             return D(RecommendationCategory.LOWER_DOSE, adherence_note=adherence_note,
                      lab_orders=labs, followup_weeks=lower_fu,
-                     reason_summary="No seizures; big-impact side effects (L4) -> lower the dose; order labs.")
+                     reason_summary=_labs_wording("No seizures; big-impact side effects (L4) -> lower "
+                                                  "the dose; order labs.", labs))
         if action == "hold":     # L3 "medium, a lot"
             return D(RecommendationCategory.HOLD, adherence_note=adherence_note,
                      lab_orders=labs, followup_weeks=hold_fu, dosing_note=dose_note,
                      dosing_options=ns_opts, dosing_choice=ns_choice,
                      family_prompt=adj_prompt,
-                     reason_summary="No seizures; medium-but-significant side effects (L3) -> hold the "
-                     "current dose; follow up; order labs.")
+                     reason_summary=_labs_wording("No seizures; medium-but-significant side effects "
+                                                  "(L3) -> hold the current dose; follow up; order "
+                                                  "labs.", labs))
         if action == "slower":   # L2 while titrating
             return D(RecommendationCategory.SLOWER_UPTITRATION, pace="slower",
                      adherence_note=adherence_note,

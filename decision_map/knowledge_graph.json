@@ -1630,12 +1630,6 @@
     },
     {
       "source": "tbl_bt_non_urgent",
-      "target": "cat_no_change",
-      "rel": "yields",
-      "minor": false
-    },
-    {
-      "source": "tbl_bt_non_urgent",
       "target": "cat_switch_medication",
       "rel": "yields",
       "minor": false
@@ -1643,6 +1637,12 @@
     {
       "source": "tbl_bt_non_urgent",
       "target": "cat_hold",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_non_urgent",
+      "target": "cat_no_change",
       "rel": "yields",
       "minor": false
     },
@@ -1720,13 +1720,13 @@
     },
     {
       "source": "tbl_bt_urgent",
-      "target": "cat_no_change",
+      "target": "cat_switch_medication",
       "rel": "yields",
       "minor": false
     },
     {
       "source": "tbl_bt_urgent",
-      "target": "cat_switch_medication",
+      "target": "cat_no_change",
       "rel": "yields",
       "minor": false
     },
@@ -1792,12 +1792,6 @@
     },
     {
       "source": "tbl_bt_emergent",
-      "target": "cat_add_medication",
-      "rel": "yields",
-      "minor": false
-    },
-    {
-      "source": "tbl_bt_emergent",
       "target": "cat_escalate",
       "rel": "yields",
       "minor": false
@@ -1805,6 +1799,12 @@
     {
       "source": "tbl_bt_emergent",
       "target": "cat_switch_medication",
+      "rel": "yields",
+      "minor": false
+    },
+    {
+      "source": "tbl_bt_emergent",
+      "target": "cat_add_medication",
       "rel": "yields",
       "minor": false
     },

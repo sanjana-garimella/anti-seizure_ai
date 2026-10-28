@@ -11,7 +11,9 @@ IntervalSnapshot
                                 epilepsy_etiology, seizure_types[], site
   medication: MedicationContext medication (generic), dose_amount, dose_unit,
                                 formulation, frequency_per_day, concentration,
-                                goal_dose, is_goal_reached, dose_changed_or_stopped
+                                goal_dose, is_goal_reached, dose_changed_or_stopped,
+                                dose_amounts[] (uneven split, one amount per dose,
+                                morning first; None = same amount each time)
   survey: IntervalSurvey        (built from §7 answers - table below)
   contingency: PhysicianContingency  can_increase_dose, can_add_medication,
                                 can_switch_to, notes   (from physician intake)
@@ -181,7 +183,7 @@ anything from the note text:
 
 | Table.column | Why it exists |
 |---|---|
-| `submissions.med_context_json` | The **resolved** MedicationContext the engine ran on (medication, dose_amount, dose_unit, frequency_per_day, concentration). The family confirms their real dose/strength in Q1a and those fields arrive on the raw POST form only, so without this a re-run silently falls back to the doctor's intake dose. Makes a submission losslessly re-runnable (`tools/regen_notes.py`). |
+| `submissions.med_context_json` | The **resolved** MedicationContext the engine ran on (medication, dose_amount, dose_unit, frequency_per_day, concentration, dose_amounts). The family confirms their real dose/strength in Q1a and those fields arrive on the raw POST form only, so without this a re-run silently falls back to the doctor's intake dose. Makes a submission losslessly re-runnable (`tools/regen_notes.py`). |
 | `recommendations.urgency_tier` | Queue classification (emergent / urgent / non-urgent) without parsing the note. |
 | `recommendations.dose_exceeds_max` | Queue chip for a reported dose above the recommended maximum. |
 | `recommendations.reason_summary` | The one-line "why" shown on the queue card. |

@@ -36,7 +36,9 @@
     "_doc": "Flag #7: 'Allow uneven dosing for all the medications'. Flag #3 example: 1 tablet morning, 2 tablets night. Split kept within the 30/70 .. 40/60 range from the decision-table footnote; the larger dose goes at night (her examples).",
     "all_medications": true,
     "min_share_of_total_for_bid": 0.3,
-    "larger_dose_at_night": true
+    "larger_dose_at_night": true,
+    "keep_family_split_on_increase": true,
+    "_keep_family_split_on_increase_doc": "Added 2026-10-28 (Sanjana Garimella), DRAFT for Dr. Barbour to confirm: when the family reports in Q1a that they already give uneven doses (e.g. smaller morning, larger night), the next increase steps keep an uneven split (same 30/70-40/60 range) instead of going back to equal doses. Display only; the dose decision is unchanged."
   },
   "half_tablets": {
     "_doc": "Flag #3: '1/2 tablets if needed as a first step (ending on an even dose though)'. Halves only on a non-final climb step, only for plain (scored-type) tablets, never ER/DR (flag #9). Dr. Barbour 2026-10-25 (#60): capsules can never be split, so the earlier valproate 500 mg / zonisamide 50 mg half-unit override is removed; use the products available in practice (she is separating tablets and capsules in her sheet).",

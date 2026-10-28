@@ -279,6 +279,10 @@ class PatientStatus:
     # action row + the L3 follow-up interval (Holding = 2 wks, else 4).
     phase: Optional[str] = None
     side_effect_dosing_choice: Optional[str] = None   # family's Level-3 pick (#52): uneven|tid|wait|add
+    # How the child already takes the medicine (Q1a): "tid" when 3+ doses a day,
+    # "uneven" when the family reported different amounts at different doses. A
+    # Level-3 pick that is already in place is not acted on (decision._dosing_plan).
+    current_dosing: List[str] = field(default_factory=list)
     # Barbour 2026-06-25: was a possible trigger (sleep/missed dose/fever/...)
     # present before ALL breakthrough seizures? (survey follow-up; advisory.)
     triggers_all_episodes: Optional[bool] = None
@@ -288,6 +292,17 @@ class PatientStatus:
     # Q9 tokens, lowercased. Used by the J2 path (levetiracetam behavior at goal).
     side_effect_tokens: List[str] = field(default_factory=list)
 
+
+
+def _current_dosing(m) -> List[str]:
+    """Dosing patterns already in place, from the family's Q1a answer (facts only)."""
+    out: List[str] = []
+    f = getattr(m, "frequency_per_day", None)
+    if isinstance(f, (int, float)) and not isinstance(f, bool) and f >= 3:
+        out.append("tid")
+    if getattr(m, "is_uneven", False):
+        out.append("uneven")
+    return out
 
 def _severity(snapshot: IntervalSnapshot) -> tuple[SideEffectSeverity, bool]:
     s = snapshot.survey
@@ -548,7 +563,15 @@ def categorize(snapshot: IntervalSnapshot, asm_rule: Optional[ASMRule] = None,
     # intake seizure types when the survey didn't list any.
     # Coerce to non-empty strings so malformed tokens (None, ints, blanks) can't
     # crash the set/sort below — bad input should degrade gracefully, not raise.
-    reported_types = [str(t) for t in (list(s.seizure_types or []) or list(p.seizure_types or [])) if t]
+    # The interval's types = Q4 PLUS the per-episode "look" tokens (seizure_episodes),
+    # so an input that only describes episodes (hand-built or API callers) still
+    # gets the indication check - e.g. ethosuximide with focal seizures (2026-10-28).
+    _interval = list(s.seizure_types or [])
+    for _ep in (s.seizure_episodes or []):
+        if isinstance(_ep, dict):
+            _look = _ep.get("look")
+            _interval += list(_look) if isinstance(_look, (list, tuple)) else ([_look] if _look else [])
+    reported_types = [str(t) for t in (_interval or list(p.seizure_types or [])) if t]
     classes = sorted({SEIZURE_TOKEN_TO_CLASS.get(t, t) for t in reported_types})
     indication_mismatch = False
     seiztype_contra = False
@@ -586,6 +609,7 @@ def categorize(snapshot: IntervalSnapshot, asm_rule: Optional[ASMRule] = None,
         side_effect_level=IMPACT_TO_LEVEL.get(s.impact_scale),
         phase=phase,
         side_effect_dosing_choice=getattr(s, "side_effect_dosing_choice", None),
+        current_dosing=_current_dosing(snapshot.medication),
         side_effects_present=present,
         adherence=s.adherence,
         provoked_by_nonadherence=provoked,

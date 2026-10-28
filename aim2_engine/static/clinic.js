@@ -43,11 +43,42 @@
       if (u === 'mL') return 'mL';
       return n === 1 ? 'tablet' : 'tablets';
     }
+    function sum(a) { return a.reduce(function (x, y) { return x + y; }, 0); }
+    var SLOTS = { 2: ['Morning', 'Night'], 3: ['Morning', 'Afternoon', 'Night'],
+                  4: ['Morning', 'Midday', 'Afternoon', 'Night'] };
+    // Shows/labels the per-dose boxes; returns their amounts (null for a blank box),
+    // or null when the family gives the same amount each time.
+    function splitAmounts(freq, unit) {
+      var se = q('same_each'), wrap = byId('fs-splitamts'), ab = byId('amtbox');
+      show('fs-sameeach', freq >= 2);
+      var on = !!(se && se.value === 'no' && freq >= 2);
+      if (wrap) { wrap.style.display = on ? '' : 'none'; }
+      if (ab) { ab.style.display = on ? 'none' : ''; }
+      if (!on) {
+        for (var r = 1; r <= 4; r++) { if (q('amt_' + r)) { q('amt_' + r).required = false; } }
+        return null;
+      }
+      var su = wrap.querySelector('.splitunit');
+      if (su) { su.textContent = unit === 'mL' ? '(mL)' : unit === 'mg' ? '(mg)' : '(tablets)'; }
+      var names = SLOTS[freq] || [], out = [];
+      for (var i = 1; i <= 4; i++) {
+        var cell = wrap.querySelector('[data-slot="' + i + '"]');
+        if (!cell) { continue; }
+        cell.style.display = i <= freq ? '' : 'none';
+        var lb = cell.querySelector('label'); if (lb && names[i - 1]) { lb.textContent = names[i - 1]; }
+        var inp = q('amt_' + i); if (inp) { inp.required = i <= freq; }
+        if (i <= freq) { out.push(num(inp.value)); }
+      }
+      return out;
+    }
     function up() {
       var amt = num(q('amt').value), freq = parseInt(q('freq').value, 10), unit = q('unit').value;
       var out = byId('mgout'), box = byId('dosebox'), sb = byId('strengthbox'), cb = byId('concbox');
       var au = byId('amtunit');
       if (au) { au.textContent = unit === 'mL' ? '(mL)' : unit === 'mg' ? '(mg)' : '(tablets)'; }
+      // Uneven doses (Q1a "same amount each time?" = no): one box per dose.
+      var amts = splitAmounts(freq, unit);
+      var split = amts !== null;
       if (sb) { sb.style.display = (unit === 'tablets') ? '' : 'none'; }
       if (cb) { cb.style.display = (unit === 'mL') ? '' : 'none'; }
       if (box) { box.style.display = ''; }
@@ -56,6 +87,11 @@
       // branch HID the box, so the mg unit showed no live total at all.
       if (unit === 'mg') {
         if (!out) { return; }
+        if (split) {
+          if (amts.indexOf(null) >= 0) { out.textContent = 'Fill in the amount for each dose above.'; return; }
+          out.textContent = amts.map(g).join(' mg + ') + ' mg = ' + g(sum(amts)) + ' mg total per day';
+          return;
+        }
         if (amt == null || !freq) { out.textContent = 'Fill in the amount and times per day above.'; return; }
         out.textContent = g(amt) + ' mg x ' + freq + ' a day = ' + g(amt * freq) + ' mg total per day';
         return;
@@ -78,7 +114,13 @@
         if (st != null) { note = g(st) + ' mg per tablet'; }
       }
       if (!out) return;
-      if (amt == null || !freq) { out.textContent = 'Fill in the amount and times per day above.'; return; }
+      if (split && st != null) {
+        if (amts.indexOf(null) >= 0) { out.textContent = 'Fill in the amount for each dose above.'; return; }
+        var mgs = amts.map(function (a) { return a * st; });
+        out.textContent = mgs.map(g).join(' mg + ') + ' mg (' + note + ') = ' + g(sum(mgs)) + ' mg total per day';
+        return;
+      }
+      if (!split && (amt == null || !freq)) { out.textContent = 'Fill in the amount and times per day above.'; return; }
       if (st != null) {
         var per = amt * st;
         out.textContent = g(amt) + ' ' + unitWord(unit, amt) + ' (' + note + ') = ' + g(per) +
@@ -89,7 +131,8 @@
         ? 'Choose the liquid strength above to see the dose in mg.'
         : 'Choose the tablet strength above to see the dose in mg.';
     }
-    ['amt', 'freq', 'unit', 'strength', 'strength_other', 'conc_mgml', 'conc_mg', 'conc_ml'].forEach(function (n) {
+    ['amt', 'freq', 'unit', 'strength', 'strength_other', 'conc_mgml', 'conc_mg', 'conc_ml',
+     'same_each', 'amt_1', 'amt_2', 'amt_3', 'amt_4'].forEach(function (n) {
       var e = q(n); if (e) { e.addEventListener('input', up); e.addEventListener('change', up); }
     });
     window.__doseRecalc__ = up;   // let the per-medicine option builder retrigger the mg calc
@@ -249,6 +292,23 @@
           if (addEls[a2].tagName === 'OPTION') { addEls[a2].disabled = !seizYes; }
         }
         if (ds && !seizYes && ds.value === 'add') { ds.value = ''; }
+        // Hide an option the child already has (Q1a): three times a day when they
+        // already take 3+ doses, uneven when they already give different amounts.
+        var fq = q('freq') ? parseInt(q('freq').value, 10) : 0;
+        var hasTid = fq >= 3, hasUneven = false;
+        if (q('same_each') && q('same_each').value === 'no' && fq >= 2) {
+          var seen = {};
+          for (var k = 1; k <= fq; k++) { var v = q('amt_' + k) ? q('amt_' + k).value : ''; if (v !== '') { seen[v] = 1; } }
+          hasUneven = Object.keys(seen).length > 1;
+        }
+        [['tid', hasTid], ['uneven', hasUneven]].forEach(function (pr) {
+          var els = dz.querySelectorAll('[data-opt=' + pr[0] + ']');
+          for (var e2 = 0; e2 < els.length; e2++) {
+            els[e2].hidden = pr[1];
+            if (els[e2].tagName === 'OPTION') { els[e2].disabled = pr[1]; }
+          }
+          if (ds && pr[1] && ds.value === pr[0]) { ds.value = ''; }
+        });
         dosing = impact2 === 'medium_alot';
         show('fs-dosing', dosing);
         if (!dosing && ds) { ds.value = ''; }
@@ -263,7 +323,8 @@
         c.style.display = (bett && more) ? '' : 'none';
       }
     }
-    ['q1', 'med', 'adherence', 'seizures', 'se', 'impact', 'q10a', 'q10c_time', 'q11', 'q6'].forEach(function (n) {
+    ['q1', 'med', 'adherence', 'seizures', 'se', 'impact', 'q10a', 'q10c_time', 'q11', 'q6',
+     'freq', 'same_each', 'amt_1', 'amt_2', 'amt_3', 'amt_4'].forEach(function (n) {
       var e = q(n); if (e) { e.addEventListener('change', up); }
     });
     var boxes = document.querySelectorAll('[name=q9],[name=q4],[name=q2a]');

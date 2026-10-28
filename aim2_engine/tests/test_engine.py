@@ -780,3 +780,66 @@ class TestLevel3FamilyChoice(unittest.TestCase):
         a = self._run(dict(self.URGENT, Q10b_impact="big", Q9=["sleepy"]))
         b = self._run(dict(self.URGENT, Q10b_impact="big", Q9=["mood"]))
         self.assertEqual(a.category, b.category)
+
+
+class TestEpisodeTypesAndLabWording(unittest.TestCase):
+    """2026-10-28: (1) the seizure-type checks also read the per-episode 'look' tokens,
+    not only Q4; (2) a reason line says 'order labs' only when labs are listed."""
+
+    @staticmethod
+    def _reg():
+        import os
+        from engine_core.asm_rules import load_asm_rules     # same file the clinic app loads
+        return load_asm_rules(os.path.join(os.path.dirname(os.path.dirname(
+            os.path.abspath(__file__))), "data", "asm_rules.json"))
+
+    @staticmethod
+    def _snap(answers, med="levetiracetam", dose=250, age=8, weight=30):
+        p = PatientContext(external_id="T", age_years=age, weight_kg=weight)
+        m = MedicationContext(medication=med, dose_amount=dose, dose_unit="mg", frequency_per_day=2)
+        return snapshot_from_interval(p, m, PhysicianContingency(can_increase_dose=True), answers)
+
+    FOCAL_EP = [{"look": ["focal"], "duration": "1_3min", "frequency_bucket": "weekly",
+                 "unresponsive": False}]
+
+    def test_ethosuximide_focal_episodes_without_q4_switch(self):
+        r = run_engine(self._snap(
+            {"Q3": "yes", "Q10a": "at_goal", "Q10c_time": "over_2_weeks", "Q5": 1,
+             "Q5_unit": "per_week", "Q7": True, "seizure_episodes": self.FOCAL_EP},
+            med="ethosuximide"), asm_registry=self._reg())   # treats_only needs the ASM rules
+        self.assertEqual(r.category, "switch_medication")
+        self.assertEqual(r.rationale[-1]["rule"], "R3")
+
+    def test_ethosuximide_absence_episodes_not_a_mismatch(self):
+        r = run_engine(self._snap(
+            {"Q3": "yes", "Q10a": "at_goal", "Q10c_time": "over_2_weeks", "Q5": 12,
+             "Q5_unit": "per_day",
+             "seizure_episodes": [{"look": ["brief_staring"], "duration": "30_90s",
+                                   "frequency": 12, "frequency_unit": "per_day"}]},
+            med="ethosuximide"), asm_registry=self._reg())
+        self.assertNotEqual(r.rationale[-1]["rule"], "R3")
+
+    def test_no_labs_reason_for_levetiracetam_hold(self):
+        r = run_engine(self._snap({"Q3": "no", "Q9": ["sleepiness"], "Q10a": "at_goal",
+                                      "Q10c_time": "over_2_weeks", "Q10b_impact": "medium_alot"}))
+        self.assertEqual(r.category, "hold")
+        self.assertEqual(r.lab_orders, [])
+        self.assertNotIn("order labs", r.reason_summary)
+
+    def test_labs_reason_kept_when_labs_listed(self):
+        r = run_engine(self._snap({"Q3": "no", "Q9": ["sleepiness"], "Q10a": "at_goal",
+                                      "Q10c_time": "over_2_weeks", "Q10b_impact": "big"},
+                                     med="valproic_acid", dose=500))
+        self.assertTrue(r.lab_orders)
+        self.assertIn("order labs", r.reason_summary)
+
+    def test_breakthrough_reason_drops_labs_but_steps_stay_verbatim(self):
+        r = run_engine(self._snap(
+            {"Q3": "yes", "Q10a": "still_increasing", "Q5": 1, "Q5_unit": "per_month", "Q7": True,
+             "Q9": ["sleepiness"], "Q10b_impact": "medium_alot",
+             "seizure_episodes": [{"look": ["focal"], "duration": "under_1min",
+                                   "frequency": 1, "frequency_unit": "per_month"}]},
+            dose=300, age=7, weight=24))
+        self.assertEqual(r.category, "hold")
+        self.assertNotIn("order labs", r.reason_summary)
+        self.assertIn("order labs", r.guidance_steps)       # her table text is kept as-is

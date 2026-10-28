@@ -17,7 +17,8 @@ from engine_core import run_engine
 
 DEMO_PW = os.environ.get("ASM_DOCTOR_PASSWORD", "demo1234")
 
-# Curated SYNTHETIC check-ins (2026-07-14): a compact set that populates the
+# Curated SYNTHETIC check-ins (2026-07-14; 15 more added 2026-10-28 so every engine
+# outcome has an example - see the end of the list): a compact set that populates the
 # review queue with one clean example of each engine decision path + the three
 # priorities (urgent / review / routine) + the formulation variety (tablet /
 # liquid / mg) + the over-max safety flag. Replaces the old 63-case validation
@@ -114,6 +115,132 @@ PATIENTS = [
       "concentration": 5, "frequency": 2, "can_increase": True, "switch_to": "levetiracetam"},
      {"Q2": "almost_never", "Q3": "no", "Q9": ["rash"], "Q9a": "blisters", "Q10a": "at_goal",
       "Q13": "the rash looks like it is spreading and blistering"}),
+
+    # -- 2026-10-28: one example of each outcome added by Dr. Barbour's 2026-10-25
+    # answers (engine 0.4.x), so every path the engine can take is in the demo. --
+    # Pia - seizure-free, Level 2 side effects while still increasing -> slow the increases.
+    ({"external_id": "Pia (demo)", "age": 9, "weight": 28, "epilepsy_type": "focal",
+      "medication": "levetiracetam", "dose_amount": 250, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "no", "Q10a": "still_increasing", "Q9": ["sleepiness"],
+      "Q10b_impact": "medium_tolerable"}),
+    # Rosa - seizure-free, Level 3, family chose UNEVEN dosing -> hold; the same total is
+    # re-split as 500 mg morning + 1000 mg night (whole 250 mg tablets).
+    ({"external_id": "Rosa (demo)", "age": 12, "weight": 40, "epilepsy_type": "focal",
+      "medication": "levetiracetam", "dose_amount": 3, "dose_unit": "tablets",
+      "concentration": 250, "frequency": 2, "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "no", "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+      "Q9": ["sleepiness"], "Q10b_impact": "medium_alot", "Q10g_dosing_choice": "uneven"}),
+    # Finn - seizure-free, Level 3 (nausea) while still increasing, family chose THREE
+    # TIMES A DAY (allowed while increasing; her template H: helps stomach upset on
+    # valproate). 3 x 250 mg capsules twice a day -> 2 capsules three times a day, same
+    # 1500 mg/day (41.7 mg/kg/day). Labs ordered (valproate).
+    ({"external_id": "Finn (demo)", "age": 11, "weight": 36, "sex": "male",
+      "epilepsy_type": "generalized",
+      "medication": "valproic_acid", "dose_amount": 3, "dose_unit": "tablets",
+      "concentration": 250, "frequency": 2, "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "no", "Q10a": "still_increasing", "Q9": ["nausea"],
+      "Q10b_impact": "medium_alot", "Q10g_dosing_choice": "tid"}),
+    # Lucy - seizure-free, Level 3, no choice yet -> hold; the draft lists the options.
+    ({"external_id": "Lucy (demo)", "age": 8, "weight": 26, "epilepsy_type": "focal",
+      "medication": "oxcarbazepine", "dose_amount": 450, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "no", "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+      "Q9": ["dizziness"], "Q10b_impact": "medium_alot"}),
+    # Omar - seizure-free, Level 4 (big impact) -> lower the dose + labs.
+    ({"external_id": "Omar (demo)", "age": 10, "weight": 32, "sex": "male",
+      "epilepsy_type": "generalized",
+      "medication": "valproic_acid", "dose_amount": 500, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "no", "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+      "Q9": ["sleepiness"], "Q10b_impact": "big"}),
+    # Tess - seizure-free, Level 5 (not a fit) on tablets -> switch; the summary shows the
+    # new medicine's starting schedule and the old-medicine taper in tablets.
+    ({"external_id": "Tess (demo)", "age": 13, "weight": 45, "epilepsy_type": "focal",
+      "medication": "levetiracetam", "dose_amount": 4, "dose_unit": "tablets",
+      "concentration": 250, "frequency": 2, "can_increase": True, "switch_to": "oxcarbazepine"},
+     {"Q2": "almost_never", "Q3": "no", "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+      "Q9": ["mood_changes"], "Q10b_impact": "not_a_fit"}),
+    # Max - urgent breakthrough + Level 3, family chose "lower the dose and add a second
+    # medicine" (offered by the urgent table cell) -> add.
+    ({"external_id": "Max (demo)", "age": 10, "weight": 34, "epilepsy_type": "focal",
+      "medication": "levetiracetam", "dose_amount": 600, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "yes", "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+      "Q5": 2, "Q5_unit": "per_week", "Q7": True, "Q9": ["mood_changes"],
+      "Q10b_impact": "medium_alot", "Q10g_dosing_choice": "add",
+      "seizure_episodes": [{"look": ["focal"], "duration": "1_3min",
+                            "frequency_bucket": "weekly", "unresponsive": False}]}),
+    # Ella - urgent breakthrough + Level 4 -> lower the dose and add a second medicine.
+    ({"external_id": "Ella (demo)", "age": 9, "weight": 30, "epilepsy_type": "focal",
+      "medication": "topiramate", "dose_amount": 100, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "yes", "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+      "Q5": 2, "Q5_unit": "per_week", "Q7": True, "Q9": ["mood_changes"], "Q10b_impact": "big",
+      "seizure_episodes": [{"look": ["focal"], "duration": "1_3min",
+                            "frequency_bucket": "weekly", "unresponsive": False}]}),
+    # Gus - non-urgent breakthrough + Level 3 while increasing -> stay 2 weeks, then one
+    # increase (liquid, rounded to a measurable mL).
+    ({"external_id": "Gus (demo)", "age": 7, "weight": 24, "epilepsy_type": "focal",
+      "medication": "levetiracetam", "dose_amount": 300, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "yes", "Q10a": "still_increasing", "Q5": 1,
+      "Q5_unit": "per_month", "Q7": True, "Q9": ["sleepiness"], "Q10b_impact": "medium_alot",
+      "seizure_episodes": [{"look": ["focal"], "duration": "under_1min",
+                            "frequency": 1, "frequency_unit": "per_month"}]}),
+    # Ana - EMERGENT tier from frequency (daily 1-3 min focal seizures), no safety flag.
+    ({"external_id": "Ana (demo)", "age": 14, "weight": 50, "epilepsy_type": "focal",
+      "medication": "oxcarbazepine", "dose_amount": 600, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "yes", "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+      "Q5": 1, "Q5_unit": "per_week", "Q7": True,
+      "seizure_episodes": [{"look": ["focal"], "duration": "1_3min",
+                            "frequency": 1, "frequency_unit": "per_day"}]}),
+    # Cal - whole-body seizure over 3 minutes -> urgent safety; NO family message (#51).
+    ({"external_id": "Cal (demo)", "age": 9, "weight": 30, "epilepsy_type": "generalized",
+      "medication": "levetiracetam", "dose_amount": 500, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "yes", "Q10a": "still_increasing", "Q5": 1,
+      "Q5_unit": "per_week", "Q5b": "under_2_weeks", "Q7": True,
+      "seizure_episodes": [{"look": ["whole_body"], "duration": "over_3min",
+                            "frequency": 1, "frequency_unit": "per_week"}]}),
+    # Ray - breakthrough with neither frequency nor length -> defer to the physician.
+    ({"external_id": "Ray (demo)", "age": 6, "weight": 21, "epilepsy_type": "focal",
+      "medication": "clobazam", "dose_amount": 5, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "yes", "Q10a": "at_goal", "Q11": "not_sure"}),
+    # Nia - at the goal dose, ongoing seizures, difficult-but-tolerable side effects ->
+    # ask the family: keep increasing, or add a second medicine.
+    ({"external_id": "Nia (demo)", "age": 12, "weight": 42, "epilepsy_type": "focal",
+      "medication": "lamotrigine", "dose_amount": 125, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "yes", "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+      "Q5": 1, "Q5_unit": "per_month", "Q7": True, "Q9": ["dizziness"],
+      "Q10b_impact": "medium_big",
+      "seizure_episodes": [{"look": ["focal"], "duration": "under_1min",
+                            "frequency": 1, "frequency_unit": "per_month"}]}),
+    # Iris - Dr. Barbour's worked example on 250 mg tablets: two increases, uneven
+    # AM/PM with a half tablet on the climb step, worded "500 mg (2 tablets)...".
+    ({"external_id": "Iris (demo)", "age": 12, "weight": 30, "epilepsy_type": "focal",
+      "medication": "levetiracetam", "dose_amount": 2, "dose_unit": "tablets",
+      "concentration": 250, "frequency": 2, "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "yes", "Q10a": "at_goal", "Q10c_time": "over_2_weeks",
+      "Q5": 2, "Q5_unit": "per_week",
+      "seizure_episodes": [{"look": ["focal"], "duration": "1_3min",
+                            "frequency": 2, "frequency_unit": "per_week"}]}),
+    # Hazel - ethosuximide for ABSENCE seizures (the only type it treats): staring
+    # spells of 30-90 s, 12 a day (urgent for absence: 10+ a day). 1000 mg/day =
+    # 20 mg/kg/day, the start of her typical range at 50 kg. Two increases in 250 mg
+    # CAPSULES (worded "capsules", never split); step 2 lands above the usual max and
+    # is flagged for the clinician (never above the absolute max).
+    ({"external_id": "Hazel (demo)", "age": 12, "weight": 50, "epilepsy_type": "absence",
+      "medication": "ethosuximide", "dose_amount": 500, "dose_unit": "mg", "frequency": 2,
+      "can_increase": True, "switch_to": None},
+     {"Q2": "almost_never", "Q3": "yes", "Q4": ["brief_staring"], "Q10a": "at_goal",
+      "Q10c_time": "over_2_weeks", "Q5": 12, "Q5_unit": "per_day",
+      "seizure_episodes": [{"look": ["brief_staring"], "duration": "30_90s",
+                            "frequency": 12, "frequency_unit": "per_day",
+                            "unresponsive": True}]}),
 ]
 
 

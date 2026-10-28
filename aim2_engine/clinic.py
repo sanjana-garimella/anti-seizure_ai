@@ -1154,7 +1154,7 @@ def _ancestry_and_conmeds(answers):
 #: POST form and are NOT all recoverable from the patient intake record - a liquid's
 #: mg/mL in particular. See med_context_of() / build_snapshot(med_context=...).
 MED_CONTEXT_FIELDS = ("medication", "dose_amount", "dose_unit", "frequency_per_day",
-                      "concentration")
+                      "concentration", "dose_amounts")
 
 
 def med_context_of(snapshot):
@@ -1191,6 +1191,23 @@ def build_snapshot(patient, answers, med_context=None):
         answers)
 
 
+def _split_from_form(f, freq):
+    """Q1a 'same amount each time?' = no: one amount per dose, morning first
+    (amt_1 .. amt_<freq>). Returns the list, or None for 'same each time'. A blank or
+    non-number slot is kept as None, so the engine treats the total as not
+    computable and defers, rather than guessing a dose."""
+    one = lambda k: ((f.get(k) or [""])[0] or "").strip()
+    if one("same_each") != "no" or not isinstance(freq, int) or freq < 2:
+        return None
+    out = []
+    for i in range(1, freq + 1):
+        try:
+            out.append(float(one(f"amt_{i}")))
+        except ValueError:
+            out.append(None)
+    return out
+
+
 def build_family_snapshot(patient, f, answers):
     """Snapshot for a family submission: use the dose the family confirmed in
     Q1a when given, otherwise fall back to the doctor's intake record."""
@@ -1207,6 +1224,9 @@ def build_family_snapshot(patient, f, answers):
     except ValueError:
         freq = patient["frequency"]
     unit = one("unit") or patient["dose_unit"]
+    split = _split_from_form(f, freq)
+    if split and isinstance(split[0], float):
+        amt = split[0]                     # legacy single-amount field: the first dose
     try:
         if (unit or "").lower() == "ml":
             # Liquid: prefer the per-medicine concentration dropdown (mg/mL); the
@@ -1232,7 +1252,8 @@ def build_family_snapshot(patient, f, answers):
                        southeast_asian_ancestry=ancestry, concomitant_asms=other_asms,
                        concomitant_other_meds=other_meds),
         MedicationContext(medication=med, dose_amount=amt, concentration=conc,
-                          dose_unit=one("unit") or patient["dose_unit"], frequency_per_day=freq),
+                          dose_unit=one("unit") or patient["dose_unit"], frequency_per_day=freq,
+                          dose_amounts=split),
         PhysicianContingency(can_increase_dose=bool(patient["can_increase"]),
                              can_switch_to=patient["switch_to"]),
         answers)
@@ -1447,10 +1468,23 @@ def _survey_cards(patient):
           <span class=muted>mL</span>
         </div>
         <span class=muted>for example, the label says 100 mg/5 mL</span></div></div>
-    <div><label class=muted>Amount each time <span id=amtunit class=muted></span></label>
+    <div id=amtbox><label class=muted>Amount each time <span id=amtunit class=muted></span></label>
       <select id=amt_mg_sel style='display:none'><option value=''>Choose the amount</option></select>
       <input type=number step=any min=0 inputmode=decimal name=amt value='{html.escape(amt_v)}' data-selected='{html.escape(amt_v)}'></div>
     <div><label class=muted>Times per day</label><select name=freq>{opts([('1','1'),('2','2'),('3','3'),('4','4')], freq_v)}</select></div>
+  </div>
+  <div id=fs-sameeach class=subq>
+    <label class=muted>Is it the same amount each time?</label>
+    <select name=same_each>{opts([('yes', 'Yes, the same amount each time'), ('no', 'No, the amount is different at different times of day')], 'yes')}</select>
+    <div id=fs-splitamts style='display:none'>
+      <p class=muted style='margin:6px 0'>How much at each dose <span class=splitunit></span></p>
+      <div class=row>
+        <div data-slot=1><label class=muted>Morning</label><input type=number step=any min=0 inputmode=decimal name=amt_1></div>
+        <div data-slot=2><label class=muted>Night</label><input type=number step=any min=0 inputmode=decimal name=amt_2></div>
+        <div data-slot=3><label class=muted>Night</label><input type=number step=any min=0 inputmode=decimal name=amt_3></div>
+        <div data-slot=4><label class=muted>Night</label><input type=number step=any min=0 inputmode=decimal name=amt_4></div>
+      </div>
+    </div>
   </div>
   <div class=dosecalc id=dosebox><span class=dc-eyebrow>In milligrams, that is</span><strong id=mgout aria-live=polite>Fill in the amount and times per day above.</strong></div>
 
@@ -1737,10 +1771,10 @@ def _dosing_choice_block(patient):
         "<p style='font-size:16px;line-height:1.6;color:#3a4654'>We have a few options to handle "
         "side effects. Here are some options, in no particular order.</p>"
         "<ul style='font-size:15px;line-height:1.6;color:#3a4654'>"
-        "<li><strong>Uneven dosing.</strong> Sometimes it is helpful to have a smaller dose in the "
+        "<li data-opt=uneven><strong>Uneven dosing.</strong> Sometimes it is helpful to have a smaller dose in the "
         "morning and larger dose in the night-time if you are concerned about the day-time side "
         "effects.</li>"
-        "<li><strong>Three times a day.</strong> Sometimes it is helpful to give the medication in "
+        "<li data-opt=tid><strong>Three times a day.</strong> Sometimes it is helpful to give the medication in "
         "smaller doses three times a day, instead of twice a day. This is not my favorite, because "
         "three times a day is a lot to remember. It seems to be most helpful for reducing stomach "
         "upset (when taking valproic acid and ethosuximide) or reducing dizziness (when taking "
@@ -1753,8 +1787,8 @@ def _dosing_choice_block(patient):
         "<label>Which would you prefer?</label>"
         "<select name=q_dosing_choice>"
         "<option value=''>Choose</option>"
-        "<option value=uneven>Uneven dosing</option>"
-        "<option value=tid>Three times a day dosing</option>"
+        "<option value=uneven data-opt=uneven>Uneven dosing</option>"
+        "<option value=tid data-opt=tid>Three times a day dosing</option>"
         "<option value=wait>Watch and wait</option>"
         "<option value=add data-opt=add>Lower the dose and add a second medication</option>"
         "</select></div>")
@@ -1889,6 +1923,20 @@ def med_options_result(token, sub_id, result):
     # Same masthead as the survey so this reads as the next step of the check-in,
     # not a separate screen.
     return page("Between-visit check-in", body, heading="Between-Visit Check-In")
+
+
+def _new_med_comeds(current_med, answers):
+    """Co-medications for a NEW medicine's starting schedule: the family's listed
+    seizure medicines plus the child's current one (raw and canonical name, so the
+    valproate / enzyme-inducer match works for 'Depakote' or 'valproic_acid')."""
+    from engine_core import initiation
+    cur = str(current_med or "").strip()
+    names = initiation.comeds_while_starting(_ancestry_and_conmeds(answers)[1], cur)
+    try:
+        can = (CLASSIFIER.normalize(cur).canonical or "") if cur else ""
+    except Exception:
+        can = ""
+    return initiation.comeds_while_starting(names, can)
 
 
 def _starting_schedule_html(drug_id, age, weight, conmeds):
@@ -2701,7 +2749,10 @@ class Handler(BaseHTTPRequestHandler):
         # PLAN: the concrete dose plan and medication options.
         _ans = sub.get("answers") or {}
         _age, _wt = _age_weight(pat, _ans)
-        _child = (_age, _wt, _ancestry_and_conmeds(_ans)[1])
+        # Options exist only for a switch or an add; either way the current medicine
+        # is still taken while the new one starts (kept on an add, tapered over 4 weeks
+        # on a switch), so it counts as a co-medication for the starting schedule.
+        _child = (_age, _wt, _new_med_comeds(pat.get("medication"), _ans))
         plan = f"{_titration_html(rec.get('titration_json'))}{med_selection_review_html(ms, _child)}"
 
         # WHY: one plain reason, with rule trace + sources collapsed one click away.
@@ -2992,7 +3043,7 @@ class Handler(BaseHTTPRequestHandler):
             pid = db.add_patient({
                 "external_id": study_id, "age": None, "weight": None, "epilepsy_type": "unspecified",
                 "medication": nd.canonical or chosen or None,
-                "dose_amount": _num(one("amt"), float), "dose_unit": one("unit") or "mg",
+                "dose_amount": _num(one("amt") or one("amt_1"), float), "dose_unit": one("unit") or "mg",
                 "frequency": _num(one("freq"), int), "concentration": _num(one("strength"), float),
                 "can_increase": True, "switch_to": None})
             patient = db.get_patient(pid)

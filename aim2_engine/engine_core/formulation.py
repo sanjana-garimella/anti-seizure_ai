@@ -496,6 +496,9 @@ def step_options(drug_key: str, targets: List[float], freq: Optional[int],
                     plan = best_tablet_split(tgt, freq, strengths, half_ok and halvable and not final,
                                              rules, absolute_max, must_exceed=prev_tab,
                                              must_be_below=nxt, require_uneven=True)
+                # An uneven plan (when one was asked for) beats an even one from
+                # another strength; even is only the fallback when none fits.
+                missed_split = split == "uneven" and freq > 1 and plan is None
                 if plan is None:
                     plan = best_tablet_split(tgt, freq, strengths, half_ok and halvable and not final,
                                              rules, absolute_max, must_exceed=prev_tab,
@@ -508,7 +511,8 @@ def step_options(drug_key: str, targets: List[float], freq: Optional[int],
                 # fewest half tablets, then fewest tablets.
                 same = bool(prefer_cur and any(abs(strengths[0] - ks) < _EPS and unit_noun(form) == kn
                                                for ks, kn in keep_strength))
-                key = (round(abs(plan["total_mg_per_day"] - tgt), 6),
+                key = (1 if missed_split else 0,
+                       round(abs(plan["total_mg_per_day"] - tgt), 6),
                        0 if plan["deviation_pct"] >= 0 else 1,
                        0 if same else 1,
                        sum(_halves(d["recipe"]) for d in plan["doses"]),

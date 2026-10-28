@@ -20,7 +20,7 @@ from typing import List, Optional, Dict, Any
 
 from .snapshot import (IntervalSnapshot, SeizureControl, SideEffectSeverity,
                        DoseGoalStatus, SeizureTrend, per_dose_mg)
-from .categorize import PatientStatus
+from .categorize import PatientStatus, _current_dosing
 from .decision import Decision, RecommendationCategory
 from .asm_rules import ASMRule
 from . import dose_ladder
@@ -336,10 +336,29 @@ def build_decision_provenance(snapshot, decision, asm_rule, cfg=None,
 # 1. EHR-ready clinical summary
 # ---------------------------------------------------------------------------
 
+def split_text(m) -> Optional[str]:
+    """'500 mg morning, 750 mg night' for a family-reported uneven split (mg per
+    dose, day order); None when the doses are equal or not convertible to mg."""
+    mgs = m.per_dose_mg_list() if hasattr(m, "per_dose_mg_list") else None
+    if not mgs:
+        return None
+    names = formulation._slot_names(len(mgs))
+    return ", ".join(f"{v:g} mg {n}" for v, n in zip(mgs, names))
+
+
 def _dose_line(m):
     """Reported dose as a sentence, converting tablets/mL to mg when a strength
     is given; says so plainly when mg cannot be computed."""
     amt, unit, freq = m.dose_amount, (m.dose_unit or "mg"), m.frequency_per_day
+    if m.dose_amounts:
+        # Uneven split reported in Q1a: one amount per dose, morning first.
+        total = m.total_daily_dose
+        given = " + ".join(f"{a:g}" for a in m.dose_amounts) if all(
+            isinstance(a, (int, float)) for a in m.dose_amounts) else "?"
+        if total is None:
+            return (f"{given} {unit} over {freq or '?'} doses/day "
+                    "(mg total not computable - check the amounts and strength)")
+        return f"{split_text(m)} = {total:g} mg/day"
     if (amt is None or not freq or not isinstance(amt, (int, float))
             or not isinstance(freq, (int, float))):
         return "not reported"
@@ -534,7 +553,9 @@ def build_clinical_summary(
     # No ladder band (unrecognized/unbanded medicine) still gets the mg/day form -
     # just without mg/kg/day, which only a weight-based band licenses.
     _cur_s = parts.get("current") or dose_ladder.dose_value_str(m.total_daily_dose)
-    note.add(DOSE, f"Current dose: {_cur_s or _dose_line(m)}")
+    _split = split_text(m)
+    note.add(DOSE, f"Current dose: {_cur_s or _dose_line(m)}"
+             + (f" (given as {_split})" if (_cur_s and _split) else ""))
 
     if suppressed:
         note.add(DOSE, "Typical range and absolute max: the standard table does not apply "
@@ -731,8 +752,12 @@ def build_clinical_summary(
         # '<Drug> Initiation' tabs) - display only, her cells verbatim; defers when
         # the band is unclear or the tab doesn't apply. Then the taper of the old
         # medicine (her template F + 2026-10-25 answer, #69), on a switch only.
-        _sched = initiation.schedule_for(decision.switch_target, p.age_years, p.weight_kg,
-                                         p.concomitant_asms, current_unit=m.dose_unit)
+        # The current medicine overlaps the new one (taper on a switch, kept on an
+        # add), so it counts as a co-medication for the starting schedule.
+        _sched = initiation.schedule_for(
+            decision.switch_target, p.age_years, p.weight_kg,
+            initiation.comeds_while_starting(p.concomitant_asms, m.medication),
+            current_unit=m.dose_unit)
         note.add(REC, f"Starting schedule for {humanize(decision.switch_target)} "
                  "(Dr. Barbour's initiation tab, DRAFT):")
         for _l in initiation.schedule_lines(_sched):
@@ -933,6 +958,11 @@ def _formulation_rows(snapshot: IntervalSnapshot, decision, up=None):
     # smaller morning, larger night dose.
     choice = getattr(decision, "dosing_choice", None)
     freq = 3 if (choice == "tid" and m.frequency_per_day) else m.frequency_per_day
+    # A child who already takes uneven doses (Q1a) keeps that pattern on the next
+    # steps when formulation_rules says so (draft, 2026-10-28) - unless the family
+    # just chose three times a day, which re-splits evenly.
+    keep_uneven = bool(((formulation.load_rules() or {}).get("uneven_dosing") or {})
+                       .get("keep_family_split_on_increase")) and m.is_uneven and choice != "tid"
     try:
         rows = formulation.step_options(
             dk, tg, freq, formulation.formulations_for(dk),
@@ -944,7 +974,7 @@ def _formulation_rows(snapshot: IntervalSnapshot, decision, up=None):
             weight_kg=p.weight_kg,
             effective_max=up.get("effective_max_mg_per_day"),
             age_years=p.age_years,
-            split=("uneven" if choice == "uneven" else None))
+            split=("uneven" if (choice == "uneven" or keep_uneven) else None))
     except Exception:
         rows = []
     return tg, rows
@@ -1052,6 +1082,8 @@ def family_message_allowed_doses(snapshot: IntervalSnapshot, decision) -> set:
                 keep(pd)
 
     add(snapshot.medication.total_daily_dose)
+    for v in (snapshot.medication.per_dose_mg_list() or []):
+        keep(v)                                 # reported uneven split, per dose
     add(getattr(snapshot.survey, "planned_end_total_mg_per_day", None))
     plan = _family_up_plan(snapshot, decision)
     for s in (plan or {}).get("next_up", []) or []:
@@ -1102,7 +1134,8 @@ def build_patient_message(
         return None
 
     m = snapshot.medication
-    med = m.medication or "the medicine"
+    # Family-facing name: "valproic acid", not the internal key "valproic_acid".
+    med = (m.medication or "the medicine").replace("_", " ")
     cat = decision.category
     freq = m.frequency_per_day
     cur = m.total_daily_dose
@@ -1186,9 +1219,10 @@ def build_patient_message(
                        "give a smaller dose in the morning and a larger dose at night — the same "
                        "total each day; your team will confirm the exact amounts with you")
             else:
-                how = (f"give it three times a day instead of twice a day: {rs} — the same total "
+                was = _freq_word(freq) or "the current schedule"
+                how = (f"give it three times a day instead of {was}: {rs} — the same total "
                        "each day" if rs else
-                       "give it in three smaller doses a day instead of twice a day — the same "
+                       f"give it in three smaller doses a day instead of {was} — the same "
                        "total each day; your team will confirm the exact amounts with you")
             body = f"To help with side effects, as you chose, let's change how {med} is given: {how}."
         else:                                                            # hold / watch-and-wait
@@ -1278,11 +1312,15 @@ def build_patient_message(
         _opt_text = {
             "uneven": ("a smaller dose in the morning and a larger dose at night, if the "
                        "day-time side effects are the main concern"),
-            "tid": "giving the medicine in smaller doses three times a day instead of twice a day",
+            "tid": ("giving the medicine in smaller doses three times a day instead of "
+                    + (_freq_word(m.frequency_per_day) or "twice a day")),
             "wait": "watching and waiting, since sometimes the body only needs more time to adjust",
             "add": "lowering the dose and adding a second medication",
         }
-        listed = [_opt_text[o] for o in opts if o in _opt_text]
+        # Skip an option the child already has (Q1a): three times a day when they
+        # already take 3+ doses, uneven when they already give different amounts.
+        _have = _current_dosing(m)
+        listed = [_opt_text[o] for o in opts if o in _opt_text and o not in _have]
         if listed:
             body += ("\n\nWe have a few options to handle the side effects, in no particular order: "
                      + "; ".join(f"({i}) {t}" for i, t in enumerate(listed, start=1))

@@ -115,6 +115,51 @@ class TestScheduleShownToClinician(unittest.TestCase):
         self.assertNotIn("Starting schedule", clinic.med_selection_review_html(ms))
 
 
+class TestCurrentMedicineCountsWhenStarting(unittest.TestCase):
+    """2026-10-28: the child's CURRENT medicine is still taken while a new one starts
+    (kept on an add, tapered over 4 weeks on a switch), so it counts as a
+    co-medication. Lamotrigine started on top of valproate must not show the standard
+    (too fast) schedule."""
+
+    def test_helper_adds_current_once(self):
+        self.assertEqual(ini.comeds_while_starting(["clobazam"], "valproic_acid"),
+                         ["clobazam", "valproic_acid"])
+        self.assertEqual(ini.comeds_while_starting(["Valproic_Acid"], "valproic_acid"),
+                         ["Valproic_Acid"])
+        self.assertEqual(ini.comeds_while_starting(None, None), [])
+
+    def test_switch_valproate_to_lamotrigine_defers(self):
+        reg = load_asm_rules(os.path.join(_ROOT, "data", "asm_rules.json"))
+        sn = snapshot_from_interval(
+            PatientContext(external_id="t", age_years=12, weight_kg=35),
+            MedicationContext(medication="valproic_acid", dose_amount=250, dose_unit="mg",
+                              frequency_per_day=2),
+            PhysicianContingency(can_increase_dose=True, can_switch_to="lamotrigine"),
+            {"Q3": "no", "Q10a": "at_goal", "Q9": ["sleepiness"], "Q10b_impact": "not_a_fit"})
+        rec = run_engine(sn, asm_registry=reg)
+        self.assertEqual(rec.category, "switch_medication")
+        self.assertIn("does not apply with the child's other medicine (valproate)",
+                      rec.clinical_summary)
+
+    def test_review_card_add_lamotrigine_on_valproate_brand_name(self):
+        import clinic
+        ms = {"engine_result": {"options": [{"id": "lamotrigine", "rank": 1,
+                                              "display_name": "Lamotrigine (Lamictal)"}]},
+              "family_ranking": {}}
+        for cur in ("valproic_acid", "Depakote", "Valproic acid (Depakote)"):
+            h = clinic.med_selection_review_html(ms, (10, 30, clinic._new_med_comeds(cur, {})))
+            self.assertIn("does not apply", h, cur)
+
+    def test_review_card_unaffected_without_interaction(self):
+        import clinic
+        ms = {"engine_result": {"options": [{"id": "lamotrigine", "rank": 1,
+                                              "display_name": "Lamotrigine (Lamictal)"}]},
+              "family_ranking": {}}
+        h = clinic.med_selection_review_html(ms, (10, 30, clinic._new_med_comeds("levetiracetam", {})))
+        self.assertNotIn("does not apply", h)
+        self.assertIn("Week 1", h)
+
+
 @unittest.skipUnless(os.path.isfile(_WB), "Dr. Barbour's v9 workbook not present")
 class TestDataMatchesWorkbook(unittest.TestCase):
     """Drift guard: the JSON files must equal a fresh build from her workbook."""
